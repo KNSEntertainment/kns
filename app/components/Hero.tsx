@@ -5,7 +5,7 @@ export default function Hero() {
 	return (
 		<section className="relative h-screen flex items-center justify-center overflow-hidden">
 			<div className="absolute inset-0 z-0">
-				<img src="/hero-background.jpg" alt="Colorful festival background" className="w-full h-full object-cover" />
+				<img src="/hero-bg.avif" alt="Colorful festival background" className="w-full h-full object-cover" />
 				<div className="absolute inset-0 bg-black opacity-50"></div>
 			</div>
 			<div className="container mx-auto px-4 z-10 text-center">

@@ -8,21 +8,21 @@ const events = [
 		title: "Nepali Night Oslo",
 		date: "2024-06-15",
 		location: "Oslo Spektrum, Norway",
-		image: "/event-1.jpg",
+		image: "/avatar.avif",
 	},
 	{
 		id: 2,
 		title: "Cultural Fusion Stockholm",
 		date: "2024-07-22",
 		location: "Ericsson Globe, Sweden",
-		image: "/event-2.jpg",
+		image: "/avatar.avif",
 	},
 	{
 		id: 3,
 		title: "Himalayan Echoes Berlin",
 		date: "2024-08-10",
 		location: "Mercedes-Benz Arena, Germany",
-		image: "/event-3.jpg",
+		image: "/avatar.avif",
 	},
 ];
 

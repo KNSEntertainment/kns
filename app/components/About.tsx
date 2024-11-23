@@ -6,7 +6,7 @@ export default function About() {
 			<div className="container mx-auto px-4">
 				<div className="flex flex-col md:flex-row items-center">
 					<motion.div className="md:w-1/2 mb-8 md:mb-0" initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }}>
-						<img src="/about-image.jpg" alt="About our company" className="rounded-lg shadow-lg" />
+						<img src="/avatar.avif" alt="About our company" className="rounded-lg shadow-lg" />
 					</motion.div>
 					<motion.div className="md:w-1/2 md:pl-12" initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.2 }}>
 						<h2 className="text-3xl font-bold mb-4">About NepalEvents</h2>

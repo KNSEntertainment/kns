@@ -8,21 +8,21 @@ const testimonials = [
 		name: "Aarav Sharma",
 		location: "Oslo, Norway",
 		text: "NepalEvents brought a piece of home to Oslo. The concerts are always top-notch and remind me of the beauty of our culture.",
-		avatar: "/avatar-1.jpg",
+		avatar: "/avatar.avif",
 	},
 	{
 		id: 2,
 		name: "Sita Gurung",
 		location: "Stockholm, Sweden",
 		text: "I've attended several events organized by NepalEvents, and each one has been a unique and unforgettable experience.",
-		avatar: "/avatar-2.jpg",
+		avatar: "/avatar.avif",
 	},
 	{
 		id: 3,
 		name: "Bijay Thapa",
 		location: "Berlin, Germany",
 		text: "The cultural programs are not just entertaining but also educational. It's a great way to introduce Nepali culture to my European friends.",
-		avatar: "/avatar-3.jpg",
+		avatar: "/avatar.avif",
 	},
 ];
 export default function Testimonials() {
