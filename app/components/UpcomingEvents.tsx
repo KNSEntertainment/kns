@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Calendar, MapPin } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import Image from "next/image";
 
 const events = [
 	{
@@ -35,7 +36,7 @@ export default function UpcomingEvents() {
 					{events.map((event, index) => (
 						<motion.div key={event.id} initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: index * 0.1 }}>
 							<Card className="overflow-hidden">
-								<img src={event.image} alt={event.title} className="w-full h-48 object-cover" />
+								<Image width={100} height={100} src={event.image} alt={event.title} className="w-full h-48 object-cover" />
 								<CardHeader>
 									<CardTitle>{event.title}</CardTitle>
 								</CardHeader>

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import Image from "next/image";
 
 const artists = [
 	{ id: 1, name: "Anju Panta", genre: "Classical", image: "/avatar.avif" },
@@ -17,7 +18,7 @@ export default function FeaturedArtists() {
 					{artists.map((artist, index) => (
 						<motion.div key={artist.id} initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: index * 0.1 }}>
 							<Card className="overflow-hidden">
-								<img src={artist.image} alt={artist.name} className="w-full h-64 object-cover" />
+								<Image width={100} height={100} src={artist.image} alt={artist.name} className="w-full h-64 object-cover" />
 								<CardHeader>
 									<CardTitle>{artist.name}</CardTitle>
 								</CardHeader>
