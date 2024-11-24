@@ -14,7 +14,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-	title: "KN Gurung Entertainment | Home",
+	title: "Gurung KNS Entertainment | Home",
 	description: "Developed by Hari Sanjel",
 };
 
