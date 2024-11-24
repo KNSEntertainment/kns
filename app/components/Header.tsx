@@ -44,7 +44,7 @@ export default function Header({ isMenuOpen, toggleMenu }: HeaderProps) {
 				</nav>
 				<div className="md:hidden">
 					<Button variant="ghost" size="icon" onClick={toggleMenu}>
-						{isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+						{isMenuOpen ? <X className="h-16 w-16 bg-slate-200" /> : <Menu className="h-16 w-16 bg-slate-200" />}
 					</Button>
 				</div>
 			</div>
