@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Music, MapPin, Phone, Facebook, Instagram, Play, User } from "lucide-react";
+import { Music, Facebook, Instagram, Play, User } from "lucide-react";
 
 const artists = [
 	{
