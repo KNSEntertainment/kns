@@ -122,22 +122,8 @@ const ContactCard = () => {
 					{/* Social Links Card */}
 					<Card className="bg-white shadow-lg">
 						<CardContent className="p-6">
-							<h3 className="text-lg font-semibold text-gray-800 mb-4">Let's Get Connected</h3>
-							<div className="grid grid-cols-2 gap-4">
-								{socialLinks.map(
-									(social) =>
-										social.url && (
-											<Button key={social.name} onClick={() => window.open(social.url, "_blank")} className={`w-full ${social.color} text-white flex items-center justify-center space-x-2 transition-transform hover:scale-105`}>
-												<social.icon className="h-5 w-5" />
-												<span>{social.name}</span>
-												<ExternalLink className="h-4 w-4" />
-											</Button>
-										)
-								)}
-							</div>
-
 							{/* Business Hours */}
-							<div className="mt-6">
+							<div className="">
 								<h3 className="text-lg font-semibold text-gray-800 mb-3">Business Hours</h3>
 								<div className="space-y-3">
 									<div className="flex justify-between items-center p-2 bg-gray-50 rounded">
@@ -153,6 +139,19 @@ const ContactCard = () => {
 										<span className="text-gray-800 font-medium">Closed</span>
 									</div>
 								</div>
+							</div>
+							<h3 className="text-lg font-semibold text-gray-800 my-6">Let's be Social</h3>
+							<div className="grid grid-cols-2 gap-4">
+								{socialLinks.map(
+									(social) =>
+										social.url && (
+											<Button key={social.name} onClick={() => window.open(social.url, "_blank")} className={`w-full ${social.color} text-white flex items-center justify-center space-x-2 transition-transform hover:scale-105`}>
+												<social.icon className="h-5 w-5" />
+												<span>{social.name}</span>
+												<ExternalLink className="h-4 w-4" />
+											</Button>
+										)
+								)}
 							</div>
 						</CardContent>
 					</Card>
