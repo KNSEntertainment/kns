@@ -2,10 +2,10 @@ import { useState } from "react";
 
 export default function EventForm() {
 	const [formData, setFormData] = useState({
-		title: "",
-		description: "",
-		date: "",
-		file: null,
+		eventname: "",
+		eventaddress: "",
+		eventdate: "",
+		eventposter: null,
 	});
 	const [submitting, setSubmitting] = useState(false);
 	const [error, setError] = useState("");
@@ -17,11 +17,11 @@ export default function EventForm() {
 
 		try {
 			const form = new FormData();
-			form.append("title", formData.title);
-			form.append("description", formData.description);
-			form.append("date", formData.date);
-			if (formData.file) {
-				form.append("file", formData.file);
+			form.append("eventname", formData.eventname);
+			form.append("eventaddress", formData.eventaddress);
+			form.append("eventdate", formData.eventdate);
+			if (formData.eventposter) {
+				form.append("eventposter", formData.eventposter);
 			}
 			console.log("form", form);
 			const response = await fetch("/api/events/create", {
@@ -38,15 +38,15 @@ export default function EventForm() {
 			if (result.success) {
 				alert("Event created successfully!");
 				setFormData({
-					title: "",
-					description: "",
-					date: "",
-					file: null,
+					eventname: "",
+					eventaddress: "",
+					eventdate: "",
+					eventposter: null,
 				});
-				// Reset file input
-				const fileInput = document.getElementById("file");
-				if (fileInput) {
-					fileInput.value = "";
+				// Reset eventposter input
+				const eventposterInput = document.getElementById("eventposter");
+				if (eventposterInput) {
+					eventposterInput.value = "";
 				}
 			}
 		} catch (error) {
@@ -62,28 +62,28 @@ export default function EventForm() {
 			<form onSubmit={handleSubmit} className="space-y-4">
 				{error && <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">{error}</div>}
 				<div>
-					<label htmlFor="title" className="block mb-2 font-bold">
-						Title
+					<label htmlFor="eventname" className="block mb-2 font-bold">
+						Name of Event
 					</label>
-					<input type="text" id="title" value={formData.title} onChange={(e) => setFormData({ ...formData, title: e.target.value })} className="w-full p-2 border rounded" required />
+					<input type="text" id="eventname" value={formData.eventname} onChange={(e) => setFormData({ ...formData, eventname: e.target.value })} className="w-full p-2 border rounded" required />
 				</div>
 				<div>
-					<label htmlFor="description" className="block mb-2 font-bold">
-						Description
+					<label htmlFor="eventaddress" className="block mb-2 font-bold">
+						Event Venue
 					</label>
-					<textarea id="description" value={formData.description} onChange={(e) => setFormData({ ...formData, description: e.target.value })} className="w-full p-2 border rounded" required />
+					<input id="eventaddress" value={formData.eventaddress} onChange={(e) => setFormData({ ...formData, eventaddress: e.target.value })} className="w-full p-2 border rounded" required />
 				</div>
 				<div>
-					<label htmlFor="date" className="block mb-2 font-bold">
-						Date
+					<label htmlFor="eventdate" className="block mb-2 font-bold">
+						Event Date
 					</label>
-					<input type="date" id="date" value={formData.date} onChange={(e) => setFormData({ ...formData, date: e.target.value })} className="w-full p-2 border rounded" required />
+					<input type="date" id="eventdate" value={formData.eventdate} onChange={(e) => setFormData({ ...formData, eventdate: e.target.value })} className="w-full p-2 border rounded" required />
 				</div>
 				<div>
-					<label htmlFor="file" className="block mb-2 font-bold">
-						File
+					<label htmlFor="eventposter" className="block mb-2 font-bold">
+						Event Poster
 					</label>
-					<input type="file" id="file" onChange={(e) => setFormData({ ...formData, file: e.target.files[0] })} className="w-full p-2 border rounded" required />
+					<input type="file" id="eventposter" onChange={(e) => setFormData({ ...formData, eventposter: e.target.files[0] })} className="w-full p-2 border rounded" required />
 				</div>
 				<button type="submit" disabled={submitting} className={`w-full p-2 rounded ${submitting ? "bg-gray-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"} text-white font-bold`}>
 					{submitting ? "Creating Event..." : "Create Event"}

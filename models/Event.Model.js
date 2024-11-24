@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
 
 const eventSchema = new mongoose.Schema({
-	title: { type: String, required: true },
-	description: { type: String, required: true },
-	date: { type: String, required: true },
-	fileUrl: { type: String, required: true },
+	eventname: { type: String, required: true },
+	eventaddress: { type: String, required: true },
+	eventdate: { type: String, required: true },
+	eventposterUrl: { type: String, required: true },
 	createdAt: { type: Date, default: Date.now },
 });
 

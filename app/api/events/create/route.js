@@ -1,39 +1,58 @@
 import { NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
 import Event from "@/models/Event.Model";
+import { promises as fs } from "fs";
+import path from "path";
+
+export const config = {
+	api: {
+		bodyParser: false,
+	},
+};
+
+async function saveFile(file) {
+	const uploadsDir = path.join(process.cwd(), "uploads");
+	await fs.mkdir(uploadsDir, { recursive: true });
+
+	const filePath = path.join(uploadsDir, file.name);
+	const buffer = Buffer.from(await file.arrayBuffer());
+	await fs.writeFile(filePath, buffer);
+
+	return `/uploads/${file.name}`;
+}
 
 export async function POST(request) {
-	console.log("API route started");
-
 	try {
-		console.log("Connecting to MongoDB");
 		await connectDB();
-		console.log("Connected to MongoDB");
-		//Done
+
 		const formData = await request.formData();
-		console.log("Received form data: ", formData);
+		console.log("Received form data");
 
-		const title = formData.get("title");
-		const description = formData.get("description");
-		const date = formData.get("date");
-		const file = formData.get("file");
+		const eventname = formData.get("eventname");
+		const eventaddress = formData.get("eventaddress");
+		const eventdate = formData.get("eventdate");
+		const eventposter = formData.get("eventposter");
 
-		console.log("Parsed form data:", { title, description, date, file });
+		console.log("Parsed form data:", { eventname, eventaddress, eventdate, eventposter });
 
-		if (!title || !description || !date || !file) {
-			return NextResponse.json({ success: false, error: "All fields are required" }, { status: 400 });
+		// Validate input
+		if (!eventname || !eventaddress || !eventdate || !eventposter) {
+			return NextResponse.json({ success: false, error: "All fields are required to create event" }, { status: 400 });
 		}
 
-		const formattedDate = new Date(date).toISOString().split("T")[0];
+		// Format the date
+		const formattedDate = new Date(eventdate).toISOString().split("T")[0];
 
-		const fileUrl = "https://example.com/placeholder-file-url";
+		// Save the file to the uploads directory
+		const eventposterUrl = await saveFile(eventposter);
 
+		// Save event to MongoDB
 		console.log("Creating event in database");
 		const event = await Event.create({
-			title,
-			description,
-			date: formattedDate,
-			fileUrl,
+			eventname,
+			eventaddress,
+			eventdate: formattedDate,
+			eventposterUrl,
 		});
 		console.log("Event created successfully:", event);
 
