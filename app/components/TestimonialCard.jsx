@@ -17,7 +17,7 @@ const TestimonialCard = ({ testimonial }) => {
 				{/* Main Quote Content */}
 				<div className="mb-6 pl-6">
 					{/* Testimonial Text */}
-					<p className="text-gray-700 text-lg leading-relaxed relative">&quot{testimonial.text}&quot</p>
+					<p className="text-gray-700 text-lg leading-relaxed relative">{testimonial.text}</p>
 				</div>
 
 				{/* Divider */}

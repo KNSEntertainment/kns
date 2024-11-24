@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import "react-toastify/dist/ReactToastify.css";
+// import "react-toastify/dist/ReactToastify.css";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import UpcomingEvents from "./components/UpcomingEvents";

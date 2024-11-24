@@ -28,7 +28,7 @@ export default function Header({ isMenuOpen, toggleMenu }: HeaderProps) {
 					<Image src="/knslogo.png" alt="KNS Entertainment" width={60} height={60} className="rounded-full bg-slate-200 group-hover:bg-slate-100" />
 					<span className={`text-2xl font-bold text-primary ${isScrolled ? "text-black " : "text-slate-200"}`}>KNS Entertainment</span>
 				</div>
-				<nav className="hidden md:flex space-x-4">
+				<nav className="hidden md:flex space-x-6">
 					<Link href="#events" className={`${isScrolled ? "text-black " : "text-slate-200"}`}>
 						Events
 					</Link>
