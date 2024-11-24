@@ -11,7 +11,7 @@ export const config = {
 };
 
 async function saveFile(file) {
-	const uploadsDir = path.join(process.cwd(), "uploads");
+	const uploadsDir = path.join(process.cwd(), "public", "uploads");
 	await fs.mkdir(uploadsDir, { recursive: true });
 
 	const filePath = path.join(uploadsDir, file.name);

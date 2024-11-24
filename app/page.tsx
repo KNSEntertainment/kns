@@ -4,7 +4,7 @@ import { useState } from "react";
 // import "react-toastify/dist/ReactToastify.css";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
-import UpcomingEvents from "./components/UpcomingEvents";
+import UpcomingEvents from "./components/UpcomingEvents.jsx";
 import About from "./components/About";
 import FeaturedArtists from "./components/FeaturedArtists";
 import Testimonials from "./components/Testimonials";
@@ -30,7 +30,6 @@ export default function LandingPage() {
 			<Header isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
 			<main>
 				<Hero />
-				<EventForm />
 				<UpcomingEvents />
 				<About />
 				<FeaturedArtists />
