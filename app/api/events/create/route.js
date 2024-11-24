@@ -9,7 +9,7 @@ export async function POST(request) {
 		console.log("Connecting to MongoDB");
 		await connectDB();
 		console.log("Connected to MongoDB");
-
+		//Done
 		const formData = await request.formData();
 		console.log("Received form data: ", formData);
 
