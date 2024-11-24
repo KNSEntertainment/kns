@@ -68,7 +68,7 @@ const ContactForm = () => {
 	};
 
 	return (
-		<Card className="bg-white shadow-lg">
+		<Card className="bg-white shadow-lg mx-4">
 			<CardContent className="p-6">
 				<h3 className="text-xl font-semibold text-gray-800 mb-2">Have Something to Say?</h3>
 

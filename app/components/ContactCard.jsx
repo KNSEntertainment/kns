@@ -55,12 +55,12 @@ const ContactCard = () => {
 
 	return (
 		<section id="contact" className="py-16 bg-gray-100">
-			<div className="container mx-auto rounded-xl">
+			<div className="container sm:mx-auto rounded-xl">
 				<h2 className="text-3xl font-bold text-center mb-12">Let Us Get Connected</h2>
 
 				<div className="grid lg:grid-cols-3 gap-6">
 					{/* Main Contact Card */}
-					<Card className="bg-white shadow-lg">
+					<Card className="bg-white shadow-lg mx-4">
 						<CardContent className="p-6">
 							<div className="space-y-8">
 								{/* Contact Person Section */}
@@ -119,7 +119,7 @@ const ContactCard = () => {
 					{/* Contact Form Card */}
 					<ContactForm />
 					{/* Social Links Card */}
-					<Card className="bg-white shadow-lg">
+					<Card className="bg-white shadow-lg mx-4">
 						<CardContent className="p-6">
 							{/* Business Hours */}
 							<div className="">
