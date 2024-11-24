@@ -10,6 +10,7 @@ import FeaturedArtists from "./components/FeaturedArtists";
 import Testimonials from "./components/Testimonials";
 import Newsletter from "./components/Newsletter";
 import Footer from "./components/Footer";
+import ContactCard from "./components/ContactCard";
 
 export default function LandingPage() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -32,6 +33,7 @@ export default function LandingPage() {
 				<About />
 				<FeaturedArtists />
 				<Testimonials />
+				<ContactCard />
 				<Newsletter onSignup={handleNewsletterSignup} />
 			</main>
 			<Footer />
