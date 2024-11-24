@@ -10,6 +10,7 @@ import FeaturedArtists from "./components/FeaturedArtists";
 import Testimonials from "./components/Testimonials";
 import Newsletter from "./components/Newsletter";
 import Footer from "./components/Footer";
+import EventForm from "./components/EventForm";
 import ContactCard from "./components/ContactCard";
 
 export default function LandingPage() {
@@ -29,6 +30,7 @@ export default function LandingPage() {
 			<Header isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
 			<main>
 				<Hero />
+				<EventForm />
 				<UpcomingEvents />
 				<About />
 				<FeaturedArtists />
