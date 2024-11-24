@@ -23,14 +23,14 @@ export default function EventForm() {
 			if (formData.file) {
 				form.append("file", formData.file);
 			}
-
+			console.log("form", form);
 			const response = await fetch("/api/events/create", {
 				method: "POST",
 				body: form,
 			});
 
 			const result = await response.json();
-
+			console.log("result", result);
 			if (!response.ok) {
 				throw new Error(result.error || "Failed to create event");
 			}
