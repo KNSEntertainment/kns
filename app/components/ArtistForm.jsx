@@ -1,6 +1,5 @@
-import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 
 export default function ArtistForm({ handleCloseArtistModal }) {
 	const [formData, setFormData] = useState({

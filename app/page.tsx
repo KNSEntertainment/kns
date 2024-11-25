@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+// import { ToastContainer } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import UpcomingEvents from "./components/UpcomingEvents.jsx";
@@ -18,12 +18,6 @@ export default function LandingPage() {
 
 	const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
-	const handleNewsletterSignup = (email: string) => {
-		// Here you would typically send the email to your API
-		console.log(`Signing up ${email} for newsletter`);
-		// toast.success("Thank you for signing up for our newsletter!");
-	};
-
 	return (
 		<div className="min-h-screen bg-gradient-to-b from-gray-100 to-white">
 			<Header isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
@@ -34,8 +28,8 @@ export default function LandingPage() {
 				<FeaturedArtists />
 				<Testimonials />
 				<ContactCard />
-				<Newsletter onSignup={handleNewsletterSignup} />
-				<ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover style={{ zIndex: 9999 }} />
+				<Newsletter />
+				{/* <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover style={{ zIndex: 9999 }} /> */}
 			</main>
 			<Footer />
 		</div>

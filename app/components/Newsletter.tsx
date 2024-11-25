@@ -1,19 +1,43 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-interface NewsletterProps {
-	onSignup: (email: string) => void;
-}
-
-export default function Newsletter({ onSignup }: NewsletterProps) {
+export default function Newsletter() {
+	const [submitting, setSubmitting] = useState(false);
+	const [error, setError] = useState("");
 	const [email, setEmail] = useState("");
 
-	const handleSubmit = (e: React.FormEvent) => {
+	const handleSubmit = async (e: any) => {
 		e.preventDefault();
-		onSignup(email);
-		setEmail("");
+		setError("");
+		setSubmitting(true);
+
+		try {
+			const form = new FormData();
+			form.append("subscriber", email);
+
+			const response = await fetch("/api/subscriber", {
+				method: "POST",
+				body: form,
+			});
+
+			const result = await response.json();
+			console.log("result", result);
+			if (!response.ok) {
+				throw new Error(result.error || "Failed to subscribe");
+			}
+
+			if (result.success) {
+				setEmail("");
+				setError("");
+			}
+		} catch (error: any) {
+			setError(error.message);
+			console.error("Error creating event:", error);
+		} finally {
+			setSubmitting(false);
+		}
 	};
 
 	return (
@@ -27,6 +51,7 @@ export default function Newsletter({ onSignup }: NewsletterProps) {
 						<Button type="submit" variant="secondary">
 							Subscribe
 						</Button>
+						{error && <p className="text-red-500 text-sm">{error}</p>}
 					</form>
 				</motion.div>
 			</div>
