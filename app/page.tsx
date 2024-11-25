@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-// import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import UpcomingEvents from "./components/UpcomingEvents.jsx";
@@ -10,7 +11,6 @@ import FeaturedArtists from "./components/FeaturedArtists";
 import Testimonials from "./components/Testimonials";
 import Newsletter from "./components/Newsletter";
 import Footer from "./components/Footer";
-import EventForm from "./components/EventForm";
 import ContactCard from "./components/ContactCard";
 
 export default function LandingPage() {
@@ -26,7 +26,6 @@ export default function LandingPage() {
 
 	return (
 		<div className="min-h-screen bg-gradient-to-b from-gray-100 to-white">
-			{/* <ToastContainer position="bottom-right" /> */}
 			<Header isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
 			<main>
 				<Hero />
@@ -36,6 +35,7 @@ export default function LandingPage() {
 				<Testimonials />
 				<ContactCard />
 				<Newsletter onSignup={handleNewsletterSignup} />
+				<ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover style={{ zIndex: 9999 }} />
 			</main>
 			<Footer />
 		</div>

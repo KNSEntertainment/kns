@@ -1,6 +1,8 @@
+import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
-export default function EventForm() {
+export default function EventForm({ handleCloseEventModal }) {
 	const [formData, setFormData] = useState({
 		eventname: "",
 		eventaddress: "",
@@ -36,7 +38,7 @@ export default function EventForm() {
 			}
 
 			if (result.success) {
-				alert("Event created successfully!");
+				toast.success("Event created successfully!");
 				setFormData({
 					eventname: "",
 					eventaddress: "",
@@ -58,37 +60,40 @@ export default function EventForm() {
 	};
 
 	return (
-		<div className="container mx-auto w-full md:w-1/2 p-6">
-			<form onSubmit={handleSubmit} className="space-y-4">
-				{error && <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">{error}</div>}
-				<div>
-					<label htmlFor="eventname" className="block mb-2 font-bold">
-						Name of Event
-					</label>
-					<input type="text" id="eventname" value={formData.eventname} onChange={(e) => setFormData({ ...formData, eventname: e.target.value })} className="w-full p-2 border rounded" required />
-				</div>
-				<div>
-					<label htmlFor="eventaddress" className="block mb-2 font-bold">
-						Event Venue
-					</label>
-					<input id="eventaddress" value={formData.eventaddress} onChange={(e) => setFormData({ ...formData, eventaddress: e.target.value })} className="w-full p-2 border rounded" required />
-				</div>
-				<div>
-					<label htmlFor="eventdate" className="block mb-2 font-bold">
-						Event Date
-					</label>
-					<input type="date" id="eventdate" value={formData.eventdate} onChange={(e) => setFormData({ ...formData, eventdate: e.target.value })} className="w-full p-2 border rounded" required />
-				</div>
-				<div>
-					<label htmlFor="eventposter" className="block mb-2 font-bold">
-						Event Poster
-					</label>
-					<input type="file" id="eventposter" onChange={(e) => setFormData({ ...formData, eventposter: e.target.files[0] })} className="w-full p-2 border rounded" required />
-				</div>
-				<button type="submit" disabled={submitting} className={`w-full p-2 rounded ${submitting ? "bg-gray-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"} text-white font-bold`}>
+		<form onSubmit={handleSubmit} className="space-y-4">
+			{error && <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">{error}</div>}
+			<div>
+				<label htmlFor="eventname" className="block mb-2 font-bold">
+					Name of Event
+				</label>
+				<input type="text" id="eventname" value={formData.eventname} onChange={(e) => setFormData({ ...formData, eventname: e.target.value })} className="w-full p-2 border rounded" required />
+			</div>
+			<div>
+				<label htmlFor="eventaddress" className="block mb-2 font-bold">
+					Event Venue
+				</label>
+				<input id="eventaddress" value={formData.eventaddress} onChange={(e) => setFormData({ ...formData, eventaddress: e.target.value })} className="w-full p-2 border rounded" required />
+			</div>
+			<div>
+				<label htmlFor="eventdate" className="block mb-2 font-bold">
+					Event Date
+				</label>
+				<input type="date" id="eventdate" value={formData.eventdate} onChange={(e) => setFormData({ ...formData, eventdate: e.target.value })} className="w-full p-2 border rounded" required />
+			</div>
+			<div>
+				<label htmlFor="eventposter" className="block mb-2 font-bold">
+					Event Poster
+				</label>
+				<input type="file" id="eventposter" onChange={(e) => setFormData({ ...formData, eventposter: e.target.files[0] })} className="w-full p-2 border rounded" required />
+			</div>
+			<div className="grid grid-cols-2 gap-2">
+				<button type="submit" disabled={submitting} className={`w-full p-1.5 rounded ${submitting ? "bg-gray-400 cursor-not-allowed" : "bg-red-600 hover:bg-red-700"} text-white font-bold`}>
 					{submitting ? "Creating Event..." : "Create Event"}
 				</button>
-			</form>
-		</div>
+				<Button variant="outline" onClick={handleCloseEventModal}>
+					Close
+				</Button>
+			</div>
+		</form>
 	);
 }
