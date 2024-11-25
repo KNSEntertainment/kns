@@ -4,18 +4,86 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Button } from "@/components/ui/button";
 import { Eye, Pencil, Trash2, Users, ShoppingCart, Settings, BarChart3, BookImage, Drama, MessageCircle, BracketsIcon, ArrowBigLeft, ArrowLeft } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 const DashboardLayout = () => {
 	const [activeMenu, setActiveMenu] = useState("events");
 
 	const mockData = {
 		events: [
-			{ id: 1, name: "Oslo Sanjh", email: "Oslo", role: "2024-12-12" },
-			{ id: 2, name: "Germany Sanskritik Karyakam", email: "Frankfort", role: "2024-12-11" },
+			{ id: 1, name: "Oslo Sanjh", email: "Oslo", role: "2024-12-12", poster: "/uploads/event5.jpg" },
+			{ id: 2, name: "Germany Sanskritik Karyakam", email: "Frankfort", role: "2024-12-11", poster: "/uploads/samikshya.jpeg" },
+			{ id: 3, name: "Paris Sanjh", email: "Paris", role: "2024-12-10", poster: "/uploads/dayarani.jpeg" },
 		],
 		artists: [
-			{ id: 1, customer: "Pramod Kharel", total: "Folk", status: "/pramodK" },
-			{ id: 2, customer: "Jyoti Magar", total: "Modern", status: "/JyotiMe" },
+			{
+				id: 1,
+				name: "Jyoti Magar",
+				genre: "Modern",
+				image: "/jyoti.jpeg",
+				bio: "A modern Nepali singer known for her unique style and energetic performances.",
+				totalsongs: 134,
+				rating: 4.9,
+				popularSongs: ["Timilai Dekhera", "Chirbir Chirbir", "Sakambari"],
+				socialMedia: {
+					facebook: "https://facebook.com/jyotimagar",
+					instagram: "https://instagram.com/jyotimagar",
+				},
+				performanceCount: 150,
+				contact: "jyotimagar@music.com",
+				featured: true,
+			},
+			{
+				id: 2,
+				name: "Prakash Saput",
+				genre: "Folk",
+				image: "/prakashsaput.jpeg",
+				bio: "A prominent figure in Nepali folk music with a message-driven style.",
+				totalsongs: 160,
+				rating: 4.8,
+				popularSongs: ["Bol Maya", "Galbandi", "Mero Pani Haina Ra"],
+				socialMedia: {
+					facebook: "https://facebook.com/prakashsaput",
+					instagram: "https://instagram.com/prakashsaput",
+				},
+				performanceCount: 200,
+				contact: "contact@prakashsaput.com",
+				featured: true,
+			},
+			{
+				id: 3,
+				name: "Samikshya Adhikari",
+				genre: "Instrumental Folk",
+				image: "/samikshya1.jpeg",
+				bio: "A versatile instrumentalist blending traditional and modern folk tunes.",
+				totalsongs: 150,
+				rating: 4.9,
+				popularSongs: ["Instrumental Magic", "Himalayan Echoes", "Arko kun hola"],
+				socialMedia: {
+					facebook: "https://facebook.com/samikshya",
+					instagram: "https://instagram.com/samikshya",
+				},
+				performanceCount: 75,
+				contact: "info@samikshya.com",
+				featured: false,
+			},
+			{
+				id: 4,
+				name: "Melina Rai",
+				genre: "Folk",
+				image: "/melina.jpeg",
+				bio: "Known for her melodious voice and heartwarming folk songs.",
+				totalsongs: 134,
+				rating: 4.5,
+				popularSongs: ["Kutu Ma Kutu", "Timro Bhaka", "Dashain Tihar"],
+				socialMedia: {
+					facebook: "https://facebook.com/melinarai",
+					instagram: "https://instagram.com/melinarai",
+				},
+				performanceCount: 120,
+				contact: "melinarai@music.com",
+				featured: true,
+			},
 		],
 	};
 	const menuItems = [
@@ -28,9 +96,9 @@ const DashboardLayout = () => {
 	const getTableColumns = (menuId) => {
 		switch (menuId) {
 			case "events":
-				return ["Event Name", "Event Venue", "Event Date", "Actions"];
+				return ["Event Name", "Event Venue", "Event Date", "Poster", "Actions"];
 			case "artists":
-				return ["Name", "Genre", "Facebook", "Instagram"];
+				return ["Name", "Bio", "Genre", "Popular Songs", "Total Songs", "Performance Count", "Ratings", "Featured", "Email", "Social Media", "Image", "Actions"];
 			default:
 				return [];
 		}
@@ -49,9 +117,9 @@ const DashboardLayout = () => {
 	};
 
 	return (
-		<div className="flex h-screen bg-gray-100">
+		<div className="mx-auto my-12 flex flex-col md:flex-row h-screen bg-gray-100">
 			{/* Sidebar */}
-			<div className="w-64 bg-white shadow-lg">
+			<div className="w-64 flex-col md:flex-row bg-white shadow-lg">
 				<div className="flex  flex-col space-y-4 p-4">
 					<Link href="/" className="flex gap-2 bg-slate-100 hover:bg-slate-200 w-fit px-4 py-2 rounded-full">
 						<ArrowLeft /> <p>Back</p>
@@ -99,10 +167,13 @@ const DashboardLayout = () => {
 							<TableBody>
 								{activeMenu === "events" &&
 									mockData?.events.map((event) => (
-										<TableRow key={event.id}>
-											<TableCell>{event.name}</TableCell>
-											<TableCell>{event.email}</TableCell>
-											<TableCell>{event.role}</TableCell>
+										<TableRow key={event?.id}>
+											<TableCell>{event?.name}</TableCell>
+											<TableCell>{event?.email}</TableCell>
+											<TableCell>{event?.role}</TableCell>
+											<TableCell>
+												<Image src={event?.poster} width={200} height={200} alt={event.id} className="w-24 h-32 object-cover" />
+											</TableCell>
 											<TableCell>
 												<div className="flex space-x-2">
 													<Button variant="ghost" size="icon" onClick={() => handleView(event.id)}>
@@ -121,19 +192,37 @@ const DashboardLayout = () => {
 								{activeMenu === "artists" &&
 									mockData.artists.map((artist) => (
 										<TableRow key={artist.id}>
-											<TableCell>{artist.customer}</TableCell>
-											<TableCell>{artist.total}</TableCell>
-											<TableCell>{artist.status}</TableCell>
+											<TableCell className="font-semibold">{artist.name}</TableCell>
+											<TableCell className="max-w-48">{artist.bio}</TableCell>
+											<TableCell>{artist.genre}</TableCell>
+											<TableCell>
+												{artist.popularSongs &&
+													artist.popularSongs.map((song, id) => {
+														return <h4 key={id}>{song}</h4>;
+													})}
+											</TableCell>
+											<TableCell>{artist.totalsongs}</TableCell>
+											<TableCell>{artist.performanceCount}</TableCell>
+											<TableCell>{artist.rating}</TableCell>
+											<TableCell>{artist.featured ? "Yes" : "No"}</TableCell>
+											<TableCell>{artist.contact}</TableCell>
+											<TableCell>
+												{artist.socialMedia.facebook} <br />
+												{artist.socialMedia.instagram}
+											</TableCell>
+											<TableCell>
+												<Image src={artist?.image} width={200} height={200} alt={artist.id} className="w-24 h-32 object-cover rounded-xl" />
+											</TableCell>
 											<TableCell>
 												<div className="flex space-x-2">
 													<Button variant="ghost" size="icon" onClick={() => handleView(artist.id)}>
-														<Eye className="w-4 h-4" />
+														<Eye className="w-6 h-6 text-green-700" />
 													</Button>
 													<Button variant="ghost" size="icon" onClick={() => handleEdit(artist.id)}>
-														<Pencil className="w-4 h-4" />
+														<Pencil className="w-6 h-6 text-blue-700" />
 													</Button>
 													<Button variant="ghost" size="icon" onClick={() => handleDelete(artist.id)}>
-														<Trash2 className="w-4 h-4" />
+														<Trash2 className="w-6 h-6 text-red-700" />
 													</Button>
 												</div>
 											</TableCell>
