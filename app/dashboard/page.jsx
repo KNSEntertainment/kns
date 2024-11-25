@@ -8,6 +8,7 @@ import Image from "next/image";
 import { div } from "framer-motion/client";
 import EventForm from "../components/EventForm";
 import ArtistForm from "../components/ArtistForm";
+import TestimonialForm from "../components/TestimonialForm";
 
 const DashboardLayout = () => {
 	const [activeMenu, setActiveMenu] = useState("events");
@@ -282,6 +283,16 @@ const DashboardLayout = () => {
 						<div className="bg-white p-6 rounded-lg shadow-lg w-96">
 							<h2 className="text-lg font-bold text-gray-800 bg-red-100 p-4 mb-6 text-center">Create Artist</h2>
 							<ArtistForm handleCloseArtistModal={handleCloseArtistModal} />
+						</div>
+					</div>
+				</div>
+			)}
+			{openCreateTestimonialModal && (
+				<div>
+					<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+						<div className="bg-white p-6 rounded-lg shadow-lg w-96">
+							<h2 className="text-lg font-bold text-gray-800 bg-red-100 p-4 mb-6 text-center">Create Testimonial</h2>
+							<TestimonialForm handleCloseTestimonialModal={handleCloseTestimonialModal} />
 						</div>
 					</div>
 				</div>

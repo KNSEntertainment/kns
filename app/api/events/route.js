@@ -8,7 +8,7 @@ export async function GET() {
 		await connectDB();
 
 		// Fetch all events
-		const events = await Event.find();
+		const events = await Event.find().sort({ eventdate: 1 }); // Ascending order
 
 		// Return the events as JSON
 		return NextResponse.json({ success: true, events }, { status: 200 });
