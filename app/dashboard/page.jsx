@@ -2,10 +2,9 @@
 import React, { useState } from "react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { Eye, Pencil, Trash2, Users, ShoppingCart, Settings, BarChart3, BookImage, Drama, MessageCircle, BracketsIcon, ArrowBigLeft, ArrowLeft } from "lucide-react";
+import { Eye, Pencil, Trash2, Users, ShoppingCart, Settings, BarChart3, BookImage, Drama, MessageCircle, BracketsIcon, ArrowBigLeft, ArrowLeft, Mail } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { div } from "framer-motion/client";
 import EventForm from "../components/EventForm";
 import ArtistForm from "../components/ArtistForm";
 import TestimonialForm from "../components/TestimonialForm";
@@ -97,6 +96,7 @@ const DashboardLayout = () => {
 		{ id: "events", label: "Events", icon: BookImage },
 		{ id: "artists", label: "Artists", icon: Drama },
 		{ id: "testimonials", label: "Testimonials", icon: MessageCircle },
+		{ id: "subscribers", label: "Subscribers", icon: Mail },
 		{ id: "settings", label: "Settings", icon: Settings },
 	];
 
