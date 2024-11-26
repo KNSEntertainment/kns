@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
-import ShareEvent from "./ShareEvent";
 
 export default function About() {
 	return (

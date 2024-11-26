@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { Eye, Pencil, Trash2, Users, ShoppingCart, Settings, BarChart3, BookImage, Drama, MessageCircle, BracketsIcon, ArrowBigLeft, ArrowLeft, Mail } from "lucide-react";
+import { Eye, Pencil, Trash2, Settings, BookImage, Drama, MessageCircle, ArrowLeft, Mail } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import EventForm from "../components/EventForm";

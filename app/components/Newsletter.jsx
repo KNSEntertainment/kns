@@ -4,14 +4,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 export default function Newsletter() {
-	const [submitting, setSubmitting] = useState(false);
 	const [error, setError] = useState("");
 	const [email, setEmail] = useState("");
 
-	const handleSubmit = async (e: any) => {
+	const handleSubmit = async () => {
 		e.preventDefault();
 		setError("");
-		setSubmitting(true);
 
 		try {
 			const form = new FormData();
@@ -32,11 +30,8 @@ export default function Newsletter() {
 				setEmail("");
 				setError("");
 			}
-		} catch (error: any) {
+		} catch (error) {
 			setError(error.message);
-			console.error("Error creating event:", error);
-		} finally {
-			setSubmitting(false);
 		}
 	};
 

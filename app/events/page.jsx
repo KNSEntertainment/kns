@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState, useEffect } from "react";
 
 const EventsPage = () => {
@@ -44,7 +45,7 @@ const EventsPage = () => {
 							<h2>{event.title}</h2>
 							<p>{event.description}</p>
 							<p>{new Date(event.date).toLocaleDateString()}</p>
-							<img src={event.fileUrl} alt={event.title} style={{ width: "200px", height: "auto" }} />
+							<Image src={event.fileUrl} alt={event.title} width={200} height={200} style={{ width: "200px", height: "auto" }} />
 						</li>
 					))}
 				</ul>
