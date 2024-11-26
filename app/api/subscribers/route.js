@@ -8,15 +8,15 @@ export const config = {
 	},
 };
 
-export default async function handler(req, res) {
-	if (req.method === "GET") {
-		try {
-			await connectDB();
-			const subscribers = await Subscriber.find({}).sort({ createdAt: -1 });
-			res.status(200).json({ subscribers });
-		} catch (error) {
-			res.status(500).json({ error: "Failed to fetch subscribers" });
-		}
+// Handle GET request
+export async function GET() {
+	try {
+		await connectDB();
+		const subscribers = await Subscriber.find({}).sort({ createdAt: -1 });
+		return NextResponse.json({ subscribers });
+	} catch (error) {
+		console.error("Error fetching subscribers:", error);
+		return NextResponse.json({ error: error.message || "Failed to fetch subscribers" }, { status: 500 });
 	}
 }
 

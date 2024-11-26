@@ -58,12 +58,12 @@ function SubscribersList() {
 							<TableRow key={subscriber._id}>
 								<TableCell className="font-medium">
 									<div className="flex items-center space-x-4">
-										<Avatar>
+										{/* <Avatar>
 											<AvatarImage src="/jyoti.jpeg" />
 											<AvatarFallback>Image</AvatarFallback>
-										</Avatar>
+										</Avatar> */}
 										<div>
-											<div className="font-bold">{subscriber.name || "N/A"}</div>
+											<div className="font-bold">{subscriber.subscriber || "N/A"}</div>
 											<div className="text-sm text-gray-500">{subscriber.email || ""}</div>
 										</div>
 									</div>
