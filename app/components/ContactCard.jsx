@@ -17,8 +17,8 @@ const ContactCard = () => {
 	const contactInfo = {
 		name: "Kiran Gurung",
 		position: "Proprietor, KNS",
-		email: "kirangrg@kns.org",
-		phone: "+47 12345678",
+		email: "kirangrg1628@gmail.com",
+		phone: "+47 45921405",
 		address: "Oslo, Norway",
 		facebook: "https://www.facebook.com/bhoot.grg",
 		instagram: "https://instagram.com/example",

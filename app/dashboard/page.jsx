@@ -223,7 +223,7 @@ const DashboardLayout = () => {
 									))}
 								{activeMenu === "artists" &&
 									mockData.artists.map((artist) => (
-										<TableRow key={artist.id}>
+										<TableRow key={artist._id}>
 											<TableCell className="font-semibold">{artist.name}</TableCell>
 											<TableCell className="max-w-48">{artist.bio}</TableCell>
 											<TableCell>{artist.genre}</TableCell>

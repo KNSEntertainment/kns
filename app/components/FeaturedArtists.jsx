@@ -4,86 +4,114 @@ import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Music, Facebook, Instagram, Play, User } from "lucide-react";
+import { useEffect, useState } from "react";
 
-const artists = [
-	{
-		id: 1,
-		name: "Jyoti Magar",
-		genre: "Modern",
-		image: "/jyoti.jpeg",
-		bio: "A modern Nepali singer known for her unique style and energetic performances.",
-		totalsongs: 134,
-		rating: 4.9,
-		popularSongs: ["Timilai Dekhera", "Chirbir Chirbir", "Sakambari"],
-		socialMedia: {
-			facebook: "https://facebook.com/jyotimagar",
-			instagram: "https://instagram.com/jyotimagar",
-		},
-		performanceCount: 150,
-		contact: "jyotimagar@music.com",
-		featured: true,
-	},
-	{
-		id: 2,
-		name: "Prakash Saput",
-		genre: "Folk",
-		image: "/prakashsaput.jpeg",
-		bio: "A prominent figure in Nepali folk music with a message-driven style.",
-		totalsongs: 160,
-		rating: 4.8,
-		popularSongs: ["Bol Maya", "Galbandi", "Mero Pani Haina Ra"],
-		socialMedia: {
-			facebook: "https://facebook.com/prakashsaput",
-			instagram: "https://instagram.com/prakashsaput",
-		},
-		performanceCount: 200,
-		contact: "contact@prakashsaput.com",
-		featured: true,
-	},
-	{
-		id: 3,
-		name: "Samikshya Adhikari",
-		genre: "Instrumental Folk",
-		image: "/samikshya1.jpeg",
-		bio: "A versatile instrumentalist blending traditional and modern folk tunes.",
-		totalsongs: 150,
-		rating: 4.9,
-		popularSongs: ["Instrumental Magic", "Himalayan Echoes", "Arko kun hola"],
-		socialMedia: {
-			facebook: "https://facebook.com/samikshya",
-			instagram: "https://instagram.com/samikshya",
-		},
-		performanceCount: 75,
-		contact: "info@samikshya.com",
-		featured: false,
-	},
-	{
-		id: 4,
-		name: "Melina Rai",
-		genre: "Folk",
-		image: "/melina.jpeg",
-		bio: "Known for her melodious voice and heartwarming folk songs.",
-		totalsongs: 134,
-		rating: 4.5,
-		popularSongs: ["Kutu Ma Kutu", "Timro Bhaka", "Dashain Tihar"],
-		socialMedia: {
-			facebook: "https://facebook.com/melinarai",
-			instagram: "https://instagram.com/melinarai",
-		},
-		performanceCount: 120,
-		contact: "melinarai@music.com",
-		featured: true,
-	},
-];
+// const artists = [
+// 	{
+// 		id: 1,
+// 		name: "Jyoti Magar",
+// 		genre: "Modern",
+// 		image: "/jyoti.jpeg",
+// 		bio: "A modern Nepali singer known for her unique style and energetic performances.",
+// 		totalsongs: 134,
+// 		rating: 4.9,
+// 		popularSongs: ["Timilai Dekhera", "Chirbir Chirbir", "Sakambari"],
+// 		socialMedia: {
+// 			facebook: "https://facebook.com/jyotimagar",
+// 			instagram: "https://instagram.com/jyotimagar",
+// 		},
+// 		performanceCount: 150,
+// 		contact: "jyotimagar@music.com",
+// 		featured: true,
+// 	},
+// 	{
+// 		id: 2,
+// 		name: "Prakash Saput",
+// 		genre: "Folk",
+// 		image: "/prakashsaput.jpeg",
+// 		bio: "A prominent figure in Nepali folk music with a message-driven style.",
+// 		totalsongs: 160,
+// 		rating: 4.8,
+// 		popularSongs: ["Bol Maya", "Galbandi", "Mero Pani Haina Ra"],
+// 		socialMedia: {
+// 			facebook: "https://facebook.com/prakashsaput",
+// 			instagram: "https://instagram.com/prakashsaput",
+// 		},
+// 		performanceCount: 200,
+// 		contact: "contact@prakashsaput.com",
+// 		featured: true,
+// 	},
+// 	{
+// 		id: 3,
+// 		name: "Samikshya Adhikari",
+// 		genre: "Instrumental Folk",
+// 		image: "/samikshya1.jpeg",
+// 		bio: "A versatile instrumentalist blending traditional and modern folk tunes.",
+// 		totalsongs: 150,
+// 		rating: 4.9,
+// 		popularSongs: ["Instrumental Magic", "Himalayan Echoes", "Arko kun hola"],
+// 		socialMedia: {
+// 			facebook: "https://facebook.com/samikshya",
+// 			instagram: "https://instagram.com/samikshya",
+// 		},
+// 		performanceCount: 75,
+// 		contact: "info@samikshya.com",
+// 		featured: false,
+// 	},
+// 	{
+// 		id: 4,
+// 		name: "Melina Rai",
+// 		genre: "Folk",
+// 		image: "/melina.jpeg",
+// 		bio: "Known for her melodious voice and heartwarming folk songs.",
+// 		totalsongs: 134,
+// 		rating: 4.5,
+// 		popularSongs: ["Kutu Ma Kutu", "Timro Bhaka", "Dashain Tihar"],
+// 		socialMedia: {
+// 			facebook: "https://facebook.com/melinarai",
+// 			instagram: "https://instagram.com/melinarai",
+// 		},
+// 		performanceCount: 120,
+// 		contact: "melinarai@music.com",
+// 		featured: true,
+// 	},
+// ];
 
 export default function FeaturedArtists() {
+	const [artists, setArtists] = useState([]);
+	const [loading, setLoading] = useState(true);
+
+	useEffect(() => {
+		const fetchArtists = async () => {
+			try {
+				const response = await fetch("/api/artists");
+				const data = await response.json();
+
+				if (data.success) {
+					setArtists(data.artists);
+				} else {
+					console.error("Failed to fetch artists:", data.error);
+				}
+			} catch (error) {
+				console.error("Error fetching artists:", error);
+			} finally {
+				setLoading(false);
+			}
+		};
+
+		fetchArtists();
+	}, []);
+
+	if (loading) {
+		return <p>Loading artists...</p>;
+	}
 	return (
 		<section id="artists" className="py-16 bg-gray-100">
 			<div className="container mx-auto px-4">
 				<h2 className="text-3xl font-bold text-center mb-12">Featured Artists</h2>
 				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
 					{artists.map((artist, index) => (
-						<motion.div key={artist.id} initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: index * 0.1 }}>
+						<motion.div key={artist.index} initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: index * 0.1 }}>
 							<Card className="max-w-md mx-auto bg-white shadow-lg rounded-xl overflow-hidden">
 								{/* Hero Section with Image Overlay */}
 								<div className="relative">

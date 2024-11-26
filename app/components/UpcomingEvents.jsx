@@ -19,7 +19,7 @@ export default function UpcomingEvents() {
 				if (data.success) {
 					setEvents(data.events);
 				} else {
-					console.error("Failed to fetch events:", data.error);
+					console.error("Failed to fetch events:");
 				}
 			} catch (error) {
 				console.error("Error fetching events:", error);
@@ -44,7 +44,7 @@ export default function UpcomingEvents() {
 				<div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
 					{events &&
 						events.map((event, index) => (
-							<motion.div key={index} initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: index * 0.1 }}>
+							<motion.div key={event.eventname} initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: index * 0.1 }}>
 								<Card className="overflow-hidden group">
 									<div className="overflow-hidden">
 										<Image width={400} height={300} src={event?.eventposterUrl} alt={event?.eventname} className="w-full h-96 object-cover transition-transform duration-300 ease-in-out group-hover:scale-105 " />

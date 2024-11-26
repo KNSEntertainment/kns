@@ -40,8 +40,8 @@ const EventsPage = () => {
 				<h2 className="text-center py-24">No Events Found</h2>
 			) : (
 				<ul className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-					{events.map((event) => (
-						<li key={event._id}>
+					{events.map((event, i) => (
+						<li key={i}>
 							<h2>{event.title}</h2>
 							<p>{event.description}</p>
 							<p>{new Date(event.date).toLocaleDateString()}</p>

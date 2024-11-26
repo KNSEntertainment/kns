@@ -17,7 +17,7 @@ const TestimonialCard = ({ testimonial }) => {
 				{/* Main Quote Content */}
 				<div className="mb-6 pl-6">
 					{/* Testimonial Text */}
-					<p className="text-gray-700 text-lg leading-relaxed relative">{testimonial.text}</p>
+					<p className="text-gray-700 text-lg leading-relaxed relative">{testimonial.audiencetestimony}</p>
 				</div>
 
 				{/* Divider */}
@@ -30,17 +30,17 @@ const TestimonialCard = ({ testimonial }) => {
 						<div className="relative">
 							<div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full blur-sm opacity-50" />
 							<Avatar className="h-12 w-12 border-2 border-white relative">
-								<AvatarImage src={testimonial.avatar} alt={testimonial.name} className="object-cover" />
-								<AvatarFallback className="bg-gradient-to-r from-blue-500 to-purple-500 text-white">{testimonial.name[0]}</AvatarFallback>
+								<AvatarImage src={testimonial.audienceimage} alt={testimonial.audiencename} className="object-cover" />
+								<AvatarFallback className="bg-gradient-to-r from-blue-500 to-purple-500 text-white">N/A</AvatarFallback>
 							</Avatar>
 						</div>
 
 						{/* Author Details */}
 						<div className="ml-4">
-							<p className="font-semibold text-gray-900">{testimonial.name}</p>
+							<p className="font-semibold text-gray-900">{testimonial.audiencename}</p>
 							<div className="flex items-center mt-1 text-sm text-gray-600">
 								<MapPin className="w-3 h-3 mr-1" />
-								<span>{testimonial.location}</span>
+								<span>{testimonial.audienceaddress}</span>
 							</div>
 						</div>
 					</div>

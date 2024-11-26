@@ -22,6 +22,7 @@ export default function TestimonialsPage() {
 		try {
 			const res = await fetch("/api/testimonials");
 			const data = await res.json();
+			console.log("Testimonials:", data.testimonials);
 			setTestimonials(data.testimonials);
 		} catch (error) {
 			console.error("Error fetching testimonials:", error);
@@ -71,7 +72,7 @@ export default function TestimonialsPage() {
 							testimonials.map((testimonial) => (
 								<TableRow key={testimonial.audiencename}>
 									<TableCell className="font-semibold">{testimonial.audiencename}</TableCell>
-									<TableCell>{testimonial.audiencenameaddress}</TableCell>
+									<TableCell>{testimonial.audienceaddress}</TableCell>
 									<TableCell>{testimonial.audiencetestimony}</TableCell>
 									<TableCell>
 										<Image src={testimonial.audienceimage} width={200} height={200} alt={testimonial.audiencename} className="w-24 h-32 object-cover" />

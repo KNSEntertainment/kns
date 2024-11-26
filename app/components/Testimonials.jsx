@@ -10,7 +10,6 @@ export default function Testimonials() {
 			try {
 				const response = await fetch("/api/testimonials");
 				const data = await response.json();
-				console.log(data);
 
 				if (data.success) {
 					setTestimonials(data.testimonials);
@@ -28,7 +27,7 @@ export default function Testimonials() {
 	}, []);
 
 	if (loading) {
-		return <p>Loading events...</p>;
+		return <p>Loading testimonials...</p>;
 	}
 	return (
 		<section className="py-16 bg-white">
