@@ -7,7 +7,7 @@ const TestimonialCard = ({ testimonial }) => {
 	const [isLiked, setIsLiked] = React.useState(false);
 
 	return (
-		<Card className="max-w-xl bg-white hover:shadow-lg transition-shadow duration-300">
+		<Card className="max-w-xl bg-white hover:shadow-lg transition-shadow duration-300 flex-shrink-0 w-3/4 md:w-full md:gap-4 snap-center">
 			<CardContent className="p-6">
 				{/* Quote Icon Accent */}
 				<div className="relative">
