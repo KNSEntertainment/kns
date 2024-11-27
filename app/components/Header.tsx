@@ -25,7 +25,7 @@ export default function Header({ isMenuOpen, toggleMenu }: HeaderProps) {
 	return (
 		<motion.header className={`fixed w-full z-50 transition-colors duration-300 ${isScrolled ? "bg-white shadow-md" : "bg-transparent"}`} initial={{ y: -100 }} animate={{ y: 0 }} transition={{ duration: 0.5 }}>
 			<div className="container mx-auto px-4 py-4 flex justify-between items-center">
-				<div className="flex items-center space-x-2 cursor-pointer group">
+				<div className="flex items-center space-x-4 cursor-pointer group">
 					<Image src="/kns_logo_rect.png" alt="KNS Entertainment" width={400} height={200} className="w-auto h-16 bg-slate-200 group-hover:bg-slate-100" />
 					<span className={`hidden sm:block text-2xl font-bold text-primary ${isScrolled ? "text-black " : "text-slate-200"}`}>KNS Entertainment</span>
 				</div>
