@@ -102,6 +102,9 @@ export default function UpcomingEvents() {
 					)}
 				</AnimatePresence>
 			</div>
+			<Button variant="outline" className="flex justify-center mx-auto mt-12">
+				View All Events
+			</Button>
 		</section>
 	);
 }
