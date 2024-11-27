@@ -36,7 +36,7 @@ export default function Newsletter() {
 	};
 
 	return (
-		<section className="py-16 bg-primary">
+		<section className="py-8 sm:py-16 bg-primary">
 			<div className="container mx-auto px-4">
 				<motion.div className="max-w-2xl mx-auto text-center" initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
 					<h2 className="text-3xl font-bold text-white mb-4">Stay Updated</h2>
