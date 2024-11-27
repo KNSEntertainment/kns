@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { Calendar, MapPin } from "lucide-react";
+import { Calendar, Clock, MapPin } from "lucide-react";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
@@ -49,9 +49,9 @@ export default function UpcomingEvents() {
 		return <p>Loading events...</p>;
 	}
 	return (
-		<section id="events" className="py-16 bg-gray-100">
-			<div className="container mx-auto px-4">
-				<div className="flex gap-4 w-full items-center justify-center mb-12">
+		<section id="events" className="py-8 sm:py-16 bg-gray-100">
+			<div className="container mx-auto px-2 sm:px-4">
+				<div className="flex gap-2 sm:gap-4 w-full items-center justify-center mb-6 sm:mb-12">
 					<Button onClick={() => setFilter("all")} variant={filter === "all" ? "default" : "outline"} aria-pressed={filter === "all"}>
 						All Events
 					</Button>
@@ -64,16 +64,16 @@ export default function UpcomingEvents() {
 				</div>
 				<AnimatePresence mode="wait">
 					{filteredEvents.length > 0 ? (
-						<motion.div key="events-grid" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
+						<motion.div key="events-grid" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-8">
 							{filteredEvents.map((event, index) => (
 								<motion.div key={event.eventname} initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: index * 0.1 }}>
-									<Card className="overflow-hidden group">
+									<Card className="overflow-hidden h-full group">
 										<div className="overflow-hidden">
-											<Image width={400} height={300} src={event?.eventposterUrl} alt={event?.eventname} className="w-full h-96 object-cover transition-transform duration-300 ease-in-out group-hover:scale-105" />
+											<Image width={400} height={300} src={event?.eventposterUrl} alt={event?.eventname} className="w-full h-48 sm:h-96 object-cover transition-transform duration-300 ease-in-out group-hover:scale-105" />
 										</div>
 										<Link href={`/events/${event?._id}`}>
 											<CardHeader>
-												<CardTitle>{event?.eventname}</CardTitle>
+												<CardTitle className="line-clamp-1">{event?.eventname}</CardTitle>
 											</CardHeader>
 										</Link>
 										<CardContent>
@@ -81,9 +81,13 @@ export default function UpcomingEvents() {
 												<Calendar className="h-4 w-4 mr-2 text-primary" />
 												<span className="text-sm text-gray-600">{event?.eventdate}</span>
 											</div>
+											<div className="flex items-center mb-2">
+												<Clock className="h-4 w-4 mr-2 text-primary" />
+												<span className="text-sm text-gray-600 line-clamp-1">20:00 - 22:30 </span>
+											</div>
 											<div className="flex items-center">
 												<MapPin className="h-4 w-4 mr-2 text-primary" />
-												<span className="text-sm text-gray-600">{event?.eventaddress}</span>
+												<span className="text-sm text-gray-600 line-clamp-1">{event?.eventaddress}</span>
 											</div>
 										</CardContent>
 										<CardFooter>
@@ -102,7 +106,7 @@ export default function UpcomingEvents() {
 					)}
 				</AnimatePresence>
 			</div>
-			<Button variant="outline" className="flex justify-center mx-auto mt-12">
+			<Button variant="outline" className="flex justify-center mx-auto mt-6 sm:mt-12">
 				View All Events
 			</Button>
 		</section>

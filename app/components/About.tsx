@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
@@ -16,6 +17,9 @@ export default function About() {
 						<p className="text-gray-600 mb-4">KNS Entertainment is a premier event management company dedicated to bringing the vibrant culture of Nepal to audiences across Europe. With a focus on organizing unforgettable cultural programs and concerts, we showcase the best Nepalese artists and their performances.</p>
 						<p className="text-gray-600 mb-4">Our mission is to create a bridge between Nepal and Europe, fostering cultural exchange and providing a platform for Nepalese artists to share their talents with a wider audience.</p>
 						<p className="text-gray-600">From traditional music and dance to contemporary fusion performances, we offer a diverse range of events that celebrate the rich heritage of Nepal while embracing modern artistic expressions.</p>
+						<Button variant="link" className="mx-auto underline text-slate-600 mt-4 pl-0">
+							Keep reading
+						</Button>
 					</motion.div>
 				</div>
 			</div>
