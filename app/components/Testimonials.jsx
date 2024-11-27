@@ -38,7 +38,7 @@ export default function Testimonials() {
 						<TestimonialCard key={testimonial._id} testimonial={testimonial} />
 					))}
 				</div>
-				<div className="lg:hidden flex overflow-x-auto space-x-4 snap-x snap-mandatory">
+				<div className="lg:hidden flex overflow-x-auto space-x-4 snap-x snap-mandatory no-scrollbar pb-4">
 					{testimonials.map((testimonial) => (
 						<TestimonialCard key={testimonial._id} testimonial={testimonial} />
 					))}
