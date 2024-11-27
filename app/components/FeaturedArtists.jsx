@@ -110,8 +110,8 @@ export default function FeaturedArtists() {
 			<div className="container mx-auto px-4">
 				<h2 className="text-3xl font-bold text-center mb-12">Featured Artists</h2>
 				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-					{artists.map((artist, index) => (
-						<motion.div key={artist.index} initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: index * 0.1 }}>
+					{artists.map((artist) => (
+						<motion.div key={artist._id} initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
 							<Card className="max-w-md mx-auto bg-white shadow-lg rounded-xl overflow-hidden">
 								{/* Hero Section with Image Overlay */}
 								<div className="relative">
@@ -152,8 +152,8 @@ export default function FeaturedArtists() {
 									<div className="mb-6">
 										<h3 className="text-sm font-semibold text-gray-900 mb-3">Popular Songs</h3>
 										<div className="space-y-2">
-											{artist.popularSongs.map((song, index) => (
-												<div key={index} className="flex items-center p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+											{artist?.popularSongs.map((song) => (
+												<div key={song} className="flex items-center p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
 													<Music className="w-4 h-4 text-red-500 mr-2" />
 													<span className="text-sm text-gray-700">{song}</span>
 												</div>
