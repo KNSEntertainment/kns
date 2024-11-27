@@ -17,8 +17,11 @@ export default function Hero() {
 					Join us for unforgettable concerts and cultural programs across Norway and Europe
 				</motion.p>
 				<motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.4 }}>
-					<Button size="lg" className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-full">
+					<Button size="lg" className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 mr-4 rounded-full">
 						Explore Events
+					</Button>
+					<Button size="lg" className="hover:bg-slate-300 bg-white text-slate-900 font-bold py-3 px-6 rounded-full">
+						Become a Partner
 					</Button>
 				</motion.div>
 			</div>
