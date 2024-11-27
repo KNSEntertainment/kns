@@ -12,6 +12,7 @@ import Testimonials from "./components/Testimonials";
 import Newsletter from "./components/Newsletter";
 import Footer from "./components/Footer";
 import ContactCard from "./components/ContactCard";
+import PartnersSlider from "./components/PartnersSlider";
 
 export default function LandingPage() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -25,6 +26,7 @@ export default function LandingPage() {
 				<Hero />
 				<UpcomingEvents />
 				<About />
+				<PartnersSlider />
 				<FeaturedArtists />
 				<Testimonials />
 				<ContactCard />
