@@ -2,7 +2,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -45,13 +44,13 @@ export default function Header({ isMenuOpen, toggleMenu }: HeaderProps) {
 				</nav>
 				<div className="md:hidden">
 					<div className="cursor-pointer" onClick={toggleMenu}>
-						{isMenuOpen ? <X style={{ height: "32px", width: "32px", backgroundColor: "slategray" }} /> : <Menu style={{ height: "32px", width: "32px", backgroundColor: "whitesmoke" }} />}
+						{isMenuOpen ? <X className={`${isScrolled ? "text-black " : "text-slate-200"}`} style={{ height: "32px", width: "32px" }} /> : <Menu className={`${isScrolled ? "text-black " : "text-slate-200"}`} style={{ height: "32px", width: "32px" }} />}
 					</div>
 				</div>
 			</div>
 			{isMenuOpen && (
 				<motion.div className="md:hidden bg-white" initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.3 }}>
-					<nav className="flex flex-col items-center py-4">
+					<nav className="flex flex-col items-center text-lg py-6">
 						<NavLink href="#events" onClick={toggleMenu}>
 							Events
 						</NavLink>
