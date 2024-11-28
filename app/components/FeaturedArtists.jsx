@@ -109,21 +109,21 @@ export default function FeaturedArtists() {
 		<section id="artists" className="py-16 bg-gray-100">
 			<div className="container mx-auto px-4">
 				<h2 className="text-3xl font-bold text-center mb-6 sm:mb-12">Featured Artists</h2>
-				<div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8">
+				<div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-8">
 					{artists.map((artist) => (
 						<motion.div key={artist._id} initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
 							<Card className="max-w-md mx-auto bg-white shadow-lg rounded-xl overflow-hidden">
 								{/* Hero Section with Image Overlay */}
 								<div className="relative">
 									<div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10" />
-									<Image width={300} height={300} src={artist.image} alt={artist.name} className="w-full h-72 object-cover transition-transform duration-500 hover:scale-105" />
+									<Image width={300} height={300} src={artist.image} alt={artist.name} className="w-full h-32 md:h-72 object-cover transition-transform duration-500 hover:scale-105" />
 									<div className="absolute bottom-1 sm:bottom-4 left-4 z-20">
 										<Badge className="bg-red-500 text-white mb-1 sm:mb-2">{artist.genre}</Badge>
 										<h2 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-1">{artist.name}</h2>
 									</div>
 								</div>
 
-								<CardContent className="p-6">
+								<CardContent className="p-3 md:p-6">
 									{/* Stats Section */}
 									<div className="hidden sm:grid grid-cols-3 gap-4 mb-6">
 										<div className="text-center p-3 bg-gray-50 rounded-lg">
@@ -145,7 +145,7 @@ export default function FeaturedArtists() {
 
 									{/* Bio Section */}
 									<div className="mb-4 sm:mb-6">
-										<p className="text-gray-700 leading-normal sm:leading-relaxed line-clamp-3">{artist.bio}</p>
+										<p className="text-gray-700 text-sm sm:text-md lg:text-lg leading-normal sm:leading-relaxed line-clamp-3">{artist.bio}</p>
 									</div>
 
 									{/* Popular Songs Section */}
@@ -162,17 +162,15 @@ export default function FeaturedArtists() {
 									</div>
 
 									{/* Social Media Section */}
-									<div className="flex flex-col sm:flex-row w-full space-y-2 sm:space-x-3">
+									<div className="flex flex-row w-full space-x-2">
 										{artist.socialMedia.facebook && (
 											<Button variant="outline" size="sm" className="sm:flex-1" onClick={() => window.open(artist.socialMedia.facebook, "_blank")}>
 												<Facebook className="w-4 h-4 sm:mr-2" />
-												Facebook
 											</Button>
 										)}
 										{artist.socialMedia.instagram && (
 											<Button variant="outline" size="sm" className="sm:flex-1" onClick={() => window.open(artist.socialMedia.instagram, "_blank")}>
 												<Instagram className="w-4 h-4 sm:mr-2" />
-												Instagram
 											</Button>
 										)}
 									</div>

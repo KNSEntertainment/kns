@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { Calendar, Clock, MapPin } from "lucide-react";
+import { Calendar, Clock, MapPin, ShoppingCart } from "lucide-react";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
@@ -51,17 +51,8 @@ export default function UpcomingEvents() {
 	return (
 		<section id="events" className="py-8 sm:py-16 bg-gray-100">
 			<div className="container mx-auto px-2 sm:px-4">
-				<div className="flex gap-2 sm:gap-4 w-full items-center justify-center mb-6 sm:mb-12">
-					<Button onClick={() => setFilter("all")} variant={filter === "all" ? "default" : "outline"} aria-pressed={filter === "all"}>
-						All Events
-					</Button>
-					<Button onClick={() => setFilter("upcoming")} variant={filter === "upcoming" ? "default" : "outline"} aria-pressed={filter === "upcoming"}>
-						Upcoming Events
-					</Button>
-					<Button onClick={() => setFilter("past")} variant={filter === "past" ? "default" : "outline"} aria-pressed={filter === "past"}>
-						Past Events
-					</Button>
-				</div>
+				<h2 className="text-3xl font-bold text-center mb-6 sm:mb-12">Upcoming Events</h2>
+
 				<AnimatePresence mode="wait">
 					{filteredEvents.length > 0 ? (
 						<motion.div key="events-grid" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-8">
@@ -90,9 +81,14 @@ export default function UpcomingEvents() {
 												<span className="text-sm text-gray-600 line-clamp-1">{event?.eventaddress}</span>
 											</div>
 										</CardContent>
-										<CardFooter>
+										<CardFooter className="flex justify-between">
 											<Link href={`/events/${event?._id}`}>
 												<Button className="bg-red-600">View Details</Button>
+											</Link>
+											<Link href={`/events/${event?._id}`}>
+												<Button variant="outline">
+													<ShoppingCart /> Add to Cart
+												</Button>
 											</Link>
 										</CardFooter>
 									</Card>

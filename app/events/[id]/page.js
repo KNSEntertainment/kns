@@ -68,6 +68,7 @@ export default async function EventPage({ params }) {
 				</div> */}
 			</main>
 			<aside className="mt-16 w-full lg:w-1/3 space-y-6">
+				<iframe src="https://open.spotify.com/embed/track/5k9jb8HQ7BIVAJjLhV4zLr?utm_source=generator&theme=0" className="w-full h-48 px-6" allowFullScreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 				{/* <div className="bg-gray-100 p-6 rounded-lg">
 					<h2 className="text-2xl font-semibold mb-4">Event Details</h2>
 					<ul className="space-y-2">
@@ -83,9 +84,9 @@ export default async function EventPage({ params }) {
 					</ul>
 				</div> */}
 				{/* <ShareEvent title={event.eventname} description={event.eventdescription} startDate={new Date(event.eventdate)} endDate={new Date(event.eventdate)} /> */}
-				<Button className="w-full bg-primary text-white" size="lg">
-					Register for Event
-				</Button>
+				<div className="px-6">
+					<Button className="w-full bg-red-600 hover:bg-red-700 font-bold text-white py-6 text-md md:text-lg">Register for Event</Button>
+				</div>{" "}
 				<ShareEvent title={event.eventname} description={event.eventdescription} startDate={new Date(event.eventdate)} endDate={new Date(event.eventdate)} />
 			</aside>
 		</div>

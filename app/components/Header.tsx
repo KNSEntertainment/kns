@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, ShoppingCart, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -24,24 +24,28 @@ export default function Header({ isMenuOpen, toggleMenu }: HeaderProps) {
 	return (
 		<motion.header className={`fixed w-full z-50 transition-colors duration-300 ${isScrolled ? "bg-white shadow-md" : "bg-transparent"}`} initial={{ y: -100 }} animate={{ y: 0 }} transition={{ duration: 0.5 }}>
 			<div className="container mx-auto px-4 py-4 flex justify-between items-center">
-				<div className="flex items-center space-x-4 cursor-pointer group">
+				<Link href="/" className="flex items-center space-x-4 cursor-pointer group">
 					<Image src="/kns_logo_rect.png" alt="KNS Entertainment" width={400} height={200} className="w-auto h-16 rounded-md bg-slate-200 group-hover:bg-slate-100" />
-					<span className={`hidden sm:block text-2xl font-bold text-primary ${isScrolled ? "text-black " : "text-slate-200"}`}>KNS Entertainment</span>
-				</div>
+					<span className={`hidden text-2xl font-bold text-primary ${isScrolled ? "text-black " : "text-slate-200"}`}>KNS Entertainment</span>
+				</Link>
 				<nav className="hidden md:flex space-x-6">
-					<Link href="#events" className={`${isScrolled ? "text-black " : "text-slate-200"}`}>
+					<Link href="#events" className={`border-b border-transparent hover:border-b hover:border-b-red-700 ${isScrolled ? "text-black " : "text-slate-200 hover:text-white"}`}>
 						Events
 					</Link>
-					<Link href="#about" className={`${isScrolled ? "text-black " : "text-slate-200"}`}>
+					<Link href="#about" className={`border-b border-transparent hover:border-b hover:border-b-red-700 ${isScrolled ? "text-black " : "text-slate-200 hover:text-white"}`}>
 						About
 					</Link>
-					<Link href="#artists" className={`${isScrolled ? "text-black " : "text-slate-200"}`}>
+					<Link href="#artists" className={`border-b border-transparent hover:border-b hover:border-b-red-700 ${isScrolled ? "text-black " : "text-slate-200 hover:text-white"}`}>
 						Artists
 					</Link>
-					<Link href="#contact" className={`${isScrolled ? "text-black " : "text-slate-200"}`}>
+					<Link href="#contact" className={`border-b border-transparent hover:border-b hover:border-b-red-700 ${isScrolled ? "text-black " : "text-slate-200 hover:text-white"}`}>
 						Contact
 					</Link>
 				</nav>
+				<div className="relative p-1">
+					<ShoppingCart className={`md:block ${isScrolled ? "text-black" : "text-white"}`} style={{ height: "32px", width: "32px" }} />
+					{/* <span className="absolute top-0 right-0 bg-red-600 text-white text-xs font-semibold rounded-full h-4 w-4 flex items-center justify-center">1</span> */}
+				</div>
 				<div className="md:hidden">
 					<div className="cursor-pointer" onClick={toggleMenu}>
 						{isMenuOpen ? <X className={`${isScrolled ? "text-black " : "text-slate-200"}`} style={{ height: "32px", width: "32px" }} /> : <Menu className={`${isScrolled ? "text-black " : "text-slate-200"}`} style={{ height: "32px", width: "32px" }} />}

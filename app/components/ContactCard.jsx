@@ -56,7 +56,7 @@ const ContactCard = () => {
 	return (
 		<section id="contact" className="py-16 bg-gray-100">
 			<div className="container sm:mx-auto rounded-xl">
-				<h2 className="text-3xl font-bold text-center mb-12">Let Us Get Connected</h2>
+				<h2 className="text-3xl font-bold text-center mb-12">Let&apos;s Get Connected</h2>
 
 				<div className="grid lg:grid-cols-3 gap-6">
 					{/* Main Contact Card */}
@@ -139,7 +139,7 @@ const ContactCard = () => {
 									</div>
 								</div>
 							</div>
-							<h3 className="text-lg font-semibold text-gray-800 my-6">Let Us Be Social</h3>
+							<h3 className="text-lg font-semibold text-gray-800 my-6">Let&apos;s Be Social</h3>
 							<div className="grid grid-cols-2 gap-4">
 								{socialLinks.map(
 									(social) =>
