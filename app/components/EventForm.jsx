@@ -5,8 +5,10 @@ import { useState } from "react";
 export default function EventForm({ handleCloseEventModal }) {
 	const [formData, setFormData] = useState({
 		eventname: "",
-		eventaddress: "",
+		eventcountry: "",
+		eventvenue: "",
 		eventdate: "",
+		eventtime: "",
 		eventposter: null,
 	});
 	const [submitting, setSubmitting] = useState(false);
@@ -20,8 +22,10 @@ export default function EventForm({ handleCloseEventModal }) {
 		try {
 			const form = new FormData();
 			form.append("eventname", formData.eventname);
-			form.append("eventaddress", formData.eventaddress);
+			form.append("eventcountry", formData.eventcountry);
+			form.append("eventvenue", formData.eventvenue);
 			form.append("eventdate", formData.eventdate);
+			form.append("eventtime", formData.eventtime);
 			if (formData.eventposter) {
 				form.append("eventposter", formData.eventposter);
 			}
@@ -41,8 +45,10 @@ export default function EventForm({ handleCloseEventModal }) {
 				toast.success("Event created successfully!");
 				setFormData({
 					eventname: "",
-					eventaddress: "",
+					eventcountry: "",
+					eventvenue: "",
 					eventdate: "",
+					eventtime: "",
 					eventposter: null,
 				});
 				// Reset eventposter input
@@ -69,16 +75,28 @@ export default function EventForm({ handleCloseEventModal }) {
 				<input type="text" id="eventname" value={formData.eventname} onChange={(e) => setFormData({ ...formData, eventname: e.target.value })} className="w-full p-2 border rounded" required />
 			</div>
 			<div>
-				<label htmlFor="eventaddress" className="block mb-2 font-bold">
+				<label htmlFor="eventcountry" className="block mb-2 font-bold">
+					Event Country
+				</label>
+				<input id="eventcountry" value={formData.eventcountry} onChange={(e) => setFormData({ ...formData, eventcountry: e.target.value })} className="w-full p-2 border rounded" required />
+			</div>
+			<div>
+				<label htmlFor="eventvenue" className="block mb-2 font-bold">
 					Event Venue
 				</label>
-				<input id="eventaddress" value={formData.eventaddress} onChange={(e) => setFormData({ ...formData, eventaddress: e.target.value })} className="w-full p-2 border rounded" required />
+				<input id="eventvenue" value={formData.eventvenue} onChange={(e) => setFormData({ ...formData, eventvenue: e.target.value })} className="w-full p-2 border rounded" />
 			</div>
 			<div>
 				<label htmlFor="eventdate" className="block mb-2 font-bold">
 					Event Date
 				</label>
-				<input type="date" id="eventdate" value={formData.eventdate} onChange={(e) => setFormData({ ...formData, eventdate: e.target.value })} className="w-full p-2 border rounded" required />
+				<input type="date" id="eventdate" value={formData.eventdate} onChange={(e) => setFormData({ ...formData, eventdate: e.target.value })} className="w-full p-2 border rounded" />
+			</div>
+			<div>
+				<label htmlFor="eventtime" className="block mb-2 font-bold">
+					Event Time
+				</label>
+				<input type="text" id="eventtime" value={formData.eventtime} onChange={(e) => setFormData({ ...formData, eventtime: e.target.value })} className="w-full p-2 border rounded" />
 			</div>
 			<div>
 				<label htmlFor="eventposter" className="block mb-2 font-bold">

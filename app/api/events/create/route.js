@@ -29,8 +29,10 @@ export async function POST(request) {
 		console.log("Received form data");
 
 		const eventname = formData.get("eventname");
-		const eventaddress = formData.get("eventaddress");
+		const eventcountry = formData.get("eventcountry");
+		const eventvenue = formData.get("eventvenue");
 		const eventdate = formData.get("eventdate");
+		const eventtime = formData.get("eventtime");
 		const eventposter = formData.get("eventposter");
 
 		console.log("Parsed form data:", { eventname, eventaddress, eventdate, eventposter });
@@ -42,6 +44,7 @@ export async function POST(request) {
 
 		// Format the date
 		const formattedDate = new Date(eventdate).toISOString().split("T")[0];
+		// const formattedTime = new Date(eventtime).toISOString().split("T")[1];
 
 		// Save the file to the uploads directory
 		const eventposterUrl = await saveFile(eventposter);
@@ -50,8 +53,10 @@ export async function POST(request) {
 		console.log("Creating event in database");
 		const event = await Event.create({
 			eventname,
-			eventaddress,
+			eventcountry,
+			eventvenue,
 			eventdate: formattedDate,
+			eventtime,
 			eventposterUrl,
 		});
 		console.log("Event created successfully:", event);

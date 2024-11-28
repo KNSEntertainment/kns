@@ -3,8 +3,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Music, Facebook, Instagram, Play, User } from "lucide-react";
+import { Music, Facebook, Instagram, Play, User, Youtube } from "lucide-react";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 // const artists = [
 // 	{
@@ -118,8 +119,8 @@ export default function FeaturedArtists() {
 									<div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10" />
 									<Image width={300} height={300} src={artist.image} alt={artist.name} className="w-full h-32 md:h-72 object-cover transition-transform duration-500 hover:scale-105" />
 									<div className="absolute bottom-1 sm:bottom-4 left-4 z-20">
-										<Badge className="bg-red-500 text-white mb-1 sm:mb-2">{artist.genre}</Badge>
-										<h2 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-1">{artist.name}</h2>
+										<h2 className="text-sm sm:text-xl md:text-2xl font-bold text-white">{artist.name}</h2>
+										<Badge className="text-xs md:text-sm lg:text-md bg-red-500 text-white mb-1">{artist.genre}</Badge>
 									</div>
 								</div>
 
@@ -145,24 +146,26 @@ export default function FeaturedArtists() {
 
 									{/* Bio Section */}
 									<div className="mb-4 sm:mb-6">
-										<p className="text-gray-700 text-sm sm:text-md lg:text-lg leading-normal sm:leading-relaxed line-clamp-3">{artist.bio}</p>
+										<p className="text-gray-700 text-sm sm:text-md lg:text-lg leading-normal sm:leading-relaxed line-clamp-2">{artist.bio}</p>
 									</div>
 
 									{/* Popular Songs Section */}
 									<div className="hidden sm:block mb-6">
 										<h3 className="text-sm font-semibold text-gray-900 mb-3">Popular Songs</h3>
-										<div className="space-y-2">
+										<div className="flex flex-wrap gap-2">
 											{artist?.popularSongs.map((song) => (
-												<div key={song} className="flex items-center p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-													<Music className="w-4 h-4 text-red-500 mr-2" />
-													<span className="text-sm text-gray-700">{song}</span>
-												</div>
+												<Link key={song} href={`https://open.spotify.com/search/${encodeURIComponent(song)}`} target="_blank" rel="noopener noreferrer">
+													<Badge className="cursor-pointer text-black font-thin bg-secondary/20 hover:bg-secondary">
+														<Music className="w-4 h-4 text-primary mr-2 text-red-600" />
+														{song}
+													</Badge>
+												</Link>
 											))}
 										</div>
 									</div>
 
 									{/* Social Media Section */}
-									<div className="flex flex-row w-full space-x-2">
+									<div className="flex flex-row w-full space-x-1">
 										{artist.socialMedia.facebook && (
 											<Button variant="outline" size="sm" className="sm:flex-1" onClick={() => window.open(artist.socialMedia.facebook, "_blank")}>
 												<Facebook className="w-4 h-4 sm:mr-2" />
@@ -173,6 +176,9 @@ export default function FeaturedArtists() {
 												<Instagram className="w-4 h-4 sm:mr-2" />
 											</Button>
 										)}
+										<Button variant="outline" size="sm" className="sm:flex-1" onClick={() => window.open(artist.socialMedia.instagram, "_blank")}>
+											<Youtube className="w-4 h-4 sm:mr-2" />
+										</Button>
 									</div>
 								</CardContent>
 							</Card>

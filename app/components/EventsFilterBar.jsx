@@ -1,6 +1,24 @@
-import React from "react";
+import { Button } from "@/components/ui/button";
+import React, { useEffect, useState } from "react";
 
 const EventsFilterBar = () => {
+	const [events, setEvents] = useState([]);
+	const [loading, setLoading] = useState(true);
+	const [filter, setFilter] = useState("all");
+	const [filteredEvents, setFilteredEvents] = useState(events);
+
+	useEffect(() => {
+		const currentDate = new Date();
+
+		if (filter === "upcoming") {
+			setFilteredEvents(events.filter((event) => new Date(event.eventdate) > currentDate));
+		} else if (filter === "past") {
+			setFilteredEvents(events.filter((event) => new Date(event.eventdate) <= currentDate));
+		} else {
+			setFilteredEvents(events);
+		}
+	}, [filter, events]);
+
 	return (
 		<div className="flex gap-2 sm:gap-4 w-full items-center justify-center mb-6 sm:mb-12">
 			<Button onClick={() => setFilter("all")} variant={filter === "all" ? "default" : "outline"} aria-pressed={filter === "all"}>
