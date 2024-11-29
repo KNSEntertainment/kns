@@ -83,7 +83,7 @@ const ContactCard = () => {
 											<p className="text-sm text-gray-500">Email</p>
 											<p className="text-gray-800">{contactInfo.email}</p>
 										</div>
-										<button onClick={() => handleCopy(contactInfo.email, "email")} className="p-2 hover:bg-white rounded-full transition-colors" aria-label="Copy email">
+										<button onClick={() => handleCopy(contactInfo.email, "email")} className="p-2 opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-white rounded-full" aria-label="Copy email">
 											{copiedField === "email" ? <CheckCircle2 className="h-5 w-5 text-green-500" /> : <Copy className="h-5 w-5 text-gray-400" />}
 										</button>
 									</div>
@@ -95,7 +95,7 @@ const ContactCard = () => {
 											<p className="text-sm text-gray-500">Phone</p>
 											<p className="text-gray-800">{contactInfo.phone}</p>
 										</div>
-										<button onClick={() => handleCopy(contactInfo.phone, "phone")} className="p-2 hover:bg-white rounded-full transition-colors" aria-label="Copy phone">
+										<button onClick={() => handleCopy(contactInfo.phone, "phone")} className="p-2 opacity-0 group-hover:opacity-100 transition-all duration-300  hover:bg-white rounded-full" aria-label="Copy phone">
 											{copiedField === "phone" ? <CheckCircle2 className="h-5 w-5 text-green-500" /> : <Copy className="h-5 w-5 text-gray-400" />}
 										</button>
 									</div>
@@ -107,7 +107,7 @@ const ContactCard = () => {
 											<p className="text-sm text-gray-500">Address</p>
 											<p className="text-gray-800">{contactInfo.address}</p>
 										</div>
-										<button onClick={() => handleCopy(contactInfo.address, "address")} className="p-2 hover:bg-white rounded-full transition-colors" aria-label="Copy address">
+										<button onClick={() => handleCopy(contactInfo.address, "address")} className="p-2 opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-white rounded-full" aria-label="Copy address">
 											{copiedField === "address" ? <CheckCircle2 className="h-5 w-5 text-green-500" /> : <Copy className="h-5 w-5 text-gray-400" />}
 										</button>
 									</div>
