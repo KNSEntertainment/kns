@@ -2,13 +2,14 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, BookImage, Drama, MessageCircle, Mail, Settings } from "lucide-react";
+import { ArrowLeft, BookImage, Drama, MessageCircle, Mail, Settings, GalleryThumbnails } from "lucide-react";
 
 const menuItems = [
 	{ id: "events", label: "Events", icon: BookImage },
 	{ id: "artists", label: "Artists", icon: Drama },
 	{ id: "testimonials", label: "Testimonials", icon: MessageCircle },
 	{ id: "subscribers", label: "Subscribers", icon: Mail },
+	{ id: "gallery", label: "Gallery", icon: GalleryThumbnails },
 	{ id: "settings", label: "Settings", icon: Settings },
 ];
 

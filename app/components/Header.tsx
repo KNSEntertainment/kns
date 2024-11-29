@@ -38,6 +38,12 @@ export default function Header({ isMenuOpen, toggleMenu }: HeaderProps) {
 					<Link href="#artists" className={`border-b border-transparent hover:border-b hover:border-b-red-700 ${isScrolled ? "text-black " : "text-slate-200 hover:text-white"}`}>
 						Artists
 					</Link>
+					<Link href="#gallery" className={`border-b border-transparent hover:border-b hover:border-b-red-700 ${isScrolled ? "text-black " : "text-slate-200 hover:text-white"}`}>
+						Gallery
+					</Link>
+					<Link href="#blog" className={`border-b border-transparent hover:border-b hover:border-b-red-700 ${isScrolled ? "text-black " : "text-slate-200 hover:text-white"}`}>
+						Blog
+					</Link>
 					<Link href="#contact" className={`border-b border-transparent hover:border-b hover:border-b-red-700 ${isScrolled ? "text-black " : "text-slate-200 hover:text-white"}`}>
 						Contact
 					</Link>
