@@ -9,6 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function UpcomingEvents() {
 	const [events, setEvents] = useState([]);
@@ -20,6 +21,30 @@ export default function UpcomingEvents() {
 	const [filteredEvents, setFilteredEvents] = useState([]);
 	const [countries, setCountries] = useState([]);
 	const [dates, setDates] = useState([]);
+
+	const router = useRouter();
+
+	const handleAddToCart = async () => {
+		setLoading(true);
+
+		try {
+			const response = await fetch("/api/create-payment-intent", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({ amount: 150 }),
+			});
+
+			const { clientSecret } = await response.json();
+
+			router.push(`/payment?payment_intent_client_secret=${clientSecret}`);
+		} catch (error) {
+			console.error("Error creating PaymentIntent:", error);
+		} finally {
+			setLoading(false);
+		}
+	};
 
 	const formatDateWithDay = (dateString) => {
 		const date = new Date(dateString);
@@ -190,11 +215,13 @@ export default function UpcomingEvents() {
 											<Link href={`/events/${event?._id}`}>
 												<Button className="bg-red-600">View Details</Button>
 											</Link>
-											<Link href={`/events/${event?._id}`}>
+											{/* <Button variant="outline" onClick={handleAddToCart} disabled={loading}> */}
+											{filter === "upcoming" && (
 												<Button variant="outline">
-													<ShoppingCart className="mr-2 h-4 w-4" /> Add to Cart
+													<ShoppingCart className="mr-2 h-4 w-4" />
+													Buy
 												</Button>
-											</Link>
+											)}
 										</CardFooter>
 									</Card>
 								</motion.div>
