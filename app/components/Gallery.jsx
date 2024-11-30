@@ -4,14 +4,14 @@ import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { Fullscreen } from "lucide-react";
 
-const filters = ["All", "Wedding", "Portrait", "Landscape", "Event"];
+const filters = ["All", "Oslo", "Germany", "Belgium", "Portugal"];
 
 const galleryItems = [
-	{ id: 1, type: "image", src: "/event1.png", alt: "Wedding photo 1", category: "Wedding" },
-	{ id: 2, type: "image", src: "/event2.png", alt: "Portrait photo 1", category: "Portrait" },
-	{ id: 3, type: "video", src: "/videos/2.mp4", poster: "/hero-bg.png", category: "Event" },
-	{ id: 4, type: "image", src: "/event3.png", alt: "Landscape photo 1", category: "Landscape" },
-	{ id: 5, type: "image", src: "/event4.png", alt: "Wedding photo 2", category: "Wedding" },
+	{ id: 1, type: "image", src: "/event1.png", alt: "Oslo photo 1", category: "Oslo" },
+	{ id: 2, type: "image", src: "/event2.png", alt: "Portrait photo 1", category: "Germany" },
+	{ id: 3, type: "video", src: "/videos/2.mp4", poster: "/hero-bg.png", category: "Belgium" },
+	{ id: 4, type: "image", src: "/event3.png", alt: "Landscape photo 1", category: "Portugal" },
+	{ id: 5, type: "image", src: "/event4.png", alt: "Oslo photo 2", category: "Oslo" },
 	// Add more items as needed
 ];
 

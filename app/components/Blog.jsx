@@ -84,7 +84,7 @@ export default function NewsPage() {
 											<Image src={article.image} alt={article.title} fill className="object-cover rounded" />
 										</div>
 										<div className="ml-4 flex-1">
-											<h2 className="text-sm font-semibold text-gray-800 line-clamp-2">{article.title}</h2>
+											<h2 className="text-sm font-semibold text-gray-800 line-clamp-2 cursor-pointer hover:text-red-700 transition-colors duration-100 ease-in">{article.title}</h2>
 											<div className="flex items-center text-gray-500 mt-1">
 												<Clock className="w-3 h-3 mr-1" />
 												<span className="text-xs">{article.timeAgo}</span>
