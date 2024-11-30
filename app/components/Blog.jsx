@@ -19,19 +19,19 @@ const recentArticles = [
 		id: 2,
 		title: "Challenges Faced by Nepali Event Organizers in Europe: Navigating Cultural and Financial Hurdles",
 		image: "/event2.png",
-		timeAgo: "7 hours ago",
+		timeAgo: "8 hours ago",
 	},
 	{
 		id: 3,
 		title: "Over 200 Cultural Events Launched by the Nepali Community in Europe: A Growing Network",
 		image: "/event3.png",
-		timeAgo: "7 hours ago",
+		timeAgo: "10 hours ago",
 	},
 	{
 		id: 4,
 		title: "A Decade of Growth: The Evolution of Nepali Cultural Programs in Europe",
 		image: "/event4.png",
-		timeAgo: "7 hours ago",
+		timeAgo: "13 hours ago",
 	},
 ];
 
