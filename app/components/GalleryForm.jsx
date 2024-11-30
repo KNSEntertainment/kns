@@ -15,13 +15,14 @@ export default function GalleryForm({ handleCloseGalleryModal }) {
 		const { name, value } = e.target;
 		setFormData((prev) => ({ ...prev, [name]: value }));
 	};
-
 	const handleFileChange = (e) => {
-		const file = e.target.files[0];
-		console.log("Selected file:", file);
-		setFormData((prev) => ({ ...prev, media: file }));
+		const files = Array.from(e.target.files); // Convert FileList to an array
+		if (files.length === 0) {
+			console.error("No files selected");
+		}
+		setFormData((prev) => ({ ...prev, media: files })); // Update state with files array
+		console.log("Selected files:", files); // Debugging output
 	};
-
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		setError("");
@@ -30,18 +31,30 @@ export default function GalleryForm({ handleCloseGalleryModal }) {
 		try {
 			const form = new FormData();
 			form.append("mediatype", formData.mediatype);
-			form.append("media", formData.media);
+
+			if (Array.isArray(formData.media) && formData.media.length > 0) {
+				formData.media.forEach((file) => form.append("media", file));
+			} else {
+				console.error("No valid files selected for upload:", formData.media);
+				throw new Error("No valid files selected for upload");
+			}
+
 			form.append("category", formData.category);
 			form.append("alt", formData.alt);
 
-			console.log("form", form);
+			console.log("Prepared FormData:");
+			for (let [key, value] of form.entries()) {
+				console.log(key, value);
+			}
+
 			const response = await fetch("/api/gallery/create", {
 				method: "POST",
 				body: form,
 			});
 
 			const result = await response.json();
-			console.log("result", result);
+			console.log("Parsed Response JSON:", result);
+
 			if (!response.ok) {
 				throw new Error(result.error || "Failed to create gallery item");
 			}
@@ -49,7 +62,7 @@ export default function GalleryForm({ handleCloseGalleryModal }) {
 			if (result.success) {
 				setFormData({
 					mediatype: "",
-					media: "",
+					media: [],
 					category: "",
 					alt: "",
 				});
@@ -84,6 +97,7 @@ export default function GalleryForm({ handleCloseGalleryModal }) {
 					type="file"
 					id="media"
 					name="media"
+					multiple
 					onChange={handleFileChange}
 					className="mt-1 block w-full text-sm text-gray-500
 			  file:mr-4 file:py-2 file:px-4

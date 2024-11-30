@@ -6,7 +6,7 @@ import path from "path";
 
 export const config = {
 	api: {
-		bodyParser: false,
+		bodyParser: false, // Disable body parsing
 	},
 };
 
@@ -18,7 +18,7 @@ async function saveFile(file) {
 	const buffer = Buffer.from(await file.arrayBuffer());
 	await fs.writeFile(filePath, buffer);
 
-	return `/uploads/${file.name}`;
+	return `/uploads/${file.name}`; // Return file URL
 }
 
 export async function POST(request) {
@@ -29,31 +29,31 @@ export async function POST(request) {
 		console.log("Received form data");
 
 		const mediatype = formData.get("mediatype");
-		const media = formData.get("media");
 		const category = formData.get("category");
 		const alt = formData.get("alt");
-
-		// console.log("Parsed form data:", { eventname, eventdescription, eventcountry, eventdate, eventposter });
+		const mediaFiles = formData.getAll("media"); // Get all files
 
 		// Validate input
-		if (!mediatype || !media || !category) {
+		if (!mediatype || !category || mediaFiles.length === 0) {
 			return NextResponse.json({ success: false, error: "Required fields are missing" }, { status: 400 });
 		}
 
-		// Save the file to the uploads directory
-		const mediaUrl = await saveFile(media);
+		// Save each file to the uploads directory and create DB entries
+		const galleryItems = [];
+		for (const file of mediaFiles) {
+			const mediaUrl = await saveFile(file); // Save each file
+			const galleryItem = await Gallery.create({
+				mediatype,
+				media: mediaUrl,
+				category,
+				alt,
+			});
+			galleryItems.push(galleryItem);
+		}
 
-		// Save event to MongoDB
-		console.log("Creating gallery item in database");
-		const gallery = await Gallery.create({
-			mediatype,
-			media: mediaUrl,
-			category,
-			alt,
-		});
-		console.log("Gallery item created successfully:", gallery);
+		console.log("Gallery items created successfully:", galleryItems);
 
-		return NextResponse.json({ success: true, gallery }, { status: 201 });
+		return NextResponse.json({ success: true, gallery: galleryItems }, { status: 201 });
 	} catch (error) {
 		console.error("Error in API route:", error);
 		return NextResponse.json({ success: false, error: error.message }, { status: 500 });
