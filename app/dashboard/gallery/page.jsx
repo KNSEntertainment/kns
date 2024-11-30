@@ -5,7 +5,6 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Button } from "@/components/ui/button";
 import { Eye, Pencil, Trash2 } from "lucide-react";
 import Image from "next/image";
-import EventForm from "@/app/components/EventForm";
 import GalleryForm from "@/app/components/GalleryForm";
 
 export default function EventsPage() {

@@ -1,5 +1,4 @@
 import formidable from "formidable";
-import { promises as fs } from "fs";
 import path from "path";
 import connectDB from "@/lib/mongodb";
 import Gallery from "@/models/Gallery.Model";

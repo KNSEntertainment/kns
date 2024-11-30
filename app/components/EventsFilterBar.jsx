@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 
 const EventsFilterBar = () => {
 	const [events, setEvents] = useState([]);
-	const [loading, setLoading] = useState(true);
 	const [filter, setFilter] = useState("all");
 	const [filteredEvents, setFilteredEvents] = useState(events);
 
@@ -16,8 +15,10 @@ const EventsFilterBar = () => {
 			setFilteredEvents(events.filter((event) => new Date(event.eventdate) <= currentDate));
 		} else {
 			setFilteredEvents(events);
+			setEvents("New Events");
 		}
-	}, [filter, events]);
+		console.log("Events: ", events, "Filtered Events: ", filteredEvents);
+	}, [filteredEvents, filter, events]);
 
 	return (
 		<div className="flex gap-2 sm:gap-4 w-full items-center justify-center mb-6 sm:mb-12">

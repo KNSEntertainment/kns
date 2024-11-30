@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { Calendar, Clock, MapPin, ShoppingCart, Search, Globe } from "lucide-react";
+import { Calendar, Clock, MapPin, ShoppingCart, Search } from "lucide-react";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,7 +9,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 
 export default function UpcomingEvents() {
 	const [events, setEvents] = useState([]);
@@ -21,30 +20,6 @@ export default function UpcomingEvents() {
 	const [filteredEvents, setFilteredEvents] = useState([]);
 	const [countries, setCountries] = useState([]);
 	const [dates, setDates] = useState([]);
-
-	const router = useRouter();
-
-	const handleAddToCart = async () => {
-		setLoading(true);
-
-		try {
-			const response = await fetch("/api/create-payment-intent", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({ amount: 150 }),
-			});
-
-			const { clientSecret } = await response.json();
-
-			router.push(`/payment?payment_intent_client_secret=${clientSecret}`);
-		} catch (error) {
-			console.error("Error creating PaymentIntent:", error);
-		} finally {
-			setLoading(false);
-		}
-	};
 
 	const formatDateWithDay = (dateString) => {
 		const date = new Date(dateString);
