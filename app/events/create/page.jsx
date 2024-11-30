@@ -4,7 +4,9 @@ import { useState } from "react";
 export default function EventForm() {
 	const [formData, setFormData] = useState({
 		eventname: "",
-		eventaddress: "",
+		eventdescription: "",
+		eventcountry: "",
+		eventvenue: "",
 		eventdate: "",
 		eventposter: null,
 	});
@@ -19,8 +21,9 @@ export default function EventForm() {
 		try {
 			const form = new FormData();
 			form.append("eventname", formData.eventname);
-			form.append("eventaddress", formData.eventaddress);
+			form.append("eventcountry", formData.eventcountry);
 			form.append("eventdate", formData.eventdate);
+			form.append("eventtime", formData.eventtime);
 			if (formData.eventposter) {
 				form.append("eventposter", formData.eventposter);
 			}
@@ -40,7 +43,9 @@ export default function EventForm() {
 				alert("Event created successfully!");
 				setFormData({
 					eventname: "",
-					eventaddress: "",
+					eventdescription: "",
+					eventcountry: "",
+					eventvenue: "",
 					eventdate: "",
 					eventposter: null,
 				});
@@ -69,10 +74,16 @@ export default function EventForm() {
 					<input type="text" id="eventname" value={formData.eventname} onChange={(e) => setFormData({ ...formData, eventname: e.target.value })} className="w-full p-2 border rounded" required />
 				</div>
 				<div>
-					<label htmlFor="eventaddress" className="block mb-2 font-bold">
+					<label htmlFor="eventcountry" className="block mb-2 font-bold">
 						Event Venue
 					</label>
-					<input id="eventaddress" value={formData.eventaddress} onChange={(e) => setFormData({ ...formData, eventaddress: e.target.value })} className="w-full p-2 border rounded" required />
+					<input id="eventcountry" value={formData.eventcountry} onChange={(e) => setFormData({ ...formData, eventcountry: e.target.value })} className="w-full p-2 border rounded" required />
+				</div>
+				<div>
+					<label htmlFor="eventvenue" className="block mb-2 font-bold">
+						Event Venue
+					</label>
+					<input id="eventvenue" value={formData.eventvenue} onChange={(e) => setFormData({ ...formData, eventvenue: e.target.value })} className="w-full p-2 border rounded" />
 				</div>
 				<div>
 					<label htmlFor="eventdate" className="block mb-2 font-bold">

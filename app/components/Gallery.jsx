@@ -51,7 +51,7 @@ export default function Gallery() {
 				{/* Filter Buttons */}
 				<div className="flex flex-wrap justify-center gap-4 mb-8">
 					{filters.map((filter) => (
-						<button key={filter} onClick={() => scrollToSection(filter)} className={`px-4 py-2 rounded-full text-sm font-semibold transition-colors duration-300 ${activeFilter === filter ? "bg-red-700 text-white" : "bg-white text-red-700 hover:bg-red-100"}`}>
+						<button key={filter} onClick={() => scrollToSection(filter)} className={`px-4 py-2 rounded-full text-sm font-semibold transition-colors duration-300 ${activeFilter === filter ? "bg-red-700 text-white" : "bg-white text-slate-800 hover:bg-red-100"}`}>
 							{filter}
 						</button>
 					))}

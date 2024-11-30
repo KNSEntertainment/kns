@@ -71,7 +71,7 @@ export default function EventsPage() {
 							events.map((event) => (
 								<TableRow key={event.eventname}>
 									<TableCell className="font-semibold">{event.eventname}</TableCell>
-									<TableCell>{event.eventaddress}</TableCell>
+									<TableCell>{event.eventcountry}</TableCell>
 									<TableCell>{event.eventdate}</TableCell>
 									<TableCell>
 										<Image src={event.eventposterUrl} width={200} height={200} alt={event.eventname} className="w-24 h-32 object-cover" />

@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { toast } from "react-toastify";
 
 export default function TestimonialForm({ handleCloseTestimonialModal }) {
 	const [formData, setFormData] = useState({
@@ -37,7 +36,6 @@ export default function TestimonialForm({ handleCloseTestimonialModal }) {
 			}
 
 			if (result.success) {
-				toast.success("Testimonial created successfully!");
 				setFormData({
 					audiencename: "",
 					audienceaddress: "",

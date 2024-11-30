@@ -29,17 +29,20 @@ export async function POST(request) {
 		console.log("Received form data");
 
 		const eventname = formData.get("eventname");
+		const eventdescription = formData.get("eventdescription");
 		const eventcountry = formData.get("eventcountry");
 		const eventvenue = formData.get("eventvenue");
 		const eventdate = formData.get("eventdate");
 		const eventtime = formData.get("eventtime");
+		const eventspotifyUrl = formData.get("eventspotifyUrl");
+		const eventyoutubeUrl = formData.get("eventyoutubeUrl");
 		const eventposter = formData.get("eventposter");
 
-		console.log("Parsed form data:", { eventname, eventaddress, eventdate, eventposter });
+		// console.log("Parsed form data:", { eventname, eventdescription, eventcountry, eventdate, eventposter });
 
 		// Validate input
-		if (!eventname || !eventaddress || !eventdate || !eventposter) {
-			return NextResponse.json({ success: false, error: "All fields are required to create event" }, { status: 400 });
+		if (!eventname || !eventcountry || !eventdate || !eventposter) {
+			return NextResponse.json({ success: false, error: "Required fields are missing" }, { status: 400 });
 		}
 
 		// Format the date
@@ -53,10 +56,13 @@ export async function POST(request) {
 		console.log("Creating event in database");
 		const event = await Event.create({
 			eventname,
+			eventdescription,
 			eventcountry,
 			eventvenue,
 			eventdate: formattedDate,
 			eventtime,
+			eventspotifyUrl,
+			eventyoutubeUrl,
 			eventposterUrl,
 		});
 		console.log("Event created successfully:", event);

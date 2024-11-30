@@ -1,51 +1,57 @@
-import formidable from "formidable";
-import path from "path";
+import { NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
 import Gallery from "@/models/Gallery.Model";
+import { promises as fs } from "fs";
+import path from "path";
 
 export const config = {
 	api: {
-		bodyParser: false, // Disable default body parsing
+		bodyParser: false,
 	},
 };
 
-async function parseForm(req) {
-	return new Promise((resolve, reject) => {
-		const form = new formidable.IncomingForm({
-			uploadDir: path.join(process.cwd(), "public", "uploads"),
-			keepExtensions: true,
-		});
+async function saveFile(file) {
+	const uploadsDir = path.join(process.cwd(), "public", "uploads");
+	await fs.mkdir(uploadsDir, { recursive: true });
 
-		form.parse(req, (err, fields, files) => {
-			if (err) return reject(err);
-			resolve({ fields, files });
-		});
-	});
+	const filePath = path.join(uploadsDir, file.name);
+	const buffer = Buffer.from(await file.arrayBuffer());
+	await fs.writeFile(filePath, buffer);
+
+	return `/uploads/${file.name}`;
 }
 
 export async function POST(request) {
 	try {
 		await connectDB();
 
-		const { fields, files } = await parseForm(request);
+		const formData = await request.formData();
+		console.log("Received form data");
 
-		const { mediatype, category, alt } = fields;
-		const file = files.media; // File object
+		const mediatype = formData.get("mediatype");
+		const media = formData.get("media");
+		const category = formData.get("category");
+		const alt = formData.get("alt");
 
-		if (!mediatype || !file || !category) {
-			return NextResponse.json({ success: false, error: "All fields are required" }, { status: 400 });
+		// console.log("Parsed form data:", { eventname, eventdescription, eventcountry, eventdate, eventposter });
+
+		// Validate input
+		if (!mediatype || !media || !category) {
+			return NextResponse.json({ success: false, error: "Required fields are missing" }, { status: 400 });
 		}
 
-		// Save file URL
-		const fileUrl = `/uploads/${file.newFilename}`;
+		// Save the file to the uploads directory
+		const mediaUrl = await saveFile(media);
 
-		// Save to database
+		// Save event to MongoDB
+		console.log("Creating gallery item in database");
 		const gallery = await Gallery.create({
 			mediatype,
-			media: fileUrl,
+			media: mediaUrl,
 			category,
 			alt,
 		});
+		console.log("Gallery item created successfully:", gallery);
 
 		return NextResponse.json({ success: true, gallery }, { status: 201 });
 	} catch (error) {

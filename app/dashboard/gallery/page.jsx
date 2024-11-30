@@ -7,24 +7,24 @@ import { Eye, Pencil, Trash2 } from "lucide-react";
 import Image from "next/image";
 import GalleryForm from "@/app/components/GalleryForm";
 
-export default function EventsPage() {
-	const [openCreateEventModal, setOpenCreateEventModal] = useState(false);
-	const [events, setEvents] = useState([]);
+export default function GalleryPage() {
+	const [openCreateGalleryModal, setOpenCreateGalleryModal] = useState(false);
+	const [gallery, setGallery] = useState([]);
 
 	useEffect(() => {
-		const fetchEventData = async () => {
-			await fetchEvents();
+		const fetchGalleryData = async () => {
+			await fetchGallery();
 		};
-		fetchEventData();
+		fetchGalleryData();
 	}, []);
 
-	const fetchEvents = async () => {
+	const fetchGallery = async () => {
 		try {
-			const res = await fetch("/api/events");
+			const res = await fetch("/api/gallery");
 			const data = await res.json();
-			setEvents(data.events);
+			setGallery(data.gallery);
 		} catch (error) {
-			console.error("Error fetching events:", error);
+			console.error("Error fetching gallery items:", error);
 		}
 	};
 
@@ -41,17 +41,17 @@ export default function EventsPage() {
 	};
 
 	const handleCloseGalleryModal = () => {
-		setOpenCreateEventModal(false);
+		setOpenCreateGalleryModal(false);
 	};
 
-	const handleCreateEvent = () => {
-		setOpenCreateEventModal(true);
+	const handleCreateGallery = () => {
+		setOpenCreateGalleryModal(true);
 	};
 
 	return (
 		<>
 			<div className="text-right">
-				<button onClick={handleCreateEvent} className="bg-red-800 text-white font-bold px-4 py-2 my-4">
+				<button onClick={handleCreateGallery} className="bg-red-800 text-white font-bold px-4 py-2 my-4">
 					Create Gallery Item
 				</button>
 			</div>
@@ -67,24 +67,22 @@ export default function EventsPage() {
 						</TableRow>
 					</TableHeader>
 					<TableBody>
-						{events.length > 0 ? (
-							events.map((event) => (
-								<TableRow key={event.eventname}>
-									<TableCell className="font-semibold">{event.eventname}</TableCell>
-									<TableCell>{event.eventaddress}</TableCell>
-									<TableCell>{event.eventdate}</TableCell>
-									<TableCell>
-										<Image src={event.eventposterUrl} width={200} height={200} alt={event.eventname} className="w-24 h-32 object-cover" />
-									</TableCell>
+						{gallery.length > 0 ? (
+							gallery.map((gallery) => (
+								<TableRow key={gallery._id}>
+									<TableCell className="font-semibold">{gallery.mediatype}</TableCell>
+									<TableCell>{gallery.mediatype === "image" ? <Image src={gallery.media} width={200} height={200} alt={gallery.media} className="w-24 h-32 object-cover" /> : <video src={gallery.media} controls autoPlay className="w-24 h-32 object-cover" />} </TableCell>
+									<TableCell>{gallery.category}</TableCell>
+									<TableCell>{gallery.alt}</TableCell>
 									<TableCell>
 										<div className="flex space-x-2">
-											<Button variant="ghost" size="icon" onClick={() => handleView(event.id)}>
+											<Button variant="ghost" size="icon" onClick={() => handleView(gallery.id)}>
 												<Eye className="w-6 h-6 text-green-700" />
 											</Button>
-											<Button variant="ghost" size="icon" onClick={() => handleEdit(event.id)}>
+											<Button variant="ghost" size="icon" onClick={() => handleEdit(gallery.id)}>
 												<Pencil className="w-6 h-6 text-blue-700" />
 											</Button>
-											<Button variant="ghost" size="icon" onClick={() => handleDelete(event.id)}>
+											<Button variant="ghost" size="icon" onClick={() => handleDelete(gallery.id)}>
 												<Trash2 className="w-6 h-6 text-red-700" />
 											</Button>
 										</div>
@@ -101,7 +99,7 @@ export default function EventsPage() {
 					</TableBody>
 				</Table>
 			</div>
-			{openCreateEventModal && (
+			{openCreateGalleryModal && (
 				<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
 					<div className="bg-white p-6 rounded-lg shadow-lg w-96">
 						<h2 className="text-lg font-bold text-gray-800 bg-red-100 p-4 mb-6 text-center">Create Gallery Item</h2>

@@ -1,14 +1,16 @@
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-// import { toast } from "react-toastify";
 
 export default function EventForm({ handleCloseEventModal }) {
 	const [formData, setFormData] = useState({
 		eventname: "",
+		eventdescription: "",
 		eventcountry: "",
 		eventvenue: "",
 		eventdate: "",
 		eventtime: "",
+		eventspotifyUrl: "",
+		eventyoutubeUrl: "",
 		eventposter: null,
 	});
 	const [submitting, setSubmitting] = useState(false);
@@ -22,10 +24,13 @@ export default function EventForm({ handleCloseEventModal }) {
 		try {
 			const form = new FormData();
 			form.append("eventname", formData.eventname);
+			form.append("eventdescription", formData.eventdescription);
 			form.append("eventcountry", formData.eventcountry);
 			form.append("eventvenue", formData.eventvenue);
 			form.append("eventdate", formData.eventdate);
 			form.append("eventtime", formData.eventtime);
+			form.append("eventspotifyUrl", formData.eventspotifyUrl);
+			form.append("eventyoutubeUrl", formData.eventyoutubeUrl);
 			if (formData.eventposter) {
 				form.append("eventposter", formData.eventposter);
 			}
@@ -42,13 +47,15 @@ export default function EventForm({ handleCloseEventModal }) {
 			}
 
 			if (result.success) {
-				toast.success("Event created successfully!");
 				setFormData({
 					eventname: "",
+					eventdescription: "",
 					eventcountry: "",
 					eventvenue: "",
 					eventdate: "",
 					eventtime: "",
+					eventspotifyUrl: "",
+					eventyoutubeUrl: "",
 					eventposter: null,
 				});
 				// Reset eventposter input
@@ -56,6 +63,7 @@ export default function EventForm({ handleCloseEventModal }) {
 				if (eventposterInput) {
 					eventposterInput.value = "";
 				}
+				alert("Event created successfully!");
 			}
 		} catch (error) {
 			setError(error.message);
@@ -73,6 +81,12 @@ export default function EventForm({ handleCloseEventModal }) {
 					Name of Event
 				</label>
 				<input type="text" id="eventname" value={formData.eventname} onChange={(e) => setFormData({ ...formData, eventname: e.target.value })} className="w-full p-2 border rounded" required />
+			</div>
+			<div>
+				<label htmlFor="eventdescription" className="block mb-2 font-bold">
+					Description of Event
+				</label>
+				<input type="text" id="eventdescription" value={formData.eventdescription} onChange={(e) => setFormData({ ...formData, eventdescription: e.target.value })} className="w-full p-2 border rounded" />
 			</div>
 			<div>
 				<label htmlFor="eventcountry" className="block mb-2 font-bold">
@@ -97,6 +111,18 @@ export default function EventForm({ handleCloseEventModal }) {
 					Event Time
 				</label>
 				<input type="text" id="eventtime" value={formData.eventtime} onChange={(e) => setFormData({ ...formData, eventtime: e.target.value })} className="w-full p-2 border rounded" />
+			</div>
+			<div>
+				<label htmlFor="eventspotifyUrl" className="block mb-2 font-bold">
+					Spotify Url
+				</label>
+				<input type="text" id="eventspotifyUrl" value={formData.eventspotifyUrl} onChange={(e) => setFormData({ ...formData, eventspotifyUrl: e.target.value })} className="w-full p-2 border rounded" />
+			</div>
+			<div>
+				<label htmlFor="eventyoutubeUrl" className="block mb-2 font-bold">
+					Youtube Url
+				</label>
+				<input type="text" id="eventyoutubeUrl" value={formData.eventyoutubeUrl} onChange={(e) => setFormData({ ...formData, eventyoutubeUrl: e.target.value })} className="w-full p-2 border rounded" />
 			</div>
 			<div>
 				<label htmlFor="eventposter" className="block mb-2 font-bold">

@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-// import { ToastContainer } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
+
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import UpcomingEvents from "./components/UpcomingEvents.jsx";
@@ -35,7 +34,6 @@ export default function LandingPage() {
 				<Blog />
 				<ContactCard />
 				<Newsletter />
-				{/* <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover style={{ zIndex: 9999 }} /> */}
 			</main>
 			<Footer />
 		</div>

@@ -39,19 +39,19 @@ export default async function EventPage({ params }) {
 		<EventLayout>
 			<div className="container mx-auto flex flex-col lg:flex-row gap-8 pt-36 p-6">
 				<main className="flex-grow">
-					<h1 className="text-xl md:text-2xl xl:text-4xl font-bold mb-2">{event.eventname}</h1>
+					<h1 className="text-xl md:text-2xl xl:text-4xl font-bold mb-3">{event.eventname}</h1>
 					<div className="mb-6 relative w-full">
 						<Image src={event.eventposterUrl} alt={event.eventname} width={500} height={500} className="w-full" />
 						<div className="mt-6">
-							<h1 className="text-2xl font-bold">Event descritpion yeha lekhnu parcha</h1>
-							<p>Purai detail jancha yeha.. bich bich ma photos ani videos pani</p>
+							<h1 className="text-2xl font-bold">{event.eventname}</h1>
+							<p>{event.eventdescription}</p>
 						</div>
 					</div>
 				</main>
 				<aside className="mt-14 w-full lg:w-1/3 space-y-6 md:space-y-12">
-					<div className="bg-slate-100 border border-slate-400 rounded-xl mx-6 py-6">
+					<div className="bg-slate-100 border border-slate-300 rounded-xl mx-6 py-6">
 						<CardTitle className="text-center text-xl md:text-2xl lg:text-3xl font-bold text-slate-800 mb-6">Event Details</CardTitle>
-						<div className="grid grid-cols-1 sm:grid-cols-2 px-6 gap-4 mb-6">
+						<div className="grid grid-cols-1 px-6 gap-4 mb-6">
 							{eventdetails.map((detail, index) => (
 								<Card key={index} className="overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
 									<CardContent className="p-4">
@@ -73,16 +73,16 @@ export default async function EventPage({ params }) {
 						<div className="sm:px-6">
 							<Button className="w-full rounded-xl bg-red-600 hover:bg-red-700 font-bold text-white py-6 text-md md:text-lg">
 								<Ticket className="w-5 h-5" />
-								Get Your Ticket Now
+								Get Your Tickets Now
 							</Button>
 						</div>
 					</div>
 					<ShareEvent title={event.eventname} description={event.eventdescription} startDate={new Date(event.eventdate)} endDate={new Date(event.eventdate)} />
 					<div className="w-full">
-						<iframe className="px-6" src="https://open.spotify.com/embed/track/5Wb2qE8FEoNwrbshexV5R4?utm_source=generator" width="100%" height="352" frameBorder="0" allowFullScreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+						<iframe className="w-full h-72 px-6" src={event.eventyoutubeUrl} title={event.eventname} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
 					</div>
 					<div className="w-full">
-						<iframe className="w-full h-72 px-6 -mt-32" src="https://www.youtube.com/embed/wP-tL4FZIwg" title="Aba Hascha Europe - Frankfurt(Intro 1) BHARTMANI POUDEL || SUMAN KARKI || KAILASH KARKI" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+						<iframe className="px-6" src={event.eventspotifyUrl} width="100%" height="352" frameBorder="0" allowFullScreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 					</div>
 				</aside>
 			</div>
