@@ -100,7 +100,7 @@ END:VCALENDAR`;
 				<div className="flex justify-center">
 					<DropdownMenu>
 						<DropdownMenuTrigger asChild>
-							<Button size="lg" className="bg-red-600 hover:bg-red-700 text-white font-bold gap-2">
+							<Button size="lg" className="bg-slate-700 hover:bg-black text-white font-bold gap-2">
 								<Calendar className="w-5 h-5" />
 								Add to Calendar
 							</Button>
