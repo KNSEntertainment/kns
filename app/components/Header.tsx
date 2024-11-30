@@ -48,12 +48,12 @@ export default function Header({ isMenuOpen, toggleMenu }: HeaderProps) {
 						Contact
 					</Link>
 				</nav>
-				<div className="relative p-1">
-					<ShoppingCart className={`md:block ${isScrolled ? "text-black" : "text-white"}`} style={{ height: "32px", width: "32px" }} />
-					{/* <span className="absolute top-0 right-0 bg-red-600 text-white text-xs font-semibold rounded-full h-4 w-4 flex items-center justify-center">1</span> */}
-				</div>
-				<div className="md:hidden">
-					<div className="cursor-pointer" onClick={toggleMenu}>
+				<div className="flex gap-6 items-center">
+					<div className="relative p-1">
+						<ShoppingCart className={`md:block ${isScrolled ? "text-black" : "text-white"}`} style={{ height: "32px", width: "32px" }} />
+						{/* <span className="absolute top-0 right-0 bg-red-600 text-white text-xs font-semibold rounded-full h-4 w-4 flex items-center justify-center">1</span> */}
+					</div>
+					<div className="md:hidden cursor-pointer" onClick={toggleMenu}>
 						{isMenuOpen ? <X className={`${isScrolled ? "text-black " : "text-slate-200"}`} style={{ height: "32px", width: "32px" }} /> : <Menu className={`${isScrolled ? "text-black " : "text-slate-200"}`} style={{ height: "32px", width: "32px" }} />}
 					</div>
 				</div>
