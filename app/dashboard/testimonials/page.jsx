@@ -75,7 +75,7 @@ export default function TestimonialsPage() {
 									<TableCell>{testimonial.audienceaddress}</TableCell>
 									<TableCell>{testimonial.audiencetestimony}</TableCell>
 									<TableCell>
-										<Image src={testimonial.audienceimage} width={200} height={200} alt={testimonial.audiencename} className="w-24 h-32 object-cover" />
+										<Image src={testimonial.audienceimage} width={200} height={200} alt={testimonial.audiencename} className="w-16 h-16 rounded-full object-cover" />
 									</TableCell>
 									<TableCell>
 										<div className="flex space-x-2">

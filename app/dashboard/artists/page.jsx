@@ -94,7 +94,7 @@ export default function ArtistsPage() {
 									{artist.socialMedia.instagram}
 								</TableCell>
 								<TableCell>
-									<Image src={artist.image} width={200} height={200} alt={artist.name} className="w-24 h-32 object-cover rounded-xl" />
+									<Image src={artist.image} width={200} height={200} alt={artist.name} className="w-16 h-16 object-cover rounded-full" />
 								</TableCell>
 								<TableCell>
 									<div className="flex space-x-2">

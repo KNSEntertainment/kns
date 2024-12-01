@@ -71,7 +71,7 @@ export default function GalleryPage() {
 							gallery.map((gallery) => (
 								<TableRow key={gallery._id}>
 									<TableCell className="font-semibold">{gallery.mediatype}</TableCell>
-									<TableCell>{gallery.mediatype === "image" ? <Image src={gallery.media} width={200} height={200} alt={gallery.media} className="w-24 h-32 object-cover" /> : <video src={gallery.media} controls autoPlay className="w-24 h-32 object-cover" />} </TableCell>
+									<TableCell>{gallery.mediatype === "image" ? <Image src={gallery.media} width={200} height={200} alt={gallery.media} className="w-16 h-16 rounded-full object-cover" /> : <video src={gallery.media} controls autoPlay className="w-24 h-32 object-cover" />} </TableCell>
 									<TableCell>{gallery.category}</TableCell>
 									<TableCell>{gallery.alt}</TableCell>
 									<TableCell>

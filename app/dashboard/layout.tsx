@@ -3,15 +3,16 @@
 import React from "react";
 import Link from "next/link";
 import { useActiveMenu } from "@/context/ActiveMenuContext";
-import { BookImage, Drama, MessageCircle, Mail, Settings, GalleryThumbnails, LayoutDashboard, Home } from "lucide-react";
+import { BookImage, Drama, MessageCircle, Mail, Settings, GalleryThumbnails, LayoutDashboard, Home, User, Handshake } from "lucide-react";
 
 const menuItems = [
 	{ id: "dashboard", label: "Dashboard", icon: LayoutDashboard },
 	{ id: "events", label: "Events", icon: BookImage },
 	{ id: "artists", label: "Artists", icon: Drama },
 	{ id: "testimonials", label: "Testimonials", icon: MessageCircle },
-	{ id: "subscribers", label: "Subscribers", icon: Mail },
 	{ id: "gallery", label: "Gallery", icon: GalleryThumbnails },
+	{ id: "partners", label: "Partners", icon: Handshake },
+	{ id: "subscribers", label: "Subscribers", icon: Mail },
 	{ id: "settings", label: "Settings", icon: Settings },
 ];
 
@@ -24,7 +25,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 			<div className="w-64 flex-col md:flex-row bg-slate-800 shadow-lg">
 				<div className="flex p-7">
 					<Link href="/" className="flex justify-center items-center gap-2 bg-slate-100 hover:bg-slate-200 w-fit px-4 py-2 rounded-full">
-						<Home /> <p>Back</p>
+						<Home /> <p>Home</p>
 					</Link>
 				</div>
 				<nav className="">
