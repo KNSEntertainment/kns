@@ -107,7 +107,7 @@ export default function FeaturedArtists() {
 		return <p>Loading artists...</p>;
 	}
 	return (
-		<section id="artists" className="py-16 bg-gray-100">
+		<section id="artists" className="py-16 bg-white">
 			<div className="container mx-auto px-4">
 				<h2 className="text-3xl font-bold text-center mb-6 sm:mb-12">Featured Artists</h2>
 				<div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-8">

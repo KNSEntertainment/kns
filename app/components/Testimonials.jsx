@@ -1,5 +1,7 @@
+"use client";
 import { useEffect, useState } from "react";
 import TestimonialCard from "./TestimonialCard";
+import { Parallax } from "react-parallax";
 
 export default function Testimonials() {
 	const [testimonials, setTestimonials] = useState([]);
@@ -30,20 +32,22 @@ export default function Testimonials() {
 		return <p>Loading testimonials...</p>;
 	}
 	return (
-		<section className="py-16 bg-white">
-			<div className="container mx-auto px-4">
-				<h2 className="text-3xl font-bold text-center mb-12">What Our Audience Says</h2>
-				<div className="hidden lg:grid lg:grid-cols-3 gap-8">
-					{testimonials.map((testimonial) => (
-						<TestimonialCard key={testimonial._id} testimonial={testimonial} />
-					))}
+		<Parallax blur={10} bgImage="/event5.jpg" bgImageAlt="Event background" strength={900}>
+			<section className="py-16">
+				<div className="container mx-auto px-4">
+					<h2 className="text-3xl font-bold text-center mb-12">What Our Audience Says</h2>
+					<div className="hidden lg:grid lg:grid-cols-3 gap-8">
+						{testimonials.map((testimonial) => (
+							<TestimonialCard key={testimonial._id} testimonial={testimonial} />
+						))}
+					</div>
+					<div className="lg:hidden flex overflow-x-auto space-x-4 snap-x snap-mandatory no-scrollbar p-2">
+						{testimonials.map((testimonial) => (
+							<TestimonialCard key={testimonial._id} testimonial={testimonial} />
+						))}
+					</div>
 				</div>
-				<div className="lg:hidden flex overflow-x-auto space-x-4 snap-x snap-mandatory no-scrollbar p-2">
-					{testimonials.map((testimonial) => (
-						<TestimonialCard key={testimonial._id} testimonial={testimonial} />
-					))}
-				</div>
-			</div>
-		</section>
+			</section>
+		</Parallax>
 	);
 }

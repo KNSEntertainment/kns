@@ -54,7 +54,7 @@ const ContactCard = () => {
 	];
 
 	return (
-		<section id="contact" className="py-16 bg-gray-100">
+		<section id="contact" className="py-16 bg-white">
 			<div className="container sm:mx-auto rounded-xl">
 				<h2 className="text-3xl font-bold text-center mb-12">Let&apos;s Get Connected</h2>
 
