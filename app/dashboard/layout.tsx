@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import { useActiveMenu } from "@/context/ActiveMenuContext";
-import { ArrowLeft, BookImage, Drama, MessageCircle, Mail, Settings, GalleryThumbnails, LayoutDashboard } from "lucide-react";
+import { BookImage, Drama, MessageCircle, Mail, Settings, GalleryThumbnails, LayoutDashboard, Home } from "lucide-react";
 
 const menuItems = [
 	{ id: "dashboard", label: "Dashboard", icon: LayoutDashboard },
@@ -19,24 +19,23 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 	const { activeMenu, setActiveMenu } = useActiveMenu();
 
 	return (
-		<div className="mx-auto my-12 flex flex-col md:flex-row h-screen bg-gray-100">
+		<div className="mx-auto mb-12 flex flex-col md:flex-row h-screen">
 			{/* Sidebar */}
-			<div className="w-64 flex-col md:flex-row bg-white shadow-lg">
-				<div className="flex flex-col space-y-4 p-4">
-					<Link href="/" className="flex gap-2 bg-slate-100 hover:bg-slate-200 w-fit px-4 py-2 rounded-full">
-						<ArrowLeft /> <p>Back</p>
+			<div className="w-64 flex-col md:flex-row bg-slate-800 shadow-lg">
+				<div className="flex p-7">
+					<Link href="/" className="flex justify-center items-center gap-2 bg-slate-100 hover:bg-slate-200 w-fit px-4 py-2 rounded-full">
+						<Home /> <p>Back</p>
 					</Link>
-					<h1 className="text-xl font-bold text-gray-800">Dashboard</h1>
 				</div>
-				<nav className="mt-4">
+				<nav className="">
 					{menuItems.map((item) => {
 						const Icon = item.icon;
 						return (
 							<Link
 								key={item.id}
 								href={item.id === "dashboard" ? `/${item.id}` : `/dashboard/${item.id}`}
-								className={`w-full flex items-center px-4 py-3 text-sm 
-                  ${activeMenu === item.id ? "bg-blue-50 text-blue-600 border-r-4 border-blue-600" : "text-gray-600 hover:bg-gray-50"}`}
+								className={`w-full flex items-center px-4 py-4 text-sm 
+                  ${activeMenu === item.id ? "bg-blue-50 text-blue-600 border-r-4 border-blue-600" : "text-white hover:text-black hover:bg-gray-50"}`}
 								onClick={() => setActiveMenu(item.id)}
 							>
 								<Icon className="w-5 h-5 mr-3" />
@@ -50,9 +49,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 			{/* Main Content */}
 			<div className="flex-1 flex flex-col overflow-hidden">
 				{/* Header */}
-				<header className="bg-white shadow-sm">
-					<div className="p-4">
-						<h2 className="text-lg font-semibold text-gray-800">{menuItems.find((item) => item.id === activeMenu)?.label}</h2>
+				<header className="bg-slate-800 shadow-sm">
+					<div className="p-8">
+						<h2 className="text-2xl font-semibold text-white ml-8">{menuItems.find((item) => item.id === activeMenu)?.label}</h2>
 					</div>
 				</header>
 
