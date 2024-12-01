@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import { Calendar, Clock, Globe, MapPin, Ticket } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import ShareEvent from "@/app/components/ShareEvent";
+import ShareEvent from "@/components/ShareEvent";
 import EventLayout from "./Layout";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 

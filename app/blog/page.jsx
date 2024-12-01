@@ -1,5 +1,5 @@
 import { getBlogData } from "@/lib/getBlogData";
-import Blog from "@/app/components/Blog";
+import Blog from "@/components/Blog";
 
 export default async function Page() {
 	const { featuredArticle, recentArticles, popularArticles } = await getBlogData();

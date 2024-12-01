@@ -5,7 +5,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Button } from "@/components/ui/button";
 import { Eye, Pencil, Trash2 } from "lucide-react";
 import Image from "next/image";
-import ArtistForm from "@/app/components/ArtistForm";
+import ArtistForm from "@/components/ArtistForm";
 
 export default function ArtistsPage() {
 	const [artists, setArtists] = useState([]);

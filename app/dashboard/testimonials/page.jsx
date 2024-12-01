@@ -5,7 +5,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Button } from "@/components/ui/button";
 import { Eye, Pencil, Trash2 } from "lucide-react";
 import Image from "next/image";
-import TestimonialForm from "@/app/components/TestimonialForm";
+import TestimonialForm from "@/components/TestimonialForm";
 
 export default function TestimonialsPage() {
 	const [openCreateTestimonialModal, setOpenCreateTestimonialModal] = useState(false);

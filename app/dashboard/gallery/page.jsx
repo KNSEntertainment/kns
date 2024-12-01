@@ -5,7 +5,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Button } from "@/components/ui/button";
 import { Eye, Pencil, Trash2 } from "lucide-react";
 import Image from "next/image";
-import GalleryForm from "@/app/components/GalleryForm";
+import GalleryForm from "@/components/GalleryForm";
 
 export default function GalleryPage() {
 	const [openCreateGalleryModal, setOpenCreateGalleryModal] = useState(false);

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { ActiveMenuProvider } from "@/context/ActiveMenuContext";
-import GoToTopButton from "../app/components/GoToTopBottom";
+import GoToTopButton from "@/components/GoToTopBottom";
 
 const geistSans = localFont({
 	src: "./fonts/GeistVF.woff",

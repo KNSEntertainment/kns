@@ -25,7 +25,7 @@ export default function Header({ isMenuOpen, toggleMenu }: HeaderProps) {
 		<motion.header className={`fixed w-full z-50 transition-colors duration-300 ${isScrolled ? "bg-white shadow-md" : "bg-black/80"}`} initial={{ y: -100 }} animate={{ y: 0 }} transition={{ duration: 0.5 }}>
 			<div className="container mx-auto px-4 py-4 flex justify-between items-center">
 				<Link href="/" className="flex items-center space-x-4 cursor-pointer group">
-					<Image src="/kns_logo_rect.png" alt="KNS Entertainment" width={400} height={200} className="w-auto h-16 rounded-md bg-slate-200 group-hover:bg-slate-100" />
+					<Image src="/kns_logo_rect.png" alt="KNS Entertainment" width={400} height={200} className="w-auto h-12 md:h-16 rounded-md bg-slate-200 group-hover:bg-slate-100" />
 					<span className={`hidden text-2xl font-bold text-primary ${isScrolled ? "text-black " : "text-slate-200"}`}>KNS Entertainment</span>
 				</Link>
 				<nav className="hidden md:flex space-x-6">
@@ -48,7 +48,7 @@ export default function Header({ isMenuOpen, toggleMenu }: HeaderProps) {
 						Contact
 					</Link>
 				</nav>
-				<div className="flex gap-6 items-center">
+				<div className="flex gap-2 items-center">
 					<div className="relative p-1">
 						<ShoppingCart className={`md:block ${isScrolled ? "text-black" : "text-white"}`} style={{ height: "32px", width: "32px" }} />
 						{/* <span className="absolute top-0 right-0 bg-red-600 text-white text-xs font-semibold rounded-full h-4 w-4 flex items-center justify-center">1</span> */}

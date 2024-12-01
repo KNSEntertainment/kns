@@ -5,7 +5,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Button } from "@/components/ui/button";
 import { Eye, Pencil, Trash2 } from "lucide-react";
 import Image from "next/image";
-import EventForm from "@/app/components/EventForm";
+import EventForm from "@/components/EventForm";
 
 export default function EventsPage() {
 	const [openCreateEventModal, setOpenCreateEventModal] = useState(false);
