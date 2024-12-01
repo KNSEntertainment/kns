@@ -2,9 +2,10 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, BookImage, Drama, MessageCircle, Mail, Settings, GalleryThumbnails } from "lucide-react";
+import { ArrowLeft, BookImage, Drama, MessageCircle, Mail, Settings, GalleryThumbnails, LayoutDashboard } from "lucide-react";
 
 const menuItems = [
+	{ id: "dashboard", label: "Dashboard", icon: LayoutDashboard },
 	{ id: "events", label: "Events", icon: BookImage },
 	{ id: "artists", label: "Artists", icon: Drama },
 	{ id: "testimonials", label: "Testimonials", icon: MessageCircle },
@@ -14,7 +15,7 @@ const menuItems = [
 ];
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
-	const [activeMenu, setActiveMenu] = useState("events");
+	const [activeMenu, setActiveMenu] = useState("dashboard");
 
 	return (
 		<div className="mx-auto my-12 flex flex-col md:flex-row h-screen bg-gray-100">
@@ -32,7 +33,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 						return (
 							<Link
 								key={item.id}
-								href={`/dashboard/${item.id}`}
+								href={item.id === "dashboard" ? `/${item.id}` : `/dashboard/${item.id}`}
 								className={`w-full flex items-center px-4 py-3 text-sm 
                   ${activeMenu === item.id ? "bg-blue-50 text-blue-600 border-r-4 border-blue-600" : "text-gray-600 hover:bg-gray-50"}`}
 								onClick={() => setActiveMenu(item.id)}
