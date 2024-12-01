@@ -6,18 +6,18 @@ const PartnersSlider = () => {
 		console.log("Partner logo clicked");
 	};
 	const logos = [
-		{ logo: "/mama_events.jpeg", url: "https://mamaevents.fi", alt: "mama_events" },
-		{ logo: "/kendra_motion.jpeg", url: "https://mamaevents.fi", alt: "kendra_motion" },
-		{ logo: "/mo_tv.jpeg", url: "https://mamaevents.fi", alt: "mo_tv" },
-		{ logo: "/mama_events.jpeg", url: "https://mamaevents.fi", alt: "mama_events" },
-		{ logo: "/kendra_motion.jpeg", url: "https://mamaevents.fi", alt: "kendra_motion" },
-		{ logo: "/mo_tv.jpeg", url: "https://mamaevents.fi", alt: "mo_tv" },
-		{ logo: "/mama_events.jpeg", url: "https://mamaevents.fi", alt: "mama_events" },
-		{ logo: "/kendra_motion.jpeg", url: "https://mamaevents.fi", alt: "kendra_motion" },
-		{ logo: "/mo_tv.jpeg", url: "https://mamaevents.fi", alt: "mo_tv" },
-		{ logo: "/mama_events.jpeg", url: "https://mamaevents.fi", alt: "mama_events" },
-		{ logo: "/kendra_motion.jpeg", url: "https://mamaevents.fi", alt: "kendra_motion" },
-		{ logo: "/mo_tv.jpeg", url: "https://mamaevents.fi", alt: "mo_tv" },
+		{ logo: "/mama_events.jpeg", url: "https://mamaevents.fi", alt: "mama_events", pname: "Mama Events" },
+		{ logo: "/kendra_motion.jpeg", url: "https://mamaevents.fi", alt: "kendra_motion", pname: "Kendra Motion Pictures" },
+		{ logo: "/mo_tv.jpeg", url: "https://mamaevents.fi", alt: "mo_tv", pname: "Mero Online TV" },
+		{ logo: "/mama_events.jpeg", url: "https://mamaevents.fi", alt: "mama_events", pname: "Mama Events" },
+		{ logo: "/kendra_motion.jpeg", url: "https://mamaevents.fi", alt: "kendra_motion", pname: "Kendra Motion Pictures" },
+		{ logo: "/mo_tv.jpeg", url: "https://mamaevents.fi", alt: "mo_tv", pname: "Mero Online TV" },
+		{ logo: "/mama_events.jpeg", url: "https://mamaevents.fi", alt: "mama_events", pname: "Mama Events" },
+		{ logo: "/kendra_motion.jpeg", url: "https://mamaevents.fi", alt: "kendra_motion", pname: "Kendra Motion Pictures" },
+		{ logo: "/mo_tv.jpeg", url: "https://mamaevents.fi", alt: "mo_tv", pname: "Mero Online TV" },
+		{ logo: "/mama_events.jpeg", url: "https://mamaevents.fi", alt: "mama_events", pname: "Mama Events" },
+		{ logo: "/kendra_motion.jpeg", url: "https://mamaevents.fi", alt: "kendra_motion", pname: "Kendra Motion Pictures" },
+		{ logo: "/mo_tv.jpeg", url: "https://mamaevents.fi", alt: "mo_tv", pname: "Mero Online TV" },
 	];
 
 	return (
@@ -27,8 +27,11 @@ const PartnersSlider = () => {
 				<div className="overflow-hidden relative">
 					<div className="flex animate-scroll gap-8">
 						{logos.map((logo, index) => (
-							<div key={index} className="flex-shrink-0 w-40 h-20 bg-white p-4 shadow-md rounded-lg flex items-center justify-center">
-								<Image src={logo.logo} alt={logo.alt} width={200} height={200} onClick={handlePartnerLogoClick} className="object-contain max-h-full max-w-full cursor-pointer" />
+							<div className="flex flex-col items-center space-y-2">
+								<div key={index} className="flex-shrink-0 w-40 h-20 bg-white p-4 shadow-md rounded-lg flex items-center justify-center">
+									<Image src={logo.logo} alt={logo.alt} width={200} height={200} onClick={handlePartnerLogoClick} className="object-contain max-h-full max-w-full cursor-pointer" />
+								</div>
+								<p className="text-xs">{logo.pname}</p>
 							</div>
 						))}
 					</div>
