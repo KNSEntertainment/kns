@@ -1,8 +1,8 @@
 "use client";
 
-import UpcomingEvents from "../components/UpcomingEvents";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import UpcomingEvents from "@/components/UpcomingEvents";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const EventsPage = () => {
 	return (

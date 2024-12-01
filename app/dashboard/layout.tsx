@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { useActiveMenu } from "@/context/ActiveMenuContext";
-import { BookImage, Drama, MessageCircle, Mail, Settings, GalleryThumbnails, LayoutDashboard, Home, User, Handshake } from "lucide-react";
+import { BookImage, Drama, MessageCircle, Mail, Settings, GalleryThumbnails, LayoutDashboard, Home, Handshake } from "lucide-react";
 
 const menuItems = [
 	{ id: "dashboard", label: "Dashboard", icon: LayoutDashboard },
@@ -13,7 +13,7 @@ const menuItems = [
 	{ id: "gallery", label: "Gallery", icon: GalleryThumbnails },
 	{ id: "partners", label: "Partners", icon: Handshake },
 	{ id: "subscribers", label: "Subscribers", icon: Mail },
-	{ id: "settings", label: "Settings", icon: Settings },
+	{ id: "settings", label: "Profile Settings", icon: Settings },
 ];
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {

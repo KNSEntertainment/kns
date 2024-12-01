@@ -27,8 +27,8 @@ const PartnersSlider = () => {
 				<div className="overflow-hidden relative">
 					<div className="flex animate-scroll gap-8">
 						{logos.map((logo, index) => (
-							<div className="flex flex-col items-center space-y-2">
-								<a href={logo.url} key={index} className="flex-shrink-0 w-40 h-20 bg-white p-4 shadow-md rounded-lg flex items-center justify-center">
+							<div key={index} className="flex flex-col items-center space-y-2">
+								<a href={logo.url} className="flex-shrink-0 w-40 h-20 bg-white p-4 shadow-md rounded-lg flex items-center justify-center">
 									<Image src={logo.logo} alt={logo.alt} width={200} height={200} onClick={handlePartnerLogoClick} className="object-contain max-h-full max-w-full cursor-pointer" />
 								</a>
 								<p className="text-xs">{logo.pname}</p>
