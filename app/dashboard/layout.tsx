@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { useActiveMenu } from "@/context/ActiveMenuContext";
 import { ArrowLeft, BookImage, Drama, MessageCircle, Mail, Settings, GalleryThumbnails, LayoutDashboard } from "lucide-react";
 
 const menuItems = [
@@ -15,7 +16,7 @@ const menuItems = [
 ];
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
-	const [activeMenu, setActiveMenu] = useState("dashboard");
+	const { activeMenu, setActiveMenu } = useActiveMenu();
 
 	return (
 		<div className="mx-auto my-12 flex flex-col md:flex-row h-screen bg-gray-100">
