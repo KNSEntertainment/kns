@@ -4,7 +4,6 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Send, Loader2, Smile } from "lucide-react";
-import { set } from "mongoose";
 
 const ContactForm = () => {
 	const [formData, setFormData] = React.useState({
@@ -86,7 +85,7 @@ const ContactForm = () => {
 		<Card className="bg-white shadow-lg mx-4">
 			<CardContent className="p-6">
 				<h3 className="text-xl font-semibold text-gray-800 mb-2">Have Something to Say?</h3>
-				<p className="text-gray-600 mb-6">We'd love to hear from you. Fill out the form below and we'll get back to you as soon as possible.</p>
+				<p className="text-gray-600 mb-6">We&apos;d love to hear from you. Fill out the form below and we&apos;ll get back to you as soon as possible.</p>
 				{message ? (
 					<div className="flex flex-col items-center justify-center p-6 space-y-4 border border-green-700 bg-green-50">
 						<Smile className="h-12 w-12 text-green-700" />
