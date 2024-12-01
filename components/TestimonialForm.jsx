@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
-export default function TestimonialForm({ handleCloseTestimonialModal }) {
+export default function TestimonialForm({ handleCloseTestimonialModal, fetchTestimonials }) {
 	const [formData, setFormData] = useState({
 		audiencename: "",
 		audienceaddress: "",
@@ -36,6 +36,7 @@ export default function TestimonialForm({ handleCloseTestimonialModal }) {
 			}
 
 			if (result.success) {
+				fetchTestimonials();
 				setFormData({
 					audiencename: "",
 					audienceaddress: "",

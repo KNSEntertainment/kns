@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
-export default function EventForm({ handleCloseEventModal }) {
+export default function EventForm({ handleCloseEventModal, fetchEvents }) {
 	const [formData, setFormData] = useState({
 		eventname: "",
 		eventdescription: "",
@@ -47,6 +47,7 @@ export default function EventForm({ handleCloseEventModal }) {
 			}
 
 			if (result.success) {
+				fetchEvents();
 				setFormData({
 					eventname: "",
 					eventdescription: "",

@@ -106,7 +106,7 @@ export default function TestimonialsPage() {
 				<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
 					<div className="bg-white p-6 rounded-lg shadow-lg w-96">
 						<h2 className="text-lg font-bold text-gray-800 bg-red-100 p-4 mb-6 text-center">Create Testimonial</h2>
-						<TestimonialForm handleCloseTestimonialModal={handleCloseTestimonialModal} />
+						<TestimonialForm handleCloseTestimonialModal={handleCloseTestimonialModal} fetchTestimonials={fetchTestimonials} />
 					</div>
 				</div>
 			)}

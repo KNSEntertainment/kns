@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function PartnerForm({ handleClosePartnerModal }) {
+export default function PartnerForm({ handleClosePartnerModal, fetchPartners }) {
 	const [formData, setFormData] = useState({
 		partner_name: "",
 		partner_url: "",
@@ -38,6 +38,7 @@ export default function PartnerForm({ handleClosePartnerModal }) {
 			}
 
 			if (result.success) {
+				fetchPartners();
 				setFormData({
 					partner_name: "",
 					partner_url: "",

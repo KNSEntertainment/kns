@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function ArtistForm({ handleCloseArtistModal }) {
+export default function ArtistForm({ handleCloseArtistModal, fetchArtists }) {
 	const [formData, setFormData] = useState({
 		name: "",
 		genre: "",
@@ -69,6 +69,7 @@ export default function ArtistForm({ handleCloseArtistModal }) {
 			}
 
 			if (result.success) {
+				fetchArtists();
 				setFormData({
 					name: "",
 					genre: "",
