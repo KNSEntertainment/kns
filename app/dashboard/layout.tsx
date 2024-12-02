@@ -52,9 +52,12 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 				{/* Header */}
 				<header className="bg-slate-800 shadow-sm">
 					<div className="flex gap-2 items-center p-8">
-						<Link href="/dashboard" className="flex justify-center items-center gap-2 bg-slate-100 hover:bg-slate-200 w-fit px-4 py-2 rounded-full">
-							<LayoutDashboard /> <p>Dashboard</p>
-						</Link>
+						{activeMenu !== "dashboard" && (
+							<Link href="/dashboard" className="flex justify-center items-center gap-2 bg-slate-100 hover:bg-slate-200 w-fit px-4 py-2 rounded-full md:hidden">
+								<LayoutDashboard /> <p>Dashboard</p>
+							</Link>
+						)}
+
 						<h2 className="text-2xl font-semibold text-white ml-8">{menuItems.find((item) => item.id === activeMenu)?.label}</h2>
 					</div>
 				</header>

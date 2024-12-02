@@ -47,6 +47,9 @@ export default function Header({ isMenuOpen, toggleMenu }: HeaderProps) {
 					<Link href="#contact" className={`border-b border-transparent hover:border-b hover:border-b-red-700 ${isScrolled ? "text-black " : "text-slate-200 hover:text-white"}`}>
 						Contact
 					</Link>
+					<Link href="/dashboard" className={`border-b border-transparent hover:border-b hover:border-b-red-700 ${isScrolled ? "text-black " : "text-slate-200 hover:text-white"}`}>
+						Dashboard
+					</Link>
 				</nav>
 				<div className="flex gap-2 items-center">
 					<div className="relative p-1">
