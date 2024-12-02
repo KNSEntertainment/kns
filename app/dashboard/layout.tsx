@@ -20,9 +20,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 	const { activeMenu, setActiveMenu } = useActiveMenu();
 
 	return (
-		<div className="mx-auto mb-12 flex flex-col md:flex-row h-screen">
+		<div className="mx-auto mb-12 flex flex-col md:flex-row">
 			{/* Sidebar */}
-			<div className="w-64 flex-col md:flex-row bg-slate-800 shadow-lg">
+			<div className="hidden md:block w-64 flex-col md:flex-row bg-slate-800 shadow-lg h-screen">
 				<div className="flex p-7">
 					<Link href="/" className="flex justify-center items-center gap-2 bg-slate-100 hover:bg-slate-200 w-fit px-4 py-2 rounded-full">
 						<Home /> <p>Home</p>
@@ -51,7 +51,10 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 			<div className="flex-1 flex flex-col overflow-hidden">
 				{/* Header */}
 				<header className="bg-slate-800 shadow-sm">
-					<div className="p-8">
+					<div className="flex gap-2 items-center p-8">
+						<Link href="/dashboard" className="flex justify-center items-center gap-2 bg-slate-100 hover:bg-slate-200 w-fit px-4 py-2 rounded-full">
+							<LayoutDashboard /> <p>Dashboard</p>
+						</Link>
 						<h2 className="text-2xl font-semibold text-white ml-8">{menuItems.find((item) => item.id === activeMenu)?.label}</h2>
 					</div>
 				</header>
