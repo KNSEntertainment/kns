@@ -9,7 +9,7 @@ export default function Hero() {
 				<video src="/concert.mp4" autoPlay muted loop className="w-full h-full object-cover" />
 				<div className="absolute inset-0 bg-black opacity-50"></div>
 			</div>
-			<div className="container mx-auto px-4 z-10 text-center">
+			<div className="container max-w-4xl mx-auto px-4 z-10 text-center">
 				<motion.h1 className="text-3xl md:text-6xl font-bold text-white mb-4" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
 					Experience Nepalese Culture in Europe
 				</motion.h1>

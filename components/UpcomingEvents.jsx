@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Calendar, Clock, MapPin, ShoppingCart, Search } from "lucide-react";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -148,66 +148,64 @@ export default function UpcomingEvents() {
 					</div>
 				</div>
 
-				<AnimatePresence mode="wait">
-					{filteredEvents.length > 0 ? (
-						<motion.div key="events-grid" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-8">
-							{filteredEvents.map((event, index) => (
-								<motion.div key={event.eventname} initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: index * 0.1 }}>
-									<Card className=" overflow-hidden h-full group">
-										<div className="overflow-hidden">
-											<Image width={400} height={300} src={event?.eventposterUrl} alt={event?.eventname} className="w-full h-48 sm:h-64 object-cover transition-transform duration-300 ease-in-out group-hover:scale-105" />
-										</div>
+				{filteredEvents.length > 0 ? (
+					<motion.div key="events-grid" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-8">
+						{filteredEvents.map((event, index) => (
+							<motion.div key={event.eventname} initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: index * 0.1 }}>
+								<Card className=" overflow-hidden h-full group">
+									<div className="overflow-hidden">
+										<Image width={400} height={300} src={event?.eventposterUrl} alt={event?.eventname} className="w-full h-48 sm:h-64 object-cover transition-transform duration-300 ease-in-out group-hover:scale-105" />
+									</div>
 
-										<Link href={`/events/${event?._id}`}>
-											<CardHeader>
-												<span className=" bg-black rounded-full w-fit px-2 py-1 mb-1 text-white text-xs sm:text-md font-semibold">{event?.eventcountry}</span>
-												<CardTitle className="line-clamp-1">{event?.eventname}</CardTitle>
-											</CardHeader>
-										</Link>
-										<CardContent>
-											<div className="flex justify-between">
-												<div className="flex items-center mb-2">
-													<Calendar className="h-4 w-4 mr-2 text-primary" />
-													<span className="text-sm text-gray-600">{event?.eventdate}</span>
-												</div>
-												<div className="flex items-center mb-2">
-													<Clock className="h-4 w-4 mr-2 text-primary" />
-													<span className="text-sm text-gray-600 line-clamp-1">{event?.eventtime} </span>
-												</div>
+									<Link href={`/events/${event?._id}`}>
+										<CardHeader>
+											<span className=" bg-black rounded-full w-fit px-2 py-1 mb-1 text-white text-xs sm:text-md font-semibold">{event?.eventcountry}</span>
+											<CardTitle className="line-clamp-1">{event?.eventname}</CardTitle>
+										</CardHeader>
+									</Link>
+									<CardContent>
+										<div className="flex justify-between">
+											<div className="flex items-center mb-2">
+												<Calendar className="h-4 w-4 mr-2 text-primary" />
+												<span className="text-sm text-gray-600">{event?.eventdate}</span>
 											</div>
-											<div className="flex justify-between">
-												<div className="flex items-center">
-													<MapPin className="h-4 w-4 mr-2 text-primary" />
-													<span className="text-sm text-gray-600 line-clamp-1">{event?.eventvenue}</span>
-												</div>
-												{/* <div className="flex items-center">
+											<div className="flex items-center mb-2">
+												<Clock className="h-4 w-4 mr-2 text-primary" />
+												<span className="text-sm text-gray-600 line-clamp-1">{event?.eventtime} </span>
+											</div>
+										</div>
+										<div className="flex justify-between">
+											<div className="flex items-center">
+												<MapPin className="h-4 w-4 mr-2 text-primary" />
+												<span className="text-sm text-gray-600 line-clamp-1">{event?.eventvenue}</span>
+											</div>
+											{/* <div className="flex items-center">
 													<Globe className="h-4 w-4 mr-2 text-primary" />
 													<span className="text-sm text-gray-600 line-clamp-1">Country</span>
 												</div> */}
-											</div>
-										</CardContent>
-										<CardFooter className="flex justify-between">
-											<Link href={`/events/${event?._id}`}>
-												<Button className="bg-red-600">View Details</Button>
-											</Link>
-											{/* <Button variant="outline" onClick={handleAddToCart} disabled={loading}> */}
-											{filter === "upcoming" && (
-												<Button variant="outline">
-													<ShoppingCart className="mr-2 h-4 w-4" />
-													Buy
-												</Button>
-											)}
-										</CardFooter>
-									</Card>
-								</motion.div>
-							))}
-						</motion.div>
-					) : (
-						<motion.p key="no-events" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="text-center text-gray-600">
-							No events available for this filter combination.
-						</motion.p>
-					)}
-				</AnimatePresence>
+										</div>
+									</CardContent>
+									<CardFooter className="flex justify-between">
+										<Link href={`/events/${event?._id}`}>
+											<Button className="bg-red-600">View Details</Button>
+										</Link>
+										{/* <Button variant="outline" onClick={handleAddToCart} disabled={loading}> */}
+										{filter === "upcoming" && (
+											<Button variant="outline">
+												<ShoppingCart className="mr-2 h-4 w-4" />
+												Buy
+											</Button>
+										)}
+									</CardFooter>
+								</Card>
+							</motion.div>
+						))}
+					</motion.div>
+				) : (
+					<motion.p key="no-events" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="text-center text-gray-600">
+						No events available for this filter combination.
+					</motion.p>
+				)}
 			</div>
 			{/* <Button variant="outline" className="flex justify-center mx-auto mt-6 sm:mt-12">
 				View All Events

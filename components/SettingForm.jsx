@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { toast } from "react-hot-toast";
 
 export default function EmployeeForm({ settingdata }) {
 	const [formData, setFormData] = useState({
@@ -76,8 +77,10 @@ export default function EmployeeForm({ settingdata }) {
 				throw new Error("Failed to update settings");
 			}
 
+			toast.success("Profile updated successfully");
 			setMessage("Profile updated successfully");
 		} catch (err) {
+			toast.error("Profile not updated. Please try again.");
 			setError(err.message);
 		} finally {
 			setSubmitting(false);

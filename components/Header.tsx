@@ -73,8 +73,17 @@ export default function Header({ isMenuOpen, toggleMenu }: HeaderProps) {
 						<NavLink href="#artists" onClick={toggleMenu}>
 							Artists
 						</NavLink>
+						<NavLink href="#gallery" onClick={toggleMenu}>
+							Gallery
+						</NavLink>
+						<NavLink href="#blog" onClick={toggleMenu}>
+							Blog
+						</NavLink>
 						<NavLink href="#contact" onClick={toggleMenu}>
 							Contact
+						</NavLink>
+						<NavLink href="/dashboard" onClick={toggleMenu}>
+							Dashboard
 						</NavLink>
 					</nav>
 				</motion.div>

@@ -1,13 +1,12 @@
 "use client";
 import Link from "next/link";
 import { useActiveMenu } from "@/context/ActiveMenuContext";
-import { LayoutGrid, Calendar, Users, MessageSquare, Mail, Image, Settings, Handshake } from "lucide-react";
+import { Calendar, Users, MessageSquare, Mail, Image, Settings, Handshake } from "lucide-react";
 
 export default function DashboardGrid() {
 	const { setActiveMenu } = useActiveMenu();
 
 	const menuItems = [
-		{ name: "Dashboard", icon: LayoutGrid, href: "/dashboard", id: "dashboard", color: "bg-blue-500" },
 		{ name: "Events", icon: Calendar, href: "/dashboard/events", id: "events", color: "bg-purple-500" },
 		{ name: "Artists", icon: Users, href: "/dashboard/artists", id: "artists", color: "bg-pink-500" },
 		{ name: "Testimonials", icon: MessageSquare, href: "/dashboard/testimonials", id: "testimonials", color: "bg-yellow-500" },

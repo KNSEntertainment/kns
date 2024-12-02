@@ -46,10 +46,10 @@ export const authOptions = {
 		}),
 	],
 	pages: {
-		signIn: "/auth/login",
-		signOut: "/auth/logout",
-		error: "/auth/error",
-		verifyRequest: "/auth/verify-request",
+		signIn: "/login",
+		signOut: "/logout",
+		error: "/error",
+		verifyRequest: "/verify-request",
 		newUser: null,
 	},
 	callbacks: {

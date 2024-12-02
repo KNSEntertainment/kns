@@ -4,6 +4,7 @@ import "./globals.css";
 import { ActiveMenuProvider } from "@/context/ActiveMenuContext";
 import GoToTopButton from "@/components/GoToTopBottom";
 import AuthProvider from "@/context/AuthProvider";
+import { Toaster } from "react-hot-toast";
 
 const geistSans = localFont({
 	src: "./fonts/GeistVF.woff",
@@ -32,6 +33,7 @@ export default function RootLayout({
 				<body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
 					<ActiveMenuProvider>{children}</ActiveMenuProvider>
 					<GoToTopButton />
+					<Toaster position="bottom-right" reverseOrder={false} />
 				</body>
 			</AuthProvider>
 		</html>
