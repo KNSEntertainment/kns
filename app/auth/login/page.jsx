@@ -12,13 +12,11 @@ export default function LoginPage() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-
 		const result = await signIn("credentials", {
 			redirect: false,
 			email,
 			password,
 		});
-
 		if (result.error) {
 			setError(result.error);
 		} else {

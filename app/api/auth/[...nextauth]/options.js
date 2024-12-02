@@ -26,27 +26,27 @@ export const authOptions = {
 						console.log("No user found with this email");
 						throw new Error("No user found with this email");
 					}
-					if (!user.isVerified) {
-						console.log("Verify first");
-						throw new Error("PLease verify your email first");
-					}
+					// if (!user.isVerified) {
+					// 	console.log("Verify first");
+					// 	throw new Error("PLease verify your email first");
+					// }
 
-					const isValid = await bcrypt.compare(credentials.password, user.password);
+					const isValid = credentials.password === user.password;
+					// const isValid = await bcrypt.compare(credentials.password, user.password);
 					if (!isValid) {
 						console.log("Invalid password");
 						throw new Error("Invalid credentials");
 					}
 
-					console.log("User authenticated successfully:", user);
 					return user;
 				} catch (error) {
-					throw new Error("No user found with this email");
+					throw new Error(error.message);
 				}
 			},
 		}),
 	],
 	pages: {
-		signIn: "/auth/signin",
+		signIn: "/auth/login",
 		signOut: "/auth/logout",
 		error: "/auth/error",
 		verifyRequest: "/auth/verify-request",

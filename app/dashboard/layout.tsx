@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { useActiveMenu } from "@/context/ActiveMenuContext";
 import { BookImage, Drama, MessageCircle, Mail, Settings, GalleryThumbnails, LayoutDashboard, Home, Handshake } from "lucide-react";
+import { useSession } from "next-auth/react";
 
 const menuItems = [
 	{ id: "dashboard", label: "Dashboard", icon: LayoutDashboard },
@@ -18,6 +19,7 @@ const menuItems = [
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
 	const { activeMenu, setActiveMenu } = useActiveMenu();
+	const { data: session } = useSession();
 
 	return (
 		<div className="mx-auto mb-12 flex flex-col md:flex-row">
@@ -50,16 +52,20 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 			{/* Main Content */}
 			<div className="flex-1 flex flex-col overflow-hidden">
 				{/* Header */}
-				<header className="bg-slate-800 shadow-sm">
-					<div className="flex gap-2 items-center p-8">
+				<header className="flex items-center  justify-between bg-slate-800 shadow-sm">
+					<div className="flex flex-col space-y-4 sm:flex-row sm:items-center p-8">
 						{activeMenu !== "dashboard" && (
 							<Link href="/dashboard" className="flex justify-center items-center gap-2 bg-slate-100 hover:bg-slate-200 w-fit px-4 py-2 rounded-full md:hidden">
 								<LayoutDashboard /> <p>Dashboard</p>
 							</Link>
 						)}
 
-						<h2 className="text-2xl font-semibold text-white ml-8">{menuItems.find((item) => item.id === activeMenu)?.label}</h2>
+						<h2 className="text-2xl font-semibold text-white sm:ml-8">{menuItems.find((item) => item.id === activeMenu)?.label}</h2>
 					</div>
+					<p className="text-md mr-6 md:mr-12 font-semibold text-white">
+						Welcome,
+						<br /> {session?.user?.email || "Guest"}!
+					</p>
 				</header>
 
 				{/* Content Area */}
