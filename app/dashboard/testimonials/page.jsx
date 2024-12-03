@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import useFetchData from "@/hooks/useFetchData";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Eye, Pencil, Trash2 } from "lucide-react";
@@ -9,25 +10,10 @@ import TestimonialForm from "@/components/TestimonialForm";
 
 export default function TestimonialsPage() {
 	const [openCreateTestimonialModal, setOpenCreateTestimonialModal] = useState(false);
-	const [testimonials, setTestimonials] = useState([]);
+	const { data: testimonials, error, loading } = useFetchData("/api/testimonials", "testimonials");
 
-	useEffect(() => {
-		const fetchTestimonialData = async () => {
-			await fetchTestimonials();
-		};
-		fetchTestimonialData();
-	}, []);
-
-	const fetchTestimonials = async () => {
-		try {
-			const res = await fetch("/api/testimonials");
-			const data = await res.json();
-			console.log("Testimonials:", data.testimonials);
-			setTestimonials(data.testimonials);
-		} catch (error) {
-			console.error("Error fetching testimonials:", error);
-		}
-	};
+	if (loading) return <p>Loading...</p>;
+	if (error) return <p>Error: {error}</p>;
 
 	const handleView = (id) => {
 		console.log("View item:", id);

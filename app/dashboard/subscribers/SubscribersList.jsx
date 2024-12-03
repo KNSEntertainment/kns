@@ -1,6 +1,6 @@
 "use client";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState } from "react";
+import useFetchData from "@/hooks/useFetchData";
 import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -8,36 +8,24 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import { Trash2 } from "lucide-react";
 
 function SubscribersList() {
-	const [subscribers, setSubscribers] = useState("");
 	const [deleteId, setDeleteId] = useState(null);
-	const router = useRouter();
+	const { data: subscribers, error, loading } = useFetchData("/api/subscribers", "subscribers");
 
-	useEffect(() => {
-		const fetchSubscribers = async () => {
-			try {
-				const response = await fetch("/api/subscribers");
-				const data = await response.json();
-				setSubscribers(data.subscribers);
-			} catch (error) {
-				console.error("Error fetching subscribers:", error);
-			}
-		};
-
-		fetchSubscribers();
-	}, []);
+	if (loading) return <p>Loading...</p>;
+	if (error) return <p>Error: {error}</p>;
 
 	const handleDelete = async (id) => {
 		console.log("Delete item:", id);
-		try {
-			const res = await fetch(`/api/subscribers/${id}`, { method: "DELETE" });
-			if (res.ok) {
-				setSubscribers(subscribers.filter((sub) => sub._id !== id));
-				router.refresh();
-			}
-		} catch (error) {
-			console.error("Failed to delete subscriber:", error);
-		}
-		setDeleteId(null);
+		// try {
+		// 	const res = await fetch(`/api/subscribers/${id}`, { method: "DELETE" });
+		// 	if (res.ok) {
+		// 		setSubscribers(subscribers.filter((sub) => sub._id !== id));
+		// 		router.refresh();
+		// 	}
+		// } catch (error) {
+		// 	console.error("Failed to delete subscriber:", error);
+		// }
+		// setDeleteId(null);
 	};
 
 	return (

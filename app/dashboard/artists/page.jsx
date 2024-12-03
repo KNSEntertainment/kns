@@ -1,6 +1,8 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import useFetchData from "@/hooks/useFetchData";
+
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Eye, Pencil, Trash2 } from "lucide-react";
@@ -8,25 +10,11 @@ import Image from "next/image";
 import ArtistForm from "@/components/ArtistForm";
 
 export default function ArtistsPage() {
-	const [artists, setArtists] = useState([]);
 	const [openCreateArtistModal, setOpenCreateArtistModal] = useState(false);
+	const { data: artists, error, loading } = useFetchData("/api/artists", "artists");
 
-	useEffect(() => {
-		const fetchArtistData = async () => {
-			await fetchArtists();
-		};
-		fetchArtistData();
-	}, []);
-
-	const fetchArtists = async () => {
-		try {
-			const res = await fetch("/api/artists");
-			const data = await res.json();
-			setArtists(data.artists);
-		} catch (error) {
-			console.error("Error fetching artists:", error);
-		}
-	};
+	if (loading) return <p>Loading...</p>;
+	if (error) return <p>Error: {error}</p>;
 
 	const handleView = (id) => {
 		console.log("View item:", id);
@@ -56,6 +44,8 @@ export default function ArtistsPage() {
 				</button>
 			</div>
 			<div className="bg-white rounded-lg shadow">
+				{artists.length === 0 && !loading && <p>No artists available.</p>}
+
 				<Table>
 					<TableHeader>
 						<TableRow>
@@ -94,17 +84,17 @@ export default function ArtistsPage() {
 									{artist.socialMedia.instagram}
 								</TableCell>
 								<TableCell>
-									<Image src={artist.image} width={200} height={200} alt={artist.name} className="w-16 h-16 object-cover rounded-full" />
+									<Image src={artist.image || "/placeholder.jpg"} width={200} height={200} alt={artist.name} className="w-16 h-16 object-cover rounded-full" />
 								</TableCell>
 								<TableCell>
 									<div className="flex space-x-2">
-										<Button variant="ghost" size="icon" onClick={() => handleView(artist.id)}>
+										<Button variant="ghost" size="icon" onClick={() => handleView(artist._id)}>
 											<Eye className="w-6 h-6 text-green-700" />
 										</Button>
-										<Button variant="ghost" size="icon" onClick={() => handleEdit(artist.id)}>
+										<Button variant="ghost" size="icon" onClick={() => handleEdit(artist._id)}>
 											<Pencil className="w-6 h-6 text-blue-700" />
 										</Button>
-										<Button variant="ghost" size="icon" onClick={() => handleDelete(artist.id)}>
+										<Button variant="ghost" size="icon" onClick={() => handleDelete(artist._id)}>
 											<Trash2 className="w-6 h-6 text-red-700" />
 										</Button>
 									</div>
@@ -118,7 +108,7 @@ export default function ArtistsPage() {
 				<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
 					<div className="bg-white p-6 rounded-lg shadow-lg w-96">
 						<h2 className="text-lg font-bold text-gray-800 bg-red-100 p-4 mb-6 text-center">Create Artist</h2>
-						<ArtistForm handleCloseArtistModal={handleCloseArtistModal} fetchArtists={fetchArtists} />
+						<ArtistForm handleCloseArtistModal={handleCloseArtistModal} fetchArtists={artists} />
 					</div>
 				</div>
 			)}

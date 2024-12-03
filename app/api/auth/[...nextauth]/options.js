@@ -1,4 +1,5 @@
 import CredentialsProvider from "next-auth/providers/credentials";
+import GoogleProvider from "next-auth/providers/google";
 // import bcrypt from "bcrypt";
 import User from "@/models/User.Model";
 import ConnectDB from "@/lib/mongodb";
@@ -43,6 +44,10 @@ export const authOptions = {
 					throw new Error(error.message);
 				}
 			},
+		}),
+		GoogleProvider({
+			clientId: process.env.GOOGLE_CLIENT_ID,
+			clientSecret: process.env.GOOGLE_CLIENT_SECRET,
 		}),
 	],
 	pages: {

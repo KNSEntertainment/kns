@@ -1,6 +1,8 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import useFetchData from "@/hooks/useFetchData";
+
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Eye, Pencil, Trash2 } from "lucide-react";
@@ -9,24 +11,10 @@ import PartnerForm from "@/components/PartnerForm";
 
 export default function EventsPage() {
 	const [openCreatePartnerModal, setOpenCreatePartnerModal] = useState(false);
-	const [partners, setPartners] = useState([]);
+	const { data: partners, error, loading } = useFetchData("/api/partners", "partners");
 
-	useEffect(() => {
-		const fetchPartnerData = async () => {
-			await fetchPartners();
-		};
-		fetchPartnerData();
-	}, []);
-
-	const fetchPartners = async () => {
-		try {
-			const res = await fetch("/api/partners");
-			const data = await res.json();
-			setPartners(data.partners);
-		} catch (error) {
-			console.error("Error fetching partners:", error);
-		}
-	};
+	if (loading) return <p>Loading...</p>;
+	if (error) return <p>Error: {error}</p>;
 
 	const handleView = (id) => {
 		console.log("View item:", id);

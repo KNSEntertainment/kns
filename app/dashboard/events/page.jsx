@@ -6,27 +6,14 @@ import { Button } from "@/components/ui/button";
 import { Eye, Pencil, Trash2 } from "lucide-react";
 import Image from "next/image";
 import EventForm from "@/components/EventForm";
+import useFetchData from "@/hooks/useFetchData";
 
 export default function EventsPage() {
 	const [openCreateEventModal, setOpenCreateEventModal] = useState(false);
-	const [events, setEvents] = useState([]);
+	const { data: events, error, loading } = useFetchData("/api/events", "events");
 
-	useEffect(() => {
-		const fetchEventData = async () => {
-			await fetchEvents();
-		};
-		fetchEventData();
-	}, []);
-
-	const fetchEvents = async () => {
-		try {
-			const res = await fetch("/api/events");
-			const data = await res.json();
-			setEvents(data.events);
-		} catch (error) {
-			console.error("Error fetching events:", error);
-		}
-	};
+	if (loading) return <p>Loading...</p>;
+	if (error) return <p>Error: {error}</p>;
 
 	const handleView = (id) => {
 		console.log("View item:", id);
