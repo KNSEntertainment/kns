@@ -19,10 +19,10 @@ const galleryItems = [
 	{ id: 13, type: "image", src: "/mahapurush.jpeg", alt: "Portrait photo 1", category: "Oslo" },
 	{ id: 15, type: "image", src: "/pramod.jpeg", alt: "Landscape photo 1", category: "Belgium" },
 	{ id: 16, type: "image", src: "/pramod2.jpeg", alt: "Landscape photo 1", category: "Belgium" },
-	{ id: 9, type: "video", src: "/pramod3.jpeg", poster: "/hero-bg.png", category: "Oslo" },
-	{ id: 17, type: "video", src: "/samikshya2.jpeg", poster: "/hero-bg.png", category: "Oslo" },
-	{ id: 18, type: "video", src: "/senti.jpeg", poster: "/hero-bg.png", category: "Oslo" },
-	{ id: 19, type: "video", src: "/teej79.jpeg", poster: "/hero-bg.png", category: "Oslo" },
+	{ id: 9, type: "image", src: "/pramod3.jpeg", alt: "/hero-bg.png", category: "Oslo" },
+	{ id: 17, type: "image", src: "/samikshya2.jpeg", alt: "/hero-bg.png", category: "Oslo" },
+	{ id: 18, type: "image", src: "/senti.jpeg", alt: "/hero-bg.png", category: "Oslo" },
+	{ id: 19, type: "image", src: "/teej79.jpeg", alt: "/hero-bg.png", category: "Oslo" },
 ];
 
 export default function Gallery() {

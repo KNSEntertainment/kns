@@ -8,16 +8,10 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useRouter } from "next/navigation";
-
-type FormData = {
-	name: string;
-	email: string;
-	username: string;
-	password: string;
-};
+import Image from "next/image";
 
 export default function AuthForm() {
-	const [formData, setFormData] = useState<FormData>({
+	const [formData, setFormData] = useState({
 		name: "",
 		email: "",
 		username: "",
@@ -28,17 +22,17 @@ export default function AuthForm() {
 
 	const router = useRouter();
 
-	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+	const handleInputChange = (e) => {
 		const { name, value } = e.target;
 		setFormData((prev) => ({ ...prev, [name]: value }));
 	};
 
-	const handleLogin = (e: React.FormEvent) => {
+	const handleLogin = (e) => {
 		e.preventDefault();
 		console.log("Login attempted with:", { email: formData.email, password: formData.password });
 	};
 
-	const handleRegister = (e: React.FormEvent) => {
+	const handleRegister = (e) => {
 		e.preventDefault();
 		console.log("Registration attempted with:", formData);
 	};
@@ -54,10 +48,10 @@ export default function AuthForm() {
 		router.push("/");
 	};
 
-	const InputField = ({ id, icon: Icon, name, ...props }: any) => (
+	const InputField = ({ id, icon: Icon, name, ...props }) => (
 		<div className="relative">
 			<Icon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-			<Input id={id} name={name} value={formData[name as keyof FormData]} onChange={handleInputChange} {...props} className="pl-10" />
+			<Input id={id} name={name} value={formData[name]} onChange={handleInputChange} {...props} className="pl-10" />
 		</div>
 	);
 
@@ -69,7 +63,7 @@ export default function AuthForm() {
 				</CardHeader>
 				<CardContent className="mt-6">
 					<div className="mb-6 flex justify-center">
-						<img src="/placeholder.svg?height=100&width=100" alt="Auth" className="rounded-full border-4 border-red-700" width={100} height={100} />
+						<Image src="/knslogo.png" alt="Auth" className="w-24 h-auto rounded-full border-4 border-red-700" width={100} height={100} />
 					</div>
 					{error && <p className="text-red-500 mb-4">{error}</p>}
 					<Tabs defaultValue="login">
