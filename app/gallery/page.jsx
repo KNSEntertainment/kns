@@ -4,15 +4,25 @@ import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { Fullscreen } from "lucide-react";
 
-const filters = ["All", "Wedding", "Portrait", "Landscape", "Event"];
+const filters = ["All", "Oslo", "Germany", "Belgium", "Portugal"];
 
 const galleryItems = [
-	{ id: 1, type: "image", src: "/event1.png", alt: "Wedding photo 1", category: "Wedding" },
-	{ id: 2, type: "image", src: "/event2.png", alt: "Portrait photo 1", category: "Portrait" },
-	{ id: 3, type: "video", src: "/videos/2.mp4", poster: "/hero-bg.png", category: "Event" },
-	{ id: 4, type: "image", src: "/event3.png", alt: "Landscape photo 1", category: "Landscape" },
-	{ id: 5, type: "image", src: "/event4.png", alt: "Wedding photo 2", category: "Wedding" },
-	// Add more items as needed
+	{ id: 1, type: "image", src: "/belgium1.jpeg", alt: "Wedding photo 1", category: "Belgium" },
+	{ id: 2, type: "image", src: "/belgium2.jpeg", alt: "Portrait photo 1", category: "Belgium" },
+	{ id: 4, type: "image", src: "/belgium3.jpeg", alt: "Wedding photo 1", category: "Belgium" },
+	{ id: 5, type: "image", src: "/ghamad.jpeg", alt: "Portrait photo 1", category: "Oslo" },
+	{ id: 7, type: "image", src: "/group.jpeg", alt: "Wedding photo 1", category: "Portugal" },
+	{ id: 8, type: "image", src: "/group2.jpeg", alt: "Portrait photo 1", category: "Portugal" },
+	{ id: 10, type: "image", src: "/group3.jpeg", alt: "Landscape photo 1", category: "Germany" },
+	{ id: 11, type: "image", src: "/haschaeurope.jpeg", alt: "Wedding photo 2", category: "Belgium" },
+	{ id: 12, type: "image", src: "/kabaddi.jpeg", alt: "Wedding photo 1", category: "Portugal" },
+	{ id: 13, type: "image", src: "/mahapurush.jpeg", alt: "Portrait photo 1", category: "Oslo" },
+	{ id: 15, type: "image", src: "/pramod.jpeg", alt: "Landscape photo 1", category: "Belgium" },
+	{ id: 16, type: "image", src: "/pramod2.jpeg", alt: "Landscape photo 1", category: "Belgium" },
+	{ id: 9, type: "video", src: "/pramod3.jpeg", poster: "/hero-bg.png", category: "Oslo" },
+	{ id: 17, type: "video", src: "/samikshya2.jpeg", poster: "/hero-bg.png", category: "Oslo" },
+	{ id: 18, type: "video", src: "/senti.jpeg", poster: "/hero-bg.png", category: "Oslo" },
+	{ id: 19, type: "video", src: "/teej79.jpeg", poster: "/hero-bg.png", category: "Oslo" },
 ];
 
 export default function Gallery() {
@@ -44,7 +54,7 @@ export default function Gallery() {
 	};
 
 	return (
-		<section id="gallery" className="py-8 sm:py-16 bg-gray-100">
+		<section id="gallery" className="min-h-screen py-8 sm:py-16 bg-gray-100">
 			<div className="container mx-auto px-2 sm:px-4">
 				<h2 className="text-3xl font-bold text-center mb-6 sm:mb-12">Gallery</h2>
 
@@ -60,7 +70,8 @@ export default function Gallery() {
 				{/* Gallery Grid */}
 				<div ref={galleryRef} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
 					{filteredItems.map((item) => (
-						<div key={item.id} id={item.category} className={`relative overflow-hidden rounded-lg shadow-lg transition-transform duration-300 ${item.type === "video" ? "col-span-2 row-span-2" : ""}`}>
+						<div key={item.id} id={item.category} className={`relative overflow-hidden rounded-lg shadow-lg transition-transform duration-300`}>
+							{/* <div key={item.id} id={item.category} className={`relative overflow-hidden rounded-lg shadow-lg transition-transform duration-300 ${item.type === "video" ? "col-span-2 row-span-2" : ""}`}> */}
 							{item.type === "image" ? (
 								<div className="group cursor-zoom-in" onClick={() => setZoomedItem(item)}>
 									<Image src={item.src || "/placeholder.jpg"} alt={item.alt} width={800} height={800} className="w-full h-full object-cover" />

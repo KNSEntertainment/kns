@@ -7,11 +7,11 @@ import { Fullscreen } from "lucide-react";
 const filters = ["All", "Oslo", "Germany", "Belgium", "Portugal"];
 
 const galleryItems = [
-	{ id: 1, type: "image", src: "/event1.png", alt: "Oslo photo 1", category: "Oslo" },
-	{ id: 2, type: "image", src: "/event2.png", alt: "Portrait photo 1", category: "Germany" },
-	{ id: 3, type: "video", src: "/videos/2.mp4", poster: "/hero-bg.png", category: "Belgium" },
-	{ id: 4, type: "image", src: "/event3.png", alt: "Landscape photo 1", category: "Portugal" },
-	{ id: 5, type: "image", src: "/event4.png", alt: "Oslo photo 2", category: "Oslo" },
+	{ id: 4, type: "image", src: "/belgium3.jpeg", alt: "Wedding photo 1", category: "Belgium" },
+	{ id: 7, type: "image", src: "/group.jpeg", alt: "Wedding photo 1", category: "Portugal" },
+	{ id: 5, type: "image", src: "/ghamad.jpeg", alt: "Portrait photo 1", category: "Oslo" },
+
+	{ id: 10, type: "image", src: "/group3.jpeg", alt: "Landscape photo 1", category: "Germany" },
 	// Add more items as needed
 ];
 
