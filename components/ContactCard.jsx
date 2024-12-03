@@ -4,9 +4,14 @@ import { Mail, Phone, MapPin, Facebook, Instagram, Youtube, Linkedin, ExternalLi
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import ContactForm from "./ContactForm";
+import useFetchData from "@/hooks/useFetchData";
 
 const ContactCard = () => {
 	const [copiedField, setCopiedField] = React.useState(null);
+	const { data: settings, error, loading } = useFetchData("/api/settings", "settings");
+
+	if (loading) return <p>Loading...</p>;
+	if (error) return <p>Loading failed{error}</p>;
 
 	const handleCopy = (text, field) => {
 		navigator.clipboard.writeText(text);
@@ -14,44 +19,44 @@ const ContactCard = () => {
 		setTimeout(() => setCopiedField(null), 2000);
 	};
 
-	const contactInfo = {
-		name: "Kiran Gurung",
-		position: "Proprietor, KNS",
-		email: "kirangrg1628@gmail.com",
-		phone: "+47 45921405",
-		address: "Oslo, Norway",
-		facebook: "https://www.facebook.com/bhoot.grg",
-		instagram: "https://instagram.com/example",
-		youtube: "https://youtube.com/example",
-		linkedin: "https://linkedin.com/in/example",
-	};
+	// const contactInfo = {
+	// 	name: "Kiran Gurung",
+	// 	position: "Proprietor, KNS",
+	// 	email: "kirangrg1628@gmail.com",
+	// 	phone: "+47 45921405",
+	// 	address: "Oslo, Norway",
+	// 	facebook: "https://www.facebook.com/bhoot.grg",
+	// 	instagram: "https://instagram.com/example",
+	// 	youtube: "https://youtube.com/example",
+	// 	linkedin: "https://linkedin.com/in/example",
+	// };
 
-	const socialLinks = [
-		{
-			name: "Facebook",
-			icon: Facebook,
-			url: contactInfo.facebook,
-			color: "bg-blue-500 hover:bg-blue-600",
-		},
-		{
-			name: "Instagram",
-			icon: Instagram,
-			url: contactInfo.instagram,
-			color: "bg-pink-500 hover:bg-pink-600",
-		},
-		{
-			name: "YouTube",
-			icon: Youtube,
-			url: contactInfo.youtube,
-			color: "bg-red-500 hover:bg-red-600",
-		},
-		{
-			name: "LinkedIn",
-			icon: Linkedin,
-			url: contactInfo.linkedin,
-			color: "bg-blue-600 hover:bg-blue-700",
-		},
-	];
+	// const socialLinks = [
+	// 	{
+	// 		name: "Facebook",
+	// 		icon: Facebook,
+	// 		url: contactInfo.facebook,
+	// 		color: "bg-blue-500 hover:bg-blue-600",
+	// 	},
+	// 	{
+	// 		name: "Instagram",
+	// 		icon: Instagram,
+	// 		url: contactInfo.instagram,
+	// 		color: "bg-pink-500 hover:bg-pink-600",
+	// 	},
+	// 	{
+	// 		name: "YouTube",
+	// 		icon: Youtube,
+	// 		url: contactInfo.youtube,
+	// 		color: "bg-red-500 hover:bg-red-600",
+	// 	},
+	// 	{
+	// 		name: "LinkedIn",
+	// 		icon: Linkedin,
+	// 		url: contactInfo.linkedin,
+	// 		color: "bg-blue-600 hover:bg-blue-700",
+	// 	},
+	// ];
 
 	return (
 		<section id="contact" className="py-16 bg-white">
@@ -69,8 +74,8 @@ const ContactCard = () => {
 										<Image src="/kiran.jpeg" alt="Kiran Gurung" width={100} height={100} className="w-full rounded-full" />
 									</div>
 									<div>
-										<h2 className="text-xl font-bold text-gray-800">{contactInfo.name}</h2>
-										<p className="text-gray-600">{contactInfo.position}</p>
+										<h2 className="text-xl font-bold text-gray-800">{settings?.[0]?.name}</h2>
+										<p className="text-gray-600">{settings?.[0]?.position}</p>
 									</div>
 								</div>
 
@@ -81,7 +86,7 @@ const ContactCard = () => {
 										<Mail className="h-5 w-5 text-blue-500 mr-3" />
 										<div className="flex-grow">
 											<p className="text-sm text-gray-500">Email</p>
-											<p className="text-gray-800">{contactInfo.email}</p>
+											<p className="text-gray-800">{settings?.[0]?.email}</p>
 										</div>
 										<button onClick={() => handleCopy(contactInfo.email, "email")} className="p-2 opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-white rounded-full" aria-label="Copy email">
 											{copiedField === "email" ? <CheckCircle2 className="h-5 w-5 text-green-500" /> : <Copy className="h-5 w-5 text-gray-400" />}
@@ -93,7 +98,7 @@ const ContactCard = () => {
 										<Phone className="h-5 w-5 text-green-500 mr-3" />
 										<div className="flex-grow">
 											<p className="text-sm text-gray-500">Phone</p>
-											<p className="text-gray-800">{contactInfo.phone}</p>
+											<p className="text-gray-800">{settings?.[0]?.phone}</p>
 										</div>
 										<button onClick={() => handleCopy(contactInfo.phone, "phone")} className="p-2 opacity-0 group-hover:opacity-100 transition-all duration-300  hover:bg-white rounded-full" aria-label="Copy phone">
 											{copiedField === "phone" ? <CheckCircle2 className="h-5 w-5 text-green-500" /> : <Copy className="h-5 w-5 text-gray-400" />}
@@ -105,7 +110,7 @@ const ContactCard = () => {
 										<MapPin className="h-5 w-5 text-red-500 mr-3" />
 										<div className="flex-grow">
 											<p className="text-sm text-gray-500">Address</p>
-											<p className="text-gray-800">{contactInfo.address}</p>
+											<p className="text-gray-800">{settings?.[0]?.address}</p>
 										</div>
 										<button onClick={() => handleCopy(contactInfo.address, "address")} className="p-2 opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-white rounded-full" aria-label="Copy address">
 											{copiedField === "address" ? <CheckCircle2 className="h-5 w-5 text-green-500" /> : <Copy className="h-5 w-5 text-gray-400" />}
@@ -127,21 +132,21 @@ const ContactCard = () => {
 								<div className="space-y-3">
 									<div className="flex justify-between items-center p-2 bg-gray-50 rounded">
 										<span className="text-gray-600">Monday - Friday</span>
-										<span className="text-gray-800 font-medium">9:00 AM - 6:00 PM</span>
+										<span className="text-gray-800 font-medium">{settings?.[0]?.businessHoursMF}</span>
 									</div>
 									<div className="flex justify-between items-center p-2 bg-gray-50 rounded">
 										<span className="text-gray-600">Saturday</span>
-										<span className="text-gray-800 font-medium">10:00 AM - 4:00 PM</span>
+										<span className="text-gray-800 font-medium">{settings?.[0]?.businessHoursSat}</span>
 									</div>
 									<div className="flex justify-between items-center p-2 bg-gray-50 rounded">
 										<span className="text-gray-600">Sunday</span>
-										<span className="text-gray-800 font-medium">Closed</span>
+										<span className="text-gray-800 font-medium">{settings?.[0]?.businessHoursSun}</span>
 									</div>
 								</div>
 							</div>
 							<h3 className="text-lg font-semibold text-gray-800 my-6">Let&apos;s Be Social</h3>
 							<div className="grid grid-cols-2 gap-4">
-								{socialLinks.map(
+								{/* {socialLinks.map(
 									(social) =>
 										social.url && (
 											<Button key={social.name} onClick={() => window.open(social.url, "_blank")} className={`w-full ${social.color} text-white flex items-center justify-center space-x-2 transition-transform hover:scale-105`}>
@@ -150,7 +155,25 @@ const ContactCard = () => {
 												<ExternalLink className="h-4 w-4" />
 											</Button>
 										)
-								)}
+								)} */}
+
+								<Button key={settings?.[0]?.facebook} onClick={() => window.open(`${settings?.[0]?.facebook}`, "_blank")} className={`w-full bg-blue-700 text-white flex items-center justify-center space-x-2 transition-transform hover:scale-105`}>
+									<span>Facebook</span>
+									<ExternalLink className="h-4 w-4" />
+								</Button>
+
+								<Button key={settings?.[0]?.Instagram} onClick={() => window.open(`${settings?.[0]?.facebook}`, "_blank")} className={`w-full bg-red-700 text-white flex items-center justify-center space-x-2 transition-transform hover:scale-105`}>
+									<span>Instagram</span>
+									<ExternalLink className="h-4 w-4" />
+								</Button>
+								<Button key={settings?.[0]?.Youtube} onClick={() => window.open(`${settings?.[0]?.facebook}`, "_blank")} className={`w-full bg-red-700 text-white flex items-center justify-center space-x-2 transition-transform hover:scale-105`}>
+									<span>Youtube</span>
+									<ExternalLink className="h-4 w-4" />
+								</Button>
+								<Button key={settings?.[0]?.Linkedin} onClick={() => window.open(`${settings?.[0]?.facebook}`, "_blank")} className={`w-full bg-blue-700 text-white flex items-center justify-center space-x-2 transition-transform hover:scale-105`}>
+									<span>LinkedIn</span>
+									<ExternalLink className="h-4 w-4" />
+								</Button>
 							</div>
 						</CardContent>
 					</Card>

@@ -9,12 +9,14 @@ export default function EmployeeForm({ settingdata }) {
 		profilePhoto: "",
 		name: "",
 		position: "",
+		address: "",
 		email: "",
 		phone: "",
 		mobile: "",
 		facebook: "",
 		youtube: "",
 		instagram: "",
+		linkedin: "",
 		businessHoursMF: "",
 		businessHoursSat: "",
 		businessHoursSun: "",
@@ -110,6 +112,12 @@ export default function EmployeeForm({ settingdata }) {
 					<input type="text" id="position" name="position" value={formData.position} onChange={handleChange} required className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
 				</div>
 				<div className="mb-4">
+					<label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="address">
+						Address
+					</label>
+					<input type="text" id="address" name="address" value={formData.address} onChange={handleChange} required className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+				</div>
+				<div className="mb-4">
 					<label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
 						Email
 					</label>
@@ -146,6 +154,12 @@ export default function EmployeeForm({ settingdata }) {
 						Instagram
 					</label>
 					<input type="url" id="instagram" name="instagram" value={formData.instagram} onChange={handleChange} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+				</div>
+				<div className="mb-4">
+					<label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="linkedin">
+						LinkedIn
+					</label>
+					<input type="url" id="linkedin" name="linkedin" value={formData.linkedin} onChange={handleChange} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
 				</div>
 				<div className="mb-4">
 					<label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="businessHoursMF">
