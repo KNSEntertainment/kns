@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { useActiveMenu } from "@/context/ActiveMenuContext";
-import { BookImage, Drama, MessageCircle, Mail, Settings, GalleryThumbnails, LayoutDashboard, Home, Handshake } from "lucide-react";
+import { BookImage, Drama, MessageCircle, Mail, Settings, GalleryThumbnails, LayoutDashboard, Home, Handshake, Newspaper } from "lucide-react";
 import { useSession } from "next-auth/react";
 
 const menuItems = [
@@ -11,6 +11,7 @@ const menuItems = [
 	{ id: "events", label: "Events", icon: BookImage },
 	{ id: "artists", label: "Artists", icon: Drama },
 	{ id: "testimonials", label: "Testimonials", icon: MessageCircle },
+	{ id: "blogs", label: "Blogs", icon: Newspaper },
 	{ id: "gallery", label: "Gallery", icon: GalleryThumbnails },
 	{ id: "partners", label: "Partners", icon: Handshake },
 	{ id: "subscribers", label: "Subscribers", icon: Mail },

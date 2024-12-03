@@ -61,7 +61,7 @@ export default function EventsPage() {
 									<TableCell>{event.eventcountry}</TableCell>
 									<TableCell>{event.eventdate}</TableCell>
 									<TableCell>
-										<Image src={event.eventposterUrl} width={200} height={200} alt={event.eventname} className="w-24 h-32 object-cover" />
+										<Image src={event.eventposterUrl || "/placeholder.jpg"} width={200} height={200} alt={event.eventname} className="w-24 h-32 object-cover" />
 									</TableCell>
 									<TableCell>
 										<div className="flex space-x-2">
@@ -92,7 +92,7 @@ export default function EventsPage() {
 				<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
 					<div className="bg-white p-6 rounded-lg shadow-lg w-96">
 						<h2 className="text-lg font-bold text-gray-800 bg-red-100 p-4 mb-6 text-center">Create Event</h2>
-						<EventForm handleCloseEventModal={handleCloseEventModal} fetchEvents={fetchEvents} />
+						<EventForm handleCloseEventModal={handleCloseEventModal} fetchEvents={events} />
 					</div>
 				</div>
 			)}

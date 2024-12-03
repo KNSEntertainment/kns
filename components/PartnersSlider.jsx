@@ -29,7 +29,7 @@ const PartnersSlider = () => {
 						{logos.map((logo, index) => (
 							<div key={index} className="flex flex-col items-center space-y-2">
 								<a href={logo.url} className="flex-shrink-0 w-40 h-20 bg-white p-4 shadow-md rounded-lg flex items-center justify-center">
-									<Image src={logo.logo} alt={logo.alt} width={200} height={200} onClick={handlePartnerLogoClick} className="object-contain max-h-full max-w-full cursor-pointer" />
+									<Image src={logo.logo || "/placeholder.jpg"} alt={logo.alt} width={200} height={200} onClick={handlePartnerLogoClick} className="object-contain max-h-full max-w-full cursor-pointer" />
 								</a>
 								<p className="text-xs">{logo.pname}</p>
 							</div>

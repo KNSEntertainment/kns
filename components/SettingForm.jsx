@@ -96,7 +96,7 @@ export default function EmployeeForm({ settingdata }) {
 					<label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="profilePhoto">
 						Profile Photo
 					</label>
-					{formData.profilePhoto && <Image src={formData.profilePhoto} alt="Profile" width={100} height={100} className="w-24 h-24 mb-2 rounded-full" />}
+					{formData.profilePhoto && <Image src={formData.profilePhoto || "/placeholder.jpg"} alt="Profile" width={100} height={100} className="w-24 h-24 mb-2 rounded-full" />}
 					<input type="file" id="profilePhoto" name="profilePhoto" onChange={handleImageChange} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
 				</div>
 				<div className="mb-4">
@@ -183,7 +183,7 @@ export default function EmployeeForm({ settingdata }) {
 					<label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="companyLogo">
 						Company Logo
 					</label>
-					{formData.companyLogo && <Image src={formData.companyLogo} alt="Company Logo" width={100} height={100} className="w-24 h-24 mb-2 rounded-full" />}
+					{formData.companyLogo && <Image src={formData.companyLogo || "/placeholder.jpg"} alt="Company Logo" width={100} height={100} className="w-24 h-24 mb-2 rounded-full" />}
 					<input type="file" id="companyLogo" name="companyLogo" onChange={handleImageChange} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
 				</div>
 				<div className="grid justify-items-end gap-2 mt-12">

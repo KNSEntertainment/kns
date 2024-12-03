@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useActiveMenu } from "@/context/ActiveMenuContext";
-import { Calendar, Users, MessageSquare, Mail, Image, Settings, Handshake } from "lucide-react";
+import { Calendar, Users, MessageSquare, Mail, Image, Settings, Handshake, Newspaper } from "lucide-react";
 
 export default function DashboardGrid() {
 	const { setActiveMenu } = useActiveMenu();
@@ -10,8 +10,9 @@ export default function DashboardGrid() {
 		{ name: "Events", icon: Calendar, href: "/dashboard/events", id: "events", color: "bg-purple-500" },
 		{ name: "Artists", icon: Users, href: "/dashboard/artists", id: "artists", color: "bg-pink-500" },
 		{ name: "Testimonials", icon: MessageSquare, href: "/dashboard/testimonials", id: "testimonials", color: "bg-yellow-500" },
+		{ name: "Blogs", icon: Newspaper, href: "/dashboard/blogs", id: "blogs", color: "bg-blue-900" },
 		{ name: "Gallery", icon: Image, href: "/dashboard/gallery", id: "gallery", color: "bg-orange-500" },
-		{ name: "Partners", icon: Handshake, href: "/dashboard/partners", id: "partners", color: "bg-blue-800" },
+		{ name: "Partners", icon: Handshake, href: "/dashboard/partners", id: "partners", color: "bg-blue-600" },
 		{ name: "Subscribers", icon: Mail, href: "/dashboard/subscribers", id: "subscribers", color: "bg-green-500" },
 		{ name: "Profile Settings", icon: Settings, href: "/dashboard/settings", id: "settings", color: "bg-gray-500" },
 	];
