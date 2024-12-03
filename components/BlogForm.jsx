@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
-export default function BlogForm({ handleCloseBlogModal, fetchBlogs }) {
+export default function BlogForm({ handleCloseBlogModal }) {
 	const [formData, setFormData] = useState({
 		blogTitle: "",
 		blogDesc: "",
