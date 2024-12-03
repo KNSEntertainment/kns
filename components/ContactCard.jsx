@@ -158,19 +158,27 @@ const ContactCard = () => {
 								)} */}
 
 								<Button key={settings?.[0]?.facebook} onClick={() => window.open(`${settings?.[0]?.facebook}`, "_blank")} className={`w-full bg-blue-700 text-white flex items-center justify-center space-x-2 transition-transform hover:scale-105`}>
+									<Facebook className="h-5 w-5" />
+
 									<span>Facebook</span>
 									<ExternalLink className="h-4 w-4" />
 								</Button>
 
 								<Button key={settings?.[0]?.Instagram} onClick={() => window.open(`${settings?.[0]?.facebook}`, "_blank")} className={`w-full bg-red-700 text-white flex items-center justify-center space-x-2 transition-transform hover:scale-105`}>
+									<Instagram className="h-5 w-5" />
+
 									<span>Instagram</span>
 									<ExternalLink className="h-4 w-4" />
 								</Button>
 								<Button key={settings?.[0]?.Youtube} onClick={() => window.open(`${settings?.[0]?.facebook}`, "_blank")} className={`w-full bg-red-700 text-white flex items-center justify-center space-x-2 transition-transform hover:scale-105`}>
+									<Youtube className="h-5 w-5" />
+
 									<span>Youtube</span>
 									<ExternalLink className="h-4 w-4" />
 								</Button>
 								<Button key={settings?.[0]?.Linkedin} onClick={() => window.open(`${settings?.[0]?.facebook}`, "_blank")} className={`w-full bg-blue-700 text-white flex items-center justify-center space-x-2 transition-transform hover:scale-105`}>
+									<Linkedin className="h-5 w-5" />
+
 									<span>LinkedIn</span>
 									<ExternalLink className="h-4 w-4" />
 								</Button>

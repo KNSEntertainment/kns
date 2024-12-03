@@ -17,7 +17,7 @@ const advertisements = [
 ];
 
 export default function Blog() {
-	const { data: articles, error, loading } = useFetchData("/api/articles", "articles");
+	const { data: articles } = useFetchData("/api/articles", "articles");
 
 	return (
 		<section id="blog" className="bg-gray-100">
@@ -52,7 +52,7 @@ export default function Blog() {
 									<div key={article._id} className="group bg-white rounded-lg shadow overflow-hidden transition-all duration-300 hover:shadow-md">
 										<div className="flex items-center p-3">
 											<div className="relative w-20 h-20 flex-shrink-0">
-												<Image src={article.image} alt={article.title} fill className="object-cover rounded" />
+												<Image src={article?.image} alt={article.title} fill className="object-cover rounded" />
 											</div>
 											<div className="ml-4 flex-1">
 												<h2 className="text-sm font-semibold text-gray-800 line-clamp-2 cursor-pointer hover:text-red-700 transition-colors duration-100 ease-in">{article.title}</h2>
