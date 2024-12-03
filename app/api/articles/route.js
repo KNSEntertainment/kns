@@ -6,7 +6,7 @@ export async function GET() {
 	try {
 		await connectDB();
 
-		const articles = await Article.find();
+		const articles = await Article.find().limit(5);
 
 		return NextResponse.json({ success: true, articles }, { status: 200 });
 	} catch (error) {

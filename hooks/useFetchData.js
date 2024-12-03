@@ -14,7 +14,6 @@ const useFetchData = (apiEndpoint, responseKey = "data") => {
 				if (!res.ok) throw new Error(`Error ${res.status}: ${res.statusText}`);
 				const result = await res.json();
 
-				// Use the responseKey to extract the relevant data
 				setData(result[responseKey] || []);
 			} catch (err) {
 				setError(err.message);
