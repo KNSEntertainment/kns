@@ -60,7 +60,6 @@ export default function GalleryForm({ handleCloseGalleryModal, fetchGallery }) {
 			}
 
 			if (result.success) {
-				fetchGallery();
 				setFormData({
 					mediatype: "",
 					media: [],
