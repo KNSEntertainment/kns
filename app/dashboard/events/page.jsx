@@ -61,7 +61,7 @@ export default function EventsPage() {
 									<TableCell>{event.eventcountry}</TableCell>
 									<TableCell>{event.eventdate}</TableCell>
 									<TableCell>
-										<Image src={event.eventposterUrl || "/placeholder.jpg"} width={200} height={200} alt={event.eventname} className="w-24 h-32 object-cover" />
+										<Image src={event.eventposterUrl || "/placeholder.jpg"} width={200} height={200} alt={event.eventname || "alt"} className="w-24 h-32 object-cover" />
 									</TableCell>
 									<TableCell>
 										<div className="flex space-x-2">

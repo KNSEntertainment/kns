@@ -61,7 +61,7 @@ export default function EventsPage() {
 									<TableCell className="font-semibold">{partner.partner_name}</TableCell>
 									<TableCell>{partner.partner_url}</TableCell>
 									<TableCell>
-										<Image src={partner.partner_logo || "/placeholder.jpg"} width={200} height={200} alt={partner.partner_name} className="w-16 h-16 rounded-full object-cover" />
+										<Image src={partner.partner_logo || "/placeholder.jpg"} width={200} height={200} alt={partner.partner_name || "alt"} className="w-16 h-16 rounded-full object-cover" />
 									</TableCell>
 									<TableCell>{partner.logo_alt_text}</TableCell>
 									<TableCell>

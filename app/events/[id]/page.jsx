@@ -41,7 +41,7 @@ export default async function EventPage({ params }) {
 				<main className="flex-grow">
 					<h1 className="text-xl md:text-2xl xl:text-4xl font-bold mb-3">{event.eventname}</h1>
 					<div className="mb-6 relative w-full">
-						<Image src={event.eventposterUrl || "/placeholder.jpg"} alt={event.eventname} width={500} height={500} className="w-full" />
+						<Image src={event.eventposterUrl || "/placeholder.jpg"} alt={event.eventname || "alt"} width={500} height={500} className="w-full" />
 						<div className="mt-6">
 							<h1 className="text-2xl font-bold">{event.eventname}</h1>
 							<p>{event.eventdescription}</p>

@@ -61,7 +61,7 @@ export default function EventsPage() {
 									<TableCell>{blog.author || "Author"}</TableCell>
 									<TableCell>Hello</TableCell>
 									<TableCell>
-										<Image src={blog?.picture || "/placeholder.jpg"} width={200} height={200} alt={blog?.author} className="w-24 h-32 object-cover" />
+										<Image src={blog?.picture || "/placeholder.jpg"} width={200} height={200} alt={blog?.author || "alt"} className="w-24 h-32 object-cover" />
 									</TableCell>
 									<TableCell>
 										<div className="flex space-x-2">

@@ -154,7 +154,7 @@ export default function UpcomingEvents() {
 							<motion.div key={event.eventname} initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: index * 0.1 }}>
 								<Card className=" overflow-hidden h-full group">
 									<div className="overflow-hidden">
-										<Image width={400} height={300} src={event?.eventposterUrl || "/placeholder.jpg"} alt={event?.eventname} className="w-full h-48 sm:h-64 object-cover transition-transform duration-300 ease-in-out group-hover:scale-105" />
+										<Image width={400} height={300} src={event?.eventposterUrl || "/placeholder.jpg"} alt={event?.eventname || "alt"} className="w-full h-48 sm:h-64 object-cover transition-transform duration-300 ease-in-out group-hover:scale-105" />
 									</div>
 
 									<Link href={`/events/${event?._id}`}>

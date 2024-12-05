@@ -30,7 +30,7 @@ export default function Blog() {
 					<div className="md:col-span-2 lg:col-span-1 lg:row-span-2">
 						<h3 className="text-2xl font-bold mb-2">Featured</h3>
 						<div className="group relative h-[520px] overflow-hidden rounded-lg shadow-md transition-transform duration-300 hover:shadow-lg">
-							<Image src={blogs[0]?.blogMainPicture || "/placeholder.jpg"} alt={blogs[0]?.blogTitle} fill className="object-cover transition-transform duration-300 group-hover:scale-105" />
+							<Image src={blogs[0]?.blogMainPicture || "/placeholder.jpg"} alt={blogs[0]?.blogTitle || "alt"} fill className="object-cover transition-transform duration-300 group-hover:scale-105" />
 							<div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent">
 								<div className="absolute bottom-0 p-4 text-white">
 									<h1 className="text-xl md:text-2xl font-bold mb-2">{blogs[0]?.blogTitle}</h1>
@@ -52,7 +52,7 @@ export default function Blog() {
 									<div key={blog._id} className="group bg-white rounded-lg shadow overflow-hidden transition-all duration-300 hover:shadow-md">
 										<div className="flex items-center p-3">
 											<div className="relative w-20 h-20 flex-shrink-0">
-												<Image src={blog?.blogMainPicture || "/placeholder.jpg"} alt={blog?.blogTitle} fill className="object-cover rounded" />
+												<Image src={blog?.blogMainPicture || "/placeholder.jpg"} alt={blog?.blogTitle || "alt"} fill className="object-cover rounded" />
 											</div>
 											<div className="ml-4 flex-1">
 												<h2 className="text-sm font-semibold text-gray-800 line-clamp-2 cursor-pointer hover:text-red-700 transition-colors duration-100 ease-in">{blog.blogTitle}</h2>
@@ -76,7 +76,7 @@ export default function Blog() {
 						<div className="space-y-4">
 							{advertisements.map((ad) => (
 								<div key={ad.id} className="relative w-full h-56 aspect-[3/2] rounded-lg overflow-hidden shadow-md">
-									<Image src={ad.image || "/placeholder.jpg"} alt={ad.alt} fill className="object-cover" />
+									<Image src={ad.image || "/placeholder.jpg"} alt={ad.alt || "alt"} fill className="object-cover" />
 								</div>
 							))}
 							<Button variant="outline" href="/news" className="w-full text-center">
