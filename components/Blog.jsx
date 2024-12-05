@@ -35,7 +35,7 @@ export default function Blog() {
 							<Image src={blogs[0]?.blogMainPicture || "/placeholder.jpg"} alt={blogs[0]?.blogTitle || "alt"} fill className="object-cover transition-transform duration-300 group-hover:scale-105" />
 							<div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent">
 								<div className="absolute bottom-0 p-4 text-white">
-									<h1 className="text-xl md:text-2xl font-bold mb-2">{blogs[0]?.blogTitle}</h1>
+									<h1 className="text-xl md:text-2xl font-bold mb-2 cursor-pointer group-hover:text-red-700">{blogs[0]?.blogTitle}</h1>
 									<div className="flex items-center text-gray-300">
 										<Calendar className="w-4 h-4 mr-2" />
 										<span className="text-sm">{blogs[0]?.blogDate}</span>
@@ -57,7 +57,7 @@ export default function Blog() {
 												<Image src={blog?.blogMainPicture || "/placeholder.jpg"} alt={blog?.blogTitle || "alt"} fill className="object-cover rounded" />
 											</div>
 											<div className="ml-4 flex-1">
-												<h2 className="text-sm font-semibold text-gray-800 line-clamp-2 cursor-pointer hover:text-red-700 transition-colors duration-100 ease-in">{blog.blogTitle}</h2>
+												<h2 className="text-sm font-semibold text-gray-800 line-clamp-2 cursor-pointer group-hover:text-red-700 transition-colors duration-100 ease-in">{blog.blogTitle}</h2>
 												<div className="flex items-center text-gray-500 mt-1">
 													<Calendar className="w-3 h-3 mr-1" />
 													<span className="text-xs">{blog?.blogDate}</span>

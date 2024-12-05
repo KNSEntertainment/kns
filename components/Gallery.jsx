@@ -28,10 +28,10 @@ export default function Gallery() {
 
 	const scrollToSection = (filter) => {
 		setActiveFilter(filter);
-		const element = document.getElementById(filter);
-		if (element) {
-			element.scrollIntoView({ behavior: "smooth" });
-		}
+		// const element = document.getElementById(filter);
+		// if (element) {
+		// 	element.scrollIntoView({ behavior: "smooth" });
+		// }
 	};
 
 	const filters = ["All", ...new Set(gallery.map((item) => item.category))];
