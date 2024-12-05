@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
-export default function GalleryForm({ handleCloseGalleryModal, fetchGallery }) {
+export default function GalleryForm({ handleCloseGalleryModal }) {
 	const [formData, setFormData] = useState({
 		mediatype: "",
 		media: "",
