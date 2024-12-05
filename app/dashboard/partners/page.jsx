@@ -5,7 +5,7 @@ import useFetchData from "@/hooks/useFetchData";
 
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { Eye, Pencil, Trash2 } from "lucide-react";
+import { Pencil, Trash2 } from "lucide-react";
 import Image from "next/image";
 import PartnerForm from "@/components/PartnerForm";
 
