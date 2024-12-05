@@ -15,10 +15,6 @@ export default function GalleryPage() {
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error: {error}</p>;
 
-	const handleView = (id) => {
-		console.log("View item:", id);
-	};
-
 	const handleEdit = (id) => {
 		console.log("Edit item:", id);
 	};
@@ -63,9 +59,6 @@ export default function GalleryPage() {
 									<TableCell>{gallery.alt}</TableCell>
 									<TableCell>
 										<div className="flex space-x-2">
-											<Button variant="ghost" size="icon" onClick={() => handleView(gallery.id)}>
-												<Eye className="w-6 h-6 text-green-700" />
-											</Button>
 											<Button variant="ghost" size="icon" onClick={() => handleEdit(gallery.id)}>
 												<Pencil className="w-6 h-6 text-blue-700" />
 											</Button>

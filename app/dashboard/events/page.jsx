@@ -15,10 +15,6 @@ export default function EventsPage() {
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error: {error}</p>;
 
-	const handleView = (id) => {
-		console.log("View item:", id);
-	};
-
 	const handleEdit = (id) => {
 		console.log("Edit item:", id);
 	};
@@ -65,9 +61,6 @@ export default function EventsPage() {
 									</TableCell>
 									<TableCell>
 										<div className="flex space-x-2">
-											<Button variant="ghost" size="icon" onClick={() => handleView(event.id)}>
-												<Eye className="w-6 h-6 text-green-700" />
-											</Button>
 											<Button variant="ghost" size="icon" onClick={() => handleEdit(event.id)}>
 												<Pencil className="w-6 h-6 text-blue-700" />
 											</Button>

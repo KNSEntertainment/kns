@@ -15,10 +15,6 @@ export default function EventsPage() {
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error: {error}</p>;
 
-	const handleView = (id) => {
-		console.log("View item:", id);
-	};
-
 	const handleEdit = (id) => {
 		console.log("Edit item:", id);
 	};
@@ -46,28 +42,31 @@ export default function EventsPage() {
 				<Table>
 					<TableHeader>
 						<TableRow>
-							<TableHead>Event Name</TableHead>
-							<TableHead>Event Venue</TableHead>
-							<TableHead>Event Date</TableHead>
-							<TableHead>Poster</TableHead>
-							<TableHead>Actions</TableHead>
+							<TableHead>Blog Title</TableHead>
+							<TableHead>Blog Description</TableHead>
+							<TableHead>Blog Author</TableHead>
+							<TableHead>Blog Date</TableHead>
+							<TableHead>Main Image</TableHead>
+							<TableHead>Secondary Image</TableHead>
 						</TableRow>
 					</TableHeader>
 					<TableBody>
 						{blogs.length > 0 ? (
 							blogs.map((blog) => (
 								<TableRow key={blog?.author}>
-									<TableCell className="font-semibold">Blog Title</TableCell>
-									<TableCell>{blog.author || "Author"}</TableCell>
-									<TableCell>Hello</TableCell>
+									<TableCell className="font-semibold">{blog.blogTitle}</TableCell>
+									<TableCell>{blog.blogDesc}</TableCell>
+									<TableCell>{blog.blogAuthor}</TableCell>
+									<TableCell>{blog.blogDate}</TableCell>
 									<TableCell>
-										<Image src={blog?.picture || "/placeholder.jpg"} width={200} height={200} alt={blog?.author || "alt"} className="w-24 h-32 object-cover" />
+										<Image src={blog?.blogMainPicture || "/placeholder.jpg"} width={200} height={200} alt={blog?.blogAuthor || "alt"} className="w-24 h-32 object-cover" />
 									</TableCell>
 									<TableCell>
+										<Image src={blog?.blogSecondPicture || "/placeholder.jpg"} width={200} height={200} alt={blog?.blogAuthor || "alt"} className="w-24 h-32 object-cover" />
+									</TableCell>
+
+									<TableCell>
 										<div className="flex space-x-2">
-											<Button variant="ghost" size="icon" onClick={() => handleView(blog.id)}>
-												<Eye className="w-6 h-6 text-green-700" />
-											</Button>
 											<Button variant="ghost" size="icon" onClick={() => handleEdit(blog.id)}>
 												<Pencil className="w-6 h-6 text-blue-700" />
 											</Button>

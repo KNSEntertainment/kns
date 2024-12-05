@@ -22,7 +22,9 @@ export default function Blog() {
 	return (
 		<section id="blog" className="bg-gray-100">
 			<div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16">
-				<h2 className="text-3xl font-bold text-center mb-6 sm:mb-12">Our Blogs</h2>
+				<h2 className="text-3xl font-bold text-center mb-6 sm:mb-12">
+					Our <span className="text-red-500">Blogs</span>
+				</h2>
 
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 					{/* Featured Article - Left Column */}

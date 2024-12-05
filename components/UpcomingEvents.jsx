@@ -90,7 +90,9 @@ export default function UpcomingEvents() {
 	return (
 		<section id="events" className="py-8 sm:py-16 bg-gray-100">
 			<div className="container mx-auto px-2 sm:px-4">
-				<h2 className="text-3xl font-bold text-center mb-6 sm:mb-12">Special Events</h2>
+				<h2 className="text-3xl font-bold text-center mb-6 sm:mb-12">
+					Special <span className="text-red-500">Events</span>
+				</h2>
 				<div className="flex flex-col gap-6 w-full mb-6 sm:mb-12">
 					{/* Buttons Section */}
 					<div className="flex flex-wrap gap-2 sm:gap-4 justify-center">

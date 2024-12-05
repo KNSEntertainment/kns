@@ -23,7 +23,9 @@ const PartnersSlider = () => {
 	return (
 		<div className="flex h-48 sm:h-96 items-center bg-gray-100 py-8">
 			<div className="container mx-auto">
-				<h2 className="text-3xl font-bold text-center mb-6 sm:mb-12">Our Trusted Partners</h2>
+				<h2 className="text-3xl font-bold text-center mb-6 sm:mb-12">
+					Our Trusted <span className="text-red-500">Partners</span>
+				</h2>
 				<div className="overflow-hidden relative">
 					<div className="flex animate-scroll gap-8">
 						{logos.map((logo, index) => (

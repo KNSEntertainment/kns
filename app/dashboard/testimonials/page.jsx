@@ -15,10 +15,6 @@ export default function TestimonialsPage() {
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error: {error}</p>;
 
-	const handleView = (id) => {
-		console.log("View item:", id);
-	};
-
 	const handleEdit = (id) => {
 		console.log("Edit item:", id);
 	};
@@ -46,10 +42,10 @@ export default function TestimonialsPage() {
 				<Table>
 					<TableHeader>
 						<TableRow>
-							<TableHead>Event Name</TableHead>
-							<TableHead>Event Venue</TableHead>
-							<TableHead>Event Date</TableHead>
-							<TableHead>Poster</TableHead>
+							<TableHead>Name</TableHead>
+							<TableHead>Place</TableHead>
+							<TableHead>Message</TableHead>
+							<TableHead>Photo</TableHead>
 							<TableHead>Actions</TableHead>
 						</TableRow>
 					</TableHeader>
@@ -65,9 +61,6 @@ export default function TestimonialsPage() {
 									</TableCell>
 									<TableCell>
 										<div className="flex space-x-2">
-											<Button variant="ghost" size="icon" onClick={() => handleView(testimonial._id)}>
-												<Eye className="w-6 h-6 text-green-700" />
-											</Button>
 											<Button variant="ghost" size="icon" onClick={() => handleEdit(testimonial._id)}>
 												<Pencil className="w-6 h-6 text-blue-700" />
 											</Button>

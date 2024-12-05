@@ -109,7 +109,9 @@ export default function FeaturedArtists() {
 	return (
 		<section id="artists" className="py-16 bg-white">
 			<div className="container mx-auto px-4">
-				<h2 className="text-3xl font-bold text-center mb-6 sm:mb-12">Featured Artists</h2>
+				<h2 className="text-3xl font-bold text-center mb-6 sm:mb-12">
+					Featured <span className="text-red-500">Artists</span>
+				</h2>
 				<div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-8">
 					{artists.map((artist) => (
 						<motion.div key={artist._id} initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
