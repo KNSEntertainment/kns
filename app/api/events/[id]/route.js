@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
-import dbConnect from "@/lib/mongodb";
+import ConnectDB from "@/lib/mongodb";
 import Event from "@/models/Event.Model";
 
 export async function GET(request, { params }) {
 	const id = params.id;
 
 	try {
-		await dbConnect();
+		await ConnectDB();
 
 		const event = await Event.findById(id);
 

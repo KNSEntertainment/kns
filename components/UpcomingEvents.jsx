@@ -9,6 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { BuyTicketButton } from "./BuyTicketButton";
 
 export default function UpcomingEvents() {
 	const [events, setEvents] = useState([]);
@@ -93,6 +94,8 @@ export default function UpcomingEvents() {
 				<h2 className="text-3xl font-bold text-center mb-6 sm:mb-12">
 					Special <span className="text-red-500">Events</span>
 				</h2>
+				<BuyTicketButton eventId="event123" price={50} />
+
 				<div className="flex flex-col gap-6 w-full mb-6 sm:mb-12">
 					{/* Buttons Section */}
 					<div className="flex flex-wrap gap-2 sm:gap-4 justify-center">
