@@ -6,6 +6,7 @@ const eventSchema = new mongoose.Schema({
 	eventcountry: { type: String, required: true },
 	eventvenue: { type: String, required: false },
 	eventdate: { type: String, required: false },
+	eventprice: { type: String, required: false },
 	eventtime: { type: String, required: false },
 	eventspotifyUrl: { type: String, required: false },
 	eventyoutubeUrl: { type: String, required: false },

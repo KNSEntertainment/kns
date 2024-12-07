@@ -85,8 +85,8 @@ export default function EventsPage() {
 			{openCreatePartnerModal && (
 				<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
 					<div className="bg-white p-6 rounded-lg shadow-lg w-96">
-						<h2 className="text-lg font-bold text-gray-800 bg-red-100 p-4 mb-6 text-center">Create Partner</h2>
-						<PartnerForm handleClosePartnerModal={handleClosePartnerModal} fetchPartners={fetchPartners} />
+						<h2 className="text-lg font-bold text-white bg-red-700 p-4 mb-6 text-center">Create Partner</h2>
+						<PartnerForm handleClosePartnerModal={handleClosePartnerModal} fetchPartners={partners} />
 					</div>
 				</div>
 			)}

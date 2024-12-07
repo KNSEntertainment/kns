@@ -1,13 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
-export default function EventForm({ handleCloseEventModal, fetchEvents }) {
+export default function EventForm({ handleCloseEventModal }) {
 	const [formData, setFormData] = useState({
 		eventname: "",
 		eventdescription: "",
 		eventcountry: "",
 		eventvenue: "",
 		eventdate: "",
+		eventprice: "",
 		eventtime: "",
 		eventspotifyUrl: "",
 		eventyoutubeUrl: "",
@@ -28,6 +29,7 @@ export default function EventForm({ handleCloseEventModal, fetchEvents }) {
 			form.append("eventcountry", formData.eventcountry);
 			form.append("eventvenue", formData.eventvenue);
 			form.append("eventdate", formData.eventdate);
+			form.append("eventprice", formData.eventprice);
 			form.append("eventtime", formData.eventtime);
 			form.append("eventspotifyUrl", formData.eventspotifyUrl);
 			form.append("eventyoutubeUrl", formData.eventyoutubeUrl);
@@ -47,13 +49,13 @@ export default function EventForm({ handleCloseEventModal, fetchEvents }) {
 			}
 
 			if (result.success) {
-				fetchEvents();
 				setFormData({
 					eventname: "",
 					eventdescription: "",
 					eventcountry: "",
 					eventvenue: "",
 					eventdate: "",
+					eventprice: "",
 					eventtime: "",
 					eventspotifyUrl: "",
 					eventyoutubeUrl: "",
@@ -106,6 +108,12 @@ export default function EventForm({ handleCloseEventModal, fetchEvents }) {
 					Event Date
 				</label>
 				<input type="date" id="eventdate" value={formData.eventdate} onChange={(e) => setFormData({ ...formData, eventdate: e.target.value })} className="w-full p-2 border rounded" />
+			</div>
+			<div>
+				<label htmlFor="eventprice" className="block mb-2 font-bold">
+					Event Price
+				</label>
+				<input type="text" id="eventprice" value={formData.eventprice} onChange={(e) => setFormData({ ...formData, eventprice: e.target.value })} className="w-full p-2 border rounded" />
 			</div>
 			<div>
 				<label htmlFor="eventtime" className="block mb-2 font-bold">

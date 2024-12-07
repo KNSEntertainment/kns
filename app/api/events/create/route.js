@@ -33,6 +33,7 @@ export async function POST(request) {
 		const eventcountry = formData.get("eventcountry");
 		const eventvenue = formData.get("eventvenue");
 		const eventdate = formData.get("eventdate");
+		const eventprice = formData.get("eventprice");
 		const eventtime = formData.get("eventtime");
 		const eventspotifyUrl = formData.get("eventspotifyUrl");
 		const eventyoutubeUrl = formData.get("eventyoutubeUrl");
@@ -60,6 +61,7 @@ export async function POST(request) {
 			eventcountry,
 			eventvenue,
 			eventdate: formattedDate,
+			eventprice,
 			eventtime,
 			eventspotifyUrl,
 			eventyoutubeUrl,

@@ -25,9 +25,9 @@ export function BuyTicketButton({ eventId, price }: { eventId: string; price: nu
 
 	return (
 		<Button onClick={handleBuyTicket} disabled={isLoading}>
-			<ShoppingCart className="mr-2 h-4 w-4" />
+			<ShoppingCart className="hidden md:block h-4 w-4" />
 
-			{isLoading ? "Processing..." : "Buy"}
+			{isLoading ? "Adding..." : "Add to Cart"}
 		</Button>
 	);
 }

@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { useActiveMenu } from "@/context/ActiveMenuContext";
-import { BookImage, Drama, MessageCircle, Mail, Settings, GalleryThumbnails, LayoutDashboard, Home, Handshake, Newspaper } from "lucide-react";
+import { BookImage, Drama, MessageCircle, Mail, Settings, GalleryThumbnails, LayoutDashboard, Home, Handshake, Newspaper, ArrowBigLeft } from "lucide-react";
 import { useSession } from "next-auth/react";
 
 const menuItems = [
@@ -54,24 +54,27 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 			<div className="flex-1 flex flex-col overflow-hidden">
 				{/* Header */}
 				<header className="flex items-center  justify-between bg-slate-800 shadow-sm">
-					<div className="flex flex-col space-y-4 sm:flex-row sm:items-center p-8">
-						{/* {activeMenu !== "dashboard" && (
-							<Link href="/dashboard" className="flex justify-center items-center gap-2 bg-slate-100 hover:bg-slate-200 w-fit px-4 py-2 rounded-full md:hidden">
-								<LayoutDashboard /> <p>Dashboard</p>
+					<div className="flex flex-col space-y-1 sm:flex-row sm:items-center p-8">
+						{activeMenu !== "dashboard" && (
+							<Link href="/dashboard" className="flex justify-center items-center gap-2 bg-slate-100 hover:bg-slate-200 w-fit px-2 py-1 rounded-full md:hidden">
+								<ArrowBigLeft />
 							</Link>
-						)} */}
+						)}
 
-						<h2 className="text-2xl font-semibold text-white sm:ml-8">{menuItems.find((item) => item.id === activeMenu)?.label}</h2>
+						<h2 className="text-xl md:text-2xl font-semibold text-white sm:ml-8">{menuItems.find((item) => item.id === activeMenu)?.label}</h2>
 					</div>
-					<div className="flex gap-2">
-						<div className="flex p-1 w-12 h-12 bg-red-400 rounded-full items-center justify-center">
-							<p className="text-3xl font-bold">{session?.user?.email?.charAt(0).toUpperCase()}</p>
+					{session && (
+						<div className="flex gap-2">
+							<div className="flex p-1 w-10 h-10 md:w-12 md:h-12 bg-red-400 rounded-full items-center justify-center">
+								<p className="text-3xl font-bold">{session?.user?.email?.charAt(0).toUpperCase()}</p>
+							</div>
+							<p className="text-sm mr-6 md:mr-12 font-semibold text-white">
+								Welcome,
+								<br />
+								<span className="text-slate-300"> {session?.user?.email || "Guest"}!</span>
+							</p>
 						</div>
-						<p className="text-md mr-6 md:mr-12 font-semibold text-white">
-							Welcome,
-							<br /> {session?.user?.email || "Guest"}!
-						</p>
-					</div>
+					)}
 				</header>
 
 				{/* Content Area */}

@@ -100,7 +100,7 @@ export default function ArtistsPage() {
 			{openCreateArtistModal && (
 				<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
 					<div className="bg-white p-6 rounded-lg shadow-lg w-96">
-						<h2 className="text-lg font-bold text-gray-800 bg-red-100 p-4 mb-6 text-center">Create Artist</h2>
+						<h2 className="text-lg font-bold text-white bg-red-700 p-4 mb-6 text-center">Create Artist</h2>
 						<ArtistForm handleCloseArtistModal={handleCloseArtistModal} fetchArtists={artists} />
 					</div>
 				</div>

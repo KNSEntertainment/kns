@@ -90,7 +90,7 @@ export default function EmployeeForm({ settingdata }) {
 	};
 
 	return (
-		<form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-12 bg-white px-12 pt-6 pb-8">
+		<form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 md:gap-12 bg-white px-2 md:px-12 md:pt-6 pb-2 md:pb-8">
 			<div>
 				<div className="mb-4">
 					<label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="profilePhoto">

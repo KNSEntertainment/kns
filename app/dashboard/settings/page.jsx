@@ -11,8 +11,8 @@ export default function SettingsPage() {
 	if (error) return <p>Error: {error}</p>;
 
 	return (
-		<div className="bg-white p-12 mx-8 rounded-lg shadow-lg max-w-6xl">
-			<h2 className="text-lg font-bold text-gray-800 bg-red-100 p-4 mb-6 text-center">Update Profile</h2>
+		<div className="bg-white md:p-4 lg:p-6 xl:p-12 xl:mx-8 rounded-lg shadow-lg max-w-6xl">
+			<h2 className="text-lg font-bold text-white bg-red-700 p-4 mb-6 text-center">Update Profile</h2>
 			<SettingForm fetchSettings={settings} settingdata={settings} />
 		</div>
 	);

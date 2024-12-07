@@ -45,6 +45,7 @@ export default function EventsPage() {
 							<TableHead>Event Name</TableHead>
 							<TableHead>Event Venue</TableHead>
 							<TableHead>Event Date</TableHead>
+							<TableHead>Event Price</TableHead>
 							<TableHead>Poster</TableHead>
 							<TableHead>Actions</TableHead>
 						</TableRow>
@@ -52,10 +53,11 @@ export default function EventsPage() {
 					<TableBody>
 						{events.length > 0 ? (
 							events.map((event) => (
-								<TableRow key={event.eventname}>
+								<TableRow key={event._id}>
 									<TableCell className="font-semibold">{event.eventname}</TableCell>
 									<TableCell>{event.eventcountry}</TableCell>
 									<TableCell>{event.eventdate}</TableCell>
+									<TableCell>{event.eventprice}</TableCell>
 									<TableCell>
 										<Image src={event.eventposterUrl || "/placeholder.jpg"} width={200} height={200} alt={event.eventname || "alt"} className="w-24 h-32 object-cover" />
 									</TableCell>
@@ -84,7 +86,7 @@ export default function EventsPage() {
 			{openCreateEventModal && (
 				<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
 					<div className="bg-white p-6 rounded-lg shadow-lg w-96">
-						<h2 className="text-lg font-bold text-gray-800 bg-red-100 p-4 mb-6 text-center">Create Event</h2>
+						<h2 className="text-lg font-bold text-white bg-red-700 p-4 mb-6 text-center">Create Event</h2>
 						<EventForm handleCloseEventModal={handleCloseEventModal} fetchEvents={events} />
 					</div>
 				</div>

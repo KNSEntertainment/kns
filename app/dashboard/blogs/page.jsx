@@ -53,7 +53,7 @@ export default function EventsPage() {
 					<TableBody>
 						{blogs.length > 0 ? (
 							blogs.map((blog) => (
-								<TableRow key={blog?.author}>
+								<TableRow key={blog?._id}>
 									<TableCell className="font-semibold">{blog.blogTitle}</TableCell>
 									<TableCell>{blog.blogDesc}</TableCell>
 									<TableCell>{blog.blogAuthor}</TableCell>
@@ -90,7 +90,7 @@ export default function EventsPage() {
 			{openCreateBlogModal && (
 				<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
 					<div className="bg-white p-6 rounded-lg shadow-lg w-96">
-						<h2 className="text-lg font-bold text-gray-800 bg-red-100 p-4 mb-6 text-center">Create Blog</h2>
+						<h2 className="text-lg font-bold text-white bg-red-700 p-4 mb-6 text-center">Create Blog</h2>
 						<BlogForm handleCloseBlogModal={handleCloseBlogModal} fetchBlogs={blogs} />
 					</div>
 				</div>

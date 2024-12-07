@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Calendar, Clock, MapPin, Search } from "lucide-react";
+import { Calendar, Clock, Eye, MapPin, Search } from "lucide-react";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -153,7 +153,7 @@ export default function UpcomingEvents() {
 				</div>
 
 				{filteredEvents.length > 0 ? (
-					<motion.div key="events-grid" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-8">
+					<motion.div key="events-grid" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 sm:gap-8">
 						{filteredEvents.map((event, index) => (
 							<motion.div key={event._id} initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: index * 0.1 }}>
 								<Card className=" overflow-hidden h-full group">
@@ -167,7 +167,7 @@ export default function UpcomingEvents() {
 											<CardTitle className="line-clamp-1">{event?.eventname}</CardTitle>
 										</CardHeader>
 									</Link>
-									<CardContent>
+									<CardContent className="">
 										<div className="flex justify-between">
 											<div className="flex items-center mb-2">
 												<Calendar className="h-4 w-4 mr-2 text-primary" />
@@ -187,14 +187,18 @@ export default function UpcomingEvents() {
 													<Globe className="h-4 w-4 mr-2 text-primary" />
 													<span className="text-sm text-gray-600 line-clamp-1">Country</span>
 												</div> */}
+											<div className="text-2xl font-bold">{event.eventprice !== "0" && "€" + event.eventprice}</div>
 										</div>
 									</CardContent>
 									<CardFooter className="flex justify-between">
 										<Link href={`/events/${event?._id}`}>
-											<Button className="bg-red-600">View Details</Button>
+											<Button className="bg-red-600">
+												<Eye className="hidden md:block h-4 w-4" />
+												View Details
+											</Button>
 										</Link>
 										{/* <Button variant="outline" onClick={handleAddToCart} disabled={loading}> */}
-										{new Date(event?.eventdate) > new Date() && <BuyTicketButton eventId={event?.eventname} price={119} />}
+										{new Date(event?.eventdate) > new Date() && <BuyTicketButton eventId={event?.eventname} price={event?.eventprice} />}
 									</CardFooter>
 								</Card>
 							</motion.div>

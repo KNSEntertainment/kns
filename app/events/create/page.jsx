@@ -8,6 +8,7 @@ export default function EventForm() {
 		eventcountry: "",
 		eventvenue: "",
 		eventdate: "",
+		eventprice: "",
 		eventposter: null,
 	});
 	const [submitting, setSubmitting] = useState(false);
@@ -23,6 +24,7 @@ export default function EventForm() {
 			form.append("eventname", formData.eventname);
 			form.append("eventcountry", formData.eventcountry);
 			form.append("eventdate", formData.eventdate);
+			form.append("eventprice", formData.eventprice);
 			form.append("eventtime", formData.eventtime);
 			if (formData.eventposter) {
 				form.append("eventposter", formData.eventposter);
@@ -47,6 +49,7 @@ export default function EventForm() {
 					eventcountry: "",
 					eventvenue: "",
 					eventdate: "",
+					eventprice: "",
 					eventposter: null,
 				});
 				// Reset eventposter input
@@ -75,7 +78,7 @@ export default function EventForm() {
 				</div>
 				<div>
 					<label htmlFor="eventcountry" className="block mb-2 font-bold">
-						Event Venue
+						Event Country
 					</label>
 					<input id="eventcountry" value={formData.eventcountry} onChange={(e) => setFormData({ ...formData, eventcountry: e.target.value })} className="w-full p-2 border rounded" required />
 				</div>
@@ -90,6 +93,12 @@ export default function EventForm() {
 						Event Date
 					</label>
 					<input type="date" id="eventdate" value={formData.eventdate} onChange={(e) => setFormData({ ...formData, eventdate: e.target.value })} className="w-full p-2 border rounded" required />
+				</div>
+				<div>
+					<label htmlFor="eventprice" className="block mb-2 font-bold">
+						Event Price
+					</label>
+					<input type="text" id="eventprice" value={formData.eventprice} onChange={(e) => setFormData({ ...formData, eventprice: e.target.value })} className="w-full p-2 border rounded" required />
 				</div>
 				<div>
 					<label htmlFor="eventposter" className="block mb-2 font-bold">
