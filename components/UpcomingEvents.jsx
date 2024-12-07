@@ -155,7 +155,7 @@ export default function UpcomingEvents() {
 				{filteredEvents.length > 0 ? (
 					<motion.div key="events-grid" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-8">
 						{filteredEvents.map((event, index) => (
-							<motion.div key={event.eventname} initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: index * 0.1 }}>
+							<motion.div key={event._id} initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: index * 0.1 }}>
 								<Card className=" overflow-hidden h-full group">
 									<div className="overflow-hidden">
 										<Image width={400} height={300} src={event?.eventposterUrl || "/placeholder.jpg"} alt={event?.eventname || "alt"} className="w-full h-48 sm:h-64 object-cover transition-transform duration-300 ease-in-out group-hover:scale-105" />
@@ -194,7 +194,7 @@ export default function UpcomingEvents() {
 											<Button className="bg-red-600">View Details</Button>
 										</Link>
 										{/* <Button variant="outline" onClick={handleAddToCart} disabled={loading}> */}
-										{filter === "upcoming" && <BuyTicketButton eventId={event?.eventname} price={119} />}
+										{new Date(event?.eventdate) > new Date() && <BuyTicketButton eventId={event?.eventname} price={119} />}
 									</CardFooter>
 								</Card>
 							</motion.div>
