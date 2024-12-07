@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Calendar, Clock, MapPin, ShoppingCart, Search } from "lucide-react";
+import { Calendar, Clock, MapPin, Search } from "lucide-react";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -94,7 +94,6 @@ export default function UpcomingEvents() {
 				<h2 className="text-3xl font-bold text-center mb-6 sm:mb-12">
 					Special <span className="text-red-500">Events</span>
 				</h2>
-				<BuyTicketButton eventId="event123" price={50} />
 
 				<div className="flex flex-col gap-6 w-full mb-6 sm:mb-12">
 					{/* Buttons Section */}
@@ -195,12 +194,7 @@ export default function UpcomingEvents() {
 											<Button className="bg-red-600">View Details</Button>
 										</Link>
 										{/* <Button variant="outline" onClick={handleAddToCart} disabled={loading}> */}
-										{filter === "upcoming" && (
-											<Button variant="outline">
-												<ShoppingCart className="mr-2 h-4 w-4" />
-												Buy
-											</Button>
-										)}
+										{filter === "upcoming" && <BuyTicketButton eventId={event?.eventname} price={119} />}
 									</CardFooter>
 								</Card>
 							</motion.div>

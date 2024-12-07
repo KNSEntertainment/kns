@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { createCheckoutSession } from "@/app/actions/stripe";
+import { ShoppingCart } from "lucide-react";
 
 export function BuyTicketButton({ eventId, price }: { eventId: string; price: number }) {
 	const [isLoading, setIsLoading] = useState(false);
@@ -24,7 +25,9 @@ export function BuyTicketButton({ eventId, price }: { eventId: string; price: nu
 
 	return (
 		<Button onClick={handleBuyTicket} disabled={isLoading}>
-			{isLoading ? "Processing..." : "Buy Ticket"}
+			<ShoppingCart className="mr-2 h-4 w-4" />
+
+			{isLoading ? "Processing..." : "Buy"}
 		</Button>
 	);
 }
