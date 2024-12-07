@@ -64,7 +64,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 						<h2 className="text-xl md:text-2xl font-semibold text-white sm:ml-8">{menuItems.find((item) => item.id === activeMenu)?.label}</h2>
 					</div>
 					{session && (
-						<div className="flex gap-2">
+						<div className="flex gap-2 items-center justify-center">
 							<div className="flex p-1 w-10 h-10 md:w-12 md:h-12 bg-red-400 rounded-full items-center justify-center">
 								<p className="text-3xl font-bold">{session?.user?.email?.charAt(0).toUpperCase()}</p>
 							</div>

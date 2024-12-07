@@ -1,3 +1,4 @@
+// models/Subscriber.js
 import mongoose from "mongoose";
 
 const SubscriberSchema = new mongoose.Schema(
@@ -10,7 +11,7 @@ const SubscriberSchema = new mongoose.Schema(
 			lowercase: true,
 			validate: {
 				validator: function (v) {
-					return /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v);
+					return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 				},
 				message: (props) => `${props.value} is not a valid email address!`,
 			},
@@ -19,13 +20,7 @@ const SubscriberSchema = new mongoose.Schema(
 	{ timestamps: true }
 );
 
+// Ensure unique index
+SubscriberSchema.index({ subscriber: 1 }, { unique: true });
+
 export default mongoose.models.Subscriber || mongoose.model("Subscriber", SubscriberSchema);
-
-// import mongoose from "mongoose";
-
-// const subscriberSchema = new mongoose.Schema({
-// 	subscriber: { type: String, required: true },
-// 	createdAt: { type: Date, default: Date.now },
-// });
-
-// export default mongoose.models.Subscriber || mongoose.model("Subscriber", subscriberSchema);

@@ -7,7 +7,7 @@ export const dynamic = "force-dynamic";
 
 export default function SubscribersPage() {
 	return (
-		<div className="space-y-6">
+		<div className="max-w-2xl space-y-6">
 			<Card>
 				<CardHeader>
 					<CardTitle>Subscribers</CardTitle>

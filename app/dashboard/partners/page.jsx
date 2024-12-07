@@ -39,7 +39,7 @@ export default function EventsPage() {
 					Create Partner
 				</button>
 			</div>
-			<div className="bg-white rounded-lg shadow">
+			<div className="max-w-3xl bg-white rounded-lg shadow">
 				<Table>
 					<TableHeader>
 						<TableRow>

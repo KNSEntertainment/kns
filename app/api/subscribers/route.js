@@ -2,13 +2,6 @@ import { NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
 import Subscriber from "@/models/Subscriber.Model";
 
-export const config = {
-	api: {
-		bodyParser: false,
-	},
-};
-
-// Handle GET request
 export async function GET() {
 	try {
 		await connectDB();
@@ -20,55 +13,91 @@ export async function GET() {
 	}
 }
 
-export async function POST(req) {
+export async function POST(request) {
 	try {
 		await connectDB();
 
-		const { subscriber } = req.body;
-		console.log("Received subscriber data:", subscriber);
+		// Parse JSON body from the request
+		const body = await request.json();
+		const { subscriber } = body;
 
-		if (!subscriber || typeof subscriber !== "string" || !subscriber.includes("@")) {
-			return res.status(400).json({ success: false, error: "Please enter a valid email address for subscribing to us." });
+		console.log("Received subscriber email:", subscriber);
+
+		// Validate email format
+		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		if (!subscriber || typeof subscriber !== "string" || !emailRegex.test(subscriber)) {
+			return NextResponse.json(
+				{
+					success: false,
+					error: "Please provide a valid email address.",
+				},
+				{ status: 400 }
+			);
 		}
 
-		// Check if the email already exists
-		const existingSubscriber = await Subscriber.findOne({ subscriber });
+		// Normalize email
+		const normalizedEmail = subscriber.toLowerCase().trim();
+
+		// Check for existing subscriber
+		const existingSubscriber = await Subscriber.findOne({ subscriber: normalizedEmail });
 		if (existingSubscriber) {
-			return res.status(400).json({ success: false, error: "This email is already subscribed." });
+			return NextResponse.json(
+				{
+					success: false,
+					error: "This email is already subscribed.",
+				},
+				{ status: 400 }
+			);
 		}
 
-		console.log("Saving subscriber to database");
-		const subscriberData = await Subscriber.create({ subscriber });
+		// Save the new subscriber
+		const subscriberData = await Subscriber.create({ subscriber: normalizedEmail });
 		console.log("Subscriber saved successfully:", subscriberData);
 
-		return res.status(201).json({ success: true, subscriber: subscriberData });
+		return NextResponse.json(
+			{
+				success: true,
+				subscriber: subscriberData,
+			},
+			{ status: 201 }
+		);
 	} catch (error) {
-		console.error("Error in API route:", error);
-		if (error.code === 11000) {
-			return res.status(400).json({ success: false, error: "This email is already subscribed." });
+		console.error("Detailed Error:", {
+			message: error.message,
+			name: error.name,
+			stack: error.stack,
+		});
+
+		// Handle Mongoose validation errors
+		if (error.name === "ValidationError") {
+			return NextResponse.json(
+				{
+					success: false,
+					error: Object.values(error.errors)[0].message,
+				},
+				{ status: 400 }
+			);
 		}
-		return res.status(500).json({ success: false, error: "An error occurred while processing your request." });
+
+		// Handle duplicate key error
+		if (error.code === 11000) {
+			return NextResponse.json(
+				{
+					success: false,
+					error: "This email is already subscribed.",
+				},
+				{ status: 400 }
+			);
+		}
+
+		// Generic error handler
+		return NextResponse.json(
+			{
+				success: false,
+				error: "An error occurred while processing your request.",
+				details: error.message,
+			},
+			{ status: 500 }
+		);
 	}
-	// try {
-	// 	await connectDB();
-
-	// 	const formData = await request.formData();
-	// 	console.log("Received form data");
-
-	// 	const subscriber = formData.get("subscriber");
-	// 	if (!subscriber) {
-	// 		return NextResponse.json({ success: false, error: "Please enter your email id for subscribing to us." }, { status: 400 });
-	// 	}
-
-	// 	console.log("Saving subscriber to database");
-	// 	const subscriberdata = await Subscriber.create({
-	// 		subscriber,
-	// 	});
-	// 	console.log("Subscriber saved successfully:", subscriberdata);
-
-	// 	return NextResponse.json({ success: true, subscriber }, { status: 201 });
-	// } catch (error) {
-	// 	console.error("Error in API route:", error);
-	// 	return NextResponse.json({ success: false, error: error.message }, { status: 500 });
-	// }
 }

@@ -29,7 +29,7 @@ function SubscribersList() {
 	};
 
 	return (
-		<>
+		<div>
 			<Table>
 				<TableHeader>
 					<TableRow>
@@ -45,13 +45,8 @@ function SubscribersList() {
 							<TableRow key={subscriber._id}>
 								<TableCell className="font-medium">
 									<div className="flex items-center space-x-4">
-										{/* <Avatar>
-											<AvatarImage src="/jyoti.jpeg" />
-											<AvatarFallback>Image</AvatarFallback>
-										</Avatar> */}
 										<div>
-											<div className="font-bold">{subscriber.subscriber || "N/A"}</div>
-											<div className="text-sm text-gray-500">{subscriber.email || ""}</div>
+											<div className="font-bold">{subscriber?.subscriber || ""}</div>
 										</div>
 									</div>
 								</TableCell>
@@ -81,7 +76,7 @@ function SubscribersList() {
 					</AlertDialogFooter>
 				</AlertDialogContent>
 			</AlertDialog>
-		</>
+		</div>
 	);
 }
 

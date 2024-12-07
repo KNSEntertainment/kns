@@ -32,7 +32,7 @@ export default function EventsPage() {
 	};
 
 	return (
-		<>
+		<div className="max-w-6xl">
 			<div className="text-right">
 				<button onClick={handleCreateBlog} className="bg-red-800 text-white font-bold px-4 py-2 my-4">
 					Create Blog
@@ -48,24 +48,25 @@ export default function EventsPage() {
 							<TableHead>Blog Date</TableHead>
 							<TableHead>Main Image</TableHead>
 							<TableHead>Secondary Image</TableHead>
+							<TableHead>Actions</TableHead>
 						</TableRow>
 					</TableHeader>
 					<TableBody>
 						{blogs.length > 0 ? (
 							blogs.map((blog) => (
 								<TableRow key={blog?._id}>
-									<TableCell className="font-semibold">{blog.blogTitle}</TableCell>
-									<TableCell>{blog.blogDesc}</TableCell>
-									<TableCell>{blog.blogAuthor}</TableCell>
-									<TableCell>{blog.blogDate}</TableCell>
-									<TableCell>
+									<TableCell className="w-64 font-semibold">{blog.blogTitle}</TableCell>
+									<TableCell className="w-72">{blog.blogDesc}</TableCell>
+									<TableCell className="w-36">{blog.blogAuthor}</TableCell>
+									<TableCell className="w-32">{blog.blogDate}</TableCell>
+									<TableCell className="w-32">
 										<Image src={blog?.blogMainPicture || "/placeholder.jpg"} width={200} height={200} alt={blog?.blogAuthor || "alt"} className="w-24 h-32 object-cover" />
 									</TableCell>
-									<TableCell>
+									<TableCell className="w-32">
 										<Image src={blog?.blogSecondPicture || "/placeholder.jpg"} width={200} height={200} alt={blog?.blogAuthor || "alt"} className="w-24 h-32 object-cover" />
 									</TableCell>
 
-									<TableCell>
+									<TableCell className="w-32">
 										<div className="flex space-x-2">
 											<Button variant="ghost" size="icon" onClick={() => handleEdit(blog.id)}>
 												<Pencil className="w-6 h-6 text-blue-700" />
@@ -95,6 +96,6 @@ export default function EventsPage() {
 					</div>
 				</div>
 			)}
-		</>
+		</div>
 	);
 }

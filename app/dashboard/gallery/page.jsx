@@ -38,7 +38,7 @@ export default function GalleryPage() {
 					Create Gallery Item
 				</button>
 			</div>
-			<div className="bg-white rounded-lg shadow">
+			<div className="max-w-3xl bg-white rounded-lg shadow">
 				<Table>
 					<TableHeader>
 						<TableRow>
