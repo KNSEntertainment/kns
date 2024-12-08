@@ -51,13 +51,13 @@ export default function GalleryPage() {
 	};
 
 	return (
-		<>
+		<div className="max-w-3xl">
 			<div className="text-right">
 				<button onClick={handleCreateGallery} className="bg-red-800 text-white font-bold px-4 py-2 my-4">
 					Create Gallery Item
 				</button>
 			</div>
-			<div className="max-w-3xl bg-white rounded-lg shadow">
+			<div className=" bg-white rounded-lg shadow">
 				<Table>
 					<TableHeader>
 						<TableRow>
@@ -106,6 +106,6 @@ export default function GalleryPage() {
 					</div>
 				</div>
 			)}
-		</>
+		</div>
 	);
 }

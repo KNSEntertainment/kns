@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
-import Gallery from "@/models/Gallery.Model";
+import Testimonial from "@/models/Testimonial.Model";
 import { promises as fs } from "fs";
 import path from "path";
 
@@ -28,27 +28,27 @@ export async function PUT(request, { params }) {
 		await connectDB();
 
 		const formData = await request.formData();
-		const galleryId = id;
+		const testimonialId = id;
 
-		const galleryData = {};
+		const testimonialData = {};
 		for (const [key, value] of formData.entries()) {
-			if (key !== "media") {
-				galleryData[key] = value;
+			if (key !== "audienceimage") {
+				testimonialData[key] = value;
 			}
 		}
 
-		const media = formData.get("media");
-		if (media) {
-			galleryData.media = await saveFile(media);
+		const audienceimage = formData.get("audienceimage");
+		if (audienceimage) {
+			testimonialData.audienceimage = await saveFile(audienceimage);
 		}
 
-		const updatedGallery = await Gallery.findByIdAndUpdate(galleryId, galleryData, { new: true });
+		const updatedTestimonial = await Testimonial.findByIdAndUpdate(testimonialId, testimonialData, { new: true });
 
-		if (!updatedGallery) {
-			return NextResponse.json({ success: false, error: "Gallery not found" }, { status: 404 });
+		if (!updatedTestimonial) {
+			return NextResponse.json({ success: false, error: "Testimonial not found" }, { status: 404 });
 		}
 
-		return NextResponse.json({ success: true, gallery: updatedGallery }, { status: 200 });
+		return NextResponse.json({ success: true, testimonial: updatedTestimonial }, { status: 200 });
 	} catch (error) {
 		console.error("Error in API route:", error);
 		return NextResponse.json({ success: false, error: error.message }, { status: 500 });
@@ -61,20 +61,20 @@ export async function DELETE(request, { params }) {
 	try {
 		await connectDB();
 
-		const galleryId = id;
+		const testimonialId = id;
 
-		const deletedGallery = await Gallery.findByIdAndDelete(galleryId);
+		const deletedTestimonial = await Testimonial.findByIdAndDelete(testimonialId);
 
-		if (!deletedGallery) {
-			return NextResponse.json({ success: false, error: "Gallery not found" }, { status: 404 });
+		if (!deletedTestimonial) {
+			return NextResponse.json({ success: false, error: "Testimonial not found" }, { status: 404 });
 		}
 
-		if (deletedGallery.media) {
-			const filePath = path.join(process.cwd(), "public", deletedGallery.media);
+		if (deletedTestimonial.audienceimage) {
+			const filePath = path.join(process.cwd(), "public", deletedTestimonial.audienceimage);
 			await fs.unlink(filePath).catch(console.error);
 		}
 
-		return NextResponse.json({ success: true, message: "Gallery deleted successfully" }, { status: 200 });
+		return NextResponse.json({ success: true, message: "Testimonial deleted successfully" }, { status: 200 });
 	} catch (error) {
 		console.error("Error in API route:", error);
 		return NextResponse.json({ success: false, error: error.message }, { status: 500 });
@@ -87,14 +87,14 @@ export async function GET(request, { params }) {
 	try {
 		await connectDB();
 
-		const galleryId = id;
-		const gallery = await Gallery.findById(galleryId);
+		const testimonialId = id;
+		const testimonial = await Testimonial.findById(testimonialId);
 
-		if (!gallery) {
-			return NextResponse.json({ success: false, error: "Gallery not found" }, { status: 404 });
+		if (!testimonial) {
+			return NextResponse.json({ success: false, error: "Testimonial not found" }, { status: 404 });
 		}
 
-		return NextResponse.json({ success: true, gallery }, { status: 200 });
+		return NextResponse.json({ success: true, testimonial }, { status: 200 });
 	} catch (error) {
 		console.error("Error in API route:", error);
 		return NextResponse.json({ success: false, error: error.message }, { status: 500 });

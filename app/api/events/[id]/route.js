@@ -22,11 +22,13 @@ async function saveFile(file) {
 }
 
 export async function PUT(request, { params }) {
+	const { id } = await params;
+
 	try {
 		await connectDB();
 
 		const formData = await request.formData();
-		const eventId = params.id;
+		const eventId = id;
 
 		const eventData = {};
 		for (const [key, value] of formData.entries()) {
@@ -54,10 +56,12 @@ export async function PUT(request, { params }) {
 }
 
 export async function DELETE(request, { params }) {
+	const { id } = await params;
+
 	try {
 		await connectDB();
 
-		const eventId = params.id;
+		const eventId = id;
 
 		const deletedEvent = await Event.findByIdAndDelete(eventId);
 
@@ -78,10 +82,12 @@ export async function DELETE(request, { params }) {
 }
 
 export async function GET(request, { params }) {
+	const { id } = await params;
+
 	try {
 		await connectDB();
 
-		const eventId = params.id;
+		const eventId = id;
 		const event = await Event.findById(eventId);
 
 		if (!event) {

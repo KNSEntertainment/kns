@@ -9,26 +9,45 @@ import Image from "next/image";
 import TestimonialForm from "@/components/TestimonialForm";
 
 export default function TestimonialsPage() {
+	const [openTestimonialModal, setOpenTestimonialModal] = useState(false);
+	const [testimonialToEdit, setTestimonialToEdit] = useState(null);
 	const [openCreateTestimonialModal, setOpenCreateTestimonialModal] = useState(false);
-	const { data: testimonials, error, loading } = useFetchData("/api/testimonials", "testimonials");
+	const { data: testimonials, error, loading, mutate } = useFetchData("/api/testimonials", "testimonials");
 
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error: {error}</p>;
 
-	const handleEdit = (id) => {
-		console.log("Edit item:", id);
+	const handleEdit = (testimonial) => {
+		setTestimonialToEdit(testimonial);
+		setOpenTestimonialModal(true);
 	};
 
-	const handleDelete = (id) => {
-		console.log("Delete item:", id);
+	const handleDelete = async (id) => {
+		if (window.confirm("Are you sure you want to delete this testimony?")) {
+			try {
+				const response = await fetch(`/api/testimonials/${id}`, {
+					method: "DELETE",
+				});
+				if (!response.ok) {
+					throw new Error("Failed to delete testimony");
+				}
+				mutate();
+			} catch (error) {
+				console.error("Error deleting testimony:", error);
+				alert("Failed to delete testimony. Please try again.");
+			}
+		}
 	};
 
 	const handleCloseTestimonialModal = () => {
-		setOpenCreateTestimonialModal(false);
+		setOpenTestimonialModal(false);
+		setTestimonialToEdit(null);
+		mutate();
 	};
 
 	const handleCreateTestimonial = () => {
-		setOpenCreateTestimonialModal(true);
+		setTestimonialToEdit(null);
+		setOpenTestimonialModal(true);
 	};
 
 	return (
@@ -61,7 +80,7 @@ export default function TestimonialsPage() {
 									</TableCell>
 									<TableCell>
 										<div className="flex space-x-2">
-											<Button variant="ghost" size="icon" onClick={() => handleEdit(testimonial._id)}>
+											<Button variant="ghost" size="icon" onClick={() => handleEdit(testimonial)}>
 												<Pencil className="w-6 h-6 text-blue-700" />
 											</Button>
 											<Button variant="ghost" size="icon" onClick={() => handleDelete(testimonial._id)}>
@@ -81,11 +100,11 @@ export default function TestimonialsPage() {
 					</TableBody>
 				</Table>
 			</div>
-			{openCreateTestimonialModal && (
+			{openTestimonialModal && (
 				<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
 					<div className="bg-white p-6 rounded-lg shadow-lg w-96">
-						<h2 className="text-lg font-bold text-white bg-red-700 p-4 mb-6 text-center">Create Testimonial</h2>
-						<TestimonialForm handleCloseTestimonialModal={handleCloseTestimonialModal} fetchTestimonials={testimonials} />
+						<h2 className="text-lg font-bold text-white bg-red-700 p-4 mb-6 text-center">{testimonialToEdit ? "Edit Testimonial" : "Create Testimonial"}</h2>
+						<TestimonialForm handleCloseTestimonialModal={handleCloseTestimonialModal} testimonialToEdit={testimonialToEdit} fetchTestimonials={testimonials} />
 					</div>
 				</div>
 			)}

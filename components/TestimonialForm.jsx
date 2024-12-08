@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export default function TestimonialForm({ handleCloseTestimonialModal, fetchTestimonials }) {
+export default function TestimonialForm({ handleCloseTestimonialModal, fetchTestimonials, testimonialToEdit = null }) {
 	const [formData, setFormData] = useState({
 		audiencename: "",
 		audienceaddress: "",
@@ -11,6 +11,15 @@ export default function TestimonialForm({ handleCloseTestimonialModal, fetchTest
 	const [submitting, setSubmitting] = useState(false);
 	const [error, setError] = useState("");
 
+	useEffect(() => {
+		if (testimonialToEdit) {
+			setFormData({
+				...testimonialToEdit,
+				audienceimage: null,
+			});
+		}
+	}, [testimonialToEdit]);
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		setError("");
@@ -18,25 +27,43 @@ export default function TestimonialForm({ handleCloseTestimonialModal, fetchTest
 
 		try {
 			const form = new FormData();
-			form.append("audiencename", formData.audiencename);
-			form.append("audienceaddress", formData.audienceaddress);
-			form.append("audiencetestimony", formData.audiencetestimony);
-			if (formData.audienceimage) {
-				form.append("audienceimage", formData.audienceimage);
-			}
+			// form.append("audiencename", formData.audiencename);
+			// form.append("audienceaddress", formData.audienceaddress);
+			// form.append("audiencetestimony", formData.audiencetestimony);
+			// if (formData.audienceimage) {
+			// 	form.append("audienceimage", formData.audienceimage);
+			// }
 
-			const response = await fetch("/api/testimonials/create", {
-				method: "POST",
+			// const response = await fetch("/api/testimonials/create", {
+			// 	method: "POST",
+			// 	body: form,
+			// });
+
+			// const result = await response.json();
+			// if (!response.ok) {
+			// 	throw new Error(result.error || "Failed to create testimonial");
+			// }
+
+			Object.keys(formData).forEach((key) => {
+				if (key !== "audienceimage" || (key === "audienceimage" && formData[key])) {
+					form.append(key, formData[key]);
+				}
+			});
+
+			const url = testimonialToEdit ? `/api/testimonials/${testimonialToEdit._id}` : "/api/testimonials/create";
+			const method = testimonialToEdit ? "PUT" : "POST";
+
+			const response = await fetch(url, {
+				method: method,
 				body: form,
 			});
 
 			const result = await response.json();
 			if (!response.ok) {
-				throw new Error(result.error || "Failed to create testimonial");
+				throw new Error(result.error || `Failed to ${testimonialToEdit ? "update" : "create"} testimonial`);
 			}
 
 			if (result.success) {
-				fetchTestimonials();
 				setFormData({
 					audiencename: "",
 					audienceaddress: "",
@@ -48,10 +75,12 @@ export default function TestimonialForm({ handleCloseTestimonialModal, fetchTest
 				if (audienceImageInput) {
 					audienceImageInput.value = "";
 				}
+				alert(`Testimonial ${testimonialToEdit ? "updated" : "created"} successfully!`);
+				handleCloseTestimonialModal();
 			}
 		} catch (error) {
 			setError(error.message);
-			console.error("Error creating testimonial:", error);
+			console.error(`Error ${testimonialToEdit ? "updating" : "creating"} testimonial:`, error);
 		} finally {
 			setSubmitting(false);
 		}
@@ -86,7 +115,7 @@ export default function TestimonialForm({ handleCloseTestimonialModal, fetchTest
 			</div>
 			<div className="grid grid-cols-2 gap-2">
 				<button type="submit" disabled={submitting} className={`w-full p-1.5 rounded ${submitting ? "bg-gray-400 cursor-not-allowed" : "bg-red-600 hover:bg-red-700"} text-white font-bold`}>
-					{submitting ? "Creating Testimonial..." : "Create Testimonial"}
+					{submitting ? `${testimonialToEdit ? "Updating" : "Creating"} testimonial...` : `${testimonialToEdit ? "Update" : "Create"} testimonial`}
 				</button>
 				<Button variant="outline" onClick={handleCloseTestimonialModal}>
 					Close

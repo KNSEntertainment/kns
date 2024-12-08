@@ -10,36 +10,53 @@ import Image from "next/image";
 import PartnerForm from "@/components/PartnerForm";
 
 export default function EventsPage() {
+	const [openPartnerModal, setOpenPartnerModal] = useState(false);
+	const [partnerToEdit, setPartnerToEdit] = useState(null);
 	const [openCreatePartnerModal, setOpenCreatePartnerModal] = useState(false);
-	const { data: partners, error, loading } = useFetchData("/api/partners", "partners");
+	const { data: partners, error, loading, mutate } = useFetchData("/api/partners", "partners");
 
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error: {error}</p>;
 
-	const handleEdit = (id) => {
-		console.log("Edit item:", id);
+	const handleEdit = (partner) => {
+		setPartnerToEdit(partner);
+		setOpenPartnerModal(true);
 	};
 
-	const handleDelete = (id) => {
-		console.log("Delete item:", id);
+	const handleDelete = async (id) => {
+		try {
+			const response = await fetch(`/api/partners/${id}`, {
+				method: "DELETE",
+			});
+			if (!response.ok) {
+				throw new Error("Failed to delete partner");
+			}
+			mutate();
+		} catch (error) {
+			console.error("Error deleting partner:", error);
+			alert("Failed to delete partner. Please try again.");
+		}
 	};
 
 	const handleClosePartnerModal = () => {
-		setOpenCreatePartnerModal(false);
+		setOpenPartnerModal(false);
+		setPartnerToEdit(null);
+		mutate();
 	};
 
 	const handleCreatePartner = () => {
-		setOpenCreatePartnerModal(true);
+		setPartnerToEdit(null);
+		setOpenPartnerModal(true);
 	};
 
 	return (
-		<>
+		<div className="max-w-3xl">
 			<div className="text-right">
 				<button onClick={handleCreatePartner} className="bg-red-800 text-white font-bold px-4 py-2 my-4">
 					Create Partner
 				</button>
 			</div>
-			<div className="max-w-3xl bg-white rounded-lg shadow">
+			<div className=" bg-white rounded-lg shadow">
 				<Table>
 					<TableHeader>
 						<TableRow>
@@ -53,7 +70,7 @@ export default function EventsPage() {
 					<TableBody>
 						{partners?.length > 0 ? (
 							partners.map((partner) => (
-								<TableRow key={partner.partner_name}>
+								<TableRow key={partner._id}>
 									<TableCell className="font-semibold">{partner.partner_name}</TableCell>
 									<TableCell>{partner.partner_url}</TableCell>
 									<TableCell>
@@ -62,10 +79,10 @@ export default function EventsPage() {
 									<TableCell>{partner.logo_alt_text}</TableCell>
 									<TableCell>
 										<div className="flex space-x-2">
-											<Button variant="ghost" size="icon" onClick={() => handleEdit(partner.id)}>
+											<Button variant="ghost" size="icon" onClick={() => handleEdit(partner)}>
 												<Pencil className="w-6 h-6 text-blue-700" />
 											</Button>
-											<Button variant="ghost" size="icon" onClick={() => handleDelete(partner.id)}>
+											<Button variant="ghost" size="icon" onClick={() => handleDelete(partner._id)}>
 												<Trash2 className="w-6 h-6 text-red-700" />
 											</Button>
 										</div>
@@ -82,14 +99,14 @@ export default function EventsPage() {
 					</TableBody>
 				</Table>
 			</div>
-			{openCreatePartnerModal && (
+			{openPartnerModal && (
 				<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
 					<div className="bg-white p-6 rounded-lg shadow-lg w-96">
-						<h2 className="text-lg font-bold text-white bg-red-700 p-4 mb-6 text-center">Create Partner</h2>
-						<PartnerForm handleClosePartnerModal={handleClosePartnerModal} fetchPartners={partners} />
+						<h2 className="text-lg font-bold text-white bg-red-700 p-4 mb-6 text-center">{partnerToEdit ? "Edit Partner" : "Create Partner"}</h2>
+						<PartnerForm handleClosePartnerModal={handleClosePartnerModal} partnerToEdit={partnerToEdit} fetchPartners={partners} />
 					</div>
 				</div>
 			)}
-		</>
+		</div>
 	);
 }

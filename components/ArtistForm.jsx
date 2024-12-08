@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export default function ArtistForm({ handleCloseArtistModal, fetchArtists }) {
+export default function ArtistForm({ handleCloseArtistModal, fetchArtists, artistToEdit = null }) {
 	const [formData, setFormData] = useState({
 		name: "",
 		genre: "",
@@ -20,6 +20,15 @@ export default function ArtistForm({ handleCloseArtistModal, fetchArtists }) {
 	const [submitting, setSubmitting] = useState(false);
 	const [error, setError] = useState("");
 
+	useEffect(() => {
+		if (artistToEdit) {
+			setFormData({
+				...artistToEdit,
+				image: null,
+			});
+		}
+	}, [artistToEdit]);
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		setError("");
@@ -27,37 +36,51 @@ export default function ArtistForm({ handleCloseArtistModal, fetchArtists }) {
 
 		try {
 			const form = new FormData();
-			form.append("name", formData.name);
-			form.append("genre", formData.genre);
-			if (formData.image) {
-				form.append("image", formData.image);
-			}
-			form.append("bio", formData.bio);
+			// form.append("name", formData.name);
+			// form.append("genre", formData.genre);
+			// if (formData.image) {
+			// 	form.append("image", formData.image);
+			// }
+			// form.append("bio", formData.bio);
 
-			if (formData.totalsongs !== null) {
-				form.append("totalsongs", formData.totalsongs);
-			}
-			if (formData.rating !== null) {
-				form.append("rating", formData.rating);
-			}
+			// if (formData.totalsongs !== null) {
+			// 	form.append("totalsongs", formData.totalsongs);
+			// }
+			// if (formData.rating !== null) {
+			// 	form.append("rating", formData.rating);
+			// }
 
-			if (formData.popularSongs.length > 0) {
-				form.append("popularSongs", JSON.stringify(formData.popularSongs));
-			}
+			// if (formData.popularSongs.length > 0) {
+			// 	form.append("popularSongs", JSON.stringify(formData.popularSongs));
+			// }
 
-			form.append("facebook", formData.socialMedia.facebook);
-			form.append("instagram", formData.socialMedia.instagram);
+			// form.append("facebook", formData.socialMedia.facebook);
+			// form.append("instagram", formData.socialMedia.instagram);
 
-			if (formData.performanceCount !== null) {
-				form.append("performanceCount", formData.performanceCount);
-			}
+			// if (formData.performanceCount !== null) {
+			// 	form.append("performanceCount", formData.performanceCount);
+			// }
 
-			form.append("contact", formData.contact);
-			form.append("featured", formData.featured); // Boolean
+			// form.append("contact", formData.contact);
+			// form.append("featured", formData.featured); // Boolean
 
-			console.log("form", form);
-			const response = await fetch("/api/artists/create", {
-				method: "POST",
+			// console.log("form", form);
+			// const response = await fetch("/api/artists/create", {
+			// 	method: "POST",
+			// 	body: form,
+			// });
+
+			Object.keys(formData).forEach((key) => {
+				if (key !== "image" || (key === "image" && formData[key])) {
+					form.append(key, formData[key]);
+				}
+			});
+
+			const url = artistToEdit ? `/api/artists/${artistToEdit._id}` : "/api/artists/create";
+			const method = artistToEdit ? "PUT" : "POST";
+
+			const response = await fetch(url, {
+				method: method,
 				body: form,
 			});
 
@@ -65,11 +88,10 @@ export default function ArtistForm({ handleCloseArtistModal, fetchArtists }) {
 			console.log("result", result);
 
 			if (!response.ok) {
-				throw new Error(result.error || "Failed to create artist");
+				throw new Error(result.error || `Failed to ${artistToEdit ? "update" : "create"} artist`);
 			}
 
 			if (result.success) {
-				fetchArtists();
 				setFormData({
 					name: "",
 					genre: "",
@@ -86,10 +108,16 @@ export default function ArtistForm({ handleCloseArtistModal, fetchArtists }) {
 					contact: "",
 					featured: false,
 				});
+				// const image = document.getElementById("image");
+				// if (image) {
+				// 	image.value = "";
+				// }
+				alert(`Artist ${artistToEdit ? "updated" : "created"} successfully!`);
+				handleCloseArtistModal();
 			}
 		} catch (error) {
 			setError(error.message);
-			console.error("Error saving artist:", error);
+			console.error(`Error ${artistToEdit ? "updating" : "creating"} artist:`, error);
 		} finally {
 			setSubmitting(false);
 		}
@@ -147,7 +175,7 @@ export default function ArtistForm({ handleCloseArtistModal, fetchArtists }) {
 				<input
 					type="url"
 					id="facebook"
-					value={formData.socialMedia.facebook}
+					value={formData?.socialMedia?.facebook}
 					onChange={(e) =>
 						setFormData({
 							...formData,
@@ -167,7 +195,7 @@ export default function ArtistForm({ handleCloseArtistModal, fetchArtists }) {
 				<input
 					type="url"
 					id="instagram"
-					value={formData.socialMedia.instagram}
+					value={formData?.socialMedia?.instagram}
 					onChange={(e) =>
 						setFormData({
 							...formData,
@@ -194,7 +222,7 @@ export default function ArtistForm({ handleCloseArtistModal, fetchArtists }) {
 			</div>
 			<div className="grid grid-cols-2 gap-2">
 				<button type="submit" disabled={submitting} className={`w-full p-1.5 rounded ${submitting ? "bg-gray-400 cursor-not-allowed" : "bg-red-600 hover:bg-red-700"} text-white font-bold`}>
-					{submitting ? "Creating Artist..." : "Create Artist"}
+					{submitting ? `${artistToEdit ? "Updating" : "Creating"} Artist...` : `${artistToEdit ? "Update" : "Create"} Artist`}
 				</button>
 				<button type="button" onClick={handleCloseArtistModal} className="w-full p-1.5 rounded border text-red-600 font-bold hover:bg-gray-100">
 					Close

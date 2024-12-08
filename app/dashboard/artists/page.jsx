@@ -10,26 +10,45 @@ import Image from "next/image";
 import ArtistForm from "@/components/ArtistForm";
 
 export default function ArtistsPage() {
+	const [openArtistModal, setOpenArtistModal] = useState(false);
+	const [artistToEdit, setArtistToEdit] = useState(null);
 	const [openCreateArtistModal, setOpenCreateArtistModal] = useState(false);
-	const { data: artists, error, loading } = useFetchData("/api/artists", "artists");
+	const { data: artists, error, loading, mutate } = useFetchData("/api/artists", "artists");
 
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error: {error}</p>;
 
-	const handleEdit = (id) => {
-		console.log("Edit item:", id);
+	const handleEdit = (artist) => {
+		setArtistToEdit(artist);
+		setOpenArtistModal(true);
 	};
 
-	const handleDelete = (id) => {
-		console.log("Delete item:", id);
+	const handleDelete = async (id) => {
+		if (window.confirm("Are you sure you want to delete this artist?")) {
+			try {
+				const response = await fetch(`/api/artists/${id}`, {
+					method: "DELETE",
+				});
+				if (!response.ok) {
+					throw new Error("Failed to delete artist");
+				}
+				mutate();
+			} catch (error) {
+				console.error("Error deleting artist:", error);
+				alert("Failed to delete artist. Please try again.");
+			}
+		}
 	};
 
 	const handleCloseArtistModal = () => {
-		setOpenCreateArtistModal(false);
+		setOpenArtistModal(false);
+		setArtistToEdit(null);
+		mutate();
 	};
 
 	const handleCreateArtist = () => {
-		setOpenCreateArtistModal(true);
+		setArtistToEdit(null);
+		setOpenArtistModal(true);
 	};
 
 	return (
@@ -84,7 +103,7 @@ export default function ArtistsPage() {
 								</TableCell>
 								<TableCell>
 									<div className="flex space-x-2">
-										<Button variant="ghost" size="icon" onClick={() => handleEdit(artist._id)}>
+										<Button variant="ghost" size="icon" onClick={() => handleEdit(artist)}>
 											<Pencil className="w-6 h-6 text-blue-700" />
 										</Button>
 										<Button variant="ghost" size="icon" onClick={() => handleDelete(artist._id)}>
@@ -97,11 +116,11 @@ export default function ArtistsPage() {
 					</TableBody>
 				</Table>
 			</div>
-			{openCreateArtistModal && (
+			{openArtistModal && (
 				<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
 					<div className="bg-white p-6 rounded-lg shadow-lg w-96">
-						<h2 className="text-lg font-bold text-white bg-red-700 p-4 mb-6 text-center">Create Artist</h2>
-						<ArtistForm handleCloseArtistModal={handleCloseArtistModal} fetchArtists={artists} />
+						<h2 className="text-lg font-bold text-white bg-red-700 p-4 mb-6 text-center">{artistToEdit ? "Edit Artist" : "Create Artist"}</h2>
+						<ArtistForm handleCloseArtistModal={handleCloseArtistModal} artistToEdit={artistToEdit} fetchArtists={artists} />
 					</div>
 				</div>
 			)}
