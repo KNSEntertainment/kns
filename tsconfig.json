@@ -22,6 +22,6 @@
 			"@/*": ["./*"]
 		}
 	},
-	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/components/ContactCard.jsx", "app/components/UpcomingEvents.jsx", "app/components/Newsletter.jsx", "app/dashboard/subscribers/SubscribersList.jsx", "app/dashboard/events/page.jsx", "app/dashboard/artists/page.jsx", "app/dashboard/testimonials/page.jsx", "app/components/Testimonials.jsx", "app/components/FeaturedArtists.jsx", "app/dashboard/settings/page.jsx", "app/(auth)/user/page.jsx", "app/api/webhook/route.js"],
+	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/components/ContactCard.jsx", "app/components/UpcomingEvents.jsx", "app/components/Newsletter.jsx", "app/dashboard/subscribers/SubscribersList.jsx", "app/dashboard/events/page.jsx", "app/dashboard/artists/page.jsx", "app/dashboard/testimonials/page.jsx", "app/components/Testimonials.jsx", "app/components/FeaturedArtists.jsx", "app/dashboard/settings/page.jsx", "app/(auth)/user/page.jsx", "app/api/webhook/route.js", "app/dashboard/layout.jsx"],
 	"exclude": ["node_modules"]
 }

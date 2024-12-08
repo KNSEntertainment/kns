@@ -9,30 +9,48 @@ import EventForm from "@/components/EventForm";
 import useFetchData from "@/hooks/useFetchData";
 
 export default function EventsPage() {
-	const [openCreateEventModal, setOpenCreateEventModal] = useState(false);
-	const { data: events, error, loading } = useFetchData("/api/events", "events");
+	const [openEventModal, setOpenEventModal] = useState(false);
+	const [eventToEdit, setEventToEdit] = useState(null);
+	const { data: events, error, loading, mutate } = useFetchData("/api/events", "events");
 
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error: {error}</p>;
 
-	const handleEdit = (id) => {
-		console.log("Edit item:", id);
+	const handleEdit = (event) => {
+		setEventToEdit(event);
+		setOpenEventModal(true);
 	};
 
-	const handleDelete = (id) => {
-		console.log("Delete item:", id);
+	const handleDelete = async (id) => {
+		if (window.confirm("Are you sure you want to delete this event?")) {
+			try {
+				const response = await fetch(`/api/events/${id}`, {
+					method: "DELETE",
+				});
+				if (!response.ok) {
+					throw new Error("Failed to delete event");
+				}
+				mutate();
+			} catch (error) {
+				console.error("Error deleting event:", error);
+				alert("Failed to delete event. Please try again.");
+			}
+		}
 	};
 
 	const handleCloseEventModal = () => {
-		setOpenCreateEventModal(false);
+		setOpenEventModal(false);
+		setEventToEdit(null);
+		mutate();
 	};
 
 	const handleCreateEvent = () => {
-		setOpenCreateEventModal(true);
+		setEventToEdit(null);
+		setOpenEventModal(true);
 	};
 
 	return (
-		<div className="max-w-3xl">
+		<div className="">
 			<div className="text-right">
 				<button onClick={handleCreateEvent} className="bg-red-800 text-white font-bold px-4 py-2 my-4">
 					Create Event
@@ -43,9 +61,14 @@ export default function EventsPage() {
 					<TableHeader>
 						<TableRow>
 							<TableHead>Event Name</TableHead>
+							<TableHead>Event Description</TableHead>
+							<TableHead>Event Country</TableHead>
 							<TableHead>Event Venue</TableHead>
 							<TableHead>Event Date</TableHead>
+							<TableHead>Event Time</TableHead>
 							<TableHead>Event Price</TableHead>
+							<TableHead>Spotify URL</TableHead>
+							<TableHead>Youtube URL</TableHead>
 							<TableHead>Poster</TableHead>
 							<TableHead>Actions</TableHead>
 						</TableRow>
@@ -55,18 +78,23 @@ export default function EventsPage() {
 							events.map((event) => (
 								<TableRow key={event._id}>
 									<TableCell className="font-semibold">{event.eventname}</TableCell>
+									<TableCell>{event.eventdescription}</TableCell>
 									<TableCell>{event.eventcountry}</TableCell>
+									<TableCell>{event.eventvenue}</TableCell>
 									<TableCell>{event.eventdate}</TableCell>
+									<TableCell>{event.eventtime}</TableCell>
 									<TableCell>{event.eventprice}</TableCell>
+									<TableCell className="w-24">{event.eventspotifyUrl}</TableCell>
+									<TableCell className="w-24">{event.eventyoutubeUrl}</TableCell>
 									<TableCell>
 										<Image src={event.eventposterUrl || "/placeholder.jpg"} width={200} height={200} alt={event.eventname || "alt"} className="w-24 h-32 object-cover" />
 									</TableCell>
 									<TableCell>
 										<div className="flex space-x-2">
-											<Button variant="ghost" size="icon" onClick={() => handleEdit(event.id)}>
+											<Button variant="ghost" size="icon" onClick={() => handleEdit(event)}>
 												<Pencil className="w-6 h-6 text-blue-700" />
 											</Button>
-											<Button variant="ghost" size="icon" onClick={() => handleDelete(event.id)}>
+											<Button variant="ghost" size="icon" onClick={() => handleDelete(event._id)}>
 												<Trash2 className="w-6 h-6 text-red-700" />
 											</Button>
 										</div>
@@ -75,7 +103,7 @@ export default function EventsPage() {
 							))
 						) : (
 							<TableRow>
-								<TableCell colSpan={5} className="text-center">
+								<TableCell colSpan={11} className="text-center">
 									No events found.
 								</TableCell>
 							</TableRow>
@@ -83,14 +111,121 @@ export default function EventsPage() {
 					</TableBody>
 				</Table>
 			</div>
-			{openCreateEventModal && (
+			{openEventModal && (
 				<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
 					<div className="bg-white p-6 rounded-lg shadow-lg w-96">
-						<h2 className="text-lg font-bold text-white bg-red-700 p-4 mb-6 text-center">Create Event</h2>
-						<EventForm handleCloseEventModal={handleCloseEventModal} fetchEvents={events} />
+						<h2 className="text-lg font-bold text-white bg-red-700 p-4 mb-6 text-center">{eventToEdit ? "Edit Event" : "Create Event"}</h2>
+						<EventForm handleCloseEventModal={handleCloseEventModal} eventToEdit={eventToEdit} />
 					</div>
 				</div>
 			)}
 		</div>
 	);
 }
+
+// "use client";
+
+// import React, { useState } from "react";
+// import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+// import { Button } from "@/components/ui/button";
+// import { Pencil, Trash2 } from "lucide-react";
+// import Image from "next/image";
+// import EventForm from "@/components/EventForm";
+// import useFetchData from "@/hooks/useFetchData";
+
+// export default function EventsPage() {
+// 	const [openCreateEventModal, setOpenCreateEventModal] = useState(false);
+// 	const { data: events, error, loading } = useFetchData("/api/events", "events");
+
+// 	if (loading) return <p>Loading...</p>;
+// 	if (error) return <p>Error: {error}</p>;
+
+// 	const handleEdit = (id) => {
+// 		console.log("Edit item:", id);
+// 	};
+
+// 	const handleDelete = (id) => {
+// 		console.log("Delete item:", id);
+// 	};
+
+// 	const handleCloseEventModal = () => {
+// 		setOpenCreateEventModal(false);
+// 	};
+
+// 	const handleCreateEvent = () => {
+// 		setOpenCreateEventModal(true);
+// 	};
+
+// 	return (
+// 		<div className="">
+// 			<div className="text-right">
+// 				<button onClick={handleCreateEvent} className="bg-red-800 text-white font-bold px-4 py-2 my-4">
+// 					Create Event
+// 				</button>
+// 			</div>
+// 			<div className="bg-white rounded-lg shadow">
+// 				<Table>
+// 					<TableHeader>
+// 						<TableRow>
+// 							<TableHead>Event Name</TableHead>
+// 							<TableHead>Event Description</TableHead>
+// 							<TableHead>Event Country</TableHead>
+// 							<TableHead>Event Venue</TableHead>
+// 							<TableHead>Event Date</TableHead>
+// 							<TableHead>Event Time</TableHead>
+// 							<TableHead>Event Price</TableHead>
+// 							<TableHead>Spotify URL</TableHead>
+// 							<TableHead>Youtube URL</TableHead>
+// 							<TableHead>Poster</TableHead>
+// 							<TableHead>Actions</TableHead>
+// 						</TableRow>
+// 					</TableHeader>
+// 					<TableBody>
+// 						{events.length > 0 ? (
+// 							events.map((event) => (
+// 								<TableRow key={event._id}>
+// 									<TableCell className="font-semibold">{event.eventname}</TableCell>
+// 									<TableCell>{event.eventdescription}</TableCell>
+// 									<TableCell>{event.eventcountry}</TableCell>
+// 									<TableCell>{event.eventvenue}</TableCell>
+// 									<TableCell>{event.eventdate}</TableCell>
+// 									<TableCell>{event.eventtime}</TableCell>
+// 									<TableCell>{event.eventprice}</TableCell>
+// 									<TableCell className="w-24">{event.eventspotifyUrl}</TableCell>
+// 									<TableCell className="w-24">{event.eventyoutubeUrl}</TableCell>
+// 									<TableCell>
+// 										<Image src={event.eventposterUrl || "/placeholder.jpg"} width={200} height={200} alt={event.eventname || "alt"} className="w-24 h-32 object-cover" />
+// 									</TableCell>
+// 									<TableCell>
+// 										<div className="flex space-x-2">
+// 											<Button variant="ghost" size="icon" onClick={() => handleEdit(event.id)}>
+// 												<Pencil className="w-6 h-6 text-blue-700" />
+// 											</Button>
+// 											<Button variant="ghost" size="icon" onClick={() => handleDelete(event.id)}>
+// 												<Trash2 className="w-6 h-6 text-red-700" />
+// 											</Button>
+// 										</div>
+// 									</TableCell>
+// 								</TableRow>
+// 							))
+// 						) : (
+// 							<TableRow>
+// 								<TableCell colSpan={5} className="text-center">
+// 									No events found.
+// 								</TableCell>
+// 							</TableRow>
+// 						)}
+// 					</TableBody>
+// 				</Table>
+// 			</div>
+// 			{openCreateEventModal && (
+// 				<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+// 					<div className="bg-white p-6 rounded-lg shadow-lg w-96">
+// 						<h2 className="text-lg font-bold text-white bg-red-700 p-4 mb-6 text-center">Create Event</h2>
+// 						<EventForm handleCloseEventModal={handleCloseEventModal} fetchEvents={events} />
+// 					</div>
+// 				</div>
+// 			)}
+// 		</div>
+// 	);
+// }

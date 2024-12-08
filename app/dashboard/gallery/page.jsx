@@ -9,26 +9,45 @@ import GalleryForm from "@/components/GalleryForm";
 import useFetchData from "@/hooks/useFetchData";
 
 export default function GalleryPage() {
-	const [openCreateGalleryModal, setOpenCreateGalleryModal] = useState(false);
-	const { data: gallery, error, loading } = useFetchData("/api/gallery", "gallery");
+	const [openGalleryModal, setOpenGalleryModal] = useState(false);
+	const [galleryToEdit, setGalleryToEdit] = useState(null);
+
+	const { data: gallery, error, loading, mutate } = useFetchData("/api/gallery", "gallery");
 
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error: {error}</p>;
 
-	const handleEdit = (id) => {
-		console.log("Edit item:", id);
+	const handleEdit = (item) => {
+		setGalleryToEdit(item);
+		setOpenGalleryModal(true);
 	};
 
-	const handleDelete = (id) => {
-		console.log("Delete item:", id);
+	const handleDelete = async (id) => {
+		if (window.confirm("Are you sure you want to delete this gallery item?")) {
+			try {
+				const response = await fetch(`/api/gallery/${id}`, {
+					method: "DELETE",
+				});
+				if (!response.ok) {
+					throw new Error("Failed to delete gallery item");
+				}
+				mutate();
+			} catch (error) {
+				console.error("Error deleting gallery item:", error);
+				alert("Failed to delete gallery item. Please try again.");
+			}
+		}
 	};
 
 	const handleCloseGalleryModal = () => {
-		setOpenCreateGalleryModal(false);
+		setOpenGalleryModal(false);
+		setGalleryToEdit(null);
+		mutate();
 	};
 
 	const handleCreateGallery = () => {
-		setOpenCreateGalleryModal(true);
+		setGalleryToEdit(null);
+		setOpenGalleryModal(true);
 	};
 
 	return (
@@ -50,19 +69,19 @@ export default function GalleryPage() {
 						</TableRow>
 					</TableHeader>
 					<TableBody>
-						{gallery.length > 0 ? (
-							gallery.map((gallery) => (
-								<TableRow key={gallery._id}>
-									<TableCell className="font-semibold">{gallery.mediatype}</TableCell>
-									<TableCell>{gallery.mediatype === "image" ? <Image src={gallery.media || "/placeholder.jpg"} width={200} height={200} alt={gallery.media || "alt"} className="w-16 h-16 rounded-full object-cover" /> : <video src={gallery.media} controls autoPlay className="w-24 h-32 object-cover" />} </TableCell>
-									<TableCell>{gallery.category}</TableCell>
-									<TableCell>{gallery.alt}</TableCell>
+						{gallery && gallery.length > 0 ? (
+							gallery.map((item) => (
+								<TableRow key={item._id}>
+									<TableCell className="font-semibold">{item.mediatype}</TableCell>
+									<TableCell>{item.mediatype === "image" ? <Image src={item.media || "/placeholder.jpg"} width={200} height={200} alt={item.alt || "Gallery item"} className="w-16 h-16 rounded-full object-cover" /> : <video src={item.media} controls className="w-24 h-32 object-cover" />}</TableCell>
+									<TableCell>{item.category}</TableCell>
+									<TableCell>{item.alt}</TableCell>
 									<TableCell>
 										<div className="flex space-x-2">
-											<Button variant="ghost" size="icon" onClick={() => handleEdit(gallery.id)}>
+											<Button variant="ghost" size="icon" onClick={() => handleEdit(item)}>
 												<Pencil className="w-6 h-6 text-blue-700" />
 											</Button>
-											<Button variant="ghost" size="icon" onClick={() => handleDelete(gallery.id)}>
+											<Button variant="ghost" size="icon" onClick={() => handleDelete(item._id)}>
 												<Trash2 className="w-6 h-6 text-red-700" />
 											</Button>
 										</div>
@@ -72,18 +91,18 @@ export default function GalleryPage() {
 						) : (
 							<TableRow>
 								<TableCell colSpan={5} className="text-center">
-									No gallery item/s found.
+									No gallery items found.
 								</TableCell>
 							</TableRow>
 						)}
 					</TableBody>
 				</Table>
 			</div>
-			{openCreateGalleryModal && (
+			{openGalleryModal && (
 				<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
 					<div className="bg-white p-6 rounded-lg shadow-lg w-96">
-						<h2 className="text-lg font-bold text-white bg-red-700 p-4 mb-6 text-center">Create Gallery Item</h2>
-						<GalleryForm handleCloseGalleryModal={handleCloseGalleryModal} fetchGallery={gallery} />
+						<h2 className="text-lg font-bold text-white bg-red-700 p-4 mb-6 text-center">{galleryToEdit ? "Edit Gallery Item" : "Create Gallery Item"}</h2>
+						<GalleryForm handleCloseGalleryModal={handleCloseGalleryModal} galleryToEdit={galleryToEdit} />
 					</div>
 				</div>
 			)}

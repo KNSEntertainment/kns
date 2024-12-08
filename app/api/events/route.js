@@ -4,13 +4,10 @@ import Event from "@/models/Event.Model";
 
 export async function GET() {
 	try {
-		// Connect to MongoDB
 		await connectDB();
 
-		// Fetch all events
-		const events = await Event.find().sort({ eventdate: 1 }); // Ascending order
+		const events = await Event.find().sort({ eventdate: 1 });
 
-		// Return the events as JSON
 		return NextResponse.json({ success: true, events }, { status: 200 });
 	} catch (error) {
 		console.error("Error fetching events:", error);

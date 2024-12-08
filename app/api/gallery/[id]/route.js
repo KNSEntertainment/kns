@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
-import Event from "@/models/Event.Model";
+import Gallery from "@/models/Gallery.Model";
 import { promises as fs } from "fs";
 import path from "path";
 
@@ -26,27 +26,27 @@ export async function PUT(request, { params }) {
 		await connectDB();
 
 		const formData = await request.formData();
-		const eventId = params.id;
+		const galleryId = params.id;
 
-		const eventData = {};
+		const galleryData = {};
 		for (const [key, value] of formData.entries()) {
-			if (key !== "eventposter") {
-				eventData[key] = value;
+			if (key !== "media") {
+				galleryData[key] = value;
 			}
 		}
 
-		const eventposter = formData.get("eventposter");
-		if (eventposter) {
-			eventData.eventposterUrl = await saveFile(eventposter);
+		const media = formData.get("media");
+		if (media) {
+			galleryData.media = await saveFile(media);
 		}
 
-		const updatedEvent = await Event.findByIdAndUpdate(eventId, eventData, { new: true });
+		const updatedGallery = await Gallery.findByIdAndUpdate(galleryId, galleryData, { new: true });
 
-		if (!updatedEvent) {
-			return NextResponse.json({ success: false, error: "Event not found" }, { status: 404 });
+		if (!updatedGallery) {
+			return NextResponse.json({ success: false, error: "Gallery not found" }, { status: 404 });
 		}
 
-		return NextResponse.json({ success: true, event: updatedEvent }, { status: 200 });
+		return NextResponse.json({ success: true, gallery: updatedGallery }, { status: 200 });
 	} catch (error) {
 		console.error("Error in API route:", error);
 		return NextResponse.json({ success: false, error: error.message }, { status: 500 });
@@ -57,20 +57,20 @@ export async function DELETE(request, { params }) {
 	try {
 		await connectDB();
 
-		const eventId = params.id;
+		const galleryId = params.id;
 
-		const deletedEvent = await Event.findByIdAndDelete(eventId);
+		const deletedGallery = await Gallery.findByIdAndDelete(galleryId);
 
-		if (!deletedEvent) {
-			return NextResponse.json({ success: false, error: "Event not found" }, { status: 404 });
+		if (!deletedGallery) {
+			return NextResponse.json({ success: false, error: "Gallery not found" }, { status: 404 });
 		}
 
-		if (deletedEvent.eventposterUrl) {
-			const filePath = path.join(process.cwd(), "public", deletedEvent.eventposterUrl);
+		if (deletedGallery.media) {
+			const filePath = path.join(process.cwd(), "public", deletedGallery.media);
 			await fs.unlink(filePath).catch(console.error);
 		}
 
-		return NextResponse.json({ success: true, message: "Event deleted successfully" }, { status: 200 });
+		return NextResponse.json({ success: true, message: "Gallery deleted successfully" }, { status: 200 });
 	} catch (error) {
 		console.error("Error in API route:", error);
 		return NextResponse.json({ success: false, error: error.message }, { status: 500 });
@@ -81,14 +81,14 @@ export async function GET(request, { params }) {
 	try {
 		await connectDB();
 
-		const eventId = params.id;
-		const event = await Event.findById(eventId);
+		const galleryId = params.id;
+		const gallery = await Gallery.findById(galleryId);
 
-		if (!event) {
-			return NextResponse.json({ success: false, error: "Event not found" }, { status: 404 });
+		if (!gallery) {
+			return NextResponse.json({ success: false, error: "Gallery not found" }, { status: 404 });
 		}
 
-		return NextResponse.json({ success: true, event }, { status: 200 });
+		return NextResponse.json({ success: true, gallery }, { status: 200 });
 	} catch (error) {
 		console.error("Error in API route:", error);
 		return NextResponse.json({ success: false, error: error.message }, { status: 500 });

@@ -18,7 +18,7 @@ const menuItems = [
 	{ id: "settings", label: "Profile Settings", icon: Settings },
 ];
 
-export default function DashboardLayout({ children }: { children: React.ReactNode }) {
+export default function DashboardLayout({ children }) {
 	const { activeMenu, setActiveMenu } = useActiveMenu();
 	const { data: session } = useSession();
 
@@ -38,7 +38,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 							<Link
 								key={item.id}
 								href={item.id === "dashboard" ? `/${item.id}` : `/dashboard/${item.id}`}
-								className={`w-full flex items-center px-4 py-4 text-sm 
+								className={`w-full flex items-center px-4 py-4 text-sm
                   ${activeMenu === item.id ? "bg-blue-50 text-blue-600 border-r-4 border-blue-600" : "text-white hover:text-black hover:bg-gray-50"}`}
 								onClick={() => setActiveMenu(item.id)}
 							>

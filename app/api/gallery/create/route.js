@@ -6,7 +6,7 @@ import path from "path";
 
 export const config = {
 	api: {
-		bodyParser: false, // Disable body parsing
+		bodyParser: false,
 	},
 };
 
@@ -14,11 +14,12 @@ async function saveFile(file) {
 	const uploadsDir = path.join(process.cwd(), "public", "uploads");
 	await fs.mkdir(uploadsDir, { recursive: true });
 
-	const filePath = path.join(uploadsDir, file.name);
+	const uniqueFilename = `${Date.now()}-${file.name}`;
+	const filePath = path.join(uploadsDir, uniqueFilename);
 	const buffer = Buffer.from(await file.arrayBuffer());
 	await fs.writeFile(filePath, buffer);
 
-	return `/uploads/${file.name}`; // Return file URL
+	return `/uploads/${uniqueFilename}`;
 }
 
 export async function POST(request) {
@@ -26,34 +27,34 @@ export async function POST(request) {
 		await connectDB();
 
 		const formData = await request.formData();
-		console.log("Received form data");
+		console.log("Received form data:", Object.fromEntries(formData));
 
 		const mediatype = formData.get("mediatype");
 		const category = formData.get("category");
 		const alt = formData.get("alt");
-		const mediaFiles = formData.getAll("media"); // Get all files
+		const media = formData.get("media");
+
+		console.log("Parsed form data:", { mediatype, category, alt, media: media ? media.name : null });
 
 		// Validate input
-		if (!mediatype || !category || mediaFiles.length === 0) {
-			return NextResponse.json({ success: false, error: "Required fields are missing" }, { status: 400 });
+		if (!mediatype || !category || !media || !(media instanceof Blob)) {
+			return NextResponse.json({ success: false, error: "Required fields are missing or invalid" }, { status: 400 });
 		}
 
-		// Save each file to the uploads directory and create DB entries
-		const galleryItems = [];
-		for (const file of mediaFiles) {
-			const mediaUrl = await saveFile(file); // Save each file
-			const galleryItem = await Gallery.create({
-				mediatype,
-				media: mediaUrl,
-				category,
-				alt,
-			});
-			galleryItems.push(galleryItem);
-		}
+		// Save file to the uploads directory
+		const mediaUrl = await saveFile(media);
 
-		console.log("Gallery items created successfully:", galleryItems);
+		// Create DB entry
+		const galleryItem = await Gallery.create({
+			mediatype,
+			media: mediaUrl,
+			category,
+			alt: alt || "",
+		});
 
-		return NextResponse.json({ success: true, gallery: galleryItems }, { status: 201 });
+		console.log("Gallery item created successfully:", galleryItem);
+
+		return NextResponse.json({ success: true, gallery: galleryItem }, { status: 201 });
 	} catch (error) {
 		console.error("Error in API route:", error);
 		return NextResponse.json({ success: false, error: error.message }, { status: 500 });
