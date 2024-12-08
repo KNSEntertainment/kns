@@ -12,7 +12,6 @@ import PartnerForm from "@/components/PartnerForm";
 export default function EventsPage() {
 	const [openPartnerModal, setOpenPartnerModal] = useState(false);
 	const [partnerToEdit, setPartnerToEdit] = useState(null);
-	const [openCreatePartnerModal, setOpenCreatePartnerModal] = useState(false);
 	const { data: partners, error, loading, mutate } = useFetchData("/api/partners", "partners");
 
 	if (loading) return <p>Loading...</p>;

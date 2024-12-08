@@ -11,7 +11,6 @@ import TestimonialForm from "@/components/TestimonialForm";
 export default function TestimonialsPage() {
 	const [openTestimonialModal, setOpenTestimonialModal] = useState(false);
 	const [testimonialToEdit, setTestimonialToEdit] = useState(null);
-	const [openCreateTestimonialModal, setOpenCreateTestimonialModal] = useState(false);
 	const { data: testimonials, error, loading, mutate } = useFetchData("/api/testimonials", "testimonials");
 
 	if (loading) return <p>Loading...</p>;

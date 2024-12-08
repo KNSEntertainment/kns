@@ -12,7 +12,6 @@ import ArtistForm from "@/components/ArtistForm";
 export default function ArtistsPage() {
 	const [openArtistModal, setOpenArtistModal] = useState(false);
 	const [artistToEdit, setArtistToEdit] = useState(null);
-	const [openCreateArtistModal, setOpenCreateArtistModal] = useState(false);
 	const { data: artists, error, loading, mutate } = useFetchData("/api/artists", "artists");
 
 	if (loading) return <p>Loading...</p>;

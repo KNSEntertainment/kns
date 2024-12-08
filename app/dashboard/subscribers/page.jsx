@@ -25,7 +25,7 @@ export default function SubscribersPage() {
 			mutate();
 		} catch (error) {
 			// console.error("Error deleting subscriber:", error);
-			toast.error("Failed to delete subscriber. Please try again.");
+			toast.error("Failed to delete subscriber. Please try again.", error);
 		}
 	};
 

@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 
-export default function TestimonialForm({ handleCloseTestimonialModal, fetchTestimonials, testimonialToEdit = null }) {
+export default function TestimonialForm({ handleCloseTestimonialModal, testimonialToEdit = null }) {
 	const [formData, setFormData] = useState({
 		audiencename: "",
 		audienceaddress: "",

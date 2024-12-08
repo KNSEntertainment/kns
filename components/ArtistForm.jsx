@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function ArtistForm({ handleCloseArtistModal, fetchArtists, artistToEdit = null }) {
+export default function ArtistForm({ handleCloseArtistModal, artistToEdit = null }) {
 	const [formData, setFormData] = useState({
 		name: "",
 		genre: "",

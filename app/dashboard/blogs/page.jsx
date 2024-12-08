@@ -9,28 +9,41 @@ import BlogForm from "@/components/BlogForm";
 import useFetchData from "@/hooks/useFetchData";
 
 export default function EventsPage() {
-	const [openCreateBlogModal, setOpenCreateBlogModal] = useState(false);
-	const { data: blogs, error, loading } = useFetchData("/api/blogs", "blogs");
+	const [openBlogModal, setOpenBlogModal] = useState(false);
+	const [blogToEdit, setBlogToEdit] = useState(null);
+	const { data: blogs, error, loading, mutate } = useFetchData("/api/blogs", "blogs");
 
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error: {error}</p>;
-
-	const handleEdit = (id) => {
-		console.log("Edit item:", id);
+	const handleEdit = (blog) => {
+		setBlogToEdit(blog);
+		setOpenBlogModal(true);
 	};
 
-	const handleDelete = (id) => {
-		console.log("Delete item:", id);
+	const handleDelete = async (id) => {
+		try {
+			const response = await fetch(`/api/blogs/${id}`, {
+				method: "DELETE",
+			});
+			if (!response.ok) {
+				throw new Error("Failed to delete blog");
+			}
+			mutate();
+		} catch (error) {
+			console.error("Error deleting blog:", error);
+			alert("Failed to delete blog. Please try again.");
+		}
 	};
-
 	const handleCloseBlogModal = () => {
-		setOpenCreateBlogModal(false);
+		setOpenBlogModal(false);
+		setBlogToEdit(null);
+		mutate();
 	};
 
 	const handleCreateBlog = () => {
-		setOpenCreateBlogModal(true);
+		setBlogToEdit(null);
+		setOpenBlogModal(true);
 	};
-
 	return (
 		<div className="max-w-6xl">
 			<div className="text-right">
@@ -68,7 +81,7 @@ export default function EventsPage() {
 
 									<TableCell className="w-32">
 										<div className="flex space-x-2">
-											<Button variant="ghost" size="icon" onClick={() => handleEdit(blog.id)}>
+											<Button variant="ghost" size="icon" onClick={() => handleEdit(blog)}>
 												<Pencil className="w-6 h-6 text-blue-700" />
 											</Button>
 											<Button variant="ghost" size="icon" onClick={() => handleDelete(blog.id)}>
@@ -88,11 +101,11 @@ export default function EventsPage() {
 					</TableBody>
 				</Table>
 			</div>
-			{openCreateBlogModal && (
+			{openBlogModal && (
 				<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-					<div className="bg-white p-6 rounded-lg shadow-lg w-96">
-						<h2 className="text-lg font-bold text-white bg-red-700 p-4 mb-6 text-center">Create Blog</h2>
-						<BlogForm handleCloseBlogModal={handleCloseBlogModal} fetchBlogs={blogs} />
+					<div className="bg-white p-6 rounded-lg shadow-lg w-[600px]">
+						<h2 className="text-lg font-bold text-white bg-red-700 p-4 mb-6 text-center">{blogToEdit ? "Edit Blog" : "Create Blog"}</h2>
+						<BlogForm handleCloseBlogModal={handleCloseBlogModal} fetchBlogs={blogs} blogToEdit={blogToEdit} />
 					</div>
 				</div>
 			)}

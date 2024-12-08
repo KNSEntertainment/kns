@@ -1,8 +1,7 @@
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
-import toast from "react-hot-toast";
+import { useEffect, useState } from "react";
 
-export default function BlogForm({ handleCloseBlogModal }) {
+export default function BlogForm({ handleCloseBlogModal, blogToEdit = null }) {
 	const [formData, setFormData] = useState({
 		blogTitle: "",
 		blogDesc: "",
@@ -14,6 +13,16 @@ export default function BlogForm({ handleCloseBlogModal }) {
 	const [submitting, setSubmitting] = useState(false);
 	const [error, setError] = useState("");
 
+	useEffect(() => {
+		if (blogToEdit) {
+			setFormData({
+				...blogToEdit,
+				blogMainPicture: null,
+				blogSecondPicture: null,
+			});
+		}
+	}, [blogToEdit]);
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		setError("");
@@ -21,27 +30,23 @@ export default function BlogForm({ handleCloseBlogModal }) {
 
 		try {
 			const form = new FormData();
-			form.append("blogTitle", formData.blogTitle);
-			form.append("blogDesc", formData.blogDesc);
-			form.append("blogAuthor", formData.blogAuthor);
-			if (formData.blogMainPicture) {
-				form.append("blogMainPicture", formData.blogMainPicture);
-			}
-			if (formData.blogSecondPicture) {
-				form.append("blogSecondPicture", formData.blogSecondPicture);
-			}
-			form.append("blogDate", formData.blogDate);
+			Object.keys(formData).forEach((key) => {
+				if (key !== "blogMainPicture" || (key === "blogMainPicture" && formData[key])) {
+					form.append(key, formData[key]);
+				}
+			});
 
-			console.log("form", form);
-			const response = await fetch("/api/blogs/create", {
-				method: "POST",
+			const url = blogToEdit ? `/api/blogs/${blogToEdit._id}` : "/api/blogs/create";
+			const method = blogToEdit ? "PUT" : "POST";
+
+			const response = await fetch(url, {
+				method: method,
 				body: form,
 			});
 
 			const result = await response.json();
-			console.log("result", result);
 			if (!response.ok) {
-				throw new Error(result.error || "Failed to create blog");
+				throw new Error(result.error || `Failed to ${blogToEdit ? "update" : "create"} blog`);
 			}
 
 			if (result.success) {
@@ -53,20 +58,73 @@ export default function BlogForm({ handleCloseBlogModal }) {
 					blogSecondPicture: null,
 					blogDate: "",
 				});
-				// Reset file inputs
-				const mainPictureInput = document.getElementById("blogMainPicture");
-				const secondPictureInput = document.getElementById("blogSecondPicture");
-				if (mainPictureInput) mainPictureInput.value = "";
-				if (secondPictureInput) secondPictureInput.value = "";
-				toast.success("Blogs created successfully!");
+				// const eventposterInput = document.getElementById("eventposter");
+				// if (eventposterInput) {
+				// 	eventposterInput.value = "";
+				// }
+				alert(`Blog ${blogToEdit ? "updated" : "created"} successfully!`);
+				handleCloseBlogModal();
 			}
 		} catch (error) {
 			setError(error.message);
-			console.error("Error creating blog:", error);
+			console.error(`Error ${blogToEdit ? "updating" : "creating"} blog:`, error);
 		} finally {
 			setSubmitting(false);
 		}
 	};
+	// const handleSubmit = async (e) => {
+	// 	e.preventDefault();
+	// 	setError("");
+	// 	setSubmitting(true);
+
+	// 	try {
+	// 		const form = new FormData();
+	// 		form.append("blogTitle", formData.blogTitle);
+	// 		form.append("blogDesc", formData.blogDesc);
+	// 		form.append("blogAuthor", formData.blogAuthor);
+	// 		if (formData.blogMainPicture) {
+	// 			form.append("blogMainPicture", formData.blogMainPicture);
+	// 		}
+	// 		if (formData.blogSecondPicture) {
+	// 			form.append("blogSecondPicture", formData.blogSecondPicture);
+	// 		}
+	// 		form.append("blogDate", formData.blogDate);
+
+	// 		console.log("form", form);
+	// 		const response = await fetch("/api/blogs/create", {
+	// 			method: "POST",
+	// 			body: form,
+	// 		});
+
+	// 		const result = await response.json();
+	// 		console.log("result", result);
+	// 		if (!response.ok) {
+	// 			throw new Error(result.error || "Failed to create blog");
+	// 		}
+
+	// 		if (result.success) {
+	// 			setFormData({
+	// 				blogTitle: "",
+	// 				blogDesc: "",
+	// 				blogAuthor: "",
+	// 				blogMainPicture: null,
+	// 				blogSecondPicture: null,
+	// 				blogDate: "",
+	// 			});
+	// 			// Reset file inputs
+	// 			const mainPictureInput = document.getElementById("blogMainPicture");
+	// 			const secondPictureInput = document.getElementById("blogSecondPicture");
+	// 			if (mainPictureInput) mainPictureInput.value = "";
+	// 			if (secondPictureInput) secondPictureInput.value = "";
+	// 			toast.success("Blogs created successfully!");
+	// 		}
+	// 	} catch (error) {
+	// 		setError(error.message);
+	// 		console.error("Error creating blog:", error);
+	// 	} finally {
+	// 		setSubmitting(false);
+	// 	}
+	// };
 
 	return (
 		<form onSubmit={handleSubmit} className="space-y-4">
@@ -81,7 +139,7 @@ export default function BlogForm({ handleCloseBlogModal }) {
 				<label htmlFor="blogDesc" className="block mb-2 font-bold">
 					Blog Description
 				</label>
-				<textarea id="blogDesc" value={formData.blogDesc} onChange={(e) => setFormData({ ...formData, blogDesc: e.target.value })} className="w-full p-2 border rounded" required />
+				<textarea rows={12} id="blogDesc" value={formData.blogDesc} onChange={(e) => setFormData({ ...formData, blogDesc: e.target.value })} className="w-full p-2 border rounded" required />
 			</div>
 			<div>
 				<label htmlFor="blogAuthor" className="block mb-2 font-bold">
@@ -117,8 +175,8 @@ export default function BlogForm({ handleCloseBlogModal }) {
 				/>
 			</div>
 			<div className="grid grid-cols-2 gap-2">
-				<button type="submit" disabled={submitting} className={`w-full p-1.5 rounded ${submitting ? "bg-gray-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"} text-white font-bold`}>
-					{submitting ? "Creating Blog..." : "Create Blog"}
+				<button type="submit" disabled={submitting} className={`w-full p-1.5 rounded ${submitting ? "bg-gray-400 cursor-not-allowed" : "bg-red-600 hover:bg-red-700"} text-white font-bold`}>
+					{submitting ? `${blogToEdit ? "Updating" : "Creating"} Event...` : `${blogToEdit ? "Update" : "Create"} Event`}
 				</button>
 				<Button variant="outline" onClick={handleCloseBlogModal}>
 					Close
