@@ -1,11 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Calendar, Clock, Eye, MapPin, Search } from "lucide-react";
+import { Calendar, Clock, Eye, MapPin } from "lucide-react";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -14,20 +12,20 @@ import { BuyTicketButton } from "./BuyTicketButton";
 export default function UpcomingEvents() {
 	const [events, setEvents] = useState([]);
 	const [loading, setLoading] = useState(true);
-	const [filter, setFilter] = useState("upcoming");
-	const [searchTerm, setSearchTerm] = useState("");
-	const [countryFilter, setcountryFilter] = useState("");
-	const [dateFilter, setDateFilter] = useState("");
-	const [filteredEvents, setFilteredEvents] = useState([]);
-	const [countries, setCountries] = useState([]);
-	const [dates, setDates] = useState([]);
+	// const [filter, setFilter] = useState("upcoming");
+	// const [searchTerm, setSearchTerm] = useState("");
+	// const [countryFilter, setcountryFilter] = useState("");
+	// const [dateFilter, setDateFilter] = useState("");
+	// const [filteredEvents, setFilteredEvents] = useState([]);
+	// const [countries, setCountries] = useState([]);
+	// const [dates, setDates] = useState([]);
 
-	const formatDateWithDay = (dateString) => {
-		const date = new Date(dateString);
-		const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-		const day = days[date.getDay()];
-		return `${dateString} (${day})`;
-	};
+	// const formatDateWithDay = (dateString) => {
+	// 	const date = new Date(dateString);
+	// 	const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+	// 	const day = days[date.getDay()];
+	// 	return `${dateString} (${day})`;
+	// };
 
 	useEffect(() => {
 		const fetchEvents = async () => {
@@ -37,10 +35,10 @@ export default function UpcomingEvents() {
 
 				if (data.success) {
 					setEvents(data.events);
-					const uniqueCountries = [...new Set(data.events.map((event) => event.eventcountry))];
-					const uniqueDates = [...new Set(data.events.map((event) => event.eventdate))];
-					setCountries(uniqueCountries);
-					setDates(uniqueDates);
+					// const uniqueCountries = [...new Set(data.events.map((event) => event.eventcountry))];
+					// const uniqueDates = [...new Set(data.events.map((event) => event.eventdate))];
+					// setCountries(uniqueCountries);
+					// setDates(uniqueDates);
 				} else {
 					console.error("Failed to fetch events:");
 				}
@@ -54,35 +52,35 @@ export default function UpcomingEvents() {
 		fetchEvents();
 	}, []);
 
-	useEffect(() => {
-		const currentDate = new Date();
+	// useEffect(() => {
+	// 	const currentDate = new Date();
 
-		let filtered = events;
+	// 	let filtered = events;
 
-		// Apply time filter
-		if (filter === "upcoming") {
-			filtered = filtered.filter((event) => new Date(event.eventdate) > currentDate);
-		} else if (filter === "past") {
-			filtered = filtered.filter((event) => new Date(event.eventdate) <= currentDate);
-		}
+	// 	// Apply time filter
+	// 	if (filter === "upcoming") {
+	// 		filtered = filtered.filter((event) => new Date(event.eventdate) > currentDate);
+	// 	} else if (filter === "past") {
+	// 		filtered = filtered.filter((event) => new Date(event.eventdate) <= currentDate);
+	// 	}
 
-		// Apply search filter
-		if (searchTerm) {
-			filtered = filtered.filter((event) => event.eventname.toLowerCase().includes(searchTerm.toLowerCase()));
-		}
+	// 	// Apply search filter
+	// 	if (searchTerm) {
+	// 		filtered = filtered.filter((event) => event.eventname.toLowerCase().includes(searchTerm.toLowerCase()));
+	// 	}
 
-		// Apply country filter
-		if (countryFilter && countryFilter !== "all_countries") {
-			filtered = filtered.filter((event) => event.eventcountry === countryFilter);
-		}
+	// 	// Apply country filter
+	// 	if (countryFilter && countryFilter !== "all_countries") {
+	// 		filtered = filtered.filter((event) => event.eventcountry === countryFilter);
+	// 	}
 
-		// Apply date filter
-		if (dateFilter && dateFilter !== "all_dates") {
-			filtered = filtered.filter((event) => event.eventdate === dateFilter);
-		}
+	// 	// Apply date filter
+	// 	if (dateFilter && dateFilter !== "all_dates") {
+	// 		filtered = filtered.filter((event) => event.eventdate === dateFilter);
+	// 	}
 
-		setFilteredEvents(filtered);
-	}, [filter, events, searchTerm, countryFilter, dateFilter]);
+	// 	setFilteredEvents(filtered);
+	// }, [filter, events, searchTerm, countryFilter, dateFilter]);
 
 	if (loading) {
 		return <p>Loading events...</p>;
@@ -92,69 +90,12 @@ export default function UpcomingEvents() {
 		<section id="events" className="py-8 sm:py-16 bg-gray-100">
 			<div className="container mx-auto px-2 sm:px-4">
 				<h2 className="text-3xl font-bold text-center mb-6 sm:mb-12">
-					Special <span className="text-red-500">Events</span>
+					Upcoming <span className="text-red-500">Events</span>
 				</h2>
 
-				<div className="flex flex-col gap-6 w-full mb-6 sm:mb-12">
-					{/* Buttons Section */}
-					<div className="flex flex-wrap gap-2 sm:gap-4 justify-center">
-						<Button onClick={() => setFilter("all")} variant={filter === "all" ? "default" : "outline"} aria-pressed={filter === "all"}>
-							All Events
-						</Button>
-						<Button onClick={() => setFilter("upcoming")} variant={filter === "upcoming" ? "default" : "outline"} aria-pressed={filter === "upcoming"}>
-							Upcoming Events
-						</Button>
-						<Button onClick={() => setFilter("past")} variant={filter === "past" ? "default" : "outline"} aria-pressed={filter === "past"}>
-							Past Events
-						</Button>
-					</div>
-
-					{/* Search and Filters Section */}
-					<div className="flex flex-col sm:flex-row gap-4 w-full items-center sm:justify-between">
-						{/* Search Input */}
-						<div className="relative w-full sm:w-[400px]">
-							<Input type="text" placeholder="Search events..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="pl-10 w-full" />
-							<Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-						</div>
-
-						{/* Filters */}
-						<div className="flex flex-wrap gap-4 justify-center sm:justify-end w-full sm:w-auto">
-							{/* country Filter */}
-							<Select value={countryFilter} onValueChange={setcountryFilter}>
-								<SelectTrigger className="w-full sm:w-[180px]">
-									<SelectValue placeholder="Filter by Country" />
-								</SelectTrigger>
-								<SelectContent>
-									<SelectItem value="all_countries">All Countries</SelectItem>
-									{countries.map((country) => (
-										<SelectItem key={country} value={country}>
-											{country}
-										</SelectItem>
-									))}
-								</SelectContent>
-							</Select>
-
-							{/* Date Filter */}
-							<Select value={dateFilter} onValueChange={setDateFilter}>
-								<SelectTrigger className="w-full sm:w-[180px]">
-									<SelectValue placeholder="Filter by Date" />
-								</SelectTrigger>
-								<SelectContent>
-									<SelectItem value="all_dates">All Dates</SelectItem>
-									{dates.map((date) => (
-										<SelectItem key={date} value={date}>
-											{formatDateWithDay(date)}
-										</SelectItem>
-									))}
-								</SelectContent>
-							</Select>
-						</div>
-					</div>
-				</div>
-
-				{filteredEvents.length > 0 ? (
+				{events.length > 0 ? (
 					<motion.div key="events-grid" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 sm:gap-8">
-						{filteredEvents.map((event, index) => (
+						{events.map((event, index) => (
 							<motion.div key={event._id} initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: index * 0.1 }}>
 								<Card className=" overflow-hidden h-full group">
 									<div className="overflow-hidden">
@@ -163,7 +104,7 @@ export default function UpcomingEvents() {
 
 									<Link href={`/events/${event?._id}`}>
 										<CardHeader>
-											<span className=" bg-black rounded-full w-fit px-2 py-1 mb-1 text-white text-xs sm:text-md font-semibold">{event?.eventcountry}</span>
+											<span className=" border-black border-2 rounded-full w-fit px-2 py-1 mb-1 text-black text-xs sm:text-md font-semibold">{event?.eventcountry}</span>
 											<CardTitle className="line-clamp-1">{event?.eventname}</CardTitle>
 										</CardHeader>
 									</Link>
@@ -192,13 +133,13 @@ export default function UpcomingEvents() {
 									</CardContent>
 									<CardFooter className="flex justify-between">
 										<Link href={`/events/${event?._id}`}>
-											<Button className="bg-red-600">
+											<Button variant="secondary" className="hover:bg-slate-200">
 												<Eye className="hidden md:block h-4 w-4" />
 												View Details
 											</Button>
 										</Link>
 										{/* <Button variant="outline" onClick={handleAddToCart} disabled={loading}> */}
-										{new Date(event?.eventdate) > new Date() && <BuyTicketButton eventId={event?.eventname} price={event?.eventprice} />}
+										{new Date(event?.eventdate) > new Date() && <BuyTicketButton btnText="Add to Cart" eventId={event?.eventname} price={event?.eventprice} />}
 									</CardFooter>
 								</Card>
 							</motion.div>
@@ -210,9 +151,11 @@ export default function UpcomingEvents() {
 					</motion.p>
 				)}
 			</div>
-			{/* <Button variant="outline" className="flex justify-center mx-auto mt-6 sm:mt-12">
-				View All Events
-			</Button> */}
+			<Link href="/events">
+				<Button variant="outline" className="flex justify-center mx-auto mt-6 sm:mt-12">
+					View All Events
+				</Button>
+			</Link>
 		</section>
 	);
 }

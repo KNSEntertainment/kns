@@ -63,7 +63,7 @@ export default function AuthForm() {
 				</CardHeader>
 				<CardContent className="mt-6">
 					<div className="mb-6 flex justify-center">
-						<Image src="/knslogo.png" alt="Auth" className="w-24 h-auto rounded-full border-4 border-red-700" width={100} height={100} />
+						<Image src="/knslogo.png" alt="Auth" className="w-24 h-auto rounded-full" width={100} height={100} />
 					</div>
 					{error && <p className="text-red-500 mb-4">{error}</p>}
 					<Tabs defaultValue="login">
