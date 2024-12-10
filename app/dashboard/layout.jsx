@@ -3,15 +3,15 @@
 import React from "react";
 import Link from "next/link";
 import { useActiveMenu } from "@/context/ActiveMenuContext";
-import { BookImage, Drama, MessageCircle, Mail, Settings, GalleryThumbnails, LayoutDashboard, Home, Handshake, Newspaper, ArrowBigLeft } from "lucide-react";
+import { BookImage, MessageCircle, Mail, Settings, GalleryThumbnails, LayoutDashboard, Home, Handshake, ArrowBigLeft } from "lucide-react";
 import { useSession } from "next-auth/react";
 
 const menuItems = [
 	{ id: "dashboard", label: "Dashboard", icon: LayoutDashboard },
 	{ id: "events", label: "Events", icon: BookImage },
-	{ id: "artists", label: "Artists", icon: Drama },
+	// { id: "artists", label: "Artists", icon: Drama },
 	{ id: "testimonials", label: "Testimonials", icon: MessageCircle },
-	{ id: "blogs", label: "Blogs", icon: Newspaper },
+	// { id: "blogs", label: "Blogs", icon: Newspaper },
 	{ id: "gallery", label: "Gallery", icon: GalleryThumbnails },
 	{ id: "partners", label: "Partners", icon: Handshake },
 	{ id: "subscribers", label: "Subscribers", icon: Mail },
@@ -39,7 +39,7 @@ export default function DashboardLayout({ children }) {
 								key={item.id}
 								href={item.id === "dashboard" ? `/${item.id}` : `/dashboard/${item.id}`}
 								className={`w-full flex items-center px-4 py-4 text-sm
-                  ${activeMenu === item.id ? "bg-blue-50 text-blue-600 border-r-4 border-blue-600" : "text-white hover:text-black hover:bg-gray-50"}`}
+                  ${activeMenu === item.id ? "bg-blue-50 text-blue-600 border-r-4 border-blue-600" : "text-slate-200 hover:text-black hover:bg-gray-50"}`}
 								onClick={() => setActiveMenu(item.id)}
 							>
 								<Icon className="w-5 h-5 mr-3" />
@@ -61,14 +61,14 @@ export default function DashboardLayout({ children }) {
 							</Link>
 						)}
 
-						<h2 className="text-xl md:text-2xl font-semibold text-white sm:ml-8">{menuItems.find((item) => item.id === activeMenu)?.label}</h2>
+						<h2 className="text-xl md:text-2xl font-semibold text-slate-200 sm:ml-8">{menuItems.find((item) => item.id === activeMenu)?.label}</h2>
 					</div>
 					{session && (
 						<div className="flex gap-2 items-center justify-center">
 							<div className="flex p-1 w-10 h-10 md:w-12 md:h-12 bg-red-400 rounded-full items-center justify-center">
 								<p className="text-3xl font-bold">{session?.user?.email?.charAt(0).toUpperCase()}</p>
 							</div>
-							<p className="text-sm mr-6 md:mr-12 font-semibold text-white">
+							<p className="text-sm mr-6 md:mr-12 font-semibold text-slate-200">
 								Welcome,
 								<br />
 								<span className="text-slate-300"> {session?.user?.email || "Guest"}!</span>

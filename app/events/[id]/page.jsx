@@ -70,7 +70,7 @@ export default async function EventPage({ params }) {
 						))}
 					</div>
 					<div className="sm:px-6">
-						<Button className="w-full rounded-xl bg-red-600 hover:bg-red-700 font-bold text-white py-6 text-md md:text-lg">
+						<Button className="w-full rounded-xl bg-red-600 hover:bg-red-700 font-bold text-slate-200 py-6 text-md md:text-lg">
 							<Ticket className="w-5 h-5" />
 							Get Your Tickets Now
 						</Button>

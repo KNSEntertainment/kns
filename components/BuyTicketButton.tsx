@@ -24,7 +24,7 @@ export function BuyTicketButton({ eventId, price, btnText }: { eventId: string; 
 	};
 
 	return (
-		<Button onClick={handleBuyTicket} disabled={isLoading} className={` ${btnText === "Get Your Tickets Now" ? "w-full" : "flex items-center justify-center"}`}>
+		<Button onClick={handleBuyTicket} disabled={isLoading} className={` ${btnText === "Get Your Tickets Now" ? "w-full" : "bg-red-700 flex items-center justify-center"}`}>
 			{btnText === "Get Your Tickets Now" ? <Ticket className="hidden md:block h-4 w-4" /> : <ShoppingCart className="hidden md:block h-4 w-4" />}
 			<span className="ml-2">{isLoading ? "Adding..." : btnText}</span>
 		</Button>

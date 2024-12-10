@@ -66,13 +66,13 @@ END:VCALENDAR`;
 	const calendarLinks = generateCalendarLinks();
 
 	return (
-		<Card className="w-full max-w-md mx-auto">
-			<CardHeader className="text-center">
-				<CardTitle className="text-xl md:text-2xl lg:text-3xl font-bold text-slate-800">Share This Event</CardTitle>
+		<Card className="w-full mx-auto px-6">
+			<CardHeader>
+				<CardTitle className="text-md md:text-lg font-bold text-slate-800">Share This Event</CardTitle>
 				<CardDescription>Share this event with your friends and colleagues</CardDescription>
 			</CardHeader>
-			<CardContent className="space-y-6">
-				<div className="flex justify-center gap-4">
+			<CardContent className="space-y-4">
+				<div className="flex gap-4">
 					<Button size="icon" variant="outline" className="rounded-full w-12 h-12 hover:scale-110 transition-transform" onClick={() => handleShare("facebook")}>
 						<Facebook className="w-5 h-5" />
 						<span className="sr-only">Share on Facebook</span>
@@ -97,33 +97,31 @@ END:VCALENDAR`;
 					)}
 				</div>
 
-				<div className="flex justify-center">
-					<DropdownMenu>
-						<DropdownMenuTrigger asChild>
-							<Button size="lg" className="bg-slate-700 hover:bg-black text-white font-bold gap-2">
-								<Calendar className="w-5 h-5" />
-								Add to Calendar
-							</Button>
-						</DropdownMenuTrigger>
-						<DropdownMenuContent align="center">
-							<DropdownMenuItem asChild>
-								<a href={calendarLinks.google} target="_blank" rel="noopener noreferrer" className="cursor-pointer">
-									Google Calendar
-								</a>
-							</DropdownMenuItem>
-							<DropdownMenuItem asChild>
-								<a href={calendarLinks.outlook} target="_blank" rel="noopener noreferrer" className="cursor-pointer">
-									Outlook Calendar
-								</a>
-							</DropdownMenuItem>
-							<DropdownMenuItem asChild>
-								<a href={calendarLinks.ics} download="event.ics" className="cursor-pointer">
-									Download .ics
-								</a>
-							</DropdownMenuItem>
-						</DropdownMenuContent>
-					</DropdownMenu>
-				</div>
+				<DropdownMenu>
+					<DropdownMenuTrigger asChild>
+						<Button size="lg" className="bg-slate-700 hover:bg-black text-slate-200 font-bold gap-2">
+							<Calendar className="w-5 h-5" />
+							Add to Calendar
+						</Button>
+					</DropdownMenuTrigger>
+					<DropdownMenuContent align="center">
+						<DropdownMenuItem asChild>
+							<a href={calendarLinks.google} target="_blank" rel="noopener noreferrer" className="cursor-pointer">
+								Google Calendar
+							</a>
+						</DropdownMenuItem>
+						<DropdownMenuItem asChild>
+							<a href={calendarLinks.outlook} target="_blank" rel="noopener noreferrer" className="cursor-pointer">
+								Outlook Calendar
+							</a>
+						</DropdownMenuItem>
+						<DropdownMenuItem asChild>
+							<a href={calendarLinks.ics} download="event.ics" className="cursor-pointer">
+								Download .ics
+							</a>
+						</DropdownMenuItem>
+					</DropdownMenuContent>
+				</DropdownMenu>
 			</CardContent>
 		</Card>
 	);

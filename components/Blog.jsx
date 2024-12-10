@@ -34,7 +34,7 @@ export default function Blog() {
 						<div className="group relative h-[520px] overflow-hidden rounded-lg shadow-md transition-transform duration-300 hover:shadow-lg">
 							<Image src={blogs[0]?.blogMainPicture || "/placeholder.jpg"} alt={blogs[0]?.blogTitle || "alt"} fill className="object-cover transition-transform duration-300 group-hover:scale-105" />
 							<div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent">
-								<div className="absolute bottom-0 p-4 text-white">
+								<div className="absolute bottom-0 p-4 text-slate-200">
 									<h1 className="text-xl md:text-2xl font-bold mb-2 cursor-pointer group-hover:text-red-700">{blogs[0]?.blogTitle}</h1>
 									<div className="flex items-center text-gray-300">
 										<Calendar className="w-4 h-4 mr-2" />

@@ -52,7 +52,7 @@ export default function TestimonialsPage() {
 	return (
 		<div className="max-w-4xl">
 			<div className="text-right">
-				<button onClick={handleCreateTestimonial} className="bg-red-800 text-white font-bold px-4 py-2 my-4">
+				<button onClick={handleCreateTestimonial} className="bg-red-800 text-slate-200 font-bold px-4 py-2 my-4">
 					Create Testimonial
 				</button>
 			</div>
@@ -102,7 +102,7 @@ export default function TestimonialsPage() {
 			{openTestimonialModal && (
 				<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
 					<div className="bg-white p-6 rounded-lg shadow-lg w-96">
-						<h2 className="text-lg font-bold text-white bg-red-700 p-4 mb-6 text-center">{testimonialToEdit ? "Edit Testimonial" : "Create Testimonial"}</h2>
+						<h2 className="text-lg font-bold text-slate-200 bg-red-700 p-4 mb-6 text-center">{testimonialToEdit ? "Edit Testimonial" : "Create Testimonial"}</h2>
 						<TestimonialForm handleCloseTestimonialModal={handleCloseTestimonialModal} testimonialToEdit={testimonialToEdit} fetchTestimonials={testimonials} />
 					</div>
 				</div>

@@ -53,7 +53,7 @@ export default function ArtistsPage() {
 	return (
 		<>
 			<div className="text-right">
-				<button onClick={handleCreateArtist} className="bg-red-800 text-white font-bold px-4 py-2 my-4">
+				<button onClick={handleCreateArtist} className="bg-red-800 text-slate-200 font-bold px-4 py-2 my-4">
 					Create Artist
 				</button>
 			</div>
@@ -118,7 +118,7 @@ export default function ArtistsPage() {
 			{openArtistModal && (
 				<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
 					<div className="bg-white p-6 rounded-lg shadow-lg w-96">
-						<h2 className="text-lg font-bold text-white bg-red-700 p-4 mb-6 text-center">{artistToEdit ? "Edit Artist" : "Create Artist"}</h2>
+						<h2 className="text-lg font-bold text-slate-200 bg-red-700 p-4 mb-6 text-center">{artistToEdit ? "Edit Artist" : "Create Artist"}</h2>
 						<ArtistForm handleCloseArtistModal={handleCloseArtistModal} artistToEdit={artistToEdit} fetchArtists={artists} />
 					</div>
 				</div>

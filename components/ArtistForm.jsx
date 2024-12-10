@@ -221,7 +221,7 @@ export default function ArtistForm({ handleCloseArtistModal, artistToEdit = null
 				</label>
 			</div>
 			<div className="grid grid-cols-2 gap-2">
-				<button type="submit" disabled={submitting} className={`w-full p-1.5 rounded ${submitting ? "bg-gray-400 cursor-not-allowed" : "bg-red-600 hover:bg-red-700"} text-white font-bold`}>
+				<button type="submit" disabled={submitting} className={`w-full p-1.5 rounded ${submitting ? "bg-gray-400 cursor-not-allowed" : "bg-red-600 hover:bg-red-700"} text-slate-200 font-bold`}>
 					{submitting ? `${artistToEdit ? "Updating" : "Creating"} Artist...` : `${artistToEdit ? "Update" : "Create"} Artist`}
 				</button>
 				<button type="button" onClick={handleCloseArtistModal} className="w-full p-1.5 rounded border text-red-600 font-bold hover:bg-gray-100">

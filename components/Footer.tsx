@@ -1,6 +1,6 @@
 export default function Footer() {
 	return (
-		<footer className="bg-gray-900 text-white py-6">
+		<footer className="bg-gray-900 text-slate-200 py-6">
 			<div className="container mx-auto px-4">
 				{/* <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 					<div className="max-w-sm">
@@ -11,22 +11,22 @@ export default function Footer() {
 						<h4 className="text-lg font-semibold mb-4">Quick Links</h4>
 						<ul className="space-y-2">
 							<li>
-								<a href="#events" className="text-gray-400 hover:text-white transition-colors">
+								<a href="#events" className="text-gray-400 hover:text-slate-200 transition-colors">
 									Events
 								</a>
 							</li>
 							<li>
-								<a href="#about" className="text-gray-400 hover:text-white transition-colors">
+								<a href="#about" className="text-gray-400 hover:text-slate-200 transition-colors">
 									About Us
 								</a>
 							</li>
 							<li>
-								<a href="#artists" className="text-gray-400 hover:text-white transition-colors">
+								<a href="#artists" className="text-gray-400 hover:text-slate-200 transition-colors">
 									Artists
 								</a>
 							</li>
 							<li>
-								<a href="#contact" className="text-gray-400 hover:text-white transition-colors">
+								<a href="#contact" className="text-gray-400 hover:text-slate-200 transition-colors">
 									Contact
 								</a>
 							</li>
@@ -35,16 +35,16 @@ export default function Footer() {
 					<div>
 						<h4 className="text-lg font-semibold mb-4">Follow Us</h4>
 						<div className="flex space-x-4">
-							<a href="#" className="text-gray-400 hover:text-white transition-colors">
+							<a href="#" className="text-gray-400 hover:text-slate-200 transition-colors">
 								<Facebook className="h-6 w-6" />
 							</a>
-							<a href="#" className="text-gray-400 hover:text-white transition-colors">
+							<a href="#" className="text-gray-400 hover:text-slate-200 transition-colors">
 								<Instagram className="h-6 w-6" />
 							</a>
-							<a href="#" className="text-gray-400 hover:text-white transition-colors">
+							<a href="#" className="text-gray-400 hover:text-slate-200 transition-colors">
 								<Twitter className="h-6 w-6" />
 							</a>
-							<a href="#" className="text-gray-400 hover:text-white transition-colors">
+							<a href="#" className="text-gray-400 hover:text-slate-200 transition-colors">
 								<Youtube className="h-6 w-6" />
 							</a>
 						</div>

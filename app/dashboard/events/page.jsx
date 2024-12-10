@@ -52,7 +52,7 @@ export default function EventsPage() {
 	return (
 		<div className="">
 			<div className="text-right">
-				<button onClick={handleCreateEvent} className="bg-red-800 text-white font-bold px-4 py-2 my-4">
+				<button onClick={handleCreateEvent} className="bg-red-800 text-slate-200 font-bold px-4 py-2 my-4">
 					Create Event
 				</button>
 			</div>
@@ -114,7 +114,7 @@ export default function EventsPage() {
 			{openEventModal && (
 				<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
 					<div className="bg-white p-6 rounded-lg shadow-lg w-96">
-						<h2 className="text-lg font-bold text-white bg-red-700 p-4 mb-6 text-center">{eventToEdit ? "Edit Event" : "Create Event"}</h2>
+						<h2 className="text-lg font-bold text-slate-200 bg-red-700 p-4 mb-6 text-center">{eventToEdit ? "Edit Event" : "Create Event"}</h2>
 						<EventForm handleCloseEventModal={handleCloseEventModal} eventToEdit={eventToEdit} />
 					</div>
 				</div>
@@ -159,7 +159,7 @@ export default function EventsPage() {
 // 	return (
 // 		<div className="">
 // 			<div className="text-right">
-// 				<button onClick={handleCreateEvent} className="bg-red-800 text-white font-bold px-4 py-2 my-4">
+// 				<button onClick={handleCreateEvent} className="bg-red-800 text-slate-200 font-bold px-4 py-2 my-4">
 // 					Create Event
 // 				</button>
 // 			</div>
@@ -221,7 +221,7 @@ export default function EventsPage() {
 // 			{openCreateEventModal && (
 // 				<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
 // 					<div className="bg-white p-6 rounded-lg shadow-lg w-96">
-// 						<h2 className="text-lg font-bold text-white bg-red-700 p-4 mb-6 text-center">Create Event</h2>
+// 						<h2 className="text-lg font-bold text-slate-200 bg-red-700 p-4 mb-6 text-center">Create Event</h2>
 // 						<EventForm handleCloseEventModal={handleCloseEventModal} fetchEvents={events} />
 // 					</div>
 // 				</div>

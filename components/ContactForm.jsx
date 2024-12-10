@@ -142,7 +142,7 @@ const ContactForm = () => {
 						</div>
 
 						{/* Submit Button */}
-						<Button type="submit" disabled={isSubmitting} className="w-full bg-slate-700 hover:bg-black text-white py-3 rounded-lg transition-all duration-200 flex items-center justify-center space-x-2">
+						<Button type="submit" disabled={isSubmitting} className="w-full bg-slate-700 hover:bg-black text-slate-200 py-3 rounded-lg transition-all duration-200 flex items-center justify-center space-x-2">
 							{isSubmitting ? (
 								<>
 									<Loader2 className="h-5 w-5 animate-spin" />

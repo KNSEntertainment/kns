@@ -104,7 +104,7 @@ export default function GalleryForm({ handleCloseGalleryModal, galleryToEdit }) 
 				<input type="text" id="alt" value={formData.alt} onChange={(e) => setFormData({ ...formData, alt: e.target.value })} className="w-full p-2 border rounded" required />
 			</div>
 			<div className="grid grid-cols-2 gap-2">
-				<button type="submit" disabled={submitting} className={`w-full p-1.5 rounded ${submitting ? "bg-gray-400 cursor-not-allowed" : "bg-red-600 hover:bg-red-700"} text-white font-bold`}>
+				<button type="submit" disabled={submitting} className={`w-full p-1.5 rounded ${submitting ? "bg-gray-400 cursor-not-allowed" : "bg-red-600 hover:bg-red-700"} text-slate-200 font-bold`}>
 					{submitting ? `${galleryToEdit ? "Updating" : "Creating"} Gallery Item...` : `${galleryToEdit ? "Update" : "Create"} Gallery Item`}
 				</button>
 				<Button variant="outline" onClick={handleCloseGalleryModal}>

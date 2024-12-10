@@ -121,8 +121,8 @@ export default function FeaturedArtists() {
 									<div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10" />
 									<Image width={300} height={300} src={artist.image || "/placeholder.jpg"} alt={artist.name || "alt"} className="w-full h-32 md:h-72 object-cover transition-transform duration-500 hover:scale-105" />
 									<div className="absolute bottom-1 sm:bottom-4 left-4 z-20">
-										<h2 className="text-sm sm:text-xl md:text-2xl font-bold text-white">{artist.name}</h2>
-										<Badge className="text-xs md:text-sm lg:text-md bg-red-500 text-white mb-1">{artist.genre}</Badge>
+										<h2 className="text-sm sm:text-xl md:text-2xl font-bold text-slate-200">{artist.name}</h2>
+										<Badge className="text-xs md:text-sm lg:text-md bg-red-500 text-slate-200 mb-1">{artist.genre}</Badge>
 									</div>
 								</div>
 

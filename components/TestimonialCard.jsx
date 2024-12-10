@@ -31,7 +31,7 @@ const TestimonialCard = ({ testimonial }) => {
 							<div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full blur-sm opacity-50" />
 							<Avatar className="h-12 w-12 border-2 border-white relative">
 								<AvatarImage src={testimonial.audienceimage} alt={testimonial.audiencename || "alt"} className="object-cover" />
-								<AvatarFallback className="bg-gradient-to-r from-blue-500 to-purple-500 text-white">N/A</AvatarFallback>
+								<AvatarFallback className="bg-gradient-to-r from-blue-500 to-purple-500 text-slate-200">N/A</AvatarFallback>
 							</Avatar>
 						</div>
 

@@ -51,7 +51,7 @@ export default function EventsPage() {
 	return (
 		<div className="max-w-3xl">
 			<div className="text-right">
-				<button onClick={handleCreatePartner} className="bg-red-800 text-white font-bold px-4 py-2 my-4">
+				<button onClick={handleCreatePartner} className="bg-red-800 text-slate-200 font-bold px-4 py-2 my-4">
 					Create Partner
 				</button>
 			</div>
@@ -101,7 +101,7 @@ export default function EventsPage() {
 			{openPartnerModal && (
 				<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
 					<div className="bg-white p-6 rounded-lg shadow-lg w-96">
-						<h2 className="text-lg font-bold text-white bg-red-700 p-4 mb-6 text-center">{partnerToEdit ? "Edit Partner" : "Create Partner"}</h2>
+						<h2 className="text-lg font-bold text-slate-200 bg-red-700 p-4 mb-6 text-center">{partnerToEdit ? "Edit Partner" : "Create Partner"}</h2>
 						<PartnerForm handleClosePartnerModal={handleClosePartnerModal} partnerToEdit={partnerToEdit} fetchPartners={partners} />
 					</div>
 				</div>

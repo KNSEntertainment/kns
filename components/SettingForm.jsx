@@ -187,7 +187,7 @@ export default function EmployeeForm({ settingdata }) {
 					<input type="file" id="companyLogo" name="companyLogo" onChange={handleImageChange} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
 				</div>
 				<div className="grid justify-items-end gap-2 mt-12">
-					<button type="submit" disabled={submitting} className={`px-4 py-2 rounded ${submitting ? "bg-gray-400 cursor-not-allowed" : "bg-red-700 hover:bg-red-800"} text-white font-bold`}>
+					<button type="submit" disabled={submitting} className={`px-4 py-2 rounded ${submitting ? "bg-gray-400 cursor-not-allowed" : "bg-red-700 hover:bg-red-800"} text-slate-200 font-bold`}>
 						{submitting ? "Updating Profile..." : "Update Profile"}
 					</button>
 				</div>

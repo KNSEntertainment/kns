@@ -1,31 +1,18 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Calendar, Clock, Eye, MapPin } from "lucide-react";
+import { Calendar, Clock, Globe, MapPin } from "lucide-react";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { BuyTicketButton } from "./BuyTicketButton";
+import ShareEvent from "./ShareEvent";
 
 export default function UpcomingEvents() {
 	const [events, setEvents] = useState([]);
 	const [loading, setLoading] = useState(true);
-	// const [filter, setFilter] = useState("upcoming");
-	// const [searchTerm, setSearchTerm] = useState("");
-	// const [countryFilter, setcountryFilter] = useState("");
-	// const [dateFilter, setDateFilter] = useState("");
-	// const [filteredEvents, setFilteredEvents] = useState([]);
-	// const [countries, setCountries] = useState([]);
-	// const [dates, setDates] = useState([]);
-
-	// const formatDateWithDay = (dateString) => {
-	// 	const date = new Date(dateString);
-	// 	const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-	// 	const day = days[date.getDay()];
-	// 	return `${dateString} (${day})`;
-	// };
 
 	useEffect(() => {
 		const fetchEvents = async () => {
@@ -35,10 +22,6 @@ export default function UpcomingEvents() {
 
 				if (data.success) {
 					setEvents(data.events);
-					// const uniqueCountries = [...new Set(data.events.map((event) => event.eventcountry))];
-					// const uniqueDates = [...new Set(data.events.map((event) => event.eventdate))];
-					// setCountries(uniqueCountries);
-					// setDates(uniqueDates);
 				} else {
 					console.error("Failed to fetch events:");
 				}
@@ -52,36 +35,6 @@ export default function UpcomingEvents() {
 		fetchEvents();
 	}, []);
 
-	// useEffect(() => {
-	// 	const currentDate = new Date();
-
-	// 	let filtered = events;
-
-	// 	// Apply time filter
-	// 	if (filter === "upcoming") {
-	// 		filtered = filtered.filter((event) => new Date(event.eventdate) > currentDate);
-	// 	} else if (filter === "past") {
-	// 		filtered = filtered.filter((event) => new Date(event.eventdate) <= currentDate);
-	// 	}
-
-	// 	// Apply search filter
-	// 	if (searchTerm) {
-	// 		filtered = filtered.filter((event) => event.eventname.toLowerCase().includes(searchTerm.toLowerCase()));
-	// 	}
-
-	// 	// Apply country filter
-	// 	if (countryFilter && countryFilter !== "all_countries") {
-	// 		filtered = filtered.filter((event) => event.eventcountry === countryFilter);
-	// 	}
-
-	// 	// Apply date filter
-	// 	if (dateFilter && dateFilter !== "all_dates") {
-	// 		filtered = filtered.filter((event) => event.eventdate === dateFilter);
-	// 	}
-
-	// 	setFilteredEvents(filtered);
-	// }, [filter, events, searchTerm, countryFilter, dateFilter]);
-
 	if (loading) {
 		return <p>Loading events...</p>;
 	}
@@ -90,64 +43,73 @@ export default function UpcomingEvents() {
 		<section id="events" className="py-8 sm:py-16 bg-gray-100">
 			<div className="container mx-auto px-2 sm:px-4">
 				<h2 className="text-3xl font-bold text-center mb-6 sm:mb-12">
-					Upcoming <span className="text-red-500">Events</span>
+					Upcoming <span className="text-red-500">Event</span>
 				</h2>
 
 				{events.length > 0 ? (
-					<motion.div key="events-grid" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 sm:gap-8">
-						{events.map((event, index) => (
-							<motion.div key={event._id} initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: index * 0.1 }}>
-								<Card className=" overflow-hidden h-full group">
-									<div className="overflow-hidden">
-										<Image width={400} height={300} src={event?.eventposterUrl || "/placeholder.jpg"} alt={event?.eventname || "alt"} className="w-full h-48 sm:h-64 object-cover transition-transform duration-300 ease-in-out group-hover:scale-105" />
-									</div>
-
-									<Link href={`/events/${event?._id}`}>
-										<CardHeader>
-											<span className=" border-black border-2 rounded-full w-fit px-2 py-1 mb-1 text-black text-xs sm:text-md font-semibold">{event?.eventcountry}</span>
-											<CardTitle className="line-clamp-1">{event?.eventname}</CardTitle>
-										</CardHeader>
+					<motion.div key="events-grid" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="grid grid-cols-1 lg:grid-cols-3 md:gap-20 bg-white p-2 rounded-xl">
+						{events.slice(0, 1).map((event) => (
+							<>
+								<motion.div className="grid col-span-2 overflow-hidden" key={event?._id} initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+									<Image width={400} height={500} src={event?.eventposterUrl || "/placeholder.jpg"} alt={event?.eventname || "alt"} className="w-full h-auto rounded-lg object-cover transition-transform duration-300 ease-in-out group-hover:scale-105" />
+								</motion.div>
+								<div className="mt-4">
+									<Link href={`/events/${event?._id}`} className="flex w-full items-center justify-center bg-black p-4  text-white rounded-lg font-semibold">
+										View Event Details
 									</Link>
-									<CardContent className="">
-										<div className="flex justify-between">
-											<div className="flex items-center mb-2">
-												<Calendar className="h-4 w-4 mr-2 text-primary" />
-												<span className="text-sm text-gray-600">{event?.eventdate}</span>
-											</div>
-											<div className="flex items-center mb-2">
-												<Clock className="h-4 w-4 mr-2 text-primary" />
-												<span className="text-sm text-gray-600 line-clamp-1">{event?.eventtime} </span>
-											</div>
-										</div>
-										<div className="flex justify-between">
-											<div className="flex items-center">
-												<MapPin className="h-4 w-4 mr-2 text-primary" />
-												<span className="text-sm text-gray-600 line-clamp-1">{event?.eventvenue}</span>
-											</div>
-											{/* <div className="flex items-center">
-													<Globe className="h-4 w-4 mr-2 text-primary" />
-													<span className="text-sm text-gray-600 line-clamp-1">Country</span>
-												</div> */}
-											<div className="text-2xl font-bold">{event.eventprice !== "0" && "€" + event.eventprice}</div>
-										</div>
-									</CardContent>
-									<CardFooter className="flex justify-between">
+									<div className="mt-6 text-black text-lg font-semibold mb-2">Reserve your seat today</div>
+									<Card className="px-6 text-xl overflow-hidden group ">
 										<Link href={`/events/${event?._id}`}>
-											<Button variant="secondary" className="hover:bg-slate-200">
-												<Eye className="hidden md:block h-4 w-4" />
-												View Details
-											</Button>
+											<CardHeader>
+												<CardTitle className="text-lg line-clamp-1 hover:text-red-700">{event?.eventname}</CardTitle>
+											</CardHeader>
 										</Link>
-										{/* <Button variant="outline" onClick={handleAddToCart} disabled={loading}> */}
-										{new Date(event?.eventdate) > new Date() && <BuyTicketButton btnText="Add to Cart" eventId={event?.eventname} price={event?.eventprice} />}
-									</CardFooter>
-								</Card>
-							</motion.div>
+										<CardContent className="">
+											<div className="flex justify-between">
+												<div className="flex items-center mb-2">
+													<Calendar className="h-4 w-4 mr-2 text-primary" />
+													<span className="text-sm text-gray-600">{event?.eventdate}</span>
+												</div>
+												<div className="flex items-center mb-2">
+													<Clock className="h-4 w-4 mr-2 text-primary" />
+													<span className="text-sm text-gray-600 line-clamp-1">{event?.eventtime} </span>
+												</div>
+											</div>
+											<div className="flex justify-between">
+												<div className="flex items-center">
+													<Globe className="h-4 w-4 mr-2 text-primary" />
+													<span className="text-sm text-gray-600 line-clamp-1">{event?.eventcountry}</span>
+												</div>
+												<div className="flex items-center">
+													<MapPin className="h-4 w-4 mr-2 text-primary" />
+													<span className="text-sm text-gray-600 line-clamp-1">{event?.eventvenue}</span>
+												</div>
+											</div>
+										</CardContent>
+										<CardFooter className="flex justify-end gap-4">
+											{" "}
+											<div className="text-4xl font-bold">{event.eventprice !== "0" && "€" + event.eventprice}</div>
+											{new Date(event?.eventdate) > new Date() && <BuyTicketButton btnText="Add to Cart" eventId={event?.eventname} price={event?.eventprice} />}
+										</CardFooter>
+									</Card>
+									<div className=" text-black text-lg font-semibold mt-6 mb-2">Send to your friends and family</div>
+
+									<ShareEvent title={event.eventname} description={event.eventdescription} startDate={new Date(event.eventdate)} endDate={new Date(event.eventdate)} />
+
+									<div className="w-full mb-6">
+										<div className=" text-black mt-6 mb-2 text-lg font-semibold">Relevant Media</div>
+										<iframe className="rounded-xl w-full h-60 " src={event.eventyoutubeUrl} title={event.eventname} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+									</div>
+									<div className="w-full mt-6">
+										<iframe src={event.eventspotifyUrl} width="100%" frameBorder="0" allowFullScreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+									</div>
+								</div>
+							</>
 						))}
 					</motion.div>
 				) : (
 					<motion.p key="no-events" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="text-center text-gray-600">
-						No events available for this filter combination.
+						Currently no events are available.
 					</motion.p>
 				)}
 			</div>

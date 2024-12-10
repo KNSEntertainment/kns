@@ -141,7 +141,7 @@ export default function PartnerForm({ handleClosePartnerModal, partnerToEdit = n
 			</div>
 
 			<div className="grid grid-cols-2 gap-2">
-				<button type="submit" disabled={submitting} className={`w-full p-1.5 rounded ${submitting ? "bg-gray-400 cursor-not-allowed" : "bg-red-600 hover:bg-red-700"} text-white font-bold`}>
+				<button type="submit" disabled={submitting} className={`w-full p-1.5 rounded ${submitting ? "bg-gray-400 cursor-not-allowed" : "bg-red-600 hover:bg-red-700"} text-slate-200 font-bold`}>
 					{submitting ? `${partnerToEdit ? "Updating" : "Creating"} partner...` : `${partnerToEdit ? "Update" : "Create"} Partner`}
 				</button>
 				<button type="button" onClick={handleClosePartnerModal} className="w-full p-1.5 rounded border text-red-600 font-bold hover:bg-gray-100">

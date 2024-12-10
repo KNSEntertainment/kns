@@ -175,7 +175,7 @@ export default function BlogForm({ handleCloseBlogModal, blogToEdit = null }) {
 				/>
 			</div>
 			<div className="grid grid-cols-2 gap-2">
-				<button type="submit" disabled={submitting} className={`w-full p-1.5 rounded ${submitting ? "bg-gray-400 cursor-not-allowed" : "bg-red-600 hover:bg-red-700"} text-white font-bold`}>
+				<button type="submit" disabled={submitting} className={`w-full p-1.5 rounded ${submitting ? "bg-gray-400 cursor-not-allowed" : "bg-red-600 hover:bg-red-700"} text-slate-200 font-bold`}>
 					{submitting ? `${blogToEdit ? "Updating" : "Creating"} Event...` : `${blogToEdit ? "Update" : "Create"} Event`}
 				</button>
 				<Button variant="outline" onClick={handleCloseBlogModal}>

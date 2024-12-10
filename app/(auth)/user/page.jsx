@@ -58,7 +58,7 @@ export default function AuthForm() {
 	return (
 		<div className="min-h-screen flex items-center justify-center bg-gray-100">
 			<Card className="w-full max-w-md">
-				<CardHeader className="bg-red-700 text-white rounded-t-lg">
+				<CardHeader className="bg-red-700 text-slate-200 rounded-t-lg">
 					<CardTitle className="text-2xl font-bold">Welcome</CardTitle>
 				</CardHeader>
 				<CardContent className="mt-6">

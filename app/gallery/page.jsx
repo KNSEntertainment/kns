@@ -61,7 +61,7 @@ export default function Gallery() {
 				{/* Filter Buttons */}
 				<div className="flex flex-wrap justify-center gap-4 mb-8">
 					{filters.map((filter) => (
-						<button key={filter} onClick={() => scrollToSection(filter)} className={`px-4 py-2 rounded-full text-sm font-semibold transition-colors duration-300 ${activeFilter === filter ? "bg-red-700 text-white" : "bg-white text-red-700 hover:bg-red-100"}`}>
+						<button key={filter} onClick={() => scrollToSection(filter)} className={`px-4 py-2 rounded-full text-sm font-semibold transition-colors duration-300 ${activeFilter === filter ? "bg-red-700 text-slate-200" : "bg-white text-red-700 hover:bg-red-100"}`}>
 							{filter}
 						</button>
 					))}
@@ -76,10 +76,10 @@ export default function Gallery() {
 								<div className="group cursor-zoom-in" onClick={() => setZoomedItem(item)}>
 									<Image src={item.src || "/placeholder.jpg"} alt={item.alt || "alt"} width={800} height={800} className="w-full h-full object-cover" />
 									<div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-opacity duration-300 flex items-center justify-center">
-										{/* <svg className="w-12 h-12 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+										{/* <svg className="w-12 h-12 text-slate-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 										<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
 									</svg> */}
-										<Fullscreen className="w-12 h-12 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+										<Fullscreen className="w-12 h-12 text-slate-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 									</div>
 								</div>
 							) : (
@@ -94,7 +94,7 @@ export default function Gallery() {
 					<div className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50">
 						<div className="relative zoomed-image max-w-4xl max-h-full">
 							<Image src={zoomedItem.src || "/placeholder.jpg"} alt={zoomedItem.alt || "alt"} width={1200} height={900} className="w-full h-full object-contain" />
-							<button onClick={() => setZoomedItem(null)} className="absolute top-4 right-4 text-white text-2xl">
+							<button onClick={() => setZoomedItem(null)} className="absolute top-4 right-4 text-slate-200 text-2xl">
 								&times;
 							</button>
 						</div>
