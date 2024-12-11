@@ -7,11 +7,11 @@ import Hero from "@/components/Hero";
 import UpcomingEvents from "@/components/UpcomingEvents.jsx";
 import About from "@/components/About";
 import Testimonials from "@/components/Testimonials";
-import Newsletter from "@/components/Newsletter";
-import Footer from "@/components/Footer";
-import ContactCard from "@/components/ContactCard";
+// import Newsletter from "@/components/Newsletter";
+// import ContactCard from "@/components/ContactCard";
 import PartnersSlider from "@/components/PartnersSlider";
 import Gallery from "@/components/Gallery";
+import Footer from "@/components/Footer";
 
 export default function LandingPage() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -28,8 +28,7 @@ export default function LandingPage() {
 				<PartnersSlider />
 				<Gallery />
 				<Testimonials />
-				<ContactCard />
-				<Newsletter />
+				{/* <ContactCard /> */}
 			</main>
 			<Footer />
 		</div>

@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Menu, ShoppingCart, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -30,22 +30,22 @@ export default function Header({ isMenuOpen, toggleMenu }: HeaderProps) {
 				</Link>
 
 				<div className="flex gap-2 items-center">
-					<nav className="hidden md:flex space-x-6 mr-6">
-						<Link href="#about" className={`border-b border-transparent hover:border-b hover:border-b-red-700 ${isScrolled ? "text-black " : "text-slate-200 hover:text-slate-200"}`}>
+					<nav className="hidden md:flex items-center space-x-6 mr-6">
+						<Link href="/about-us" className={`border-b border-transparent hover:border-b hover:border-b-red-700 ${isScrolled ? "text-black " : "text-slate-200 hover:text-slate-200"}`}>
 							About Us
 						</Link>
 
-						<Link href="#contact" className={`border-b border-transparent hover:border-b hover:border-b-red-700 ${isScrolled ? "text-black " : "text-slate-200 hover:text-slate-200"}`}>
-							Contact
+						<Link href="request-offer" className={`border-b bg-red-700 rounded-full py-2 px-6 border-transparent hover:border-b hover:border-b-red-700 ${isScrolled ? "text-white" : "text-slate-200 hover:text-slate-200"}`}>
+							Request an Offer
 						</Link>
 						<Link href="/dashboard" className={`border-b border-transparent hover:border-b hover:border-b-red-700 ${isScrolled ? "text-black " : "text-slate-200 hover:text-slate-200"}`}>
 							Dashboard
 						</Link>
 					</nav>
-					<div className="relative p-1">
+					{/* <div className="relative p-1">
 						<ShoppingCart className={`md:block ${isScrolled ? "text-black" : "text-slate-200"}`} style={{ height: "32px", width: "32px" }} />
-						{/* <span className="absolute top-0 right-0 bg-red-600 text-slate-200 text-xs font-semibold rounded-full h-4 w-4 flex items-center justify-center">1</span> */}
-					</div>
+						<span className="absolute top-0 right-0 bg-red-600 text-slate-200 text-xs font-semibold rounded-full h-4 w-4 flex items-center justify-center">1</span>
+					</div> */}
 					<div className="md:hidden cursor-pointer" onClick={toggleMenu}>
 						{isMenuOpen ? <X className={`${isScrolled ? "text-black " : "text-slate-200"}`} style={{ height: "32px", width: "32px" }} /> : <Menu className={`${isScrolled ? "text-black " : "text-slate-200"}`} style={{ height: "32px", width: "32px" }} />}
 					</div>
@@ -54,19 +54,19 @@ export default function Header({ isMenuOpen, toggleMenu }: HeaderProps) {
 			{isMenuOpen && (
 				<motion.div className="md:hidden bg-white" initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.3 }}>
 					<nav className="flex flex-col items-center text-lg py-6">
-						<NavLink href="#events" onClick={toggleMenu}>
+						<NavLink href="/events" onClick={toggleMenu}>
 							Events
 						</NavLink>
-						<NavLink href="#about" onClick={toggleMenu}>
-							About
+						<NavLink href="/about-us" onClick={toggleMenu}>
+							About Us
 						</NavLink>
 
-						<NavLink href="#gallery" onClick={toggleMenu}>
+						<NavLink href="/gallery" onClick={toggleMenu}>
 							Gallery
 						</NavLink>
 
-						<NavLink href="#contact" onClick={toggleMenu}>
-							Contact
+						<NavLink href="/request-offer" onClick={toggleMenu}>
+							Request an Offer
 						</NavLink>
 						<NavLink href="/dashboard" onClick={toggleMenu}>
 							Dashboard

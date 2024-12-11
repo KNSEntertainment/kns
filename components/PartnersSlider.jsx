@@ -21,17 +21,17 @@ const PartnersSlider = () => {
 	];
 
 	return (
-		<div className="flex h-60 sm:h-[500px] items-center bg-white py-8">
+		<div className="flex h-[350px] sm:h-[500px] items-center bg-white py-8">
 			<div className="container mx-auto">
 				<h2 className="text-3xl font-bold text-center mb-6 sm:mb-12 md:mb-20">
 					Our <span className="text-red-500">Partners</span>
 				</h2>
 				<div className="overflow-hidden relative">
-					<div className="flex animate-scroll gap-8">
+					<div className="flex animate-scroll gap-2 md:gap-8">
 						{logos.map((logo) => (
 							<div key={logo.id} title={logo.pname} className="flex flex-col items-center space-y-2">
-								<p className=" text-sm font-semibold">{logo.type}</p>
-								<a href={logo.url} className="flex-shrink-0 w-72 h-32 bg-white p-4 m-4 hover:shadow-md rounded-lg flex items-center justify-center">
+								<p className="mt-6 text-sm font-semibold">{logo.type}</p>
+								<a href={logo.url} className="flex-shrink-0 w-36 md:w-72 h-32 bg-white m-6 hover:shadow-md rounded-lg flex items-center justify-center">
 									<Image src={logo.logo || "/placeholder.jpg"} alt={logo.alt || "alt"} width={200} height={200} onClick={handlePartnerLogoClick} className="object-contain max-h-full max-w-full cursor-pointer" />
 								</a>
 								{/* <p className="text-xs">{logo.pname}</p> */}

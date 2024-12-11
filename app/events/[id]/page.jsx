@@ -38,7 +38,7 @@ export default async function EventPage({ params }) {
 	return (
 		<div className="container mx-auto flex flex-col lg:flex-row gap-8 pt-36 p-6">
 			<main className="flex-grow">
-				<h1 className="text-xl md:text-2xl xl:text-4xl font-bold mb-3">{event.eventname}</h1>
+				<h1 className="text-xl md:text-2xl xl:text-4xl font-bold my-8">{event.eventname}</h1>
 				<div className="mb-6 relative w-full">
 					<Image src={event.eventposterUrl || "/placeholder.jpg"} alt={event.eventname || "alt"} width={500} height={500} className="w-full" />
 					<div className="mt-6">
@@ -47,7 +47,7 @@ export default async function EventPage({ params }) {
 					</div>
 				</div>
 			</main>
-			<aside className="mt-14 w-full lg:w-1/3 space-y-6 md:space-y-12">
+			<aside className="mt-24 w-full lg:w-1/3 space-y-6 md:space-y-12">
 				<div className="bg-slate-100 border border-slate-300 rounded-xl mx-6 py-6">
 					<CardTitle className="text-center text-xl md:text-2xl lg:text-3xl font-bold text-slate-800 mb-6">Event Details</CardTitle>
 					<div className="grid grid-cols-1 px-6 gap-4 mb-6">
@@ -77,7 +77,9 @@ export default async function EventPage({ params }) {
 						{/* <BuyTicketButton btnText="Get Your Tickets Now" eventId={event?.eventname} price={event?.eventprice} /> */}
 					</div>
 				</div>
-				<ShareEvent title={event.eventname} description={event.eventdescription} startDate={new Date(event.eventdate)} endDate={new Date(event.eventdate)} />
+				<div className="mx-6">
+					<ShareEvent title={event.eventname} description={event.eventdescription} startDate={new Date(event.eventdate)} endDate={new Date(event.eventdate)} />
+				</div>{" "}
 				<div className="w-full">
 					<iframe className="w-full h-72 px-6" src={event.eventyoutubeUrl} title={event.eventname} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
 				</div>

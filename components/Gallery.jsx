@@ -62,7 +62,7 @@ export default function Gallery() {
 							<div key={item._id} id={item.category} className="relative overflow-hidden rounded-lg shadow-lg transition-transform duration-300">
 								{item.mediatype === "image" ? (
 									<div className="group cursor-zoom-in" onClick={() => setZoomedItem(item)}>
-										<Image src={item.media || "/placeholder.jpg"} alt={item.alt || "alt"} width={400} height={400} className="w-full h-full object-cover" />
+										<Image src={item.media || "/placeholder.jpg"} alt={item.alt || "alt"} width={400} height={400} className="w-full h-[300px] object-cover" />
 										<div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-opacity duration-300 flex items-center justify-center">
 											<Fullscreen className="w-12 h-12 text-slate-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 										</div>

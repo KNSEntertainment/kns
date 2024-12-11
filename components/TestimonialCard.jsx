@@ -1,17 +1,15 @@
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Quote, MapPin, Heart } from "lucide-react";
+import { Quote, MapPin, Star } from "lucide-react";
 
 const TestimonialCard = ({ testimonial }) => {
-	const [isLiked, setIsLiked] = React.useState(false);
-
 	return (
 		<Card className="max-w-xl bg-white hover:shadow-lg transition-shadow duration-300 flex-shrink-0 w-3/4 md:w-full md:gap-4 snap-center">
 			<CardContent className="p-6">
 				{/* Quote Icon Accent */}
 				<div className="relative">
-					<Quote className="absolute -top-1 -left-2 rotate-180 w-8 h-8 text-blue-500/10" />
+					<Quote className="absolute -top-1 -left-2 rotate-180 w-8 h-8 text-yellow-400/50" />
 				</div>
 
 				{/* Main Quote Content */}
@@ -46,10 +44,12 @@ const TestimonialCard = ({ testimonial }) => {
 					</div>
 
 					{/* Interaction Buttons */}
-					<div className="flex items-center space-x-3">
-						<button className="group flex items-center space-x-1 p-2 hover:bg-rose-50 rounded-full transition-colors duration-200" onClick={() => setIsLiked(!isLiked)} aria-label={isLiked ? "Unlike testimonial" : "Like testimonial"}>
-							<Heart className={`w-4 h-4 transition-colors duration-200 ${isLiked ? "text-rose-500 fill-rose-500 scale-110" : "text-gray-400 group-hover:text-rose-500"}`} />
-						</button>
+					<div className="flex items-center space-x-1">
+						<Star className="w-4 h-4 transition-colors duration-200 fill-yellow-400 scale-110 text-yellow-400" />
+						<Star className="w-4 h-4 transition-colors duration-200 fill-yellow-400 scale-110 text-yellow-400" />
+						<Star className="w-4 h-4 transition-colors duration-200 fill-yellow-400 scale-110 text-yellow-400" />
+						<Star className="w-4 h-4 transition-colors duration-200 fill-yellow-400 scale-110 text-yellow-400" />
+						<Star className="w-4 h-4 transition-colors duration-200 fill-yellow-400 scale-110 text-yellow-400" />
 					</div>
 				</div>
 			</CardContent>

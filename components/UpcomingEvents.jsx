@@ -46,22 +46,22 @@ export default function UpcomingEvents() {
 					Upcoming <span className="text-red-500">Event</span>
 				</h2>
 
-				{events.length > 0 ? (
-					<motion.div key="events-grid" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="grid grid-cols-1 lg:grid-cols-3 md:gap-20 bg-white p-2 rounded-xl">
+				{events?.length > 0 ? (
+					<motion.div key="events-grid" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
 						{events.slice(0, 1).map((event) => (
-							<>
-								<motion.div className="grid col-span-2 overflow-hidden" key={event?._id} initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+							<div key={event?._id} className="grid grid-cols-1 lg:grid-cols-3 md:gap-20 bg-white p-2 rounded-xl">
+								<motion.div className="grid col-span-2 overflow-hidden" initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
 									<Image width={400} height={500} src={event?.eventposterUrl || "/placeholder.jpg"} alt={event?.eventname || "alt"} className="w-full h-auto rounded-lg object-cover transition-transform duration-300 ease-in-out group-hover:scale-105" />
 								</motion.div>
-								<div className="mt-4">
-									<Link href={`/events/${event?._id}`} className="flex w-full items-center justify-center bg-black p-4  text-white rounded-lg font-semibold">
+								<div className="">
+									{/* <Link href={`/events/${event?._id}`} className="flex w-full items-center justify-center bg-black p-4  text-white rounded-lg font-semibold">
 										View Event Details
-									</Link>
+									</Link> */}
 									<div className="mt-6 text-black text-lg font-semibold mb-2">Reserve your seat today</div>
 									<Card className="px-6 text-xl overflow-hidden group ">
 										<Link href={`/events/${event?._id}`}>
 											<CardHeader>
-												<CardTitle className="text-lg line-clamp-1 hover:text-red-700">{event?.eventname}</CardTitle>
+												<CardTitle className="text-lg hover:text-red-700">{event?.eventname}</CardTitle>
 											</CardHeader>
 										</Link>
 										<CardContent className="">
@@ -104,7 +104,7 @@ export default function UpcomingEvents() {
 										<iframe src={event.eventspotifyUrl} width="100%" frameBorder="0" allowFullScreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 									</div>
 								</div>
-							</>
+							</div>
 						))}
 					</motion.div>
 				) : (

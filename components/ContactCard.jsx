@@ -19,45 +19,6 @@ const ContactCard = () => {
 		setTimeout(() => setCopiedField(null), 2000);
 	};
 
-	// const contactInfo = {
-	// 	name: "Kiran Gurung",
-	// 	position: "Proprietor, KNS",
-	// 	email: "kirangrg1628@gmail.com",
-	// 	phone: "+47 45921405",
-	// 	address: "Oslo, Norway",
-	// 	facebook: "https://www.facebook.com/bhoot.grg",
-	// 	instagram: "https://instagram.com/example",
-	// 	youtube: "https://youtube.com/example",
-	// 	linkedin: "https://linkedin.com/in/example",
-	// };
-
-	// const socialLinks = [
-	// 	{
-	// 		name: "Facebook",
-	// 		icon: Facebook,
-	// 		url: contactInfo.facebook,
-	// 		color: "bg-blue-500 hover:bg-blue-600",
-	// 	},
-	// 	{
-	// 		name: "Instagram",
-	// 		icon: Instagram,
-	// 		url: contactInfo.instagram,
-	// 		color: "bg-pink-500 hover:bg-pink-600",
-	// 	},
-	// 	{
-	// 		name: "YouTube",
-	// 		icon: Youtube,
-	// 		url: contactInfo.youtube,
-	// 		color: "bg-red-500 hover:bg-red-600",
-	// 	},
-	// 	{
-	// 		name: "LinkedIn",
-	// 		icon: Linkedin,
-	// 		url: contactInfo.linkedin,
-	// 		color: "bg-blue-600 hover:bg-blue-700",
-	// 	},
-	// ];
-
 	return (
 		<section id="contact" className="py-16 bg-gray-100">
 			<div className="container sm:mx-auto rounded-xl">
