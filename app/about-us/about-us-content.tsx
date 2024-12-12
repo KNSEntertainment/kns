@@ -2,62 +2,53 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Parallax } from "react-parallax";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { MapPin, Music, Film, Mic, Calendar, Sparkles } from "lucide-react";
+import Link from "next/link";
 
 export default function AboutUsContent() {
 	return (
-		<div className="pt-24 min-h-screen bg-gradient-to-b from-slate-100 to-red-50">
-			<header className="py-20 text-center relative overflow-hidden">
-				<div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
-					<div className="w-full mb-8 md:mb-0">
-						<motion.h1 className="text-4xl md:text-6xl font-bold mb-4 text-red-600" initial={{ opacity: 0, y: -50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-							About Us
-						</motion.h1>
-						<motion.p className="text-xl md:text-2xl text-muted-foreground" initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }}>
-							Your trusted partner for unforgettable event experiences across Europe
-						</motion.p>
-					</div>
-				</div>
-			</header>
-
-			<main className="container mx-auto px-4 py-8">
+		<div className="pt-12 md:pt-24 min-h-screen">
+			<main className="container mx-auto px-4 -my-12 py-24">
 				<section className="mb-20">
 					<Card className="overflow-hidden">
-						<CardHeader className="bg-red-600 text-white p-6 px-12">
-							<CardTitle className="text-3xl text-center">Welcome to Gurung KNS Entertainment</CardTitle>
+						<CardHeader className="bg-red-600 text-white p-4 md:p-6 px-4">
+							<CardTitle className="text-2xl md:text-4xl md:text-center">
+								Welcome to Gurung KNS Entertainment{" "}
+								<motion.p className="text-lg md:text-xl text-slate-200 mt-1" initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }}>
+									Your trusted partner for unforgettable event experiences across Europe
+								</motion.p>
+							</CardTitle>
 						</CardHeader>
-						<CardContent className="p-12 grid grid-cols-1 md:grid-cols-2 items-center">
-							<motion.div className="my-6 px-12 w-full" initial={{ opacity: 0, y: -50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-								<h2 className="text-4xl font-bold mb-4">
+						<CardContent className="p-4 md:p-12 grid grid-cols-1 md:grid-cols-2 items-center">
+							<motion.div className="my-6 md:px-12 w-full" initial={{ opacity: 0, y: -50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+								<h2 className="text-2xl md:text-4xl font-bold mb-4">
 									About <span className="text-red-500 leading-tight">Us</span>
 								</h2>
 								<p className="text-lg mb-6">KNS Entertainment is a premier event management company dedicated to bringing the vibrant culture of Nepal to audiences across Europe. With a focus on organizing unforgettable cultural programs and concerts, we showcase the best Nepalese artists and their performances.</p>
-								<p className="text-lg mb-6">Our mission is to create a bridge between Nepal and Europe, fostering cultural exchange and providing a platform for Nepalese artists to share their talents with a wider audience.</p>
 								<p className="text-lg mb-8">From traditional music and dance to contemporary fusion performances, we offer a diverse range of events that celebrate the rich heritage of Nepal while embracing modern artistic expressions.</p>
 								<p className="text-lg mb-8">We are a passionate team of event planners, creators, and industry experts united by a shared commitment to excellence. With diverse talents and a keen eye for detail, we craft immersive experiences that resonate with audiences and exceed expectations.</p>
 							</motion.div>{" "}
-							<div className="px-12">
+							<div className="md:px-12">
 								<Image src="/event1.png" alt="Event Experience" width={200} height={200} className="rounded-lg shadow-lg w-full" />
 							</div>
 						</CardContent>
 					</Card>
 				</section>
 
-				<Parallax bgImage="/dancing2.jpeg" strength={500}>
-					<div style={{ height: 500 }}>
-						<div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
-							<div className="text-center text-white p-8">
-								<h2 className="text-3xl font-bold mb-6">Our Vision</h2>
-								<p className="text-lg mb-4">To redefine the event industry by delivering innovative, memorable, and impactful experiences. We aim to provide a platform where artists thrive, audiences connect, and creativity shines, setting new benchmarks for excellence in entertainment.</p>
-							</div>
-						</div>
+				<section className="h-auto bg-slate-800">
+					<div className="text-center text-white p-8">
+						<h2 className="text-2xl md:text-4xl font-bold mb-4">
+							Our <span className="text-red-500 leading-tight">Vision</span>
+						</h2>{" "}
+						<p className="text-lg mb-4">To redefine the event industry by delivering innovative, memorable, and impactful experiences. We aim to provide a platform where artists thrive, audiences connect, and creativity shines, setting new benchmarks for excellence in entertainment.</p>
 					</div>
-				</Parallax>
+				</section>
 
 				<section className="my-20">
-					<h2 className="text-3xl font-bold mb-6 text-red-600">What We Do</h2>
+					<h2 className="text-2xl md:text-4xl font-bold mb-4">
+						What We <span className="text-red-500 leading-tight">Do</span>
+					</h2>{" "}
 					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 						{services.map((service, index) => (
 							<Card key={index} className="overflow-hidden">
@@ -75,26 +66,31 @@ export default function AboutUsContent() {
 					</div>
 				</section>
 
-				<Parallax bgImage="/dancing3.jpeg" strength={300}>
-					<div style={{ height: 400 }}>
-						<div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
-							<div className=" text-white p-8">
-								<h2 className="text-3xl font-bold mb-6">Why Choose Us?</h2>
-								<ul className="grid grid-cols-1 md:grid-cols-2 gap-4 list-none">
-									{reasons.map((reason, index) => (
-										<li key={index} className="flex items-start">
-											<Sparkles className="mr-2 mt-1 text-red-400" />
-											<div>
-												<h3 className="font-semibold">{reason.title}</h3>
-												<p>{reason.description}</p>
-											</div>
-										</li>
-									))}
-								</ul>
-							</div>
-						</div>
+				<section className="bg-slate-100 text-slate-800 p-8 my-16">
+					<h2 className="text-2xl md:text-4xl font-bold mb-4">
+						Why Choose <span className="text-red-600 leading-tight">Us</span>
+					</h2>
+					<ul className="grid grid-cols-1 md:grid-cols-2 gap-4 list-none">
+						{reasons.map((reason, index) => (
+							<li key={index} className="flex items-start">
+								<Sparkles className="mr-2 mt-1 text-red-500" />
+								<div>
+									<h3 className=" text-red-600">{reason.title}</h3>
+									<p>{reason.description}</p>
+								</div>
+							</li>
+						))}
+					</ul>
+				</section>
+
+				<section className="my-6 md:my-16 h-auto border border-slate-800">
+					<div className="text-center text-black p-8">
+						<p className="text-xl md:text-3xl mb-8">So, are you ready to request an offer?</p>
+						<Link href="request-offer" className="border-b bg-red-700 rounded-full py-4 px-12 text-white font-bold">
+							Request an Offer
+						</Link>{" "}
 					</div>
-				</Parallax>
+				</section>
 			</main>
 		</div>
 	);

@@ -33,7 +33,7 @@ export default function Footer() {
 							</div>
 						</div>
 					</div>
-					<div className="min-w-[500px]">
+					<div className="">
 						<Newsletter />
 					</div>
 					<div className="bg-gray-900 text-white rounded-lg shadow-lg md:ml-24 max-w-md  mt-6 md:mt-0">

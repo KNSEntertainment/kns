@@ -41,7 +41,7 @@ export default function Newsletter() {
 					Stay <span className="text-red-500">Updated</span>
 				</h2>
 				<p className="text-gray-200 mb-8">Whether you&apos;re planning an event, looking for the perfect venue, or seeking entertainment that leaves you inspired, we&apos;re here to make it happen. Stay updated on our latest offerings and let us create memories together.</p>
-				<form onSubmit={handleSubmit} className="max-w-md  md:mx-auto flex  gap-4">
+				<form onSubmit={handleSubmit} className="md:mx-auto flex flex-1 flex-col md:flex-row gap-4">
 					<Input
 						type="email"
 						placeholder="Enter your email"
@@ -50,10 +50,10 @@ export default function Newsletter() {
 							setEmail(e.target.value);
 							console.log(email);
 						}}
-						className="flex-grow text-lg font-bold text-slate-200"
+						className="w-72 flex-grow text-lg font-bold text-slate-200"
 						required
 					/>
-					<Button type="submit" variant="secondary">
+					<Button type="submit" variant="secondary" className="w-72 md:w-fit">
 						Subscribe
 					</Button>
 				</form>

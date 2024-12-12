@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Quote, MapPin, Star } from "lucide-react";
+import { Quote, MapPin } from "lucide-react";
 
 const TestimonialCard = ({ testimonial }) => {
 	return (
@@ -27,7 +27,7 @@ const TestimonialCard = ({ testimonial }) => {
 						{/* Avatar with Border */}
 						<div className="relative">
 							<div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full blur-sm opacity-50" />
-							<Avatar className="h-12 w-12 border-2 border-white relative">
+							<Avatar className="h-8 w-8 sm:h-12 sm:w-12 border-2 border-white relative">
 								<AvatarImage src={testimonial.audienceimage} alt={testimonial.audiencename || "alt"} className="object-cover" />
 								<AvatarFallback className="bg-gradient-to-r from-blue-500 to-purple-500 text-slate-200">N/A</AvatarFallback>
 							</Avatar>
@@ -35,21 +35,12 @@ const TestimonialCard = ({ testimonial }) => {
 
 						{/* Author Details */}
 						<div className="ml-4">
-							<p className="font-semibold text-gray-900">{testimonial.audiencename}</p>
+							<p className="font-semibold text-sm sm:text-md text-gray-900">{testimonial.audiencename}</p>
 							<div className="flex items-center mt-1 text-sm text-gray-600">
 								<MapPin className="w-3 h-3 mr-1" />
 								<span>{testimonial.audienceaddress}</span>
 							</div>
 						</div>
-					</div>
-
-					{/* Interaction Buttons */}
-					<div className="flex items-center space-x-1">
-						<Star className="w-4 h-4 transition-colors duration-200 fill-yellow-400 scale-110 text-yellow-400" />
-						<Star className="w-4 h-4 transition-colors duration-200 fill-yellow-400 scale-110 text-yellow-400" />
-						<Star className="w-4 h-4 transition-colors duration-200 fill-yellow-400 scale-110 text-yellow-400" />
-						<Star className="w-4 h-4 transition-colors duration-200 fill-yellow-400 scale-110 text-yellow-400" />
-						<Star className="w-4 h-4 transition-colors duration-200 fill-yellow-400 scale-110 text-yellow-400" />
 					</div>
 				</div>
 			</CardContent>
