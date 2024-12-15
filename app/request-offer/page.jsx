@@ -72,34 +72,25 @@ const ContactForm = () => {
 		if (Object.keys(newErrors).length === 0) {
 			setIsSubmitting(true);
 			try {
-				const response = await fetch("https://api.web3forms.com/submit", {
+				const response = await fetch("/api/submit-form", {
 					method: "POST",
 					headers: {
 						"Content-Type": "application/json",
 					},
-					body: JSON.stringify({
-						access_key: "cf9615fd-9901-4e6b-a50e-241719bbcda6",
-						...formData,
-					}),
+					body: JSON.stringify(formData),
 				});
 
 				if (response.ok) {
 					setMessage("Thanks for reaching out! We'll get back to you soon.");
-					// Reset form
-					setFormData({
-						companyName: "",
-						address: "",
-						contactName: "",
-						email: "",
-						phone: "",
-						offeredPrice: "",
-						additionalInfo: "",
-					});
+					setFormData(initialFormData);
 				} else {
-					console.error("Error submitting form:", await response.json());
+					const errorData = await response.json();
+					console.error("Error submitting form:", errorData);
+					setMessage("There was an error submitting the form. Please try again.");
 				}
 			} catch (error) {
 				console.error("Error submitting form:", error);
+				setMessage("There was an error submitting the form. Please try again.");
 			} finally {
 				setIsSubmitting(false);
 			}
@@ -115,6 +106,9 @@ const ContactForm = () => {
 
 	return (
 		<div className="container mx-4 sm:mx-auto pt-40 pb-20">
+			<h2 className="text-3xl font-bold text-center mb-6 sm:mb-12">
+				Book <span className="text-red-500">Event/s</span>
+			</h2>
 			<div className="flex flex-col md:flex-row">
 				<Image src="/collaborate.avif" alt="dancing image" width={500} height={700} className="hidden md:block border-2 shadow-stone-400 shadow-sm border-gray-200 w-full h-[700px] object-cover" />
 				<Card className=" bg-white w-full md:w-1/2 rounded-none">
