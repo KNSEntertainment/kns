@@ -7,7 +7,7 @@ import { BookImage, MessageCircle, Mail, Settings, GalleryThumbnails, LayoutDash
 import { useSession } from "next-auth/react";
 
 const menuItems = [
-	{ id: "dashboard", label: "Dashboard", icon: LayoutDashboard },
+	{ id: "gurungknsadmin1234", label: "Dashboard", icon: LayoutDashboard },
 	{ id: "events", label: "Events", icon: BookImage },
 	// { id: "artists", label: "Artists", icon: Drama },
 	{ id: "testimonials", label: "Testimonials", icon: MessageCircle },
@@ -37,7 +37,7 @@ export default function DashboardLayout({ children }) {
 						return (
 							<Link
 								key={item.id}
-								href={item.id === "dashboard" ? `/${item.id}` : `/dashboard/${item.id}`}
+								href={item.id === "gurungknsadmin1234" ? `/${item.id}` : `/gurungknsadmin1234/${item.id}`}
 								className={`w-full flex items-center px-4 py-4 text-sm
                   ${activeMenu === item.id ? "bg-blue-50 text-blue-600 border-r-4 border-blue-600" : "text-slate-200 hover:text-black hover:bg-gray-50"}`}
 								onClick={() => setActiveMenu(item.id)}
@@ -55,8 +55,8 @@ export default function DashboardLayout({ children }) {
 				{/* Header */}
 				<header className="flex items-center  justify-between bg-slate-800 shadow-sm">
 					<div className="flex flex-col space-y-1 sm:flex-row sm:items-center p-8">
-						{activeMenu !== "dashboard" && (
-							<Link href="/dashboard" className="flex justify-center items-center gap-2 bg-slate-100 hover:bg-slate-200 w-fit px-2 py-1 rounded-full md:hidden">
+						{activeMenu !== "gurungknsadmin1234" && (
+							<Link href="/gurungknsadmin1234" className="flex justify-center items-center gap-2 bg-slate-100 hover:bg-slate-200 w-fit px-2 py-1 rounded-full md:hidden">
 								<ArrowBigLeft />
 							</Link>
 						)}

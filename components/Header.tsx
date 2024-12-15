@@ -38,7 +38,7 @@ export default function Header({ isMenuOpen, toggleMenu }: HeaderProps) {
 						<Link href="request-offer" className={`border-b bg-red-700 rounded-full py-2 px-6 border-transparent hover:border-b hover:border-b-red-700 ${isScrolled ? "text-white" : "text-slate-200 hover:text-slate-200"}`}>
 							Request an Offer
 						</Link>
-						<Link href="/dashboard" className={`border-b border-transparent hover:border-b hover:border-b-red-700 ${isScrolled ? "text-black " : "text-slate-200 hover:text-slate-200"}`}>
+						<Link href="/gurungknsadmin1234" className={`border-b border-transparent hover:border-b hover:border-b-red-700 ${isScrolled ? "text-black " : "text-slate-200 hover:text-slate-200"}`}>
 							Dashboard
 						</Link>
 					</nav>
@@ -68,7 +68,7 @@ export default function Header({ isMenuOpen, toggleMenu }: HeaderProps) {
 						<NavLink href="/request-offer" onClick={toggleMenu}>
 							Request an Offer
 						</NavLink>
-						<NavLink href="/dashboard" onClick={toggleMenu}>
+						<NavLink href="/gurungknsadmin1234" onClick={toggleMenu}>
 							Dashboard
 						</NavLink>
 					</nav>

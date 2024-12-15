@@ -3,14 +3,14 @@
 import React, { createContext, useContext, useState } from "react";
 
 const ActiveMenuContext = createContext({
-	activeMenu: "dashboard",
+	activeMenu: "gurungknsadmin1234",
 	setActiveMenu: (menu) => {},
 });
 
 export const useActiveMenu = () => useContext(ActiveMenuContext);
 
 export const ActiveMenuProvider = ({ children }) => {
-	const [activeMenu, setActiveMenu] = useState("dashboard");
+	const [activeMenu, setActiveMenu] = useState("gurungknsadmin1234");
 
 	return <ActiveMenuContext.Provider value={{ activeMenu, setActiveMenu }}>{children}</ActiveMenuContext.Provider>;
 };
@@ -24,13 +24,13 @@ export const ActiveMenuProvider = ({ children }) => {
 
 // export const ActiveMenuProvider = ({ children }) => {
 // 	const pathname = usePathname();
-// 	const [activeMenu, setActiveMenu] = useState("dashboard");
+// 	const [activeMenu, setActiveMenu] = useState("gurungknsadmin1234");
 
 // 	useEffect(() => {
 // 		// Extract the menu ID from the pathname
 // 		const pathSegments = pathname.split("/");
-// 		if (pathSegments.includes("dashboard")) {
-// 			setActiveMenu(pathSegments[pathSegments.length - 1] || "dashboard");
+// 		if (pathSegments.includes("gurungknsadmin1234")) {
+// 			setActiveMenu(pathSegments[pathSegments.length - 1] || "gurungknsadmin1234");
 // 		}
 // 	}, [pathname]);
 
