@@ -9,11 +9,11 @@ export default function DashboardGrid() {
 	const menuItems = [
 		{ name: "Events", icon: Calendar, href: "/gurungknsadmin1234/events", id: "events", color: "bg-purple-500" },
 		// { name: "Artists", icon: Users, href: "/gurungknsadmin1234/artists", id: "artists", color: "bg-pink-500" },
-		{ name: "Testimonials", icon: MessageSquare, href: "/gurungknsadmin1234/testimonials", id: "testimonials", color: "bg-yellow-500" },
+		{ name: "Testimonials", icon: MessageSquare, href: "/gurungknsadmin1234/testimonials", id: "testimonials", color: "bg-yellow-800" },
 		// { name: "Blogs", icon: Newspaper, href: "/gurungknsadmin1234/blogs", id: "blogs", color: "bg-blue-900" },
 		{ name: "Gallery", icon: Image, href: "/gurungknsadmin1234/gallery", id: "gallery", color: "bg-orange-500" },
 		{ name: "Partners", icon: Handshake, href: "/gurungknsadmin1234/partners", id: "partners", color: "bg-blue-600" },
-		{ name: "Subscribers", icon: Mail, href: "/gurungknsadmin1234/subscribers", id: "subscribers", color: "bg-green-500" },
+		{ name: "Subscribers", icon: Mail, href: "/gurungknsadmin1234/subscribers", id: "subscribers", color: "bg-green-700" },
 		{ name: "Profile Settings", icon: Settings, href: "/gurungknsadmin1234/settings", id: "settings", color: "bg-gray-500" },
 	];
 

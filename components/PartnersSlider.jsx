@@ -6,18 +6,15 @@ const PartnersSlider = () => {
 		console.log("Partner logo clicked");
 	};
 	const logos = [
-		{ id: 1, logo: "/mama_events.jpeg", url: "https://mamaevents.fi", alt: "mama_events", pname: "Mama Events", type: "Event Partner" },
-		{ id: 2, logo: "/kendra_motion.jpeg", url: "https://www.facebook.com/Kendramotionpictures/", alt: "kendra_motion", pname: "Kendra Motion Pictures", type: "Media Partner" },
-		{ id: 3, logo: "/mo_tv.jpeg", url: "https://www.facebook.com/@meroonlinetv/", alt: "mo_tv", pname: "Mero Online TV", type: "TV Partner" },
-		{ id: 4, logo: "/mama_events.jpeg", url: "https://mamaevents.fi", alt: "mama_events", pname: "Mama Events", type: "Event Partner" },
-		{ id: 5, logo: "/kendra_motion.jpeg", url: "https://www.facebook.com/Kendramotionpictures/", alt: "kendra_motion", pname: "Kendra Motion Pictures", type: "Media Partner" },
-		{ id: 6, logo: "/mo_tv.jpeg", url: "https://www.facebook.com/@meroonlinetv/", alt: "mo_tv", pname: "Mero Online TV", type: "TV Partner" },
-		{ id: 7, logo: "/mama_events.jpeg", url: "https://mamaevents.fi", alt: "mama_events", pname: "Mama Events", type: "Event Partner" },
-		{ id: 8, logo: "/kendra_motion.jpeg", url: "https://www.facebook.com/Kendramotionpictures/", alt: "kendra_motion", pname: "Kendra Motion Pictures", type: "Media Partner" },
-		{ id: 9, logo: "/mo_tv.jpeg", url: "https://www.facebook.com/@meroonlinetv/", alt: "mo_tv", pname: "Mero Online TV", type: "TV Partner" },
-		{ id: 10, logo: "/mama_events.jpeg", url: "https://mamaevents.fi", alt: "mama_events", pname: "Mama Events", type: "Event Partner" },
-		{ id: 11, logo: "/kendra_motion.jpeg", url: "https://www.facebook.com/Kendramotionpictures/", alt: "kendra_motion", pname: "Kendra Motion Pictures", type: "Media Partner" },
-		{ id: 12, logo: "/mo_tv.jpeg", url: "https://www.facebook.com/@meroonlinetv/", alt: "mo_tv", pname: "Mero Online TV", type: "TV Partner" },
+		{ id: 1, logo: "/mama_events.jpeg", url: "https://mamaevents.fi", alt: "mama_events", pname: "Mama Events", type: "Co-Partner" },
+		{ id: 2, logo: "/kendra_motion.jpeg", url: "https://www.facebook.com/Kendramotionpictures/", alt: "kendra_motion", pname: "Kendra Motion Pictures", type: "Supporter" },
+		{ id: 3, logo: "/mo_tv.jpeg", url: "https://www.facebook.com/@meroonlinetv/", alt: "mo_tv", pname: "Mero Online TV", type: "Onlive TV Partner" },
+		{ id: 4, logo: "/mama_events.jpeg", url: "https://mamaevents.fi", alt: "mama_events", pname: "Mama Events", type: "Co-Partner" },
+		{ id: 5, logo: "/kendra_motion.jpeg", url: "https://www.facebook.com/Kendramotionpictures/", alt: "kendra_motion", pname: "Kendra Motion Pictures", type: "Supporter" },
+		{ id: 6, logo: "/mo_tv.jpeg", url: "https://www.facebook.com/@meroonlinetv/", alt: "mo_tv", pname: "Mero Online TV", type: "Onlive TV Partner" },
+		{ id: 7, logo: "/mama_events.jpeg", url: "https://mamaevents.fi", alt: "mama_events", pname: "Mama Events", type: "Co-Partner" },
+		{ id: 8, logo: "/kendra_motion.jpeg", url: "https://www.facebook.com/Kendramotionpictures/", alt: "kendra_motion", pname: "Kendra Motion Pictures", type: "Supporter" },
+		{ id: 9, logo: "/mo_tv.jpeg", url: "https://www.facebook.com/@meroonlinetv/", alt: "mo_tv", pname: "Mero Online TV", type: "Onlive TV Partner" },
 	];
 
 	return (

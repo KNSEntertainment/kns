@@ -98,7 +98,7 @@ export default function UpcomingEvents() {
 
 									<div className="w-full mb-6">
 										<div className=" text-black mt-6 mb-2 text-lg font-semibold">Relevant Media</div>
-										<iframe className="rounded-xl w-full h-60 " src={event.eventyoutubeUrl} title={event.eventname} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+										<iframe className="rounded-xl w-full h-60 " src={event?.eventyoutubeUrl} title={event.eventname} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
 									</div>
 									<div className="w-full mt-6">
 										<iframe src={event.eventspotifyUrl} width="100%" frameBorder="0" allowFullScreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>

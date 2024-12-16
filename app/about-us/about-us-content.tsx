@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { MapPin, Music, Film, Mic, Calendar, Sparkles } from "lucide-react";
+import { Music, Film, Mic, Sparkles } from "lucide-react";
 import Link from "next/link";
 
 export default function AboutUsContent() {
@@ -30,7 +30,7 @@ export default function AboutUsContent() {
 								<p className="text-lg mb-8">We are a passionate team of event planners, creators, and industry experts united by a shared commitment to excellence. With diverse talents and a keen eye for detail, we craft immersive experiences that resonate with audiences and exceed expectations.</p>
 							</motion.div>{" "}
 							<div className="md:px-12">
-								<Image src="/event1.png" alt="Event Experience" width={200} height={200} className="rounded-lg shadow-lg w-full" />
+								<Image src="/kns_logo_rect.png" alt="Event Experience" width={200} height={200} className="rounded-lg shadow-lg w-full" />
 							</div>
 						</CardContent>
 					</Card>
@@ -72,10 +72,10 @@ export default function AboutUsContent() {
 					</h2>
 					<ul className="grid grid-cols-1 md:grid-cols-2 gap-4 list-none">
 						{reasons.map((reason, index) => (
-							<li key={index} className="flex items-start">
-								<Sparkles className="mr-2 mt-1 text-red-500" />
+							<li key={index} className="flex space-y-4 items-start">
+								<Sparkles className="mr-2 mt-4 text-red-500" />
 								<div>
-									<h3 className=" text-red-600">{reason.title}</h3>
+									<h3 className="font-semibold text-red-600">{reason.title}</h3>
 									<p>{reason.description}</p>
 								</div>
 							</li>
@@ -97,12 +97,9 @@ export default function AboutUsContent() {
 }
 
 const services = [
-	{ title: "Venue Bookings", icon: <MapPin />, description: "Explore our curated collection of venues, from intimate party palaces to grand cinema halls and theaters, tailored to suit any event." },
 	{ title: "Concerts", icon: <Music />, description: "Immerse yourself in the power of live music, with performances spanning a variety of genres to captivate every music enthusiast." },
 	{ title: "Movie Screenings", icon: <Film />, description: "Experience the magic of cinema in unique settings, featuring classics, indie films, and modern hits." },
-	{ title: "DJ Nights", icon: <Music />, description: "Dance under dazzling lights to the beats of our expert DJs, transforming any night into a pulsating celebration." },
 	{ title: "Stand-Up Comedy", icon: <Mic />, description: "Laugh out loud with our carefully curated comedy nights, showcasing rising stars and renowned performers." },
-	{ title: "Festivals", icon: <Calendar />, description: "Celebrate art, culture, and music with vibrant festivals that unite communities and inspire joy." },
 ];
 
 const reasons = [
@@ -111,4 +108,5 @@ const reasons = [
 	{ title: "Artist Empowerment", description: "We provide a platform for both emerging talents and seasoned performers to shine." },
 	{ title: "Customer First", description: "Your experience is our priority, from seamless booking to personalized support." },
 	{ title: "Innovation at Core", description: "We embrace fresh ideas and concepts to keep our offerings exciting and dynamic." },
+	{ title: "Promote Nepali Culture", description: "We promote Nepali culture, tradition all over Europe." },
 ];
