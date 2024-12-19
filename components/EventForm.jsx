@@ -83,7 +83,7 @@ export default function EventForm({ handleCloseEventModal, eventToEdit = null })
 	};
 
 	return (
-		<form onSubmit={handleSubmit} className="space-y-1">
+		<form onSubmit={handleSubmit} className="space-y-1 grid grid-cols-1 md:grid-cols-2 gap-6">
 			{error && <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">{error}</div>}
 			<div>
 				<label htmlFor="eventname" className="block mb-2 font-bold">
