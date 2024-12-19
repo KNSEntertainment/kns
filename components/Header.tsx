@@ -35,8 +35,8 @@ export default function Header({ isMenuOpen, toggleMenu }: HeaderProps) {
 							About Us
 						</Link>
 
-						<Link href="request-offer" className={`border-b bg-red-700 rounded-full py-2 px-6 border-transparent hover:border-b hover:border-b-red-700 ${isScrolled ? "text-white" : "text-slate-200 hover:text-slate-200"}`}>
-							Request an Offer
+						<Link href="europe-tour" className={`border-b bg-red-700 rounded-full py-2 px-6 border-transparent hover:border-b hover:border-b-red-700 ${isScrolled ? "text-white" : "text-slate-200 hover:text-slate-200"}`}>
+							Europe Tour
 						</Link>
 						<Link href="/gurungknsadmin1234" className={`border-b border-transparent hover:border-b hover:border-b-red-700 ${isScrolled ? "text-black " : "text-slate-200 hover:text-slate-200"}`}>
 							Dashboard
@@ -65,8 +65,8 @@ export default function Header({ isMenuOpen, toggleMenu }: HeaderProps) {
 							Gallery
 						</NavLink>
 
-						<NavLink href="/request-offer" onClick={toggleMenu}>
-							Request an Offer
+						<NavLink href="/europe-tour" onClick={toggleMenu}>
+							Europe Tour
 						</NavLink>
 						<NavLink href="/gurungknsadmin1234" onClick={toggleMenu}>
 							Dashboard

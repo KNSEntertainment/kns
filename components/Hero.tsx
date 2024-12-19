@@ -19,7 +19,7 @@ export default function Hero() {
 					From cinema halls to party palaces, we make event planning seamless. Find the perfect venue for your special day and let us handle the rest.{" "}
 				</motion.p>
 				<motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.4 }}>
-					<Link href="/request-offer">
+					<Link href="/europe-tour">
 						<Button size="lg" className="hover:bg-slate-300 bg-white text-slate-900 font-bold py-3 px-6 mr-4 rounded-full">
 							Book Event
 						</Button>
