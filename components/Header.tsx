@@ -38,9 +38,6 @@ export default function Header({ isMenuOpen, toggleMenu }: HeaderProps) {
 						<Link href="europe-tour" className={`border-b bg-red-700 rounded-full py-2 px-6 border-transparent hover:border-b hover:border-b-red-700 ${isScrolled ? "text-white" : "text-slate-200 hover:text-slate-200"}`}>
 							Europe Tour
 						</Link>
-						<Link href="/gurungknsadmin1234" className={`border-b border-transparent hover:border-b hover:border-b-red-700 ${isScrolled ? "text-black " : "text-slate-200 hover:text-slate-200"}`}>
-							Dashboard
-						</Link>
 					</nav>
 					{/* <div className="relative p-1">
 						<ShoppingCart className={`md:block ${isScrolled ? "text-black" : "text-slate-200"}`} style={{ height: "32px", width: "32px" }} />
@@ -67,9 +64,6 @@ export default function Header({ isMenuOpen, toggleMenu }: HeaderProps) {
 
 						<NavLink href="/europe-tour" onClick={toggleMenu}>
 							Europe Tour
-						</NavLink>
-						<NavLink href="/gurungknsadmin1234" onClick={toggleMenu}>
-							Dashboard
 						</NavLink>
 					</nav>
 				</motion.div>
