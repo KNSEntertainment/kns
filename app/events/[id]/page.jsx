@@ -81,10 +81,10 @@ export default async function EventPage({ params }) {
 					<ShareEvent title={event.eventname} description={event.eventdescription} startDate={new Date(event.eventdate)} endDate={new Date(event.eventdate)} />
 				</div>{" "}
 				<div className="w-full">
-					<iframe className="w-full h-72 px-6" src={event.eventyoutubeUrl} title={event.eventname} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+					<iframe className="w-full h-72 px-6" src={event.eventyoutubeUrl || null} title={event.eventname} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
 				</div>
 				<div className="w-full">
-					<iframe className="px-6" src={event.eventspotifyUrl} width="100%" height="352" frameBorder="0" allowFullScreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+					<iframe className="px-6" src={event.eventspotifyUrl || null} width="100%" height="352" frameBorder="0" allowFullScreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 				</div>
 			</aside>
 		</div>

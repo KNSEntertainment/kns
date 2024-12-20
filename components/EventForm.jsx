@@ -83,77 +83,79 @@ export default function EventForm({ handleCloseEventModal, eventToEdit = null })
 	};
 
 	return (
-		<form onSubmit={handleSubmit} className="space-y-1 grid grid-cols-1 md:grid-cols-2 gap-6">
-			{error && <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">{error}</div>}
-			<div>
-				<label htmlFor="eventname" className="block mb-2 font-bold">
-					Name of Event
-				</label>
-				<input type="text" id="eventname" value={formData.eventname} onChange={(e) => setFormData({ ...formData, eventname: e.target.value })} className="w-full p-2 border rounded" required />
-			</div>
-			<div>
-				<label htmlFor="eventdescription" className="block mb-2 font-bold">
-					Description of Event
-				</label>
-				<input type="text" id="eventdescription" value={formData.eventdescription} onChange={(e) => setFormData({ ...formData, eventdescription: e.target.value })} className="w-full p-2 border rounded" />
-			</div>
-			<div>
-				<label htmlFor="eventcountry" className="block mb-2 font-bold">
-					Event Country
-				</label>
-				<input id="eventcountry" value={formData.eventcountry} onChange={(e) => setFormData({ ...formData, eventcountry: e.target.value })} className="w-full p-2 border rounded" required />
-			</div>
-			<div>
-				<label htmlFor="eventvenue" className="block mb-2 font-bold">
-					Event Venue
-				</label>
-				<input id="eventvenue" value={formData.eventvenue} onChange={(e) => setFormData({ ...formData, eventvenue: e.target.value })} className="w-full p-2 border rounded" />
-			</div>
-			<div>
-				<label htmlFor="eventdate" className="block mb-2 font-bold">
-					Event Date
-				</label>
-				<input type="date" id="eventdate" value={formData.eventdate} onChange={(e) => setFormData({ ...formData, eventdate: e.target.value })} className="w-full p-2 border rounded" />
-			</div>
-			<div>
-				<label htmlFor="eventtime" className="block mb-2 font-bold">
-					Event Time
-				</label>
-				<input type="text" id="eventtime" value={formData.eventtime} onChange={(e) => setFormData({ ...formData, eventtime: e.target.value })} className="w-full p-2 border rounded" />
-			</div>
-			<div>
-				<label htmlFor="eventprice" className="block mb-2 font-bold">
-					Event Price
-				</label>
-				<input type="text" id="eventprice" value={formData.eventprice} onChange={(e) => setFormData({ ...formData, eventprice: e.target.value })} className="w-full p-2 border rounded" />
-			</div>
-			<div>
-				<label htmlFor="eventspotifyUrl" className="block mb-2 font-bold">
-					Spotify Url
-				</label>
-				<input type="text" id="eventspotifyUrl" value={formData.eventspotifyUrl} onChange={(e) => setFormData({ ...formData, eventspotifyUrl: e.target.value })} className="w-full p-2 border rounded" />
-			</div>
-			<div>
-				<label htmlFor="eventyoutubeUrl" className="block mb-2 font-bold">
-					Youtube Url
-				</label>
-				<input type="text" id="eventyoutubeUrl" value={formData.eventyoutubeUrl} onChange={(e) => setFormData({ ...formData, eventyoutubeUrl: e.target.value })} className="w-full p-2 border rounded" />
-			</div>
-			<div>
-				<label htmlFor="eventposter" className="block mb-2 font-bold">
-					Event Poster
-				</label>
-				<input type="file" id="eventposter" onChange={(e) => setFormData({ ...formData, eventposter: e.target.files[0] })} className="w-full p-2 border rounded" />
-			</div>
-			<div className="grid grid-cols-2 gap-2">
-				<button type="submit" disabled={submitting} className={`w-full p-1.5 rounded ${submitting ? "bg-gray-400 cursor-not-allowed" : "bg-red-600 hover:bg-red-700"} text-slate-200 font-bold`}>
-					{submitting ? `${eventToEdit ? "Updating" : "Creating"} Event...` : `${eventToEdit ? "Update" : "Create"} Event`}
-				</button>
-				<Button variant="outline" onClick={handleCloseEventModal}>
-					Close
-				</Button>
-			</div>
-		</form>
+		<div className="max-h-[calc(100vh-200px)] overflow-y-auto">
+			<form onSubmit={handleSubmit} className="space-y-1 grid grid-cols-1 md:grid-cols-2 gap-6">
+				{error && <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">{error}</div>}
+				<div>
+					<label htmlFor="eventname" className="block mb-2 font-bold">
+						Name of Event
+					</label>
+					<input type="text" id="eventname" value={formData.eventname} onChange={(e) => setFormData({ ...formData, eventname: e.target.value })} className="w-full p-2 border rounded" required />
+				</div>
+				<div>
+					<label htmlFor="eventdescription" className="block mb-2 font-bold">
+						Description of Event
+					</label>
+					<input type="text" id="eventdescription" value={formData.eventdescription} onChange={(e) => setFormData({ ...formData, eventdescription: e.target.value })} className="w-full p-2 border rounded" />
+				</div>
+				<div>
+					<label htmlFor="eventcountry" className="block mb-2 font-bold">
+						Event Country
+					</label>
+					<input id="eventcountry" value={formData.eventcountry} onChange={(e) => setFormData({ ...formData, eventcountry: e.target.value })} className="w-full p-2 border rounded" required />
+				</div>
+				<div>
+					<label htmlFor="eventvenue" className="block mb-2 font-bold">
+						Event Venue
+					</label>
+					<input id="eventvenue" value={formData.eventvenue} onChange={(e) => setFormData({ ...formData, eventvenue: e.target.value })} className="w-full p-2 border rounded" />
+				</div>
+				<div>
+					<label htmlFor="eventdate" className="block mb-2 font-bold">
+						Event Date
+					</label>
+					<input type="date" id="eventdate" value={formData.eventdate} onChange={(e) => setFormData({ ...formData, eventdate: e.target.value })} className="w-full p-2 border rounded" />
+				</div>
+				<div>
+					<label htmlFor="eventtime" className="block mb-2 font-bold">
+						Event Time
+					</label>
+					<input type="text" id="eventtime" value={formData.eventtime} onChange={(e) => setFormData({ ...formData, eventtime: e.target.value })} className="w-full p-2 border rounded" />
+				</div>
+				<div>
+					<label htmlFor="eventprice" className="block mb-2 font-bold">
+						Event Price
+					</label>
+					<input type="text" id="eventprice" value={formData.eventprice} onChange={(e) => setFormData({ ...formData, eventprice: e.target.value })} className="w-full p-2 border rounded" />
+				</div>
+				<div>
+					<label htmlFor="eventspotifyUrl" className="block mb-2 font-bold">
+						Spotify Url
+					</label>
+					<input type="text" id="eventspotifyUrl" value={formData.eventspotifyUrl} onChange={(e) => setFormData({ ...formData, eventspotifyUrl: e.target.value })} className="w-full p-2 border rounded" />
+				</div>
+				<div>
+					<label htmlFor="eventyoutubeUrl" className="block mb-2 font-bold">
+						Youtube Url
+					</label>
+					<input type="text" id="eventyoutubeUrl" value={formData.eventyoutubeUrl} onChange={(e) => setFormData({ ...formData, eventyoutubeUrl: e.target.value })} className="w-full p-2 border rounded" />
+				</div>
+				<div>
+					<label htmlFor="eventposter" className="block mb-2 font-bold">
+						Event Poster
+					</label>
+					<input type="file" id="eventposter" onChange={(e) => setFormData({ ...formData, eventposter: e.target.files[0] })} className="w-full p-2 border rounded" />
+				</div>
+				<div className="grid grid-cols-2 gap-2">
+					<button type="submit" disabled={submitting} className={`w-full p-1.5 rounded ${submitting ? "bg-gray-400 cursor-not-allowed" : "bg-red-600 hover:bg-red-700"} text-slate-200 font-bold`}>
+						{submitting ? `${eventToEdit ? "Updating" : "Creating"} Event...` : `${eventToEdit ? "Update" : "Create"} Event`}
+					</button>
+					<Button variant="outline" onClick={handleCloseEventModal}>
+						Close
+					</Button>
+				</div>
+			</form>
+		</div>
 	);
 }
 

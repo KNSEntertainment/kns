@@ -42,7 +42,7 @@ export async function POST(request) {
 		// console.log("Parsed form data:", { eventname, eventdescription, eventcountry, eventdate, eventposter });
 
 		// Validate input
-		if (!eventname || !eventcountry || !eventdate || !eventposter) {
+		if (!eventname || !eventcountry || !eventposter) {
 			return NextResponse.json({ success: false, error: "Required fields are missing" }, { status: 400 });
 		}
 
