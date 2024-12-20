@@ -8,6 +8,7 @@ import { useSession } from "next-auth/react";
 
 const menuItems = [
 	{ id: "gurungknsadmin1234", label: "Dashboard", icon: LayoutDashboard },
+	{ id: "hero", label: "Hero", icon: LayoutDashboard },
 	{ id: "events", label: "Events", icon: BookImage },
 	// { id: "artists", label: "Artists", icon: Drama },
 	{ id: "testimonials", label: "Testimonials", icon: MessageCircle },

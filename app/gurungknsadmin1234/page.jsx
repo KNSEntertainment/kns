@@ -7,6 +7,7 @@ export default function DashboardGrid() {
 	const { setActiveMenu } = useActiveMenu();
 
 	const menuItems = [
+		{ name: "Hero", icon: Calendar, href: "/gurungknsadmin1234/hero", id: "hero", color: "bg-blue-900" },
 		{ name: "Events", icon: Calendar, href: "/gurungknsadmin1234/events", id: "events", color: "bg-purple-500" },
 		// { name: "Artists", icon: Users, href: "/gurungknsadmin1234/artists", id: "artists", color: "bg-pink-500" },
 		{ name: "Testimonials", icon: MessageSquare, href: "/gurungknsadmin1234/testimonials", id: "testimonials", color: "bg-yellow-800" },
