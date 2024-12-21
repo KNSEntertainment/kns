@@ -4,48 +4,27 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import useFetchData from "@/hooks/useFetchData";
 
 export default function Hero() {
-	const [hero, setHero] = useState([]);
-	const [loading, setLoading] = useState(true);
+	const { data: Heros, error, loading, mutate } = useFetchData("/api/Heros", "Heros");
 
-	useEffect(() => {
-		const fetchHero = async () => {
-			try {
-				const response = await fetch("/api/Heros");
-				const data = await response.json();
+	if (loading) return <p>Loading...</p>;
+	if (error) return <p>Error: {error}</p>;
 
-				if (data.success) {
-					setHero(data.Heros);
-				} else {
-					console.error("Failed to fetch hero contents");
-				}
-			} catch (error) {
-				console.error("Error fetching hero contents:", error);
-			} finally {
-				setLoading(false);
-			}
-		};
-
-		fetchHero();
-	}, []);
-
-	if (loading) {
-		return <p>Loading hero section...</p>;
-	}
-	return hero.length > 0 ? (
+	return Heros.length > 0 ? (
 		<section className="relative h-screen flex items-center justify-center overflow-hidden">
 			<div className="absolute inset-0">
-				<Image width={1000} height={1000} src={hero[0].heroimage} alt="Colorful festival background" className="w-full h-full object-cover scale-110" />
+				<Image width={1000} height={1000} src={Heros[0].heroimage} alt="Colorful festival background" className="w-full h-full object-cover scale-110" />
 				{/* <video src="/concert.mp4" autoPlay muted loop className="w-full h-full object-cover " /> */}
 				<div className="absolute inset-0 bg-black opacity-50"></div>
 			</div>
 			<div className="container max-w-4xl mx-auto px-4 z-10 text-center">
 				<motion.h1 className="text-3xl md:text-5xl font-bold text-slate-200 mb-4" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-					{hero[0].mainheading}
+					{Heros[0].mainheading}
 				</motion.h1>
 				<motion.p className="text-xl text-gray-200 mb-8" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }}>
-					{hero[0].subheading}
+					{Heros[0].subheading}
 				</motion.p>
 				<motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.4 }}>
 					<Link href="/europe-tour">
@@ -62,6 +41,6 @@ export default function Hero() {
 			</div>
 		</section>
 	) : (
-		"Unexpected result"
+		"Something went wrong"
 	);
 }

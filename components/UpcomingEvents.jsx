@@ -9,35 +9,41 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { BuyTicketButton } from "./BuyTicketButton";
 import ShareEvent from "./ShareEvent";
+import useFetchData from "@/hooks/useFetchData";
 
 export default function UpcomingEvents() {
-	const [events, setEvents] = useState([]);
-	const [loading, setLoading] = useState(true);
+	// const [events, setEvents] = useState([]);
+	// const [loading, setLoading] = useState(false);
+	const { data: events, error, loading, mutate } = useFetchData("/api/events", "events");
 
-	useEffect(() => {
-		const fetchEvents = async () => {
-			try {
-				const response = await fetch("/api/events");
-				const data = await response.json();
+	if (loading) return <p>Loading...</p>;
+	if (error) return <p>Error: {error}</p>;
 
-				if (data.success) {
-					setEvents(data.events);
-				} else {
-					console.error("Failed to fetch events:");
-				}
-			} catch (error) {
-				console.error("Error fetching events:", error);
-			} finally {
-				setLoading(false);
-			}
-		};
+	// useEffect(() => {
+	// 	setLoading(true);
+	// 	const fetchEvents = async () => {
+	// 		try {
+	// 			const response = await fetch("/api/events");
+	// 			const data = await response.json();
 
-		fetchEvents();
-	}, []);
+	// 			if (data.success) {
+	// 				setEvents(data.events);
+	// 			} else {
+	// 				console.error("Failed to fetch events:");
+	// 			}
+	// 		} catch (error) {
+	// 			console.error("Error fetching events:", error);
+	// 		} finally {
+	// 			setLoading(false);
+	// 		}
+	// 	};
 
-	if (loading) {
-		return <p>Loading events...</p>;
-	}
+	// 	fetchEvents();
+	// }, []);
+
+	// if (loading) {
+	// 	return <p>Loading events...</p>;
+	// }
 
 	return (
 		<section id="events" className="py-8 sm:py-16 bg-gray-100">
@@ -49,14 +55,14 @@ export default function UpcomingEvents() {
 				{events?.length > 0 ? (
 					<motion.div key="events-grid" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
 						{events.slice(0, 1).map((event) => (
-							<div key={event?._id} className="grid grid-cols-1 lg:grid-cols-3 md:gap-20 bg-white p-2 rounded-xl">
+							<div key={event?._id} className="grid grid-cols-1 lg:grid-cols-3 md:gap-20">
 								<motion.div className="grid col-span-2 overflow-hidden" initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
 									<Image width={400} height={500} src={event?.eventposterUrl || "/placeholder.jpg"} alt={event?.eventname || "alt"} className="w-full h-auto rounded-lg object-cover transition-transform duration-300 ease-in-out group-hover:scale-105" />
 								</motion.div>
 								<div className="">
-									{/* <Link href={`/events/${event?._id}`} className="flex w-full items-center justify-center bg-black p-4  text-white rounded-lg font-semibold">
+									<Link href={`/events/${event?._id}`} className="flex w-full items-center justify-center bg-black p-4  text-white rounded-lg font-semibold">
 										View Event Details
-									</Link> */}
+									</Link>
 									<div className="mt-6 text-black text-lg font-semibold mb-2">Reserve your seat today</div>
 									<Card className="px-6 text-xl overflow-hidden group ">
 										<Link href={`/events/${event?._id}`}>
@@ -95,14 +101,17 @@ export default function UpcomingEvents() {
 									<div className=" text-black text-lg font-semibold mt-6 mb-2">Send to your friends and family</div>
 
 									<ShareEvent title={event.eventname} description={event.eventdescription} startDate={new Date(event.eventdate)} endDate={new Date(event.eventdate)} />
-
-									<div className="w-full mb-6">
-										<div className=" text-black mt-6 mb-2 text-lg font-semibold">Relevant Media</div>
-										<iframe className="rounded-xl w-full h-60 " src={event?.eventyoutubeUrl || null} title={event.eventname} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
-									</div>
-									<div className="w-full mt-6">
-										<iframe src={event.eventspotifyUrl || null} width="100%" frameBorder="0" allowFullScreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-									</div>
+									{event?.eventyoutubeUrl && (
+										<div className="w-full mb-6">
+											<div className=" text-black mt-6 mb-2 text-lg font-semibold">Relevant Media</div>
+											<iframe className="rounded-xl w-full h-60 " src={event?.eventyoutubeUrl || null} title={event.eventname} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+										</div>
+									)}
+									{event?.eventspotifyUrl && (
+										<div className="w-full mt-6">
+											<iframe src={event.eventspotifyUrl || null} width="100%" frameBorder="0" allowFullScreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+										</div>
+									)}
 								</div>
 							</div>
 						))}

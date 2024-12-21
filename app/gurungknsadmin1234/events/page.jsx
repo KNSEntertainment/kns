@@ -50,7 +50,7 @@ export default function EventsPage() {
 	};
 
 	return (
-		<div className="">
+		<div className="w-max">
 			<div className="text-right">
 				<button onClick={handleCreateEvent} className="bg-red-800 text-slate-200 font-bold px-4 py-2 my-4">
 					Create Event
@@ -67,8 +67,8 @@ export default function EventsPage() {
 							<TableHead>Event Date</TableHead>
 							<TableHead>Event Time</TableHead>
 							<TableHead>Event Price</TableHead>
-							<TableHead>Spotify URL</TableHead>
-							<TableHead>Youtube URL</TableHead>
+							{/* <TableHead>Spotify URL</TableHead>
+							<TableHead>Youtube URL</TableHead> */}
 							<TableHead>Poster</TableHead>
 							<TableHead>Actions</TableHead>
 						</TableRow>
@@ -77,15 +77,15 @@ export default function EventsPage() {
 						{events.length > 0 ? (
 							events.map((event) => (
 								<TableRow key={event._id}>
-									<TableCell className="font-semibold">{event.eventname}</TableCell>
-									<TableCell>{event.eventdescription}</TableCell>
+									<TableCell className="font-semibold max-w-96">{event.eventname}</TableCell>
+									<TableCell className="max-w-96">{event.eventdescription}</TableCell>
 									<TableCell>{event.eventcountry}</TableCell>
 									<TableCell>{event.eventvenue}</TableCell>
-									<TableCell>{event.eventdate}</TableCell>
-									<TableCell>{event.eventtime}</TableCell>
-									<TableCell>{event.eventprice}</TableCell>
-									<TableCell className="w-24">{event.eventspotifyUrl}</TableCell>
-									<TableCell className="w-24">{event.eventyoutubeUrl}</TableCell>
+									<TableCell className="w-24">{event.eventdate}</TableCell>
+									<TableCell className="w-28">{event.eventtime}</TableCell>
+									<TableCell className="w-24">{event.eventprice}</TableCell>
+									{/* <TableCell className="w-24">{event.eventspotifyUrl}</TableCell>
+									<TableCell className="w-24">{event.eventyoutubeUrl}</TableCell> */}
 									<TableCell>
 										<Image src={event.eventposterUrl || "/placeholder.jpg"} width={200} height={200} alt={event.eventname || "alt"} className="w-24 h-32 object-cover" />
 									</TableCell>

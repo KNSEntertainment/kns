@@ -1,35 +1,13 @@
 "use client";
 import { useEffect, useState } from "react";
 import TestimonialCard from "./TestimonialCard";
+import useFetchData from "@/hooks/useFetchData";
 
 export default function Testimonials() {
-	const [testimonials, setTestimonials] = useState([]);
-	const [loading, setLoading] = useState(true);
+	const { data: testimonials, error, loading, mutate } = useFetchData("/api/testimonials", "testimonials");
 
-	useEffect(() => {
-		const fetchTestimonials = async () => {
-			try {
-				const response = await fetch("/api/testimonials");
-				const data = await response.json();
-
-				if (data.success) {
-					setTestimonials(data.testimonials);
-				} else {
-					console.error("Failed to fetch events:", data.error);
-				}
-			} catch (error) {
-				console.error("Error fetching events:", error);
-			} finally {
-				setLoading(false);
-			}
-		};
-
-		fetchTestimonials();
-	}, []);
-
-	if (loading) {
-		return <p>Loading testimonials...</p>;
-	}
+	if (loading) return <p>Loading...</p>;
+	if (error) return <p>Error: {error}</p>;
 	return (
 		<section className="py-16">
 			<div className="container mx-auto px-4">

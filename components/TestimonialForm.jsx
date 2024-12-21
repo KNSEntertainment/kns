@@ -27,22 +27,6 @@ export default function TestimonialForm({ handleCloseTestimonialModal, testimoni
 
 		try {
 			const form = new FormData();
-			// form.append("audiencename", formData.audiencename);
-			// form.append("audienceaddress", formData.audienceaddress);
-			// form.append("audiencetestimony", formData.audiencetestimony);
-			// if (formData.audienceimage) {
-			// 	form.append("audienceimage", formData.audienceimage);
-			// }
-
-			// const response = await fetch("/api/testimonials/create", {
-			// 	method: "POST",
-			// 	body: form,
-			// });
-
-			// const result = await response.json();
-			// if (!response.ok) {
-			// 	throw new Error(result.error || "Failed to create testimonial");
-			// }
 
 			Object.keys(formData).forEach((key) => {
 				if (key !== "audienceimage" || (key === "audienceimage" && formData[key])) {
