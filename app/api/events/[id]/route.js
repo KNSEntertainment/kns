@@ -22,7 +22,7 @@ async function saveFile(file) {
 }
 
 export async function PUT(request, { params }) {
-	const { id } = await params;
+	const { id } = params;
 
 	try {
 		await connectDB();
@@ -32,14 +32,24 @@ export async function PUT(request, { params }) {
 
 		const eventData = {};
 		for (const [key, value] of formData.entries()) {
-			if (key !== "eventposter") {
+			if (key !== "eventposter" && key !== "eventposter2" && key !== "eventposter3") {
 				eventData[key] = value;
 			}
 		}
 
 		const eventposter = formData.get("eventposter");
-		if (eventposter) {
+		if (eventposter && eventposter.size > 0) {
 			eventData.eventposterUrl = await saveFile(eventposter);
+		}
+
+		const eventposter2 = formData.get("eventposter2");
+		if (eventposter2 && eventposter2.size > 0) {
+			eventData.eventposter2Url = await saveFile(eventposter2);
+		}
+
+		const eventposter3 = formData.get("eventposter3");
+		if (eventposter3 && eventposter3.size > 0) {
+			eventData.eventposter3Url = await saveFile(eventposter3);
 		}
 
 		const updatedEvent = await Event.findByIdAndUpdate(eventId, eventData, { new: true });
@@ -71,6 +81,14 @@ export async function DELETE(request, { params }) {
 
 		if (deletedEvent.eventposterUrl) {
 			const filePath = path.join(process.cwd(), "public", deletedEvent.eventposterUrl);
+			await fs.unlink(filePath).catch(console.error);
+		}
+		if (deletedEvent.eventposter2Url) {
+			const filePath = path.join(process.cwd(), "public", deletedEvent.eventposter2Url);
+			await fs.unlink(filePath).catch(console.error);
+		}
+		if (deletedEvent.eventposter3Url) {
+			const filePath = path.join(process.cwd(), "public", deletedEvent.eventposter3Url);
 			await fs.unlink(filePath).catch(console.error);
 		}
 

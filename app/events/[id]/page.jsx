@@ -42,8 +42,11 @@ export default async function EventPage({ params }) {
 				<div className="mb-6 relative w-full">
 					<Image src={event.eventposterUrl || "/placeholder.jpg"} alt={event.eventname || "alt"} width={500} height={500} className="w-full" />
 					<div className="mt-6">
-						<h1 className="text-2xl font-bold">{event.eventname}</h1>
-						<p>{event.eventdescription}</p>
+						<h1 className="text-lg lg:text-4xl font-bold my-12">{event.eventname}</h1>
+						<Image src={event.eventposter2Url || "/placeholder.jpg"} alt={event.eventname || "alt"} width={500} height={500} className="w-full" />
+
+						<p className="text-md lg:text-lg my-12">{event.eventdescription}</p>
+						<Image src={event.eventposter3Url || "/placeholder.jpg"} alt={event.eventname || "alt"} width={500} height={500} className="w-full" />
 					</div>
 				</div>
 			</main>

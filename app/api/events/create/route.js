@@ -38,6 +38,8 @@ export async function POST(request) {
 		const eventspotifyUrl = formData.get("eventspotifyUrl");
 		const eventyoutubeUrl = formData.get("eventyoutubeUrl");
 		const eventposter = formData.get("eventposter");
+		const eventposter2 = formData.get("eventposter2");
+		const eventposter3 = formData.get("eventposter3");
 
 		// console.log("Parsed form data:", { eventname, eventdescription, eventcountry, eventdate, eventposter });
 
@@ -52,6 +54,8 @@ export async function POST(request) {
 
 		// Save the file to the uploads directory
 		const eventposterUrl = await saveFile(eventposter);
+		const eventposter2Url = await saveFile(eventposter2);
+		const eventposter3Url = await saveFile(eventposter3);
 
 		// Save event to MongoDB
 		console.log("Creating event in database");
@@ -66,6 +70,8 @@ export async function POST(request) {
 			eventspotifyUrl,
 			eventyoutubeUrl,
 			eventposterUrl,
+			eventposter2Url,
+			eventposter3Url,
 		});
 		console.log("Event created successfully:", event);
 

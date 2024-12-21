@@ -11,6 +11,8 @@ const eventSchema = new mongoose.Schema({
 	eventspotifyUrl: { type: String, required: false },
 	eventyoutubeUrl: { type: String, required: false },
 	eventposterUrl: { type: String, required: true },
+	eventposter2Url: { type: String, required: false },
+	eventposter3Url: { type: String, required: false },
 	createdAt: { type: Date, default: Date.now },
 });
 
