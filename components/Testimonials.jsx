@@ -1,10 +1,8 @@
-"use client";
-import { useEffect, useState } from "react";
 import TestimonialCard from "./TestimonialCard";
 import useFetchData from "@/hooks/useFetchData";
 
 export default function Testimonials() {
-	const { data: testimonials, error, loading, mutate } = useFetchData("/api/testimonials", "testimonials");
+	const { data: testimonials, error, loading } = useFetchData("/api/testimonials", "testimonials");
 
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error: {error}</p>;

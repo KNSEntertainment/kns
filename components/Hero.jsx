@@ -1,13 +1,11 @@
-"use client";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 import useFetchData from "@/hooks/useFetchData";
 
 export default function Hero() {
-	const { data: Heros, error, loading, mutate } = useFetchData("/api/Heros", "Heros");
+	const { data: Heros, error, loading } = useFetchData("/api/Heros", "Heros");
 
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error: {error}</p>;
