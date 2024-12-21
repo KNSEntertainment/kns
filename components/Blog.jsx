@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import { Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";

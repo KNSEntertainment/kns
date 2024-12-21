@@ -1,3 +1,4 @@
+"use client";
 import { motion } from "framer-motion";
 import { Calendar, Clock, Globe, MapPin } from "lucide-react";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";

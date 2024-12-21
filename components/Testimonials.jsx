@@ -1,3 +1,4 @@
+"use client";
 import TestimonialCard from "./TestimonialCard";
 import useFetchData from "@/hooks/useFetchData";
 

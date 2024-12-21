@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Mail, Phone, MapPin, Facebook, Instagram, Youtube, Linkedin, ExternalLink, Copy, CheckCircle2 } from "lucide-react";
