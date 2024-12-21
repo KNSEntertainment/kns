@@ -12,38 +12,10 @@ import ShareEvent from "./ShareEvent";
 import useFetchData from "@/hooks/useFetchData";
 
 export default function UpcomingEvents() {
-	// const [events, setEvents] = useState([]);
-	// const [loading, setLoading] = useState(false);
 	const { data: events, error, loading, mutate } = useFetchData("/api/events", "events");
 
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error: {error}</p>;
-
-	// useEffect(() => {
-	// 	setLoading(true);
-	// 	const fetchEvents = async () => {
-	// 		try {
-	// 			const response = await fetch("/api/events");
-	// 			const data = await response.json();
-
-	// 			if (data.success) {
-	// 				setEvents(data.events);
-	// 			} else {
-	// 				console.error("Failed to fetch events:");
-	// 			}
-	// 		} catch (error) {
-	// 			console.error("Error fetching events:", error);
-	// 		} finally {
-	// 			setLoading(false);
-	// 		}
-	// 	};
-
-	// 	fetchEvents();
-	// }, []);
-
-	// if (loading) {
-	// 	return <p>Loading events...</p>;
-	// }
 
 	return (
 		<section id="events" className="py-8 sm:py-16 bg-gray-100">

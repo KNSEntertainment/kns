@@ -3,25 +3,13 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { createCheckoutSession } from "@/app/actions/stripe";
 import { ShoppingCart, Ticket } from "lucide-react";
 
 export function BuyTicketButton({ eventId, price, btnText }: { eventId: string; price: number; btnText: string }) {
 	const [isLoading, setIsLoading] = useState(false);
 	const router = useRouter();
 
-	const handleBuyTicket = async () => {
-		setIsLoading(true);
-		try {
-			const sessionUrl = await createCheckoutSession(eventId, price);
-			router.push(sessionUrl);
-		} catch (error) {
-			console.error("Failed to create checkout session:", error);
-			alert("Failed to initiate checkout. Please try again.");
-		} finally {
-			setIsLoading(false);
-		}
-	};
+	const handleBuyTicket = async () => {};
 
 	return (
 		<Button onClick={handleBuyTicket} disabled={isLoading} className={` ${btnText === "Get Your Tickets Now" ? "w-full" : "bg-red-700 flex items-center justify-center"}`}>
