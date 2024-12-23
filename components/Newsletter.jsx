@@ -39,7 +39,7 @@ export default function Newsletter() {
 		<div>
 			<motion.div className="lg:max-w-2xl max-w-sm md:mx-auto mt-6 md:mt-0 md:text-center" initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
 				<h2 className="text-3xl font-bold text-slate-200 mb-4">
-					Stay <span className="text-red-500">Updated</span>
+					<h3 className="text-xl font-bold mb-4">Stay Updated</h3>
 				</h2>
 				<p className="text-gray-200 mb-8">Whether you&apos;re planning an event, looking for the perfect venue, or seeking entertainment that leaves you inspired, we&apos;re here to make it happen. Stay updated on our latest offerings and let us create memories together.</p>
 				<form onSubmit={handleSubmit} className="md:mx-auto flex flex-1 flex-col md:flex-row gap-4">

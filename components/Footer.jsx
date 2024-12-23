@@ -9,7 +9,7 @@ export default function Footer() {
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Loading failed{error}</p>;
 	return (
-		<footer className="bg-gray-900 text-slate-200 py-6 sm:py-12 md:p-16 lg:p-24">
+		<footer className="bg-gray-900 text-slate-200 p-4 sm:p-12 md:p-16 lg:p-24">
 			<div className="container mx-auto px-4">
 				<div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start justify-between">
 					<div className="max-w-sm">

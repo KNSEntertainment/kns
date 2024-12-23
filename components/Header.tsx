@@ -23,17 +23,17 @@ export default function Header({ isMenuOpen, toggleMenu }: HeaderProps) {
 
 	return (
 		<motion.header className={`fixed w-full z-50 transition-colors duration-300 ${isScrolled ? "bg-white shadow-md" : "bg-black"}`} initial={{ y: -100 }} animate={{ y: 0 }} transition={{ duration: 0.5 }}>
-			<div className="container mx-auto px-4 py-4 flex justify-between items-center">
+			<div className="container mx-auto p-4 flex justify-between items-center">
 				<Link href="/" className="flex items-center space-x-4 cursor-pointer group">
-					<Image src="/kns_logo_rect.png" alt="KNS Entertainment" width={400} height={200} className="w-auto h-12 md:h-16 rounded-md bg-slate-200 group-hover:bg-slate-100" />
+					<Image src="/kns_logo_rect.png" alt="KNS Entertainment" width={200} height={200} className="w-auto h-12 md:h-16 rounded-md bg-slate-200 group-hover:bg-slate-100" />
 					<span className={`hidden text-2xl font-bold text-primary ${isScrolled ? "text-black " : "text-slate-200"}`}>KNS Entertainment</span>
 				</Link>
 
 				<div className="flex gap-2 items-center">
-					<nav className="hidden md:flex items-center space-x-6 mr-6">
-						<Link href="/about-us" className={`border-b border-transparent hover:border-b hover:border-b-red-700 ${isScrolled ? "text-black " : "text-slate-200 hover:text-slate-200"}`}>
+					<nav className="hidden md:flex items-center space-x-6">
+						{/* <Link href="/about-us" className={`border-b border-transparent hover:border-b hover:border-b-red-700 ${isScrolled ? "text-black " : "text-slate-200 hover:text-slate-200"}`}>
 							About Us
-						</Link>
+						</Link> */}
 
 						<Link href="europe-tour" className={`border-b bg-red-700 rounded-full py-2 px-6 border-transparent hover:border-b hover:border-b-red-700 ${isScrolled ? "text-white" : "text-slate-200 hover:text-slate-200"}`}>
 							Europe Tour
