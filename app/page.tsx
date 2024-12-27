@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 import Header from "@/components/Header";
-// import Hero from "@/components/Hero";
+import Hero from "@/components/Hero";
 import UpcomingEvents from "@/components/UpcomingEvents.jsx";
 import About from "@/components/About";
 import Testimonials from "@/components/Testimonials";
@@ -22,7 +22,7 @@ export default function LandingPage() {
 		<div className="min-h-screen bg-gradient-to-b from-gray-100 to-white">
 			<Header isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
 			<main>
-				{/* <Hero /> */}
+				<Hero />
 				<About />
 				<UpcomingEvents />
 				<PartnersSlider />
