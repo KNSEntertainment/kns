@@ -26,7 +26,7 @@ export default function Hero() {
 				<CldImage src="ufhdtrdulvnnm108q4kt" alt="A vibrant festival scene with colorful lights and a festive atmosphere" fill className="object-cover" />
 				{/* Dark Overlay */}
 				<div className="absolute inset-0 bg-black opacity-40"></div>
-				<button onClick={onMoveDown} className="absolute left-1/2 bottom-10 transform -translate-x-1/2 bg-white w-12 h-12 opacity-50 rounded-full flex items-center justify-center">
+				<button onClick={onMoveDown} className="absolute left-1/2 bottom-10 transform -translate-x-1/2 bg-transparent ring-2 ring-slate-200 text-white w-12 h-12 opacity-50 rounded-full flex items-center justify-center">
 					<ArrowDown className="animate-bounce" />
 				</button>
 			</div>
