@@ -10,17 +10,20 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { BuyTicketButton } from "@/components/BuyTicketButton";
+import { useSearchParams } from "next/navigation";
 
 export default function UpcomingEvents() {
 	const [events, setEvents] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [filter, setFilter] = useState("upcoming");
-	const [searchTerm, setSearchTerm] = useState("");
 	const [countryFilter, setcountryFilter] = useState("");
 	const [dateFilter, setDateFilter] = useState("");
 	const [filteredEvents, setFilteredEvents] = useState([]);
 	const [countries, setCountries] = useState([]);
 	const [dates, setDates] = useState([]);
+	const searchParams = useSearchParams();
+	const query = searchParams.get("query") || "";
+	const [searchTerm, setSearchTerm] = useState(query);
 
 	const formatDateWithDay = (dateString) => {
 		const date = new Date(dateString);

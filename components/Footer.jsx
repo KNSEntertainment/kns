@@ -24,12 +24,12 @@ export default function Footer() {
 								<a href="#" className="text-gray-400 hover:text-purple-200 transition-colors">
 									<Instagram className="h-6 w-6" />
 								</a>
-								<a href="#" className="text-gray-400 hover:text-blue-200 transition-colors">
+								{/* <a href="#" className="text-gray-400 hover:text-blue-200 transition-colors">
 									<Twitter className="h-6 w-6" />
 								</a>
 								<a href="#" className="text-gray-400 hover:text-red-200 transition-colors">
 									<Youtube className="h-6 w-6" />
-								</a>
+								</a> */}
 							</div>
 						</div>
 					</div>

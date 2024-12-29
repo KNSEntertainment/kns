@@ -1,9 +1,10 @@
 "use client";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Facebook, Home, Instagram, Menu, Search, ShoppingCart, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import SearchModal from "@/components/SearchModal";
 
 interface HeaderProps {
 	isMenuOpen: boolean;
@@ -12,6 +13,10 @@ interface HeaderProps {
 
 export default function Header({ isMenuOpen, toggleMenu }: HeaderProps) {
 	const [isScrolled, setIsScrolled] = useState(false);
+	const [isModalOpen, setIsModalOpen] = useState(false);
+
+	const openModal = () => setIsModalOpen(true);
+	const closeModal = () => setIsModalOpen(false);
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -31,18 +36,46 @@ export default function Header({ isMenuOpen, toggleMenu }: HeaderProps) {
 
 				<div className="flex gap-2 items-center">
 					<nav className="hidden md:flex items-center space-x-6">
+						<Link href="/" className={`border-b border-transparent hover:border-b hover:scale-110 ${isScrolled ? "text-black " : "text-slate-200 hover:text-slate-200"}`}>
+							<Home />
+						</Link>
+						<Link href="/gallery" className={`border-b border-transparent hover:border-b hover:border-b-red-700 ${isScrolled ? "text-black " : "text-slate-200 hover:text-slate-200"}`}>
+							Project Gallery{" "}
+						</Link>
+						<Link href="/blog" className={`border-b border-transparent hover:border-b hover:border-b-red-700 ${isScrolled ? "text-black " : "text-slate-200 hover:text-slate-200"}`}>
+							Blog{" "}
+						</Link>
 						<Link href="/about-us" className={`border-b border-transparent hover:border-b hover:border-b-red-700 ${isScrolled ? "text-black " : "text-slate-200 hover:text-slate-200"}`}>
 							About Us
 						</Link>
-
-						<Link href="europe-tour" className={`border-b bg-red-700 rounded-full py-2 px-6 border-transparent hover:border-b hover:border-b-red-700 ${isScrolled ? "text-white" : "text-slate-200 hover:text-slate-200"}`}>
-							Europe Tour
+						<Link href="/about-us" className={`border-b border-transparent hover:border-b hover:border-b-red-700 ${isScrolled ? "text-black " : "text-slate-200 hover:text-slate-200"}`}>
+							Contact Us
 						</Link>
+
+						<button onClick={openModal} className="border-b border-transparent hover:border-b hover:scale-110">
+							<span className={`border-b border-transparent hover:border-b hover:border-b-red-700 ${isScrolled ? "text-black " : "text-slate-200 hover:text-slate-200"}`}>
+								<Search />
+							</span>
+						</button>
+						{isModalOpen && <SearchModal closeModal={closeModal} />}
+						{/* <Link href="europe-tour" className={`border-b bg-red-700 rounded-full py-2 px-6 border-transparent hover:border-b hover:border-b-red-700 ${isScrolled ? "text-white" : "text-slate-200 hover:text-slate-200"}`}>
+							Europe Tour
+						</Link> */}
 					</nav>
-					{/* <div className="relative p-1">
+				</div>
+
+				<div className="flex gap-6 items-center">
+					<Link href="/" className={`border-b border-transparent hover:border-b hover:scale-110 ${isScrolled ? "text-black " : "text-slate-200 hover:text-slate-200"}`}>
+						<Facebook />
+					</Link>
+					<Link href="/" className={`border-b border-transparent hover:border-b hover:scale-110 ${isScrolled ? "text-black " : "text-slate-200 hover:text-slate-200"}`}>
+						<Instagram />
+					</Link>
+					<div className="relative p-1">
 						<ShoppingCart className={`md:block ${isScrolled ? "text-black" : "text-slate-200"}`} style={{ height: "32px", width: "32px" }} />
 						<span className="absolute top-0 right-0 bg-red-600 text-slate-200 text-xs font-semibold rounded-full h-4 w-4 flex items-center justify-center">1</span>
-					</div> */}
+						<span className={`absolute bottom-2 -right-14 font-semibold  ${isScrolled ? "text-black" : "text-slate-200"}`}>$24.50</span>
+					</div>
 					<div className="md:hidden cursor-pointer" onClick={toggleMenu}>
 						{isMenuOpen ? <X className={`${isScrolled ? "text-black " : "text-slate-200"}`} style={{ height: "32px", width: "32px" }} /> : <Menu className={`${isScrolled ? "text-black " : "text-slate-200"}`} style={{ height: "32px", width: "32px" }} />}
 					</div>

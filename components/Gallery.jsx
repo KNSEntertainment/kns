@@ -43,7 +43,7 @@ export default function Gallery() {
 		<section id="gallery" className="py-8 sm:py-16 bg-gray-100">
 			<div className="container mx-auto px-2 sm:px-4">
 				<h2 className="text-3xl font-bold text-center mb-6 sm:mb-12">
-					Sweet <span className="text-red-500">Memories</span>
+					Project <span className="text-red-500">Gallery</span>
 				</h2>
 
 				{/* Filter Buttons */}
@@ -73,7 +73,7 @@ export default function Gallery() {
 							</div>
 						))
 					) : (
-						<span className="text-red-500">Currently, no photos are found in this category.</span>
+						<span className="text-blue-900  text-center">Currently, this section has no gallery items.</span>
 					)}
 				</div>
 

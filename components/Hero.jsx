@@ -4,15 +4,31 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { CldImage } from "next-cloudinary";
+import { ArrowBigDown, ArrowDown } from "lucide-react";
+import { useState } from "react";
 
 export default function Hero() {
+	const [isMoveDownVisible, setIsMoveDownVisible] = useState(true);
+
+	const onMoveDown = () => {
+		window.scrollBy({
+			top: 700,
+			behavior: "smooth",
+		});
+
+		setIsMoveDownVisible(false);
+	};
+
 	return (
 		<section className="relative h-screen flex items-center justify-center overflow-hidden">
 			{/* Background Image */}
 			<div className="absolute inset-0">
 				<CldImage src="ufhdtrdulvnnm108q4kt" alt="A vibrant festival scene with colorful lights and a festive atmosphere" fill className="object-cover" />
 				{/* Dark Overlay */}
-				<div className="absolute inset-0 bg-black opacity-50"></div>
+				<div className="absolute inset-0 bg-black opacity-40"></div>
+				<button onClick={onMoveDown} className="absolute left-1/2 bottom-10 transform -translate-x-1/2 bg-white w-12 h-12 opacity-50 rounded-full flex items-center justify-center">
+					<ArrowDown className="animate-bounce" />
+				</button>
 			</div>
 
 			{/* Content */}
@@ -32,7 +48,7 @@ export default function Hero() {
 					{/* Book Event Button */}
 					<Link href="/europe-tour">
 						<Button size="lg" className="hover:bg-slate-300 bg-white text-slate-900 font-bold py-3 px-6 mr-4 rounded-full">
-							Book Event
+							Request a Quote{" "}
 						</Button>
 					</Link>
 
