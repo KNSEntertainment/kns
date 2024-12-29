@@ -91,7 +91,7 @@ export default function AboutUs() {
 					</ul>
 				</section>
 
-				<section className="my-6 md:my-16 h-auto border border-slate-800">
+				<section className="my-6 md:my-16 h-auto border border-slate-800 bg-red-50">
 					<div className="text-center text-black p-8">
 						<p className="text-xl md:text-3xl mb-8">So, are you ready to request an offer?</p>
 						<Link href="europe-tour" className="border-b bg-red-700 rounded-full py-4 px-12 text-white font-bold">

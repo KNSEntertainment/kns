@@ -6,7 +6,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import UpcomingEvents from "@/components/UpcomingEvents.jsx";
 import About from "@/components/About";
-import Testimonials from "@/components/Testimonials";
+// import Testimonials from "@/components/Testimonials";
 // import Newsletter from "@/components/Newsletter";
 // import ContactCard from "@/components/ContactCard";
 import PartnersSlider from "@/components/PartnersSlider";
@@ -27,7 +27,7 @@ export default function LandingPage() {
 				<UpcomingEvents />
 				<PartnersSlider />
 				<Gallery />
-				<Testimonials />
+				{/* <Testimonials /> */}
 				{/* <ContactCard /> */}
 			</main>
 			<Footer />
