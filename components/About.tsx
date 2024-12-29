@@ -1,6 +1,8 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import Image from "next/image";
+// import Image from "next/image";
+import { CldImage } from "next-cloudinary";
 import Link from "next/link";
 
 export default function About() {
@@ -20,8 +22,18 @@ export default function About() {
 						</Link>
 					</motion.div>
 				</div>
-				<div className="w-full shadow-sm shadow-slate-100 ">
-					<Image src="/group3.jpeg" alt="KNS Photo" width={300} height={200} className="w-full"></Image>
+				<div className="w-full ">
+					{/* <Image src="/group3.jpeg" alt="KNS Photo" width={300} height={200} className="w-full"></Image> */}
+					<CldImage
+						src="assests/y7jgp3voih0dvglszzai"
+						width="700"
+						height="500"
+						alt="shoe"
+						crop={{
+							type: "auto",
+							source: true,
+						}}
+					/>
 				</div>
 			</div>
 		</section>
