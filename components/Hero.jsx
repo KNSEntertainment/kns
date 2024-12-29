@@ -4,19 +4,15 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { CldImage } from "next-cloudinary";
-import { ArrowBigDown, ArrowDown } from "lucide-react";
+import { ArrowDown } from "lucide-react";
 import { useState } from "react";
 
 export default function Hero() {
-	const [isMoveDownVisible, setIsMoveDownVisible] = useState(true);
-
 	const onMoveDown = () => {
 		window.scrollBy({
 			top: 700,
 			behavior: "smooth",
 		});
-
-		setIsMoveDownVisible(false);
 	};
 
 	return (
