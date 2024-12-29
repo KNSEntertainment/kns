@@ -12,6 +12,7 @@ import About from "@/components/About";
 import PartnersSlider from "@/components/PartnersSlider";
 import Gallery from "@/components/Gallery";
 import Footer from "@/components/Footer";
+import Blog from "@/components/Blog";
 
 export default function LandingPage() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -27,6 +28,7 @@ export default function LandingPage() {
 				<UpcomingEvents />
 				<PartnersSlider />
 				<Gallery />
+				<Blog />
 				{/* <Testimonials /> */}
 				{/* <ContactCard /> */}
 			</main>
