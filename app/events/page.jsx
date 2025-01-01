@@ -8,22 +8,23 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import Image from "next/image";
 import Link from "next/link";
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { BuyTicketButton } from "@/components/BuyTicketButton";
-import { useSearchParams } from "next/navigation";
+// import { useSearchParams } from "next/navigation";
 
 export default function UpcomingEvents() {
 	const [events, setEvents] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [filter, setFilter] = useState("upcoming");
-	const [countryFilter, setcountryFilter] = useState("");
+	const [countryFilter, setCountryFilter] = useState("");
 	const [dateFilter, setDateFilter] = useState("");
 	const [filteredEvents, setFilteredEvents] = useState([]);
 	const [countries, setCountries] = useState([]);
 	const [dates, setDates] = useState([]);
-	const searchParams = useSearchParams();
-	const query = searchParams.get("query") || "";
-	const [searchTerm, setSearchTerm] = useState(query);
+	// const searchParams = useSearchParams();
+	// const query = searchParams.get("query") || "";
+	// const router = useRouter();
+	// const [searchTerm, setSearchTerm] = useState("");
 
 	const formatDateWithDay = (dateString) => {
 		const date = new Date(dateString);
@@ -31,6 +32,13 @@ export default function UpcomingEvents() {
 		const day = days[date.getDay()];
 		return `${dateString} (${day})`;
 	};
+
+	// useEffect(() => {
+	// 	if (router.isReady) {
+	// 		const query = router.query.query || "";
+	// 		setSearchTerm(query);
+	// 	}
+	// }, [router]);
 
 	useEffect(() => {
 		const fetchEvents = async () => {
@@ -85,7 +93,7 @@ export default function UpcomingEvents() {
 		}
 
 		setFilteredEvents(filtered);
-	}, [filter, events, searchTerm, countryFilter, dateFilter]);
+	}, [filter, events, countryFilter, dateFilter]);
 
 	if (loading) {
 		return <p>Loading events...</p>;
@@ -102,12 +110,11 @@ export default function UpcomingEvents() {
 					{/* Search and Filters Section */}
 					<div className="flex flex-col sm:flex-row gap-4 w-full items-center sm:justify-between bg-gray-50 p-6 rounded-md">
 						{/* Search Input */}
-						<Suspense fallback={<p>Loading events...</p>}>
-							<div className="relative w-full sm:w-[400px]">
-								<Input type="text" placeholder="Search events..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="pl-10 w-full sm:w-1/2 transition-all ease-linear duration-300 focus:w-full focus:outline-none" />
-								<Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-							</div>
-						</Suspense>
+						<div className="relative w-full sm:w-[400px]">
+							<Input type="text" placeholder="Search events..." onChange={(e) => setSearchTerm(e.target.value)} className="pl-10 w-full sm:w-1/2 transition-all ease-linear duration-300 focus:w-full focus:outline-none" />
+							{/* <Input type="text" placeholder="Search events..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="pl-10 w-full sm:w-1/2 transition-all ease-linear duration-300 focus:w-full focus:outline-none" /> */}
+							<Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+						</div>
 
 						{/* Buttons Section */}
 						<div className="flex flex-wrap gap-2 sm:gap-4 justify-between w-full sm:w-fit">
@@ -124,8 +131,8 @@ export default function UpcomingEvents() {
 
 						{/* Filters */}
 						<div className="flex flex-wrap gap-4 justify-center sm:justify-end w-full sm:w-auto">
-							{/* country Filter */}
-							<Select value={countryFilter} onValueChange={setcountryFilter}>
+							{/* Country Filter */}
+							<Select value={countryFilter} onValueChange={setCountryFilter}>
 								<SelectTrigger className="w-full sm:w-[180px]">
 									<SelectValue placeholder="Filter by Country" />
 								</SelectTrigger>
@@ -188,10 +195,6 @@ export default function UpcomingEvents() {
 												<MapPin className="h-4 w-4 mr-2 text-primary" />
 												<span className="text-sm text-gray-600 line-clamp-1">{event?.eventvenue}</span>
 											</div>
-											{/* <div className="flex items-center">
-													<Globe className="h-4 w-4 mr-2 text-primary" />
-													<span className="text-sm text-gray-600 line-clamp-1">Country</span>
-												</div> */}
 											<div className="text-2xl font-bold">{event.eventprice !== "0" && "€" + event.eventprice}</div>
 										</div>
 									</CardContent>
@@ -202,7 +205,6 @@ export default function UpcomingEvents() {
 												View Details
 											</Button>
 										</Link>
-										{/* <Button variant="outline" onClick={handleAddToCart} disabled={loading}> */}
 										{new Date(event?.eventdate) > new Date() && <BuyTicketButton eventId={event?.eventname} price={event?.eventprice} />}
 									</CardFooter>
 								</Card>
