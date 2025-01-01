@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { CldImage } from "next-cloudinary";
 import { ArrowDown } from "lucide-react";
-import { useState } from "react";
 
 export default function Hero() {
 	const onMoveDown = () => {

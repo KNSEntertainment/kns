@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { BuyTicketButton } from "@/components/BuyTicketButton";
 import { useSearchParams } from "next/navigation";
 
@@ -92,7 +92,7 @@ export default function UpcomingEvents() {
 	}
 
 	return (
-		<>
+		<Suspense fallback={<p>Loading events...</p>}>
 			<section id="events" className="py-8 sm:py-48 bg-gray-100 min-h-screen">
 				<div className="container mx-auto px-2 sm:px-4">
 					<h2 className="text-3xl font-bold text-center mb-6 sm:mb-12">
@@ -215,6 +215,6 @@ export default function UpcomingEvents() {
 					)}
 				</div>
 			</section>
-		</>
+		</Suspense>
 	);
 }

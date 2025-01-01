@@ -1,5 +1,5 @@
 "use client";
-import { Facebook, Instagram, Twitter, Youtube } from "lucide-react";
+import { Facebook, Instagram } from "lucide-react";
 import Newsletter from "./Newsletter";
 import useFetchData from "@/hooks/useFetchData";
 
