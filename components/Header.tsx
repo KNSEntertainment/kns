@@ -63,7 +63,7 @@ export default function Header({ isMenuOpen, toggleMenu }: HeaderProps) {
 							<Search />
 						</span>
 					</button>
-					<SearchBox handleSearch={undefined} isScrolled={undefined} />
+					<SearchBox handleSearch={undefined} />
 				</div>
 
 				<div className="flex gap-6 items-center">

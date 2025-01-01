@@ -1,6 +1,6 @@
 import { Input } from "./ui/input";
 
-const SearchBox = ({ handleSearch, isScrolled }) => {
+const SearchBox = ({ handleSearch }) => {
 	return (
 		<div className="relative flex items-center md:w-64 w-full">
 			<Input placeholder="Search..." className="w-full py-2 pl-10 pr-4 border border-gray-300 rounded-full focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm text-red-600 transition-all ease-in-out duration-200" />
