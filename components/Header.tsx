@@ -58,7 +58,7 @@ export default function Header({ isMenuOpen, toggleMenu }: HeaderProps) {
 							Europe Tour
 						</Link> */}
 					</nav>
-					<button onClick={openModal} className="hidden md:block border-b border-transparent hover:border-b hover:scale-110">
+					<button onClick={openModal} className=" border-b border-transparent hover:border-b hover:scale-110">
 						<span className={`border-b border-transparent hover:border-b hover:border-b-red-700 ${isScrolled ? "text-black " : "text-slate-200 hover:text-slate-200"}`}>
 							<Search />
 						</span>
@@ -85,7 +85,7 @@ export default function Header({ isMenuOpen, toggleMenu }: HeaderProps) {
 				</div>
 			</div>
 			{isMenuOpen && (
-				<motion.div className="md:hidden bg-red-700" initial={{ opacity: 0, x: 400 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 400 }} transition={{ duration: 0.3 }}>
+				<motion.div className="md:hidden bg-red-700" initial={{ opacity: 0, x: 300 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 300 }} transition={{ duration: 0.3 }}>
 					<div className="fixed right-0 w-48 bg-red-700">
 						<nav className="flex flex-col items-center text-lg py-6">
 							<NavLink href="/events" onClick={toggleMenu}>
