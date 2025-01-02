@@ -49,7 +49,7 @@ export default function Header({ isMenuOpen, toggleMenu }: HeaderProps) {
 						<Link href="/about-us" className={`border-b border-transparent hover:border-b hover:border-b-red-700 ${isScrolled ? "text-black " : "text-slate-200 hover:text-slate-200"}`}>
 							About Us
 						</Link>
-						<Link href="/about-us" className={`border-b border-transparent hover:border-b hover:border-b-red-700 ${isScrolled ? "text-black " : "text-slate-200 hover:text-slate-200"}`}>
+						<Link href="/contact" className={`border-b border-transparent hover:border-b hover:border-b-red-700 ${isScrolled ? "text-black " : "text-slate-200 hover:text-slate-200"}`}>
 							Contact Us
 						</Link>
 

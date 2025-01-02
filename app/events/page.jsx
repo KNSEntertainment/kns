@@ -10,7 +10,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { BuyTicketButton } from "@/components/BuyTicketButton";
-// import { useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 export default function UpcomingEvents() {
 	const [events, setEvents] = useState([]);
@@ -21,10 +21,9 @@ export default function UpcomingEvents() {
 	const [filteredEvents, setFilteredEvents] = useState([]);
 	const [countries, setCountries] = useState([]);
 	const [dates, setDates] = useState([]);
-	// const searchParams = useSearchParams();
-	// const query = searchParams.get("query") || "";
-	// const router = useRouter();
-	// const [searchTerm, setSearchTerm] = useState("");
+	const searchParams = useSearchParams();
+	const query = searchParams.get("query") || "";
+	const [searchTerm, setSearchTerm] = useState(query);
 
 	const formatDateWithDay = (dateString) => {
 		const date = new Date(dateString);
@@ -32,13 +31,6 @@ export default function UpcomingEvents() {
 		const day = days[date.getDay()];
 		return `${dateString} (${day})`;
 	};
-
-	// useEffect(() => {
-	// 	if (router.isReady) {
-	// 		const query = router.query.query || "";
-	// 		setSearchTerm(query);
-	// 	}
-	// }, [router]);
 
 	useEffect(() => {
 		const fetchEvents = async () => {
@@ -111,8 +103,8 @@ export default function UpcomingEvents() {
 					<div className="flex flex-col sm:flex-row gap-4 w-full items-center sm:justify-between bg-gray-50 p-6 rounded-md">
 						{/* Search Input */}
 						<div className="relative w-full sm:w-[400px]">
-							<Input type="text" placeholder="Search events..." onChange={(e) => setSearchTerm(e.target.value)} className="pl-10 w-full sm:w-1/2 transition-all ease-linear duration-300 focus:w-full focus:outline-none" />
-							{/* <Input type="text" placeholder="Search events..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="pl-10 w-full sm:w-1/2 transition-all ease-linear duration-300 focus:w-full focus:outline-none" /> */}
+							{/* <Input type="text" placeholder="Search events..." onChange={(e) => setSearchTerm(e.target.value)} className="pl-10 w-full sm:w-1/2 transition-all ease-linear duration-300 focus:w-full focus:outline-none" /> */}
+							<Input type="text" placeholder="Search events..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="pl-10 w-full sm:w-1/2 transition-all ease-linear duration-300 focus:w-full focus:outline-none" />
 							<Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
 						</div>
 
