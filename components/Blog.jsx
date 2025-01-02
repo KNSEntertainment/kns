@@ -9,11 +9,13 @@ const advertisements = [
 		id: 1,
 		image: "/event2.png",
 		alt: "Advertisement 1",
+		title: "Concert craze is increasing",
 	},
 	{
 		id: 2,
 		image: "/event3.png",
 		alt: "Advertisement 2",
+		title: "Standup Comedy has gained popularity",
 	},
 ];
 
@@ -80,6 +82,7 @@ export default function Blog() {
 							{advertisements.map((ad) => (
 								<div key={ad.id} className="relative w-full h-56 aspect-[3/2] rounded-lg overflow-hidden shadow-md">
 									<Image src={ad.image || "/placeholder.jpg"} alt={ad.alt || "alt"} fill className="object-cover" />
+									<p className="absolute bottom-4 bg-black bg-opacity-50 text-white text-2xl px-6 hover:scale-105 cursor-pointer transition-all ease-in-out duration-100">{ad.title} here</p>
 								</div>
 							))}
 							<Button variant="outline" href="/news" className="w-full text-center">
