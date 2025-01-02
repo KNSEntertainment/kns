@@ -85,7 +85,7 @@ export default function UpcomingEvents() {
 		}
 
 		setFilteredEvents(filtered);
-	}, [filter, events, countryFilter, dateFilter]);
+	}, [filter, searchTerm, events, countryFilter, dateFilter]);
 
 	if (loading) {
 		return <p>Loading events...</p>;

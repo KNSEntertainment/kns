@@ -284,7 +284,7 @@ export default function ContactPage() {
 									<FormItem>
 										<FormLabel>First Name</FormLabel>
 										<FormControl>
-											<Input placeholder="John" {...field} />
+											<Input placeholder="John" {...field} value={typeof field.value === "boolean" ? field.value.toString() : field.value} />
 										</FormControl>
 										<FormMessage />
 									</FormItem>
@@ -297,7 +297,7 @@ export default function ContactPage() {
 									<FormItem>
 										<FormLabel>Last Name</FormLabel>
 										<FormControl>
-											<Input placeholder="Doe" {...field} />
+											<Input placeholder="Doe" {...field} value={typeof field.value === "boolean" ? field.value.toString() : field.value} />
 										</FormControl>
 										<FormMessage />
 									</FormItem>
@@ -313,7 +313,7 @@ export default function ContactPage() {
 									<FormItem>
 										<FormLabel>Email</FormLabel>
 										<FormControl>
-											<Input type="email" placeholder="john.doe@example.com" {...field} />
+											<Input placeholder="hari@gmail.com" {...field} value={typeof field.value === "boolean" ? field.value.toString() : field.value} />
 										</FormControl>
 										<FormMessage />
 									</FormItem>
@@ -326,7 +326,7 @@ export default function ContactPage() {
 									<FormItem>
 										<FormLabel>Phone Number</FormLabel>
 										<FormControl>
-											<Input type="tel" placeholder="+1 (555) 123-4567" {...field} />
+											<Input type="tel" placeholder="+47 46344530" {...field} value={typeof field.value === "boolean" ? field.value.toString() : field.value} />
 										</FormControl>
 										<FormMessage />
 									</FormItem>
@@ -340,7 +340,7 @@ export default function ContactPage() {
 							render={({ field }: { field: ControllerRenderProps<FormSchemaType, FieldPath<FormSchemaType>> }) => (
 								<FormItem>
 									<FormLabel>Country</FormLabel>
-									<Select onValueChange={field.onChange} defaultValue={field.value}>
+									<Select onValueChange={field.onChange} defaultValue={typeof field.value === "boolean" ? field.value.toString() : field.value}>
 										<FormControl>
 											<SelectTrigger>
 												<SelectValue placeholder="Select a country" />
@@ -366,7 +366,7 @@ export default function ContactPage() {
 								<FormItem>
 									<FormLabel>Message</FormLabel>
 									<FormControl>
-										<Textarea rows={12} placeholder="Type your message here." {...field} />
+										<Textarea rows={12} placeholder="Type your message here." {...field} value={typeof field.value === "boolean" ? field.value.toString() : field.value} />
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -379,7 +379,7 @@ export default function ContactPage() {
 							render={({ field }: { field: ControllerRenderProps<FormSchemaType, FieldPath<FormSchemaType>> }) => (
 								<FormItem className="flex flex-row items-start space-x-3 space-y-0">
 									<FormControl>
-										<Checkbox checked={field.value} onCheckedChange={field.onChange} />
+										<Checkbox checked={typeof field.value === "boolean" ? field.value : undefined} onCheckedChange={field.onChange} />
 									</FormControl>
 									<div className="space-y-1 leading-none">
 										<FormLabel>
