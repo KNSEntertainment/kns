@@ -19,9 +19,9 @@ const PartnersSlider = () => {
 				<h2 className="text-3xl font-bold text-center mb-6 sm:mb-12 md:mb-12">
 					Our <span className="text-red-500">Partners</span>
 				</h2>
-				<div className="flex overflow-x-scroll gap-4 md:gap-6 whitespace-nowrap">
+				<div className="grid grid-cols-2 md:grid-cols-3  gap-4 md:gap-6 whitespace-nowrap">
 					{partners?.map((logo) => (
-						<Card key={logo._id} className="group inline-block transition-all duration-300 hover:shadow-lg hover:-translate-y-1 w-96 h-max">
+						<Card key={logo._id} className="group inline-block transition-all duration-300 hover:shadow-lg hover:-translate-y-1 w-48 md:w-64 lg:w-96 h-max">
 							<CardContent className="p-4">
 								<a href={logo.partner_url} className="block" target="_blank" rel="noopener noreferrer">
 									<div className="aspect-video relative mb-4 rounded-md overflow-hidden">
