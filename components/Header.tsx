@@ -5,7 +5,7 @@ import { Facebook, Home, Instagram, Menu, Search, ShoppingCart, X } from "lucide
 import Image from "next/image";
 import Link from "next/link";
 import SearchModal from "@/components/SearchModal";
-import SearchBox from "@/components/SearchBox";
+// import SearchBox from "@/components/SearchBox";
 
 interface HeaderProps {
 	isMenuOpen: boolean;
@@ -63,7 +63,7 @@ export default function Header({ isMenuOpen, toggleMenu }: HeaderProps) {
 							<Search />
 						</span>
 					</button>
-					<SearchBox handleSearch={undefined} />
+					{/* <SearchBox handleSearch={undefined} /> */}
 				</div>
 
 				<div className="flex gap-6 items-center">
