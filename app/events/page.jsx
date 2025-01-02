@@ -10,7 +10,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { BuyTicketButton } from "@/components/BuyTicketButton";
-import { useSearchParams } from "next/navigation";
 
 export default function UpcomingEvents() {
 	const [events, setEvents] = useState([]);
@@ -21,9 +20,7 @@ export default function UpcomingEvents() {
 	const [filteredEvents, setFilteredEvents] = useState([]);
 	const [countries, setCountries] = useState([]);
 	const [dates, setDates] = useState([]);
-	const searchParams = useSearchParams();
-	const query = searchParams.get("query") || "";
-	const [searchTerm, setSearchTerm] = useState(query);
+	const [searchTerm, setSearchTerm] = useState("");
 
 	const formatDateWithDay = (dateString) => {
 		const date = new Date(dateString);
@@ -31,6 +28,13 @@ export default function UpcomingEvents() {
 		const day = days[date.getDay()];
 		return `${dateString} (${day})`;
 	};
+
+	useEffect(() => {
+		// Parse query parameters on the client side
+		const queryParams = new URLSearchParams(window.location.search);
+		const query = queryParams.get("query") || ""; // Default to an empty string if no query
+		setSearchTerm(query);
+	}, []);
 
 	useEffect(() => {
 		const fetchEvents = async () => {
