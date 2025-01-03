@@ -1,4 +1,3 @@
-import { notFound } from "next/navigation";
 import Image from "next/image";
 import { Calendar, Clock, Globe, MapPin, Ticket } from "lucide-react";
 import ShareEvent from "@/components/ShareEvent";
@@ -31,8 +30,10 @@ export default async function EventPage({ params }) {
 		{ icon: MapPin, label: "Venue", value: event.eventvenue },
 	];
 
-	if (!event) {
-		notFound();
+	if (!event || !event._id) {
+		return {
+			notFound: true,
+		};
 	}
 
 	return (
