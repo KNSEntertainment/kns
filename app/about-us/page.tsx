@@ -19,7 +19,7 @@ export default function AboutUs() {
 		{ title: "Promote Nepali Culture", description: "We promote Nepali culture, tradition all over Europe." },
 	];
 	return (
-		<div className="pt-12 md:pt-24 min-h-screen">
+		<div className="pt-20 min-h-screen">
 			<main className="container mx-auto px-4 -my-12 py-24">
 				<section className="mb-20">
 					<Card className="overflow-hidden">

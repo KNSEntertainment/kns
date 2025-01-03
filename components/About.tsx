@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export default function About() {
 	return (
-		<section id="about" className="pt-28 px-4 lg:pt-48 pb-6 lg:pb-32 relative bg-slate-800">
+		<section id="about" className="pt-12 px-4 md:pt-16 lg:pt-48 pb-12 lg:pb-32 relative bg-slate-800">
 			<div className="container p-4 mx-auto items-center justify-between grid grid-col-1 md:grid-cols-2">
 				<div className="sm:mr-16 flex flex-col text-slate-200">
 					<motion.div className="mb-6 w-full" initial={{ opacity: 0, y: -50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
@@ -22,7 +22,7 @@ export default function About() {
 						</Link>
 					</motion.div>
 				</div>
-				<div className="w-full ">
+				<div className="w-full pt-6">
 					{/* <Image src="/group3.jpeg" alt="KNS Photo" width={300} height={200} className="w-full"></Image> */}
 					<CldImage
 						src="assests/y7jgp3voih0dvglszzai"

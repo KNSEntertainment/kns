@@ -43,7 +43,7 @@ export default function Header({ isMenuOpen, toggleMenu }: HeaderProps) {
 						<Link href="/gallery" className={`border-b border-transparent hover:border-b hover:border-b-red-700 ${isScrolled ? "text-black " : "text-slate-200 hover:text-slate-200"}`}>
 							Project Gallery{" "}
 						</Link>
-						<Link href="/blog" className={`border-b border-transparent hover:border-b hover:border-b-red-700 ${isScrolled ? "text-black " : "text-slate-200 hover:text-slate-200"}`}>
+						<Link href="/blogs" className={`border-b border-transparent hover:border-b hover:border-b-red-700 ${isScrolled ? "text-black " : "text-slate-200 hover:text-slate-200"}`}>
 							Blog{" "}
 						</Link>
 						<Link href="/about-us" className={`border-b border-transparent hover:border-b hover:border-b-red-700 ${isScrolled ? "text-black " : "text-slate-200 hover:text-slate-200"}`}>
@@ -57,16 +57,15 @@ export default function Header({ isMenuOpen, toggleMenu }: HeaderProps) {
 						{/* <Link href="europe-tour" className={`border-b bg-red-700 rounded-full py-2 px-6 border-transparent hover:border-b hover:border-b-red-700 ${isScrolled ? "text-white" : "text-slate-200 hover:text-slate-200"}`}>
 							Europe Tour
 						</Link> */}
+						<button onClick={openModal} className=" border-b border-transparent hover:border-b hover:scale-110">
+							<span className={`border-b border-transparent hover:border-b hover:border-b-red-700 ${isScrolled ? "text-black " : "text-slate-200 hover:text-slate-200"}`}>
+								<Search />
+							</span>
+						</button>
 					</nav>
-					<button onClick={openModal} className=" border-b border-transparent hover:border-b hover:scale-110">
-						<span className={`border-b border-transparent hover:border-b hover:border-b-red-700 ${isScrolled ? "text-black " : "text-slate-200 hover:text-slate-200"}`}>
-							<Search />
-						</span>
-					</button>
-					{/* <SearchBox handleSearch={undefined} /> */}
 				</div>
 
-				<div className="flex gap-6 items-center">
+				<div className="flex gap-4 md:gap-6 items-center">
 					<Link href="/" className={`border-b border-transparent hover:border-b hover:scale-110 ${isScrolled ? "text-black " : "text-slate-200 hover:text-slate-200"}`}>
 						<Facebook />
 					</Link>
@@ -88,20 +87,20 @@ export default function Header({ isMenuOpen, toggleMenu }: HeaderProps) {
 				<motion.div className="md:hidden bg-red-700" initial={{ opacity: 0, x: 300 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 300 }} transition={{ duration: 0.3 }}>
 					<div className="fixed right-0 w-48 bg-red-700">
 						<nav className="flex flex-col items-center text-lg py-6">
-							<NavLink href="/events" onClick={toggleMenu}>
-								Events
+							<NavLink href="/gallery" onClick={toggleMenu}>
+								Project Gallery
+							</NavLink>
+
+							<NavLink href="/blogs" onClick={toggleMenu}>
+								Blogs{" "}
 							</NavLink>
 							<NavLink href="/about-us" onClick={toggleMenu}>
 								About Us
 							</NavLink>
-
-							<NavLink href="/gallery" onClick={toggleMenu}>
-								Gallery
+							<NavLink href="/contact" onClick={toggleMenu}>
+								Contact Us
 							</NavLink>
-
-							<NavLink href="/europe-tour" onClick={toggleMenu}>
-								Europe Tour
-							</NavLink>
+							{/* <SearchBox handleSearch={undefined} /> */}
 						</nav>
 					</div>
 				</motion.div>

@@ -54,7 +54,7 @@ export default function Gallery() {
 	};
 
 	return (
-		<section id="gallery" className="min-h-screen py-8 sm:py-16 bg-gray-100">
+		<section id="gallery" className="min-h-screen py-32 bg-gray-100">
 			<div className="container mx-auto px-2 sm:px-4">
 				<h2 className="text-3xl font-bold text-center mb-6 sm:mb-12">Gallery</h2>
 

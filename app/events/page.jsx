@@ -32,7 +32,7 @@ export default function UpcomingEvents() {
 	useEffect(() => {
 		// Parse query parameters on the client side
 		const queryParams = new URLSearchParams(window.location.search);
-		const query = queryParams.get("query") || ""; // Default to an empty string if no query
+		const query = queryParams.get("query") || "";
 		setSearchTerm(query);
 	}, []);
 

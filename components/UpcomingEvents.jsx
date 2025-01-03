@@ -18,7 +18,7 @@ export default function UpcomingEvents() {
 	return (
 		<>
 			{events?.length > 0 && (
-				<section id="events" className="py-8 sm:py-16 bg-gray-100">
+				<section id="events" className="py-12 sm:py-16 bg-gray-100">
 					<div className="container mx-auto px-2 sm:px-4">
 						<p className="text-3xl font-bold text-center mb-6 sm:mb-12">
 							Upcoming <span className="text-red-500">Event</span>
@@ -89,7 +89,7 @@ export default function UpcomingEvents() {
 						</motion.div>
 
 						<Link href="/events">
-							<Button variant="outline" className="flex justify-center mx-auto mt-6 sm:mt-12">
+							<Button variant="outline" className="flex justify-center mx-auto -mt-6">
 								View All Events
 							</Button>
 						</Link>
