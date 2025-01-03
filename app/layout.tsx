@@ -1,10 +1,13 @@
-import type { Metadata } from "next";
+"use client";
 import localFont from "next/font/local";
 import "./globals.css";
 import { ActiveMenuProvider } from "@/context/ActiveMenuContext";
 import GoToTopButton from "@/components/GoToTopBottom";
 import AuthProvider from "@/context/AuthProvider";
 import { Toaster } from "react-hot-toast";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import { useState } from "react";
 
 const geistSans = localFont({
 	src: "./fonts/GeistVF.woff",
@@ -17,23 +20,26 @@ const geistMono = localFont({
 	weight: "100 900",
 });
 
-export const metadata: Metadata = {
-	title: "Gurung KNS Entertainment | Home",
-	description: "Developed by Hari Sanjel",
-};
-
 export default function RootLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+	const toggleMenu = () => {
+		setIsMenuOpen((prev) => !prev);
+	};
 	return (
 		<html lang="en">
 			<AuthProvider>
 				<body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+					<Header isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
+
 					<ActiveMenuProvider>{children}</ActiveMenuProvider>
 					<GoToTopButton />
 					<Toaster position="bottom-right" reverseOrder={false} />
+					<Footer />
 				</body>
 			</AuthProvider>
 		</html>

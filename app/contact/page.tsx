@@ -270,7 +270,7 @@ export default function ContactPage() {
 	};
 
 	return (
-		<div className="container max-w-3xl mx-auto px-4 pt-8">
+		<div className="container max-w-3xl mx-auto px-4 pt-36 pb-16">
 			<h1 className="text-3xl font-bold mb-8">Contact Us</h1>
 
 			<div className="grid grid-cols-1 gap-8">
